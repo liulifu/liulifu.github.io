@@ -1,14 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     const styleSelect = document.getElementById('style-select');
-    const themeStyle = document.getElementById('theme-style');
+    const cyberpunkStyle = document.getElementById('cyberpunk-style');
+    const modernStyle = document.getElementById('modern-style');
 
     // Function to change the style
     function changeStyle(styleName) {
-        themeStyle.href = `styles/${styleName}.css`;
+        if (styleName === 'cyberpunk') {
+            cyberpunkStyle.disabled = false;
+            modernStyle.disabled = true;
+        } else if (styleName === 'modern') {
+            cyberpunkStyle.disabled = true;
+            modernStyle.disabled = false;
+        }
         localStorage.setItem('preferredStyle', styleName);
     }
 
-    // Set initial style based on localStorage or default to 'cyberpunk'
+    // Set initial style based on localStorage or default to 'modern'
     const savedStyle = localStorage.getItem('preferredStyle') || 'modern';
     styleSelect.value = savedStyle;
     changeStyle(savedStyle);
