@@ -1,0 +1,19 @@
+body {
+    background-color: #FFFFFF;
+    color: #333333;
+}
+
+a {
+    color: #666666;
+}
+
+h1, h2, h3 {
+    color: #000000;
+}
+
+#style-switcher {
+    background-color: #F0F0F0;
+    border: 1px solid #CCCCCC;
+}
+
+/* Add more modern-specific styles as needed */

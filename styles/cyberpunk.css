@@ -1,0 +1,15 @@
+body {
+    background-color: #000000;
+    color: #00FF00;
+}
+
+a {
+    color: #00FF00;
+}
+
+#style-switcher {
+    background-color: #001100;
+    border: 1px solid #00FF00;
+}
+
+/* Add more cyberpunk-specific styles as needed */
