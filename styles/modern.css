@@ -12,6 +12,11 @@ h1, h2, h3 {
 }
 
 #style-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures it stays on top */
+    padding: 10px;
     background-color: #F0F0F0;
     border: 1px solid #CCCCCC;
 }

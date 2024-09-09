@@ -1,33 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const styleSelect = document.getElementById('style-select');
-    const cyberpunkStyle = document.getElementById('cyberpunk-style');
-    const modernStyle = document.getElementById('modern-style');
+// Function to change the style
+function changeStyle(styleName) {
+    const styles = {
+        modern: document.getElementById('modern-style'),
+        cyberpunk: document.getElementById('cyberpunk-style'),
+        minimalist: document.getElementById('minimalist-style'),
+        retro: document.getElementById('retro-style'),
+        neon: document.getElementById('neon-style'),
+        old_book: document.getElementById('old_book_style_resume') // Add the old_book style
+    };
 
-    // Function to change the style
-    function changeStyle(styleName) {
-        if (styleName === 'cyberpunk') {
-            cyberpunkStyle.disabled = false;
-            modernStyle.disabled = true;
-        } else if (styleName === 'modern') {
-            cyberpunkStyle.disabled = true;
-            modernStyle.disabled = false;
+    // Disable all styles
+    Object.keys(styles).forEach(key => {
+        if (styles[key]) {
+            styles[key].disabled = true;
         }
-        localStorage.setItem('preferredStyle', styleName);
+    });
+
+    // Enable the selected style
+    if (styles[styleName]) {
+        styles[styleName].disabled = false;
     }
 
-    // Set initial style based on localStorage or default to 'modern'
-    const savedStyle = localStorage.getItem('preferredStyle') || 'modern';
-    styleSelect.value = savedStyle;
-    changeStyle(savedStyle);
+    // Save the selected style in localStorage
+    localStorage.setItem('preferredStyle', styleName);
+}
 
-    // Listen for changes in the select element
-    styleSelect.addEventListener('change', function() {
-        changeStyle(this.value);
-    });
+// Initialize the selected style from localStorage or default to 'modern'
+const savedStyle = localStorage.getItem('preferredStyle') || 'modern';
+document.getElementById('style-select').value = savedStyle;
+changeStyle(savedStyle);
 
-    // Back link functionality
-    document.getElementById('back-link').addEventListener('click', function(e) {
-        e.preventDefault();
-        window.location.href = '/';
-    });
+// Listen for changes in the style select dropdown
+document.getElementById('style-select').addEventListener('change', function() {
+    changeStyle(this.value);
 });

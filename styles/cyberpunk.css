@@ -8,6 +8,11 @@ a {
 }
 
 #style-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures it stays on top */
+    padding: 10px;
     background-color: #001100;
     border: 1px solid #00FF00;
 }
