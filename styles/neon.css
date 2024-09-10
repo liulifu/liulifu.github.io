@@ -31,3 +31,10 @@ h1, h2, h3 {
     color: #00ffff;
     text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #00ffff;
 }
+
+.container {
+    /* max-width: 1200px; */
+    width:60%;
+    margin: 0 auto;
+    position: relative;
+}

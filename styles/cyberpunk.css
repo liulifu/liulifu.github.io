@@ -18,3 +18,9 @@ a {
 }
 
 /* Add more cyberpunk-specific styles as needed */
+.container {
+    /* max-width: 1200px; */
+    width:60%;
+    margin: 0 auto;
+    position: relative;
+}

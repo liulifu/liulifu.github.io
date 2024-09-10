@@ -22,3 +22,10 @@ a {
 h1, h2, h3 {
     font-family: 'Times New Roman', serif;
 }
+
+.container {
+    /* max-width: 1200px; */
+    width:60%;
+    margin: 0 auto;
+    position: relative;
+}
