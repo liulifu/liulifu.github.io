@@ -90,6 +90,10 @@ document.addEventListener('DOMContentLoaded', function () {
     //  STEP 2 新增下面这个行就行。
      createTooltip('.special-term-csv', 'Computerised system validation', 'https://en.wikipedia.org/wiki/Computerized_system_validation');
 
+    // service now
      createTooltip('.special-term-sevnow', 'One platform for enterprise automation', 'https://www.servicenow.com/products/itsm.html');
+     
+    // special-term-wsl
+     createTooltip('.special-term-wsl', 'Windows Subsystem for Linux', 'doc/WSL.md');
 
 });
