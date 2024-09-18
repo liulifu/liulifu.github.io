@@ -1,0 +1,34 @@
+[
+    {
+        "name": "单位转换",
+        "description": "单位转换",
+        "url": "unit/v1/index.html"
+    },
+    {
+        "name": "人民币大写转换",
+        "description": "人民币大写转换",
+        "url": "number-converter/v2/index.html"
+    },
+    {
+      "name": "RGB 颜色选择器",
+      "description": "选择并显示RGB颜色或16进制颜色。",
+      "url": "RGBtool/v1/index.html"
+    },
+    {
+        "name": "五险一金&个税计算器",
+        "description": "月工资五险一金和个人所得税计算器",
+        "url": "wuxianyijin/v6/index.html"
+    },
+    {
+        "name": "增值税（VAT）计算器",
+        "description": "增值税计算器",
+        "url": "VAT/v1/index.html"
+    },
+    
+    {
+        "name": "cron 设计器",
+        "description": "Cron Expression Generator",
+        "url": "crontab/v4/index.html"
+    }
+  ]
+  

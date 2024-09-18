@@ -95,5 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
      
     // special-term-wsl
      createTooltip('.special-term-wsl', 'Windows Subsystem for Linux', 'doc/WSL.md');
+   
+    // special-term-tools
+    createTooltip('.special-term-tools', 'some tools', 'Home/index.html');
 
 });
