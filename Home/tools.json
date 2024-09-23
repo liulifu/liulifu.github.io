@@ -29,6 +29,16 @@
         "name": "cron 设计器",
         "description": "Cron Expression Generator",
         "url": "crontab/v4/index.html"
+    },
+    {
+        "name": "随机密码",
+        "description": "随机密码",
+        "url": "password/v1/index.html"
+    },
+    {
+        "name": "井字棋",
+        "description": "Tic Tac Toe",
+        "url": "TicTacToe/v1/index.html"
     }
   ]
   
