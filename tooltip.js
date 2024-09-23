@@ -97,6 +97,9 @@ document.addEventListener('DOMContentLoaded', function () {
      createTooltip('.special-term-wsl', 'Windows Subsystem for Linux', 'doc/WSL.md');
    
     // special-term-tools
-    createTooltip('.special-term-tools', 'some tools', 'Home/index.html');
+    createTooltip('.special-term-tools', 'Single Page Application', 'Home/index.html');
+    
+    // special-term-tools
+    createTooltip('.special-term-DataCleanling', 'Python Data Cleaning', 'doc/PythonDataCleaning.md');
 
 });
