@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         articles.forEach(article => {
             const li = document.createElement('li');
             const a = document.createElement('a');
-            a.href = `doc/md.html?file=${article.file}`;
+            a.href = `md.html?file=${article.file}`;
             a.textContent = article.title;
 
             const dateSpan = document.createElement('span');
