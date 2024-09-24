@@ -46,13 +46,13 @@ document.getElementById('style-select').addEventListener('change', function() {
 //     });
 //   });
 
-  document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('back-to-top').addEventListener('click', function(event) {
-      event.preventDefault(); // 防止默认跳转行为
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'  // 平滑滚动到顶部
-      });
-    });
-  });
+//   document.addEventListener('DOMContentLoaded', function() {
+//     document.getElementById('back-to-top').addEventListener('click', function(event) {
+//       event.preventDefault(); // 防止默认跳转行为
+//       window.scrollTo({
+//         top: 0,
+//         behavior: 'smooth'  // 平滑滚动到顶部
+//       });
+//     });
+//   });
   

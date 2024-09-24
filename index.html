@@ -74,6 +74,24 @@
         window.onload = resizeIframe;
     </script>
 
+
+    <script>
+
+        // 内嵌md.html 页面中的TOP，点击后，父页面index.html回到顶部
+        // 这样看起来的效果就是回到顶部。
+        // 关联的页面是md.html
+
+        window.addEventListener('message', function(event) {
+            if (event.data.action === 'scroll-to-top') {
+                // 让父页面自己滚动到顶部
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+
+
+
+    </script>
+
     <script>
 
         // 跨文档脚本通信：通过 JavaScript 实现宿主页面（页面 A）与 iframe 页面之间的通信，
@@ -88,6 +106,10 @@
         });
 
     </script>
+
+
+
+
 
 </body>
 </html>

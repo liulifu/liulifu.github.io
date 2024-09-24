@@ -89,8 +89,16 @@
 
         <!-- add different style -->
         <div id="style-switcher">
-            <!-- 回到顶部的链接 -->
-            <h3><div id="gotop"><a href="#" id="back-to-top"> - GO Top - </a></div></h3>
+            <!-- 回到父页面顶部的链接 -->
+
+            <h3>
+              <div id="gotop">
+                <a href="#" onclick="window.parent.postMessage({action: 'scroll-to-top'}, '*'); return false;"> - Top - </a>
+              </div>
+            </h3>
+            
+            
+
             
             <h3><div id="style"> - Style - </div></h3>
             <select id="style-select">
