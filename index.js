@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const articleList = document.getElementById('articleList');
     const searchInput = document.getElementById('searchInput');
+    
+    if (searchInput) {
+        // 设置输入框默认值为空
+        searchInput.value = "";
 
     // 创建文章列表
     function createArticleList(articles) {
@@ -38,4 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('加载文章列表失败:', error);
         });
+
+    } else {
+        console.error('searchInput 元素不存在');
+    }
+
+
 });
