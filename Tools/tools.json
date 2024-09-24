@@ -1,17 +1,17 @@
 [
     {
-        "name": "单位转换",
-        "description": "单位转换",
+        "name": "Unit Conversion",
+        "description": "单位转换 Unit Conversion ",
         "url": "unit/v1/index.html"
     },
     {
         "name": "人民币大写转换",
-        "description": "人民币大写转换",
+        "description": "人民币大写转换 Conversion of Chinese Yuan in capital letters ",
         "url": "number-converter/v2/index.html"
     },
     {
-      "name": "RGB 颜色选择器",
-      "description": "选择并显示RGB颜色或16进制颜色。",
+      "name": "RGB color picker'",
+      "description": "Select and display RGB colors or hexadecimal colors",
       "url": "RGBtool/v1/index.html"
     },
     {
@@ -20,24 +20,24 @@
         "url": "wuxianyijin/v6/index.html"
     },
     {
-        "name": "增值税（VAT）计算器",
-        "description": "增值税计算器",
+        "name": "VAT Calculator ",
+        "description": "增值税计算器 Value added tax calculator",
         "url": "VAT/v1/index.html"
     },
     
     {
-        "name": "cron 设计器",
+        "name": "Cron Designer ",
         "description": "Cron Expression Generator",
         "url": "crontab/v4/index.html"
     },
     {
-        "name": "随机密码",
-        "description": "随机密码",
+        "name": "Random Password ",
+        "description": "随机密码 Random Password ",
         "url": "password/v1/index.html"
     },
     {
-        "name": "井字棋",
-        "description": "Tic Tac Toe",
+        "name": "Tic Tac Toe",
+        "description": "井字棋 Tic Tac Toe",
         "url": "TicTacToe/v1/index.html"
     }
   ]

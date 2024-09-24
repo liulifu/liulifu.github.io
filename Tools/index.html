@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>工具汇总 - 左右布局</title>
+    <title>Tools</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* 页面整体布局 */
@@ -54,13 +54,27 @@
             height: 100%;
             border: none;
         }
+
+        #gohome a {
+            text-decoration: none;
+            color: rgb(95, 6, 196);        /* 链接文本颜色 */
+            font-size: 20px;     /* 字体大小 */
+            font-family: Arial, sans-serif; /* 字体 */
+            font-weight: bold;   /* 字体加粗 */
+            transition: color 0.3s ease;   /* 文字颜色变化的过渡效果 */
+        }
+
+        #gohome a:hover {
+            color: #ee54ca; /* 悬停时的文字颜色变化 */
+        }
     </style>
 </head>
 <body>
     <!-- 左侧导航栏 -->
     <div id="nav">
-        <h2>工具汇总</h2>
+        <h2>Tools</h2>
         <div id="tools-list"></div>
+        <div id="gohome"><a href="../articles.html">BACK</a></div>
     </div>
 
     <!-- 右侧内容区 -->

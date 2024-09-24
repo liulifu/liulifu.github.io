@@ -24,11 +24,7 @@
 * *系统管理员： 在 Windows 环境下管理 Linux 服务器。*
 * *学习 Linux： 在 Windows 上学习 Linux 系统。*
 
-
-
 ---
-
-
 
 # 查看状态及常用命令
 
@@ -578,5 +574,3 @@ wsl --list --verbose
 
 - `wsl` 命令能够查询到 Docker 的信息，因为 Docker Desktop 在 Windows 上是通过 WSL 2 运行的。
 - Docker 和你刚刚安装的 Ubuntu 都是在 WSL 2 环境下运行，它们共享相同的虚拟化技术和资源管理机制。
-
-如果你有进一步的问题，或者想了解更多 Docker 和 WSL 的集成细节，欢迎继续讨论！

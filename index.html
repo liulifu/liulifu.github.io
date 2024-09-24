@@ -7,37 +7,28 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles/index.css">
     <!-- Meta Tags for SEO -->
     <meta name="description" content="Lifu's personal blog about technology and innovation.">
     <meta name="keywords" content="Lifu, blog, technology, innovation, programming">
-    <script src="https://cdn.jsdelivr.net/npm/json5@2.2.3/dist/index.min.js"></script>
-
 
 </head>
 <body>
     <header>
-        <h1>Lifu's Blog</h1>
-        <p>Exploring the world of technology and innovation</p>
+        <h1>Liu Lifu's Blog</h1>
         <nav>
             <ul>
-                <li><a href="https://liulifu.github.io">Home</a></li>
-                <li><a href="Tools/index.html">Tools</a></li>
-                <li><a href="resume.html">About Me</a></li>
-                <!-- <li><a href="#">Contact</a></li> -->
+                <li><a href="#" data-page="articles.html">Articles</a></li>
+                <li><a href="#" data-page="Tools/index.html">Tools</a></li>
+                <li><a href="#" data-page="md.html?file=md/resume.md">About Me</a></li>
             </ul>
         </nav>
     </header>
 
-
     <div id="container">
-
-        
         <section id="mainContent">
-            <input type="text" id="searchInput" placeholder="Search...">
-            <ul id="articleList">
-                <!-- 这里是动态生成的文章列表 -->
-            </ul>
+            <!-- 使用 iframe 作为内容区 -->
+            <iframe id="contentFrame" src="articles.html" style="width: 100%; height: 100vh; overflow: hidden; border: none;" scrolling="no"></iframe>
         </section>
     </div>
 
@@ -46,9 +37,57 @@
         <p><a href="https://github.com/liulifu">GitHub</a> | <a href="mailto:initlifu@hotmail.com">Contact Me</a></p>
     </footer>
 
+    <script>
+        // 动态调整 iframe 高度的函数
+        function resizeIframe() {
+            var iframe = document.getElementById('contentFrame');
+            iframe.onload = function() {
+                adjustIframeHeight(); // 初次加载时调整高度
+                startDynamicHeightCheck(); // 开启动态高度检查
+            };
+        }
 
-    <script src="index.js"></script>
+        // 调整 iframe 高度的函数
+        function adjustIframeHeight() {
+            var iframe = document.getElementById('contentFrame');
+            var iframeHeight = iframe.contentWindow.document.body.scrollHeight;
+            iframe.style.height = iframeHeight + 'px';  // 设置 iframe 高度
+        }
 
-      
+        // 定时器：每秒检查一次 iframe 高度
+        function startDynamicHeightCheck() {
+            setInterval(() => {
+                adjustIframeHeight(); // 每秒动态调整 iframe 高度
+            }, 1000);  // 每秒检查一次
+        }
+
+        // 监听导航点击事件，切换 iframe 内容
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault(); // 阻止默认链接跳转行为
+                const page = this.getAttribute('data-page'); // 获取 data-page 属性的值
+                document.getElementById('contentFrame').src = page; // 动态更换 iframe 的 src
+            });
+        });
+
+        // 页面加载时初始化调整 iframe 高度
+        window.onload = resizeIframe;
+    </script>
+
+    <script>
+
+        // 跨文档脚本通信：通过 JavaScript 实现宿主页面（页面 A）与 iframe 页面之间的通信，
+        // 监听宿主页面的滚动事件，并将滚动信息传递到 iframe 中的 style-switcher，以此来手动控制其位置。
+        // 关联的页面是md.html
+
+
+        window.addEventListener('scroll', function() {
+          var scrollTop = window.scrollY;  // 获取宿主页面滚动的Y轴位置
+          var iframe = document.getElementById('contentFrame');
+          iframe.contentWindow.postMessage({scrollTop: scrollTop}, '*');  // 发送滚动信息到 iframe
+        });
+
+    </script>
+
 </body>
 </html>
