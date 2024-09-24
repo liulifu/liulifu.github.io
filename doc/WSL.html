@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WSL</title>
+  <link id="cyberpunk-style" rel="stylesheet" href="styles/cyberpunk.css" disabled>
+  <link id="modern-style" rel="stylesheet" href="styles/modern.css" disabled>
+  <link id="minimalist-style" rel="stylesheet" href="styles/minimalist.css" >
+  <link id="retro-style" rel="stylesheet" href="styles/retro.css" disabled>
+  <link id="neon-style" rel="stylesheet" href="styles/neon.css" disabled>
+  <link id="old_book_style_resume" rel="stylesheet" href="styles/old_book_style_resume.css" disabled>
+  <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <!-- add different style -->
+        <div id="style-switcher">
+            <h3>Choose Style:</h3>
+            <select id="style-select">
+                <option value="modern">Modern</option>
+                <option value="cyberpunk">Cyberpunk</option>
+                <option value="minimalist">Minimalist</option>
+                <option value="retro">Retro</option>
+                <option value="neon">Neon</option>
+                <option value="old_book">Old_book</option>
+            </select>
+        </div>
+
+
+        <div id="content"></div>
+
+    </div>
+
+    <script>
+        fetch('WSL.md')
+          .then(response => response.text())
+          .then(text => {
+            var converter = new showdown.Converter();
+            document.getElementById('content').innerHTML = converter.makeHtml(text);
+      });
+    </script>
+
+
+    <script src="styles/index.js"></script>
+
+
+</body>
+</html>

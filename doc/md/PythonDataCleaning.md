@@ -1,5 +1,4 @@
-
-# 一般过程
+# Python Data Cleaning 一般过程
 
 ### 1. 准备环境
 
@@ -115,9 +114,7 @@ df.to_csv('cleaned_data.csv', index=False)
 
 通过这些步骤，可以高效完成数据导入、清理、可视化和导出。
 
-
 # 数据量大的处理方法
-
 
 当你的数据量较大时（如500万行的CSV文件），处理数据的步骤需要优化，以避免内存溢出和提高效率。以下是针对大数据集的具体优化步骤和建议：
 
@@ -223,10 +220,7 @@ with Pool(4) as p:
 
 通过这些优化，可以有效处理大规模数据集并保持系统的稳定性和性能。
 
-
 # PySpark的使用方式
-
-
 
 PySpark 是 Apache Spark 的 Python API，广泛用于处理大规模数据集。以下是 PySpark 的常见使用流程，从安装到数据处理的详细步骤和关键命令。
 
@@ -405,9 +399,7 @@ spark-submit --master local[*] my_script.py
 
 通过这些步骤，您可以在 PySpark 中高效处理大规模数据集。
 
-
 # 关系型数据库操作
-
 
 首先要将数据库中的数据导入到 Python 中，然后进行清理和处理，最后再根据需求导出或存储为新的文件格式（如 CSV、JSON 等）。
 
@@ -572,10 +564,7 @@ df_cleaned.to_sql('cleaned_table', connection, if_exists='replace', index=False)
 5. **数据导出**：将清理后的数据导出为 CSV、JSON 或其他文件格式。
 6. **回写数据库（可选）**：如果需要，也可以将清理后的数据写回数据库。
 
-
 # Python 常用库文件介绍
-
-
 
 ### 1. Pandas
 

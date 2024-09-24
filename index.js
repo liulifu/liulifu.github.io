@@ -1,36 +1,41 @@
-// Function to change the style
-function changeStyle(styleName) {
-    const styles = {
-        modern: document.getElementById('modern-style'),
-        cyberpunk: document.getElementById('cyberpunk-style'),
-        minimalist: document.getElementById('minimalist-style'),
-        retro: document.getElementById('retro-style'),
-        neon: document.getElementById('neon-style'),
-        old_book: document.getElementById('old_book_style_resume') // Add the old_book style
-    };
+document.addEventListener('DOMContentLoaded', function() {
+    const articleList = document.getElementById('articleList');
+    const searchInput = document.getElementById('searchInput');
 
-    // Disable all styles
-    Object.keys(styles).forEach(key => {
-        if (styles[key]) {
-            styles[key].disabled = true;
-        }
-    });
+    // 创建文章列表
+    function createArticleList(articles) {
+        articleList.innerHTML = ''; // 清空列表
+        articles.forEach(article => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = `doc/md.html?file=${article.file}`;
+            a.textContent = article.title;
 
-    // Enable the selected style
-    if (styles[styleName]) {
-        styles[styleName].disabled = false;
+            const dateSpan = document.createElement('span');
+            dateSpan.textContent = ` (${article.date})`; // 显示文章日期
+            dateSpan.classList.add('article-date');
+
+            li.appendChild(a);
+            li.appendChild(dateSpan);
+            articleList.appendChild(li);
+        });
     }
 
-    // Save the selected style in localStorage
-    localStorage.setItem('preferredStyle', styleName);
-}
+    // 从 JSON5 文件加载文章列表
+    fetch('articles.json5')
+        .then(response => response.text()) // 获取 JSON5 文件文本内容
+        .then(text => {
+            const data = JSON5.parse(text); // 使用 JSON5 解析器解析 JSON5 数据
+            createArticleList(data); // 动态生成文章列表
 
-// Initialize the selected style from localStorage or default to 'modern'
-const savedStyle = localStorage.getItem('preferredStyle') || 'modern';
-document.getElementById('style-select').value = savedStyle;
-changeStyle(savedStyle);
-
-// Listen for changes in the style select dropdown
-document.getElementById('style-select').addEventListener('change', function() {
-    changeStyle(this.value);
+            // 实现简单的搜索功能
+            searchInput.addEventListener('input', function() {
+                const query = searchInput.value.toLowerCase();
+                const filteredArticles = data.filter(article => article.title.toLowerCase().includes(query));
+                createArticleList(filteredArticles);
+            });
+        })
+        .catch(error => {
+            console.error('加载文章列表失败:', error);
+        });
 });

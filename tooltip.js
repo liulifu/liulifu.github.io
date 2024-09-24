@@ -94,12 +94,12 @@ document.addEventListener('DOMContentLoaded', function () {
      createTooltip('.special-term-sevnow', 'One platform for enterprise automation', 'https://www.servicenow.com/products/itsm.html');
      
     // special-term-wsl
-     createTooltip('.special-term-wsl', 'Windows Subsystem for Linux', 'doc/WSL.md');
+     createTooltip('.special-term-wsl', 'Windows Subsystem for Linux', 'doc/WSL.html');
    
     // special-term-tools
     createTooltip('.special-term-tools', 'Single Page Application', 'Home/index.html');
     
     // special-term-tools
-    createTooltip('.special-term-DataCleanling', 'Python Data Cleaning', 'doc/PythonDataCleaning.md');
+    createTooltip('.special-term-DataCleanling', 'Python Data Cleaning', 'doc/md.html?file=md/PythonDataCleaning.md');
 
 });

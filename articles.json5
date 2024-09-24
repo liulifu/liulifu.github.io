@@ -1,0 +1,12 @@
+[
+    // 为了方便管理文章，这里使用了JSON5 替代没有注释的JSON 
+    // 单行注释
+    // /* 多行注释 */
+    
+
+
+    // { title: "My Resume", file: "md/resume.md", date: "2024-09-19" },
+    { title: "Python Data Cleaning", file: "md/PythonDataCleaning.md", date: "2024-09-20" },
+    { title: "Windows Subsystem for Linux", file: "md/WSL.md", date: "2024-09-21" },
+    
+]

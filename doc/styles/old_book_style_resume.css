@@ -1,0 +1,54 @@
+
+/* Old book-style border for a professional resume */
+
+body {
+    border: 3px solid #A67B5B; /* Classic brownish border */
+    padding: 20px;
+    background-color: #fdf6e3; /* Light beige background to resemble old paper */
+    font-family: 'Arial', sans-serif; /* Keep a clean and readable font for the content */
+}
+
+.content {
+    border: 2px dashed #A67B5B; /* Subtle inner border for content */
+    padding: 20px;
+    background-color: #fff; /* White background for contrast */
+}
+
+/* Optional: Classic font for headings */
+h1, h2, h3 {
+    font-family: 'Libre Baskerville', serif; /* Classic, book-like serif font */
+    color: #5b4636; /* Soft dark brown for headings */
+}
+
+/* Style for links */
+a {
+    color: #A67B5B;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#style-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000; /* Ensures it stays on top */
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    border: 1px solid #A67B5B; /* Optional border */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#style-select {
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.container {
+    /* max-width: 1200px; */
+    width:60%;
+    margin: 0 auto;
+    position: relative;
+}

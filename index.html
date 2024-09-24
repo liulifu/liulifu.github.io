@@ -1,121 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Lifu Liu</title>
-    <link id="cyberpunk-style" rel="stylesheet" href="styles/cyberpunk.css" disabled>
-    <link id="modern-style" rel="stylesheet" href="styles/modern.css">
-    <link id="minimalist-style" rel="stylesheet" href="styles/minimalist.css" disabled>
-    <link id="retro-style" rel="stylesheet" href="styles/retro.css" disabled>
-    <link id="neon-style" rel="stylesheet" href="styles/neon.css" disabled>
-    <link id="old_book_style_resume" rel="stylesheet" href="styles/old_book_style_resume.css" disabled>
-    
+    <title>Lifu's Blog</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="index.css">
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Lifu's personal blog about technology and innovation.">
+    <meta name="keywords" content="Lifu, blog, technology, innovation, programming">
+    <script src="https://cdn.jsdelivr.net/npm/json5@2.2.3/dist/index.min.js"></script>
+
+
 </head>
 <body>
-    <div class="container">
-
-        <!-- add different style -->
-        <div id="style-switcher">
-            <h3>Choose Style:</h3>
-            <select id="style-select">
-                <option value="modern">Modern</option>
-                <option value="cyberpunk">Cyberpunk</option>
-                <option value="minimalist">Minimalist</option>
-                <option value="retro">Retro</option>
-                <option value="neon">Neon</option>
-                <option value="old_book">Old_book</option>
-            </select>
-        </div>
+    <header>
+        <h1>Lifu's Blog</h1>
+        <p>Exploring the world of technology and innovation</p>
+        <nav>
+            <ul>
+                <li><a href="https://liulifu.github.io">Home</a></li>
+                <li><a href="resume.html">About Me</a></li>
+                <!-- <li><a href="#">Projects</a></li>
+                <li><a href="#">Contact</a></li> -->
+            </ul>
+        </nav>
+    </header>
 
 
-        <div class="content">
+    <div id="container">
+
+        
+        <section id="mainContent">
+            <input type="text" id="searchInput" placeholder="Search...">
+            <ul id="articleList">
+                <!-- 这里是动态生成的文章列表 -->
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Lifu's Blog. All rights reserved.</p>
+        <p><a href="https://github.com/liulifu">GitHub</a> | <a href="mailto:initlifu@hotmail.com">Contact Me</a></p>
+    </footer>
 
 
-    <h1>Lifu Liu</h1>
-
-    <p><a href="mailto:initlifu@hotmail.com">initlifu@hotmail.com</a></p>
-
-    <h2>Summary</h2>
-    <p>Experienced IT professional with a strong background in system maintenance, IT Help Desk support, project management, and technical support across diverse industries. Expertise in resolving technical issues, providing first-line IT support, and managing IT Help Desk operations for efficient problem resolution. Skilled in network engineering, including the design, configuration, and troubleshooting of routers, switches, and firewalls. Proficient in Linux, Oracle, MySQL, and various scripting languages. Proven ability to lead projects from implementation through user training and ongoing support, ensuring operational efficiency and compliance. Dedicated to delivering impactful technical solutions and fostering strong user relationships. </p>
-    <h2>Core Skills</h2>
-    <ul>
-        <li><strong>Network Management: </strong>Expertise in network design, configuration, and troubleshooting of routers, switches, firewalls, and VPNs.	</li>
-        <li><strong>Help Desk Support: </strong>Proven experience in providing efficient technical support, resolving system issues, and ensuring smooth IT operations.	</li>
-        <li><strong>System Administration:</strong>Skilled in managing Linux systems, Oracle (OCP Certified) and MySQL databases, with proficiency in Python, PHP, SQL, and Shell scripting.	</li>
-        <li><strong>Project Management: </strong>Strong ability to lead and manage IT projects, from implementation to user training and support.	</li>
-        <li><strong>User Training and Support: </strong>Adept at delivering user training, improving engagement, and ensuring optimal system functionality.	</li>
-        <li><strong>Cloud & Middleware:</strong>Experience in managing cloud services and middleware to optimize infrastructure performance.	</li>
-    </ul>
-
-    <h2>Work Experience</h2>
-    <h3><a href="https://www.lilly.com/">Lilly and Company </a> &nbsp; (2023.10-2024.6)</h3>
-    <p>Laboratory  <span class="special-term-csv">CSV</span> &nbsp; | Pharmaceutical Industry</p>
-    <ul>
-        <li>Spearheaded the management of critical laboratory IT infrastructure, ensuring 99.9% uptime in a GMP-regulated environment.</li>
-        <li>Maintained and optimized Configuration Items (CI) in <span class="special-term-sevnow">ServiceNow</span>  , improving asset tracking and enhancing regulatory compliance.</li>
-        <li>Bridged IT and laboratory operations, reducing average resolution time by 20%.</li>
-        <li>Developed comprehensive documentation and SOPs for laboratory IT systems.</li>
-        <li>Collaborated with QA and regulatory affairs teams to ensure IT systems met stringent pharmaceutical industry standards.</li>
-    </ul>
-
-    <h3>Aisino International Co., Ltd. (2018.10-2023.5)</h3>
-    <p>Senior Product Delivery Manager | Software Industry</p>
-    <ul>
-        <li>Responsible for on-site delivery of Tanzania's tax system project.</li>
-        <li>Led the promotion of the system in Tanzania's Zanzibar Tax Office, including user training and system deployment.</li>
-        <li>Built a remote management system, saving the company 400,000 yuan in annual maintenance costs.</li>
-        <li>Managed project payment collection, achieving a 100% on-time payment collection rate.</li>
-    </ul>
-
-    <h3>Aspire Information Technologies (Beijing) Co., Ltd. (2014.5-2018.6)</h3>
-    <p>IT Operations Manager | IT Services Industry</p>
-    <ul>
-        <li>Responsible for the delivery of the middleware platform maintenance and upgrade project of China Mobile's business support system.</li>
-        <li>Implemented and optimized data processing workflows to enhance system performance.</li>
-        <li>Managed the third-party integration team and ensured timely and high-quality delivery of the project.</li>
-    </ul>
-
-    <h3>POWERSMART (BEIJING) TECHNOLOGY CO.,LTD (2011.1-2014.5)</h3>
-    <p>Implementation Manager | Power Industry</p>
-    <ul>
-        <li>Led the team to complete the delivery of multiple power company projects.</li>
-        <li>Responsible for technical support and customer communication during project implementation.</li>
-        <li>Wrote project documents, conducted risk management and resource allocation.</li>
-    </ul>
-
-    <h2>Education</h2>
-    <ul>
-        <li>Master in Software Engineering, Jilin University (2010.10-2013.7)</li>
-        <li>Bachelor in Food Science and Engineering, Northeast Agricultural University (2003.9-2007.7)</li>
-    </ul>
-
-    <h2>Certifications & Additional Skills</h2>
-    <ul>
-        <li>Oracle Certified Professional (OCP)</li>
-        <li>Proficient in English communication, capable of technical discussions and project coordination with international clients.</li>
-    </ul>
-
-    <h2>Other Skills</h2>
-    <ul>
-        <li> <span class="special-term-DataCleanling">Python Data Cleaning</span></li>
-        <li> <span class="special-term-wsl">WSL</span></li>
-        <li> <span class="special-term-tools">SPA</span></li>
-    </ul> 
-
-    <p>&nbsp;</p>
-    <p>&nbsp;</p>
-
-    <p>&nbsp;</p>
-
-    &nbsp;
-    &nbsp;
-    &nbsp;
-
-</div>
-</div>
     <script src="index.js"></script>
-    <script src="tooltip.js"></script>
-    <!-- <script src="ads.js"></script> -->
+
+      
 </body>
 </html>
