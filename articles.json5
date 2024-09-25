@@ -8,5 +8,6 @@
     // { title: "My Resume", file: "md/resume.md", date: "2024-09-19" },
     { title: "Python Data Cleaning", file: "md/PythonDataCleaning.md", date: "2024-09-20" },
     { title: "Windows Subsystem for Linux", file: "md/WSL.md", date: "2024-09-21" },
+    { title: "Predictive Maintenance in Smart Manufacturing", file: "md/Predictive Maintenance in Smart Manufacturing.md", date: "2024-09-25" },
     
 ]
