@@ -2,212 +2,240 @@
 
 /* Reset default styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Body styles */
 body {
-    background-color: #0e0e0e; /* Dark background for a tech feel */
-    color: #e0e0e0; /* Light text for contrast */
-    font-family: 'Roboto', sans-serif; /* Modern font */
+  background-color: #0e0e0e; /* Dark background for a tech feel */
+  color: #e0e0e0; /* Light text for contrast */
+  font-family: "Roboto", sans-serif; /* Modern font */
 }
 
 /* Header styles */
 header {
-    text-align: center;
-    padding: 50px 0;
-    /* background: linear-gradient(135deg, #0e0e0e, #1a1a1a); /* Subtle gradient */
-    /* border-bottom: 1px solid #333; */ 
+  text-align: center;
+  padding: 50px 0;
+  /* background: linear-gradient(135deg, #0e0e0e, #1a1a1a); /* Subtle gradient */
+  /* border-bottom: 1px solid #333; */
 }
 
 header h1 {
-    font-size: 3em;
-    color: #00ffe1; /* Neon cyan color */
-    text-shadow: 0 0 10px #00ffe1; /* Glow effect */
+  font-size: 3em;
+  color: #00ffe1; /* Neon cyan color */
+  text-shadow: 0 0 10px #00ffe1; /* Glow effect */
 }
 
 header p {
-    font-size: 1.2em;
-    color: #888;
+  font-size: 1.2em;
+  color: #888;
 }
 
 /* Main container */
 #container {
-    width: 80%;
-    margin: 0 auto;
-
+  width: 88%;
+  margin: 0 auto;
 }
 
 /* Search input styles */
 #searchInput {
-    width: 100%;
-    padding: 15px;
-    margin-bottom: 30px;
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    color: #e0e0e0;
-    font-size: 1em;
-    border-radius: 5px;
-    outline: none;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 30px;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  color: #e0e0e0;
+  font-size: 1em;
+  border-radius: 5px;
+  outline: none;
 }
 
 #searchInput::placeholder {
-    color: #666;
+  color: #666;
 }
 
 #searchInput:focus {
-    border-color: #00ffe1;
-    box-shadow: 0 0 10px #00ffe1; /* Glow effect on focus */
+  border-color: #00ffe1;
+  box-shadow: 0 0 10px #00ffe1; /* Glow effect on focus */
 }
 
 /* Article list styles */
 #articleList {
-    list-style: none;
+  list-style: none;
 }
 
 #articleList li {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #articleList li a {
-    text-decoration: none;
-    color: #e0e0e0;
-    font-size: 1.5em;
-    position: relative;
-    transition: color 0.3s;
+  text-decoration: none;
+  color: #e0e0e0;
+  font-size: 1.5em;
+  position: relative;
+  transition: color 0.3s;
 }
 
 #articleList li a:hover {
-    color: #00ffe1; /* Neon color on hover */
+  color: #00ffe1; /* Neon color on hover */
 }
 
 #articleList li a::before {
-    content: '';
-    position: absolute;
-    left: -25px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    background-color: #00ffe1;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #00ffe1; /* Glow effect */
+  content: "";
+  position: absolute;
+  left: -25px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: #00ffe1;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #00ffe1; /* Glow effect */
 }
 
 .article-date {
-    font-size: 0.9em;
-    color: #666;
-    margin-left: 10px;
+  font-size: 0.9em;
+  color: #666;
+  margin-left: 10px;
 }
 
 /* Custom scrollbar for WebKit browsers */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #1a1a1a;
+  background: #1a1a1a;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #333;
-    border-radius: 4px;
+  background: #333;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #00ffe1;
+  background: #00ffe1;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.5em;
-    }
+  header h1 {
+    font-size: 2.5em;
+  }
 
-    #container {
-        width: 90%;
-    }
+  #container {
+    width: 90%;
+  }
 }
-
 
 /* Navigation styles */
 nav {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 nav ul {
-    list-style: none; /* 去掉默认的列表样式 */
-    padding: 0;
-    display: flex; /* 让导航项水平排列 */
-    justify-content: center; /* 居中对齐 */
-    background-color: #1a1a1a; /* 深色背景 */
-    padding: 15px 0;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
+  list-style: none; /* 去掉默认的列表样式 */
+  padding: 0;
+  display: flex; /* 让导航项水平排列 */
+  justify-content: center; /* 居中对齐 */
+  background-color: #1a1a1a; /* 深色背景 */
+  padding: 15px 0;
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
 }
 
 nav ul li {
-    margin: 0 15px; /* 给每个列表项添加间距 */
+  margin: 0 15px; /* 给每个列表项添加间距 */
 }
 
 nav ul li a {
-    text-decoration: none;
-    color: #e0e0e0; /* 链接文字颜色 */
-    font-size: 1.2em; /* 稍大的字体 */
-    padding: 10px 20px;
-    transition: color 0.3s, background-color 0.3s; /* 添加过渡效果 */
+  text-decoration: none;
+  color: #e0e0e0; /* 链接文字颜色 */
+  font-size: 1.2em; /* 稍大的字体 */
+  padding: 10px 20px;
+  transition: color 0.3s, background-color 0.3s; /* 添加过渡效果 */
+}
+
+nav ul li a.active {
+  color: #261414; /* Highlighted color for the active page */
+  background-color: #00ffe1; /* Background for the active page */
+  border-radius: 5px;
 }
 
 nav ul li a:hover {
-    color: #00ffe1; /* 悬停时变为霓虹色 */
-    background-color: #333; /* 悬停时的背景色变化 */
-    border-radius: 5px; /* 让悬停时的背景圆角 */
+  color: #00ffe1; /* 悬停时变为霓虹色 */
+  background-color: #333; /* 悬停时的背景色变化 */
+  border-radius: 5px; /* 让悬停时的背景圆角 */
 }
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column; /* 移动设备上垂直排列 */
-        align-items: center;
-    }
+  nav ul {
+    flex-direction: column; /* 移动设备上垂直排列 */
+    align-items: center;
+  }
 
-    nav ul li {
-        margin-bottom: 10px; /* 垂直排列时的间距 */
-    }
+  nav ul li {
+    margin-bottom: 10px; /* 垂直排列时的间距 */
+  }
 
-    nav ul li a {
-        padding: 15px 30px;
-    }
+  nav ul li a {
+    padding: 15px 30px;
+  }
 }
-
-
 
 /* Footer styles */
 footer {
-    background-color: #1a1a1a; /* 深色背景与整体页面保持一致 */
-    color: #888; /* 灰色文字 */
-    padding: 20px 0;
-    text-align: center;
-    border-top: 1px solid #333; /* 与 header 对称的分割线 */
-    margin-top: 50px;
-    font-size: 0.9em; /* 稍微小一点的字体 */
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5); /* 上方阴影让footer浮现感 */
+  background-color: #1a1a1a; /* 深色背景与整体页面保持一致 */
+  color: #888; /* 灰色文字 */
+
+  text-align: center;
+  border-top: 1px solid #333; /* 与 header 对称的分割线 */
+
+  font-size: 0.9em; /* 稍微小一点的字体 */
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5); /* 上方阴影让footer浮现感 */
 }
 
 footer p {
-    margin: 0;
-    color: #00ffe1; /* 使用与页面其他部分一致的霓虹色 */
+  margin: 0;
+  color: #00ffe1; /* 使用与页面其他部分一致的霓虹色 */
 }
 
 footer a {
-    color: #00ffe1;
-    text-decoration: none;
-    transition: color 0.3s;
+  color: #00ffe1;
+  text-decoration: none;
+  transition: color 0.3s;
 }
 
 footer a:hover {
-    color: #ffffff; /* 悬停时白色 */
-    text-shadow: 0 0 5px #ffffff; /* 增加光晕效果 */
+  color: #ffffff; /* 悬停时白色 */
+  text-shadow: 0 0 5px #ffffff; /* 增加光晕效果 */
+}
+#actionBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  z-index: 1000;
+}
+
+#actionBar button {
+  color: white;
+  background-color: #00ffe1;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#actionBar button:hover {
+  background-color: #ffffff;
 }
