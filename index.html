@@ -26,9 +26,7 @@
       <h1>Liu Lifu's Blog</h1>
       <nav>
         <ul>
-          <li>
-            <a href="#" data-page="articles.html" class="active">Articles</a>
-          </li>
+          <li><a href="#" data-page="articles.html">Articles</a></li>
           <li><a href="#" data-page="Tools/index.html">Tools</a></li>
           <li>
             <a href="#" data-page="md.html?file=md/resume.md">About Me</a>
@@ -49,11 +47,6 @@
       </section>
     </div>
 
-    <div id="actionBar" style="display: none">
-      <button id="scrollTopBtn">Top</button>
-      <button id="linkButton">BACK</button>
-    </div>
-
     <footer>
       <p>&copy; 2024 Lifu's Blog. All rights reserved.</p>
       <p>
@@ -62,6 +55,66 @@
       </p>
     </footer>
 
-    <script src="scripts/actionBar.js"></script>
+    <script>
+      // 动态调整 iframe 高度的函数
+      function resizeIframe() {
+        var iframe = document.getElementById("contentFrame");
+        iframe.onload = function () {
+          adjustIframeHeight(); // 初次加载时调整高度
+          startDynamicHeightCheck(); // 开启动态高度检查
+        };
+      }
+
+      // 调整 iframe 高度的函数
+      function adjustIframeHeight() {
+        var iframe = document.getElementById("contentFrame");
+        var iframeHeight = iframe.contentWindow.document.body.scrollHeight;
+        iframe.style.height = iframeHeight + "px"; // 设置 iframe 高度
+      }
+
+      // 定时器：每秒检查一次 iframe 高度
+      function startDynamicHeightCheck() {
+        setInterval(() => {
+          adjustIframeHeight(); // 每秒动态调整 iframe 高度
+        }, 1000); // 每秒检查一次
+      }
+
+      // 监听导航点击事件，切换 iframe 内容
+      document.querySelectorAll("nav a").forEach((link) => {
+        link.addEventListener("click", function (event) {
+          event.preventDefault(); // 阻止默认链接跳转行为
+          const page = this.getAttribute("data-page"); // 获取 data-page 属性的值
+          document.getElementById("contentFrame").src = page; // 动态更换 iframe 的 src
+        });
+      });
+
+      // 页面加载时初始化调整 iframe 高度
+      window.onload = resizeIframe;
+    </script>
+
+    <script>
+      // 内嵌md.html 页面中的TOP，点击后，父页面index.html回到顶部
+      // 这样看起来的效果就是回到顶部。
+      // 关联的页面是md.html
+
+      window.addEventListener("message", function (event) {
+        if (event.data.action === "scroll-to-top") {
+          // 让父页面自己滚动到顶部
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      });
+    </script>
+
+    <script>
+      // 跨文档脚本通信：通过 JavaScript 实现宿主页面（页面 A）与 iframe 页面之间的通信，
+      // 监听宿主页面的滚动事件，并将滚动信息传递到 iframe 中的 style-switcher，以此来手动控制其位置。
+      // 关联的页面是md.html
+
+      window.addEventListener("scroll", function () {
+        var scrollTop = window.scrollY; // 获取宿主页面滚动的Y轴位置
+        var iframe = document.getElementById("contentFrame");
+        iframe.contentWindow.postMessage({ scrollTop: scrollTop }, "*"); // 发送滚动信息到 iframe
+      });
+    </script>
   </body>
 </html>
