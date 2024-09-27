@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="styles/index.css" />
+    <link rel="stylesheet" href="styles/index2.css" />
     <!-- Meta Tags for SEO -->
     <meta
       name="description"
@@ -24,12 +24,24 @@
   <body>
     <header>
       <h1>Liu Lifu's Blog</h1>
+
       <nav>
         <ul>
           <li><a href="#" data-page="articles.html">Articles</a></li>
+
           <li><a href="#" data-page="Tools/index.html">Tools</a></li>
           <li>
             <a href="#" data-page="md.html?file=md/resume.md">About Me</a>
+          </li>
+          <li>
+            <select id="style-select">
+              <option value="modern">Modern</option>
+              <option value="cyberpunk">Cyberpunk</option>
+              <option value="minimalist">Minimalist</option>
+              <option value="retro">Retro</option>
+              <option value="neon">Neon</option>
+              <option value="old_book">Old_book</option>
+            </select>
           </li>
         </ul>
       </nav>
@@ -115,6 +127,55 @@
         var iframe = document.getElementById("contentFrame");
         iframe.contentWindow.postMessage({ scrollTop: scrollTop }, "*"); // 发送滚动信息到 iframe
       });
+    </script>
+
+    <script>
+      function changeStyle(styleName) {
+        const styles = {
+          modern: document.getElementById("modern-style"),
+          cyberpunk: document.getElementById("cyberpunk-style"),
+          minimalist: document.getElementById("minimalist-style"),
+          retro: document.getElementById("retro-style"),
+          neon: document.getElementById("neon-style"),
+          old_book: document.getElementById("old_book_style_resume"),
+        };
+
+        // 关闭所有样式
+        Object.keys(styles).forEach((key) => {
+          if (styles[key]) {
+            styles[key].disabled = true;
+          }
+        });
+
+        // 启用所选样式
+        if (styles[styleName]) {
+          styles[styleName].disabled = false;
+        }
+
+        // 将选中的样式发送到 md.html
+        const iframe = document.getElementById("contentFrame");
+        if (iframe) {
+          iframe.contentWindow.postMessage(
+            { action: "change-style", styleName: styleName },
+            "*"
+          );
+        }
+
+        // 保存样式到 localStorage
+        localStorage.setItem("preferredStyle", styleName);
+      }
+
+      // 初始化样式
+      const savedStyle = localStorage.getItem("preferredStyle") || "modern";
+      document.getElementById("style-select").value = savedStyle;
+      changeStyle(savedStyle);
+
+      // 监听样式切换事件
+      document
+        .getElementById("style-select")
+        .addEventListener("change", function () {
+          changeStyle(this.value);
+        });
     </script>
   </body>
 </html>

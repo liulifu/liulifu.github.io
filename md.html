@@ -16,14 +16,18 @@
       href="styles/modern.css"
       disabled
     />
-    <link id="minimalist-style" rel="stylesheet" href="styles/minimalist.css" />
+    <link
+      id="minimalist-style"
+      rel="stylesheet"
+      href="styles/minimalist.css"
+      disabled
+    />
     <link id="retro-style" rel="stylesheet" href="styles/retro.css" disabled />
     <link id="neon-style" rel="stylesheet" href="styles/neon.css" disabled />
     <link
       id="old_book_style_resume"
       rel="stylesheet"
       href="styles/old_book_style_resume.css"
-      disabled
     />
     <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
 
@@ -53,12 +57,16 @@
       #style-switcher {
         position: fixed;
         top: 10px; /* 距离页面顶部的距离 */
-        right: 10px; /* 距离页面右侧的距离 */
+        right: 20px; /* 距离页面右侧的距离 */
         z-index: 1000; /* 保证浮动层在页面上层 */
-        background-color: rgb(92, 93, 107); /* 可以根据需要设置背景颜色 */
-        padding: 10px; /* 设置内边距，让内容看起来更美观 */
+        background-color: rgb(239, 239, 247); /* 可以根据需要设置背景颜色 */
+        padding: 5px; /* 设置内边距，让内容看起来更美观 */
         border: 2px solid rgb(92, 93, 107); /* 边框颜色 */
+        width: 60px;
         transition: background-color 0.3s ease; /* 过渡效果 */
+        flex-direction: column; /* 元素按列排列 */
+        justify-content: center; /* 垂直居中 */
+        align-items: center; /* 水平居中 */
       }
 
       #style-switcher:hover {
@@ -105,22 +113,25 @@
               href="#"
               onclick="window.parent.postMessage({action: 'scroll-to-top'}, '*'); return false;"
             >
-              - Top -
+              <img
+                src="../img/To-Top-icon.png"
+                alt="go top"
+                style="width: 50%"
+              />
             </a>
           </div>
         </h3>
 
-        <h3><div id="style">- Style -</div></h3>
-        <select id="style-select">
-          <option value="modern">Modern</option>
-          <option value="cyberpunk">Cyberpunk</option>
-          <option value="minimalist">Minimalist</option>
-          <option value="retro">Retro</option>
-          <option value="neon">Neon</option>
-          <option value="old_book">Old_book</option>
-        </select>
         <h3>
-          <div id="nav"><a href="articles.html"> - BACK - </a></div>
+          <div id="nav">
+            <a href="articles.html">
+              <img
+                src="../img/Arrow-Back-icon.png"
+                alt="go back"
+                style="width: 50%"
+              />
+            </a>
+          </div>
         </h3>
       </div>
 
