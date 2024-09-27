@@ -177,5 +177,34 @@
           changeStyle(this.value);
         });
     </script>
+
+    <script>
+      function toggleStyleSwitcher() {
+        const iframe = document.getElementById("contentFrame");
+        const styleSwitcher = document.getElementById("style-switcher");
+
+        // 检查 iframe 加载的页面是否是 md.html
+        if (iframe.src.includes("md.html")) {
+          styleSwitcher.style.display = "block"; // 显示样式切换器
+        } else {
+          styleSwitcher.style.display = "none"; // 隐藏样式切换器
+        }
+      }
+
+      // 监听页面加载事件
+      document.getElementById("contentFrame").onload = function () {
+        const iframe = document.getElementById("contentFrame");
+
+        // 由于有时 iframe.src 是相对路径，需要获取绝对路径
+        const iframeSrc = iframe.contentWindow.location.href;
+
+        // 检查 iframe 加载的页面是否是 md.html
+        if (iframeSrc.includes("md.html")) {
+          document.getElementById("style-switcher").style.display = "block"; // 显示样式切换器
+        } else {
+          document.getElementById("style-switcher").style.display = "none"; // 隐藏样式切换器
+        }
+      };
+    </script>
   </body>
 </html>

@@ -193,6 +193,5 @@ footer a:hover {
 }
 
 #style-select {
-  margin-top: 5px;
-  font-size: 14px;
+  display: none; /* 初始隐藏 */
 }
