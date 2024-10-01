@@ -4,6 +4,11 @@
   // /* 多行注释 */
 
   {
+    title: "构建C++测试环境",
+    file: "md/构建CPLUSPLUS测试环境.md",
+    date: "2024-10-01",
+  },
+  {
     title: "Help Desk Support: The Backbone of Modern IT Services",
     file: "md/Help Desk Support.md",
     date: "2024-09-27",
