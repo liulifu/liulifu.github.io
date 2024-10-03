@@ -4,6 +4,16 @@
   // /* 多行注释 */
 
   {
+    title: "使用 Python 脚本自动分类横向或竖向的照片",
+    file: "md/使用 Python 脚本自动分类横向或竖向的照片.md",
+    date: "2024-10-03",
+  },
+  {
+    title: "构建Python开发环境",
+    file: "md/构建Python开发环境.md",
+    date: "2024-10-03",
+  },
+  {
     title: "常见的图形框架和引擎的使用条款",
     file: "md/Terms of use for common graphic frameworks and engines.md",
     date: "2024-10-02",
