@@ -115,6 +115,248 @@ docker-compose up -d
 
 该配置文件会自动挂载当前目录的 `./mytest` 文件夹到容器中的 `/workspace` 目录。
 
-## 7. 将项目部署在宿主机并在容器中运行
+# Python 容器与 Docker Compose 配置指南
 
-你可以在宿主机上开发 Python 项目，并在容器中运行测试。通过挂载宿主机上的项目目录，所有的修改将自动反映在容器中，无需额外的复制或同步操作。
+#### 1. 安装 Docker 和 Docker Compose
+
+确保已经安装了 Docker 和 Docker Compose。如果还未安装，可以参考 [Docker 官方网站](https://www.docker.com/get-started) 进行安装。
+
+#### 2. 创建 `Dockerfile`
+
+首先，创建一个 `Dockerfile` 用于定义 Python 容器的构建流程。
+
+```dockerfile
+# 使用官方 Python 基础镜像
+FROM python:3.9-slim
+
+# 设置工作目录
+WORKDIR /app
+
+# 复制当前目录的内容到容器的 /app 目录
+COPY . /app
+
+# 安装依赖
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
+
+# 暴露端口
+EXPOSE 5000
+
+# 运行应用
+CMD ["python", "app.py"]
+```
+
+#### 3. 创建 `requirements.txt`
+
+`requirements.txt` 文件记录项目所需的 Python 库。可以通过以下命令生成：
+
+```bash
+pip freeze > requirements.txt
+```
+
+该命令将当前 Python 环境中的所有依赖库导出到 `requirements.txt` 中。
+
+#### 4. 创建 `docker-compose.yml`
+
+`docker-compose.yml` 是 Docker Compose 的配置文件。它定义了服务、网络和卷等内容。创建以下内容的 `docker-compose.yml` 文件：
+
+```yaml
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: exampleuser
+      POSTGRES_PASSWORD: examplepass
+      POSTGRES_DB: exampledb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+- `app` 服务使用 Dockerfile 来构建，并将项目目录映射到容器内的 `/app` 目录，确保在本地更改代码后，容器内的代码也会自动更新。
+- `db` 服务使用 Postgres 数据库作为示例，并通过环境变量来设置数据库用户名、密码和数据库名。
+
+#### 5. 使用 Docker Compose 构建和启动容器
+
+在项目目录下，运行以下命令构建并启动服务：
+
+```bash
+docker-compose up --build
+```
+
+- `--build` 选项用于在启动容器之前重新构建镜像。
+- 这将启动 `app` 和 `db` 两个容器，Python 应用会通过 5000 端口对外提供服务。
+
+#### 6. 后续操作和依赖管理
+
+在开发过程中，如果需要添加新的依赖库，可以通过以下命令安装新库：
+
+```bash
+pip install new-package
+```
+
+然后更新 `requirements.txt`：
+
+```bash
+pip freeze > requirements.txt
+```
+
+接着运行以下命令重新构建并启动容器：
+
+```bash
+docker-compose up --build
+```
+
+#### 7. 常用 Docker Compose 命令
+
+- 启动服务（在后台运行）：
+
+```bash
+docker-compose up -d
+```
+
+- 停止服务：
+
+```bash
+docker-compose down
+```
+
+- 查看服务日志：
+
+```bash
+docker-compose logs
+```
+
+- 只重新构建应用服务：
+
+```bash
+docker-compose up --build app
+```
+
+- 进入正在运行的容器：
+
+```bash
+docker-compose exec app bash
+```
+
+---
+
+# 如果只使用 Docker Compose
+
+而不使用 Dockerfile，也可以通过 `docker-compose.yml` 文件直接配置服务，并在容器启动时安装 `requirements.txt` 中的依赖。虽然不使用 Dockerfile 有些限制，但这种方式仍然可行。
+
+以下是如何在不使用 Dockerfile 的情况下，仅通过 `docker-compose.yml` 文件实现依赖安装的步骤：
+
+### 1. 创建 `docker-compose.yml` 文件
+
+你可以在 `docker-compose.yml` 文件中定义服务，并在启动时自动安装 `requirements.txt` 中的依赖。以下是一个简单的配置示例：
+
+```yaml
+version: "3"
+
+services:
+  app:
+    image: python:3.9-slim # 直接使用官方 Python 镜像
+    volumes:
+      - .:/app # 将当前目录挂载到容器中的 /app 目录
+    working_dir: /app # 设置工作目录为 /app
+    command: bash -c "pip install --upgrade pip && pip install -r requirements.txt && python app.py"
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONUNBUFFERED=1
+```
+
+### 2. 解释配置内容
+
+- `image: python:3.9-slim`：使用官方的 Python 镜像，而不再需要单独的 Dockerfile。
+- `volumes: - .:/app`：将本地项目目录挂载到容器的 `/app` 目录中，确保代码和依赖可以在容器中访问。
+- `working_dir: /app`：设置容器的工作目录为 `/app`，即挂载的本地项目目录。
+- `command: bash -c "pip install --upgrade pip && pip install -r requirements.txt && python app.py"`：容器启动时执行的命令，首先升级 `pip`，然后安装 `requirements.txt` 中的依赖，最后运行 `app.py`。
+- `ports: - "5000:5000"`：将容器的 5000 端口映射到主机的 5000 端口，确保应用可以从外部访问。
+
+### 3. 创建 `requirements.txt`
+
+如之前提到的，生成 `requirements.txt` 文件：
+
+```bash
+pip freeze > requirements.txt
+```
+
+这将生成一个包含当前 Python 环境依赖的 `requirements.txt` 文件，确保在启动容器时，依赖能够被正确安装。
+
+### 4. 启动容器
+
+当 `docker-compose.yml` 和 `requirements.txt` 文件准备好后，可以使用以下命令启动容器：
+
+```bash
+docker-compose up
+```
+
+此命令会：
+
+- 拉取官方的 `python:3.9-slim` 镜像。
+- 挂载当前目录到容器中。
+- 安装 `requirements.txt` 中的所有依赖。
+- 运行 `app.py`。
+
+### 5. 验证
+
+启动完成后，应用应该可以通过本地的 `5000` 端口访问。你可以通过以下命令进入容器，检查已安装的依赖：
+
+```bash
+docker-compose exec app bash
+```
+
+进入容器后，运行以下命令查看已安装的库：
+
+```bash
+pip list
+```
+
+这将列出所有已经安装的 Python 库。
+
+### 常用 Docker Compose 命令
+
+- 启动服务：
+
+```bash
+docker-compose up
+```
+
+- 在后台运行服务：
+
+```bash
+docker-compose up -d
+```
+
+- 停止并删除容器：
+
+```bash
+docker-compose down
+```
+
+- 查看容器日志：
+
+```bash
+docker-compose logs
+```
+
+---
+
+通过这种方式，你不需要编写 Dockerfile 就可以使用 Docker Compose 安装依赖并运行应用。所有依赖的安装都是通过 `docker-compose.yml` 中的 `command` 部分实现的。这样的方法适用于简单的项目配置，但对于复杂的项目，推荐使用 Dockerfile 来增加灵活性和可维护性。
