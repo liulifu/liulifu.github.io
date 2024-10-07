@@ -4,6 +4,11 @@
   // /* 多行注释 */
 
   {
+    title: "AutoHotKey 开发示例",
+    file: "md/AutoHotKey 开发示例.md",
+    date: "2024-10-07",
+  },
+  {
     title: "SAP 各模块从2013年至2023年主要差异分析",
     file: "md/SAP 各模块从2013年至2023年主要差异分析.md",
     date: "2024-10-03",
