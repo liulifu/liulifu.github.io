@@ -1,56 +1,86 @@
 # Lifu Liu
 
-[initlifu@hotmail.com](mailto:initlifu@hotmail.com)
+Email: [initlifu@hotmail.com](mailto:initlifu@hotmail.com)
+
+Blog: [https://liulifu.github.io](https://liulifu.github.io)
 
 ## Summary
 
-Experienced IT professional with a strong background in system maintenance, IT Help Desk support, project management, and technical support across diverse industries. Expertise in resolving technical issues, providing first-line IT support, and managing IT Help Desk operations for efficient problem resolution. Skilled in network engineering, including the design, configuration, and troubleshooting of routers, switches, and firewalls. Proficient in Linux, Oracle, MySQL, and various scripting languages. Proven ability to lead projects from implementation through user training and ongoing support, ensuring operational efficiency and compliance. Dedicated to delivering impactful technical solutions and fostering strong user relationships.
+Experienced IT professional with a strong focus on Linux system administration, ERP infrastructure support, and network management. Proficient in maintaining high-performance and stable IT infrastructures, with hands-on expertise in ERP system monitoring, optimization, and technical support. Skilled in resolving complex system issues, providing first-line IT support, and collaborating with cross-functional teams to meet evolving business needs. Strong leadership in project management, with experience in cloud services, middleware, and scripting languages like Python and Bash. Dedicated to ensuring operational excellence and efficiency.
 
 ## Core Skills
 
-- **Network Management:** Expertise in network design, configuration, and troubleshooting of routers, switches, firewalls, and VPNs.
-- **Help Desk Support:** Proven experience in providing efficient technical support, resolving system issues, and ensuring smooth IT operations.
-- **System Administration:** Skilled in managing Linux systems, Oracle (OCP Certified), and MySQL databases, with proficiency in Python, PHP, SQL, and Shell scripting.
-- **Project Management:** Strong ability to lead and manage IT projects, from implementation to user training and support.
-- **User Training and Support:** Adept at delivering user training, improving engagement, and ensuring optimal system functionality.
-- **Cloud & Middleware:** Experience in managing cloud services and middleware to optimize infrastructure performance.
+**Linux & Windows Systems:** Extensive experience in managing Linux and Windows systems, focusing on system configuration, optimization, and ensuring infrastructure stability.
+
+**ERP Infrastructure Management:** Hands-on experience with ERP system support, including system implementation, monitoring, troubleshooting, and optimizing performance to align with business objectives.
+
+**Virtualization & Cloud Services:** Expertise in managing virtualization platforms like VMware and cloud services (e.g., AWS, Microsoft Azure) to enhance infrastructure scalability, optimize resource usage, and maintain high availability.
+
+**IT Help Desk & Technical Support:** Proven ability to resolve infrastructure and system-related issues across both on-premise and cloud environments, ensuring seamless operations and minimizing downtime.
+
+**System Administration:** Skilled in administering Linux and Windows systems, managing Oracle (OCP Certified) and MySQL databases, with proficiency in scripting languages such as Python, PHP, SQL, and Shell to automate processes and improve system efficiency.
 
 ## Work Experience
 
+### **Freelance (2024.07-2024.09)**
+
+**Technical Consultant | Manufacturing Industry**
+
+• Invited as a short-term technical consultant to assist with ERP system inspections, monitoring, and troubleshooting periodic issues.
+
+• Helped the client develop Standard Operating Procedures (SOP) to improve ERP system management and operational efficiency.
+
+• Performed configuration management tasks to ensure the stability and performance of the system.
+
 ### [Lilly and Company](https://www.lilly.com/) (2023.10-2024.6)
 
-**Laboratory CSV | Pharmaceutical Industry**
+**Laboratory CSV Consultant | Pharmaceutical Industry**
 
-- Spearheaded the management of critical laboratory IT infrastructure, ensuring 99.9% uptime in a GMP-regulated environment.
-- Maintained and optimized Configuration Items (CI) in ServiceNow, improving asset tracking and enhancing regulatory compliance.
-- Bridged IT and laboratory operations, reducing average resolution time by 20%.
-- Developed comprehensive documentation and SOPs for laboratory IT systems.
-- Collaborated with QA and regulatory affairs teams to ensure IT systems met stringent pharmaceutical industry standards.
+• Advised on the management of critical laboratory IT infrastructure, ensuring alignment with GMP standards.
+
+• Provided consultation on infrastructure Standard Operating Procedures (SOP), ensuring compliance with pharmaceutical industry regulations.
+
+• Optimized Configuration Items (CI) management in Service-Now, improving asset tracking and ensuring data integrity across laboratory IT systems and ERP infrastructure, while enhancing regulatory compliance.
+
+• Collaborated with cross-functional teams, including QA and regulatory affairs, to ensure IT systems met compliance requirements during audits and inspections.
 
 ### Aisino International Co., Ltd. (2018.10-2023.5)
 
 **Senior Product Delivery Manager | Software Industry**
 
-- Responsible for on-site delivery of Tanzania's tax system project.
-- Led the promotion of the system in Tanzania's Zanzibar Tax Office, including user training and system deployment.
-- Built a remote management system, saving the company 400,000 yuan in annual maintenance costs.
-- Managed project payment collection, achieving a 100% on-time payment collection rate.
+• Led the on-site delivery of Tanzania's tax system project, managing the deployment of data centers, servers, and hardware clients, as well as back-end system operations and maintenance. This implementation increased tax revenue by $2 million in the first year and received commendation from the Ministry of Finance.
+
+• Managed system integration with peripheral systems, ensuring seamless operations, and provided IT Help Desk support for resolving system, network, and IDC issues.
+
+• Developed a remote management system for real-time monitoring and automated operations, saving 400,000 yuan annually in maintenance costs.
+
+• Supported the client in promoting the project, ensuring successful adoption and sustainability.
+
+• Configured and utilized Weaver OA system, enhancing office automation and process management efficiency.
 
 ### Aspire Information Technologies (Beijing) Co., Ltd. (2014.5-2018.6)
 
-**IT Operations Manager | IT Services Industry**
+**Infrastructure Manager | IT Services Industry**
 
-- Responsible for the delivery of the middleware platform maintenance and upgrade project of China Mobile's business support system.
-- Implemented and optimized data processing workflows to enhance system performance.
-- Managed the third-party integration team and ensured timely and high-quality delivery of the project.
+• Led the development and management of a Kubernetes-based private cloud toolchain system running on VMware infrastructure, overseeing a team of 5.
 
-### POWERSMART (BEIJING) TECHNOLOGY CO., LTD (2011.1-2014.5)
+• Managed daily operations of the infrastructure, including server, network, and VMware maintenance, ensuring system reliability and scalability.
+
+• Directed middleware services delivery for China Mobile's Business Support Systems Department, managing WebLogic, Borland, and TongWeb middleware products to ensure stable performance and integration.
+
+• Coordinated cross-functional teams and led third-party integration efforts, ensuring timely project delivery and quality control.
+
+• Implemented system monitoring and patch management strategies to maintain system health and prevent downtime.
+
+### **Powersmart (Beijing) Technology Co., Ltd.**(2011.1-2014.5)
 
 **Implementation Manager | Power Industry**
 
-- Led the team to complete the delivery of multiple power company projects.
-- Responsible for technical support and customer communication during project implementation.
-- Wrote project documents, conducted risk management, and managed resource allocation.
+• Lead the team to complete the delivery of multiple power company projects, including the North China Electric Power Company Measurement and Verification Center Integrated Platform Pilot Project, Jibei Electric Power Company Measurement Integrated Platform Promotion Project, and Tianjin Electric Energy Service Management Platform Project.
+
+• Responsible for technical support and customer communication during project implementation to ensure on-time delivery of projects.
+
+• Write project documents, conduct risk management and resource allocation to ensure high-quality completion of projects.
 
 ## Education
 
