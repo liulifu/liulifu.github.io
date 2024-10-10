@@ -4,6 +4,11 @@
   // /* 多行注释 */
 
   {
+    title: "Orchestrating Enterprise Efficiency: Exploring the Core of ERP Systems",
+    file: "md/Exploring the Core of ERP Systems.md",
+    date: "2024-10-07",
+  },
+  {
     title: "AutoHotKey 开发示例",
     file: "md/AutoHotKey 开发示例.md",
     date: "2024-10-07",
