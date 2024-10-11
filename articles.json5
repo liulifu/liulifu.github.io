@@ -4,6 +4,11 @@
   // /* 多行注释 */
 
   {
+    title: "Visitor Tracking System for Static Blog Using Cloudflare Workers and VPS Integration",
+    file: "md/visitor tracking system.md",
+    date: "2024-10-11",
+  },
+  {
     title: "Orchestrating Enterprise Efficiency: Exploring the Core of ERP Systems",
     file: "md/Exploring the Core of ERP Systems.md",
     date: "2024-10-07",
