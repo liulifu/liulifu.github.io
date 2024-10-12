@@ -1,44 +1,43 @@
 [
-    {
-        "name": "Unit Conversion",
-        "description": "单位转换 Unit Conversion ",
-        "url": "unit/v1/index.html"
-    },
-    {
-        "name": "人民币大写转换",
-        "description": "人民币大写转换 Conversion of Chinese Yuan in capital letters ",
-        "url": "number-converter/v2/index.html"
-    },
-    {
-      "name": "RGB color picker'",
-      "description": "Select and display RGB colors or hexadecimal colors",
-      "url": "RGBtool/v1/index.html"
-    },
-    {
-        "name": "五险一金&个税计算器",
-        "description": "月工资五险一金和个人所得税计算器",
-        "url": "wuxianyijin/v6/index.html"
-    },
-    {
-        "name": "VAT Calculator ",
-        "description": "增值税计算器 Value added tax calculator",
-        "url": "VAT/v1/index.html"
-    },
-    
-    {
-        "name": "Cron Designer ",
-        "description": "Cron Expression Generator",
-        "url": "crontab/v4/index.html"
-    },
-    {
-        "name": "Random Password ",
-        "description": "随机密码 Random Password ",
-        "url": "password/v1/index.html"
-    },
-    {
-        "name": "Tic Tac Toe",
-        "description": "井字棋 Tic Tac Toe",
-        "url": "TicTacToe/v1/index.html"
-    }
-  ]
-  
+  {
+    "name": "Unit Conversion",
+    "description": "单位转换 Unit Conversion ",
+    "url": "unit/v1/index.html"
+  },
+  {
+    "name": "人民币大写转换",
+    "description": "人民币大写转换 Conversion of Chinese Yuan in capital letters ",
+    "url": "number-converter/v2/index.html"
+  },
+  {
+    "name": "RGB color picker",
+    "description": "Select and display RGB colors or hexadecimal colors",
+    "url": "RGBtool/v1/index.html"
+  },
+  {
+    "name": "五险一金&个税计算器",
+    "description": "月工资五险一金和个人所得税计算器",
+    "url": "wuxianyijin/v6/index.html"
+  },
+  {
+    "name": "VAT Calculator ",
+    "description": "增值税计算器 Value added tax calculator",
+    "url": "VAT/v1/index.html"
+  },
+
+  {
+    "name": "Cron Designer ",
+    "description": "Cron Expression Generator",
+    "url": "crontab/v4/index.html"
+  },
+  {
+    "name": "Random Password ",
+    "description": "随机密码 Random Password ",
+    "url": "password/v1/index.html"
+  },
+  {
+    "name": "Tic Tac Toe",
+    "description": "井字棋 Tic Tac Toe",
+    "url": "TicTacToe/v1/index.html"
+  }
+]

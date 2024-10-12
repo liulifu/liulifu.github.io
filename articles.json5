@@ -4,6 +4,11 @@
   // /* 多行注释 */
 
   {
+    title: "<==== Linux Kernel 运维：ERP 系统宿主机的核心管理 （置顶）====>",
+    file: "demo/kernel.md",
+    date: "2023-09-07",
+  },
+  {
     title: "Visitor Tracking System for Static Blog Using Cloudflare Workers and VPS Integration",
     file: "md/visitor tracking system.md",
     date: "2024-10-11",
