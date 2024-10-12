@@ -1,5 +1,10 @@
 [
   {
+    "name": "Python Interpreter",
+    "description": "在线练习Python ",
+    "url": "Pyscript/index.html"
+  },
+  {
     "name": "Unit Conversion",
     "description": "单位转换 Unit Conversion ",
     "url": "unit/v1/index.html"
