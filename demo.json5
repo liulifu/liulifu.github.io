@@ -4,6 +4,11 @@
   // /* 多行注释 */
 
   {
+    title: "如何写一个 Lua 脚本 ",
+    file: "demo/howtolua.md",
+    date: "2023-11-11",
+  },
+  {
     title: "Linux Kernel 运维：ERP 系统宿主机的核心管理",
     file: "demo/kernel.md",
     date: "2023-09-07",

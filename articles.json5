@@ -8,6 +8,13 @@
     file: "demo/kernel.md",
     date: "2023-09-07",
   },
+
+  {
+    title: "Azure AzCopy 详细使用指南",
+    file: "md/AzCopy.md",
+    date: "2024-10-12",
+  },
+
   {
     title: "Visitor Tracking System for Static Blog Using Cloudflare Workers and VPS Integration",
     file: "md/visitor tracking system.md",
@@ -78,6 +85,16 @@
     title: "Python Data Cleaning",
     file: "md/PythonDataCleaning.md",
     date: "2024-09-20",
+  },
+  {
+    title: "PyScript介绍",
+    file: "md/PyScript.md",
+    date: "2024-09-07",
+  },
+  {
+    title: "公有云核心产品介绍",
+    file: "md/publicClould.md",
+    date: "2024-09-05",
   },
   // { title: "My Resume", file: "md/resume.md", date: "2024-09-19" },
 ]
