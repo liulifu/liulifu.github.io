@@ -87,6 +87,17 @@
     date: "2024-09-20",
   },
   {
+    title: "开发PHP 数据报表系统",
+    file: "md/PHP报表.md",
+    date: "2024-09-15",
+  },
+
+  {
+    title: "PyScript and the Rise of Python in WebAssembly",
+    file: "md/Python in WebAssembly.md",
+    date: "2024-09-12",
+  },
+  {
     title: "PyScript介绍",
     file: "md/PyScript.md",
     date: "2024-09-07",

@@ -25,14 +25,9 @@
     "url": "wuxianyijin/v6/index.html"
   },
   {
-    "name": "VAT Calculator(JavaScript)",
+    "name": "VAT Calculator",
     "description": "增值税计算器 Value added tax calculator",
     "url": "VAT/v1/index.html"
-  },
-  {
-    "name": "VAT Calculator(Pyscript)  ",
-    "description": "增值税计算器Pyscript版本",
-    "url": "VAT_Pyscript/v2/index.html"
   },
 
   {
