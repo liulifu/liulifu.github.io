@@ -9,6 +9,12 @@
     date: "2023-09-07",
   },
 
+
+  {
+    title: "黑白棋游戏的设计与实现",
+    file: "md/Othello.md",
+    date: "2024-10-14",
+  },
   {
     title: "Azure AzCopy 详细使用指南",
     file: "md/AzCopy.md",

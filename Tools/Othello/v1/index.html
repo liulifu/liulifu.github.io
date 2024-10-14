@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Othello Game with PyScript</title>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  </head>
+  <body>
+    <h1>Othello Game</h1>
+    <div id="game-output"></div>
+    <!-- <py-script src="othello.py"></py-script> -->
+    <py-script>
+    class Othello:
+      def __init__(self):
+          # Initialize an 8x8 board
+          self.board = [[0 for _ in range(8)] for _ in range(8)]
+          # Set up the initial four discs
+          self.board[3][3] = self.board[4][4] = 1  # White
+          self.board[3][4] = self.board[4][3] = -1 # Black
+          self.current_player = -1  # Black goes first
+  
+      def print_board(self):
+          symbols = {1: 'W', -1: 'B', 0: '.'}
+          board_str = "<br>".join([" ".join([symbols[cell] for cell in row]) for row in self.board])
+          game_output.write(board_str + "<br><br>")
+  
+      def is_valid_move(self, row, col):
+          if self.board[row][col] != 0:
+              return False
+  
+          directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+          for dr, dc in directions:
+              r, c = row + dr, col + dc
+              if 0 <= r < 8 and 0 <= c < 8 and self.board[r][c] == -self.current_player:
+                  while 0 <= r < 8 and 0 <= c < 8:
+                      r += dr
+                      c += dc
+                      if not (0 <= r < 8 and 0 <= c < 8):
+                          break
+                      if self.board[r][c] == 0:
+                          break
+                      if self.board[r][c] == self.current_player:
+                          return True
+          return False
+  
+      def make_move(self, row, col):
+          if not self.is_valid_move(row, col):
+              return False
+  
+          self.board[row][col] = self.current_player
+          directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+          for dr, dc in directions:
+              r, c = row + dr, col + dc
+              cells_to_flip = []
+              while 0 <= r < 8 and 0 <= c < 8 and self.board[r][c] == -self.current_player:
+                  cells_to_flip.append((r, c))
+                  r += dr
+                  c += dc
+              if 0 <= r < 8 and 0 <= c < 8 and self.board[r][c] == self.current_player:
+                  for rr, cc in cells_to_flip:
+                      self.board[rr][cc] = self.current_player
+  
+          self.current_player = -self.current_player
+          return True
+  
+      def has_valid_moves(self):
+          for row in range(8):
+              for col in range(8):
+                  if self.is_valid_move(row, col):
+                      return True
+          return False
+  
+      def get_winner(self):
+          white_discs = sum(row.count(1) for row in self.board)
+          black_discs = sum(row.count(-1) for row in self.board)
+          if white_discs > black_discs:
+              return 'White wins!'
+          elif black_discs > white_discs:
+              return 'Black wins!'
+          else:
+              return 'It\'s a tie!'
+  
+      def play_game(self):
+          while self.has_valid_moves():
+              self.print_board()
+              game_output.write(f"{'Black' if self.current_player == -1 else 'White'}'s turn<br>")
+              # Placeholder for user input handling in PyScript
+              # row, col = map(int, input("Enter row and column (0-7) separated by space: ").split())
+              # if not self.make_move(row, col):
+              #     print("Invalid move. Try again.")
+          self.print_board()
+          game_output.write(self.get_winner() + "<br>")
+    </py-script>
+  </body>
+</html>

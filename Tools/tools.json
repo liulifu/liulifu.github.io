@@ -5,6 +5,11 @@
     "url": "Pyscript/index.html"
   },
   {
+    "name": "Othello",
+    "description": "Othello",
+    "url": "Othello/v1/index.html"
+  },
+  {
     "name": "Unit Conversion",
     "description": "单位转换 Unit Conversion ",
     "url": "unit/v1/index.html"
