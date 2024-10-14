@@ -41,6 +41,11 @@
     "url": "password/v1/index.html"
   },
   {
+    "name": "五子棋",
+    "description": "五子棋",
+    "url": "five/index.html"
+  },
+  {
     "name": "Tic Tac Toe",
     "description": "井字棋 Tic Tac Toe",
     "url": "TicTacToe/v1/index.html"
