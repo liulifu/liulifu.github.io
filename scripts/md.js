@@ -6,8 +6,8 @@ window.addEventListener("message", function (event) {
 
 // Initialize the selected style from localStorage or default to 'modern'
 const savedStyle = localStorage.getItem("preferredStyle") || "Old_book";
-document.getElementById("style-select").value = savedStyle;
-changeStyle(savedStyle);
+// document.getElementById("style-select").value = savedStyle;
+// changeStyle(savedStyle);
 
 function changeStyle(styleName) {
   const styles = {

@@ -11,6 +11,12 @@
 
 
   {
+    title: "Building a Modern Automated IT Operations System in 2024",
+    file: "md/Building a Modern Automated IT Operations System in 2024.md",
+    date: "2024-10-17",
+  },
+
+  {
     title: "黑白棋游戏的设计与实现",
     file: "md/Othello.md",
     date: "2024-10-14",

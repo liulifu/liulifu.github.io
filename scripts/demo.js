@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
       articlesToShow.forEach((article) => {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.href = `demo.html?file=${article.file}`;
+        a.href = `demo_md.html?file=${article.file}`;
         a.textContent = article.title;
 
         const dateSpan = document.createElement("span");
