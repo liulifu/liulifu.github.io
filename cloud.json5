@@ -6,7 +6,7 @@
 
   {
     title: "Azure AzCopy 详细使用指南",
-    file: "md/AzCopy.md",
+    file: "cloud/AzCopy.md",
     date: "2024-10-12",
   },
 ]
