@@ -3,7 +3,36 @@
   // 单行注释
   // /* 多行注释 */
 
-
+  {
+    title: "K8s 问题集锦6",
+    file: "cloud/K8s 问题集锦6.md",
+    date: "2024-10-17",
+  },
+  {
+    title: "K8s 问题集锦5",
+    file: "cloud/K8s 问题集锦5.md",
+    date: "2024-10-17",
+  },
+  {
+    title: "K8s 问题集锦4",
+    file: "cloud/K8s 问题集锦4.md",
+    date: "2024-10-17",
+  },
+  {
+    title: "K8s 问题集锦3",
+    file: "cloud/K8s 问题集锦3.md",
+    date: "2024-10-17",
+  },
+  {
+    title: "K8s 问题集锦2",
+    file: "cloud/K8s 问题集锦2.md",
+    date: "2024-10-17",
+  },
+  {
+    title: "K8s 问题集锦1",
+    file: "cloud/K8s 问题集锦1.md",
+    date: "2024-10-17",
+  },
   {
     title: "Azure AzCopy 详细使用指南",
     file: "cloud/AzCopy.md",
