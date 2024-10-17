@@ -16,16 +16,7 @@
     date: "2024-10-17",
   },
 
-  {
-    title: "黑白棋游戏的设计与实现",
-    file: "md/Othello.md",
-    date: "2024-10-14",
-  },
-  {
-    title: "Azure AzCopy 详细使用指南",
-    file: "md/AzCopy.md",
-    date: "2024-10-12",
-  },
+
 
   {
     title: "Visitor Tracking System for Static Blog Using Cloudflare Workers and VPS Integration",
@@ -37,21 +28,13 @@
     file: "md/Exploring the Core of ERP Systems.md",
     date: "2024-10-07",
   },
-  {
-    title: "AutoHotKey 开发示例",
-    file: "md/AutoHotKey 开发示例.md",
-    date: "2024-10-07",
-  },
+
   {
     title: "SAP 各模块从2013年至2023年主要差异分析",
     file: "md/SAP 各模块从2013年至2023年主要差异分析.md",
     date: "2024-10-03",
   },
-  {
-    title: "使用 Python 脚本自动分类横向或竖向的照片",
-    file: "md/使用 Python 脚本自动分类横向或竖向的照片.md",
-    date: "2024-10-03",
-  },
+
   {
     title: "构建Python开发环境",
     file: "md/构建Python开发环境.md",
@@ -93,27 +76,14 @@
     file: "md/WSL.md",
     date: "2024-09-21",
   },
-  {
-    title: "Python Data Cleaning",
-    file: "md/PythonDataCleaning.md",
-    date: "2024-09-20",
-  },
+
   {
     title: "开发PHP 数据报表系统",
     file: "md/PHP报表.md",
     date: "2024-09-15",
   },
 
-  {
-    title: "PyScript and the Rise of Python in WebAssembly",
-    file: "md/Python in WebAssembly.md",
-    date: "2024-09-12",
-  },
-  {
-    title: "PyScript介绍",
-    file: "md/PyScript.md",
-    date: "2024-09-07",
-  },
+
   {
     title: "公有云核心产品介绍",
     file: "md/publicClould.md",
