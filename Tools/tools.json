@@ -29,7 +29,12 @@
     "description": "增值税计算器 Value added tax calculator",
     "url": "VAT/v1/index.html"
   },
-
+  {
+    "name": "可用于杀菌的物品一览",
+    "description": "可用于杀菌的物品一览",
+    "url": "sterilization/sterilization.html"
+   
+  },
   {
     "name": "Cron Designer ",
     "description": "Cron Expression Generator",
