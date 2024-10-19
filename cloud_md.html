@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'">
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://liulifu.github.io; script-src 'self' https://cdn.jsdelivr.net; img-src 'self' https://liulifu.github.io data:;">
+
     <title>Markdown Viewer</title>
     <link
       id="cyberpunk-style"
@@ -188,17 +190,6 @@
     </script>
 
     <script src="scripts/md.js"></script>
-    <script>
-      if (typeof(Storage) !== "undefined") {
-          try {
-              // 正常使用 localStorage
-              localStorage.setItem("example", "Test");
-          } catch (error) {
-              console.error("localStorage access failed: ", error);
-          }
-      } else {
-          console.warn("localStorage is not supported in this browser.");
-      }
-  </script>
+
   </body>
 </html>
