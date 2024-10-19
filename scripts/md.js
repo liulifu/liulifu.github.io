@@ -4,8 +4,19 @@ window.addEventListener("message", function (event) {
   }
 });
 
+
+// if (typeof(Storage) !== "undefined") {
+//   // localStorage is available
+//   // 继续操作 localStorage
+//   localStorage.setItem("key", "value");
+// } else {
+//   // 提示用户 localStorage 不可用，或使用其他存储方案
+//   console.warn("localStorage is not available.");
+// }
+
+
 // Initialize the selected style from localStorage or default to 'modern'
-const savedStyle = localStorage.getItem("preferredStyle") || "Old_book";
+// const savedStyle = localStorage.getItem("preferredStyle") || "Old_book";
 // document.getElementById("style-select").value = savedStyle;
 // changeStyle(savedStyle);
 
