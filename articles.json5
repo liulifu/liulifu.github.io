@@ -4,9 +4,9 @@
   // /* 多行注释 */
 
   {
-    title: "<==== Linux Kernel 运维：ERP 系统宿主机的核心管理 （置顶）====>",
-    file: "demo/kernel.md",
-    date: "2023-09-07",
+    title: "处理ERP系统中CPU占用率高的问题案例分析",
+    file: "md/HighCPU.md",
+    date: "2024-10-25",
   },
 
 
@@ -55,6 +55,7 @@
     file: "md/Help Desk Support.md",
     date: "2024-09-27",
   },
+  
   {
     title: "Blog Architecture Design Documentation",
     file: "md/Blog Architecture Design.md",
@@ -82,7 +83,11 @@
     file: "md/PHP报表.md",
     date: "2024-09-15",
   },
-
+  {
+    title: "Linux Kernel 运维：ERP 系统宿主机的核心管理",
+    file: "demo/kernel.md",
+    date: "2023-09-07",
+  },
 
   {
     title: "公有云核心产品介绍",
