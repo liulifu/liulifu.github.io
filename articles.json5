@@ -88,11 +88,20 @@
     file: "demo/kernel.md",
     date: "2023-09-07",
   },
-
+  {
+    title: "阿里云轻量应用云服务器部署(转发)",
+    file: "md/aliecs.md",
+    date: "2023-09-07",
+  },
   {
     title: "公有云核心产品介绍",
     file: "md/publicClould.md",
     date: "2024-09-05",
+  },
+    {
+    title: "HW云服务器部署(转发)",
+    file: "md/hwcloud.md",
+    date: "2022-05-07",
   },
   // { title: "My Resume", file: "md/resume.md", date: "2024-09-19" },
 ]
