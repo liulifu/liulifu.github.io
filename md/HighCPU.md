@@ -104,11 +104,628 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 通过以上的排查和优化，解决了ERP系统中CPU占用率过高的问题。这个过程展示了如何通过系统工具（如 `top`和 `jstack`）结合数据库分析工具（如AWR报告、EXPLAIN PLAN等）定位并解决性能瓶颈问题。系统维护中，遇到类似问题时，迅速定位和有效解决问题的能力至关重要。
 
 
+# 脚本
+
+
+结合以前提到的使用XShell脚本来管理，使用XShell脚本来快速诊断Oracle数据库CPU高占用问题的解决方案。步骤分解：
+
+1. 系统信息收集脚本：
+
+   * 收集系统级CPU使用情况
+   * 收集Oracle进程CPU使用情况
+   * 收集基本的内存、磁盘等系统资源信息
+
+   > ```
+   > Option Explicit
+   >
+   > Sub Main()
+   >     ''''''''''''''''''''''''''''''''
+   >     ' 名称：Oracle系统信息收集脚本
+   >     ' 版本：v1
+   >     ' 作者：lifu
+   >     ' 
+   >     ' 说明：
+   >     ' 本脚本用于收集Oracle数据库服务器的系统资源使用情况
+   >     ' 包括CPU、内存、磁盘IO等关键指标
+   >     ' 
+   >     ' 使用方法：
+   >     ' 1. 确保有服务器的SSH访问权限
+   >     ' 2. 运行脚本后会在指定目录生成诊断报告
+   >     ''''''''''''''''''''''''''''''''
+   >   
+   >     ' 初始化变量
+   >     Dim reportPath, tempScriptName
+   >     reportPath = "diagnostics_" & GetCurrentDateTime()
+   >     tempScriptName = "temp_" & CreateGUID() & ".sh"
+   >   
+   >     ' 设置屏幕同步模式
+   >     xsh.Screen.Synchronous = True
+   >   
+   >     ' 创建诊断目录
+   >     SendCommand "mkdir -p " & reportPath
+   >   
+   >     ' 收集系统信息
+   >     CreateSystemInfoScript tempScriptName, reportPath
+   >     ExecuteScript tempScriptName
+   >     CleanupScript tempScriptName
+   >   
+   >     ' 显示结果位置
+   >     xsh.Dialog.MsgBox "诊断信息已收集完成，报告保存在: " & reportPath
+   > End Sub
+   >
+   > Sub SendCommand(command)
+   >     xsh.Screen.Send command & vbCr
+   >     xsh.Screen.WaitForString "$"
+   >     xsh.Session.Sleep 100
+   > End Sub
+   >
+   > Sub CreateSystemInfoScript(scriptName, reportPath)
+   >     SendCommand "cat << 'EOF' > " & scriptName
+   >   
+   >     ' 系统基本信息
+   >     xsh.Screen.Send "echo '=== 系统基本信息 ===' > " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "date >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "uname -a >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "echo >> " & reportPath & "/system_info.txt" & vbNewLine
+   >   
+   >     ' CPU信息
+   >     xsh.Screen.Send "echo '=== CPU使用情况 ===' >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "top -b -n 1 | head -n 20 >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "echo >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "mpstat 1 5 >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "echo >> " & reportPath & "/system_info.txt" & vbNewLine
+   >   
+   >     ' Oracle进程信息
+   >     xsh.Screen.Send "echo '=== Oracle进程CPU使用情况 ===' >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "ps -eo pid,ppid,%cpu,%mem,cmd | grep [o]racle >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "echo >> " & reportPath & "/system_info.txt" & vbNewLine
+   >   
+   >     ' 内存信息
+   >     xsh.Screen.Send "echo '=== 内存使用情况 ===' >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "free -m >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "echo >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "vmstat 1 5 >> " & reportPath & "/system_info.txt" & vbNewLine
+   >   
+   >     ' 磁盘IO信息
+   >     xsh.Screen.Send "echo '=== 磁盘IO情况 ===' >> " & reportPath & "/system_info.txt" & vbNewLine
+   >     xsh.Screen.Send "iostat -x 1 5 >> " & reportPath & "/system_info.txt" & vbNewLine
+   >   
+   >     xsh.Screen.Send "EOF" & vbNewLine
+   >     xsh.Session.Sleep 500
+   >   
+   >     ' 设置脚本权限
+   >     SendCommand "chmod +x " & scriptName
+   > End Sub
+   >
+   > Sub ExecuteScript(scriptName)
+   >     SendCommand "bash " & scriptName
+   >     xsh.Session.Sleep 3000  ' 等待脚本执行完成
+   > End Sub
+   >
+   > Sub CleanupScript(scriptName)
+   >     SendCommand "rm " & scriptName
+   > End Sub
+   >
+   > Function GetCurrentDateTime()
+   >     Dim now
+   >     now = Date & "_" & Time
+   >     GetCurrentDateTime = Replace(Replace(Replace(now, "/", ""), ":", ""), " ", "_")
+   > End Function
+   >
+   > Function CreateGUID()
+   >     Dim TypeLib
+   >     Set TypeLib = CreateObject("Scriptlet.TypeLib")
+   >     CreateGUID = Mid(TypeLib.Guid, 2, 36)
+   > End Function
+   > ```
+   >
+3. Oracle会话信息诊断脚本：
+
+   * 检查活跃会话
+   * 检查长时间运行的SQL
+   * 检查锁等待情况
+
+>
+> ```
+> Option Explicit
+>
+> Sub Main()
+>     ''''''''''''''''''''''''''''''''
+>     ' 名称：Oracle会话信息分析脚本
+>     ' 版本：v1
+>     ' 作者：lifu
+>     ' 
+>     ' 说明：
+>     ' 本脚本用于分析Oracle数据库中的会话信息
+>     ' 包括活跃会话、长时间运行SQL、锁等待等情况
+>     ' 
+>     ' 使用方法：
+>     ' 1. 确保具有Oracle数据库的访问权限
+>     ' 2. 运行脚本后会生成会话分析报告
+>     ''''''''''''''''''''''''''''''''
+>   
+>     ' 初始化变量
+>     Dim reportPath, tempScriptName
+>     reportPath = "session_analysis_" & GetCurrentDateTime()
+>     tempScriptName = "temp_" & CreateGUID() & ".sql"
+>   
+>     ' 设置屏幕同步模式
+>     xsh.Screen.Synchronous = True
+>   
+>     ' 创建报告目录
+>     SendCommand "mkdir -p " & reportPath
+>   
+>     ' 创建并执行SQL脚本
+>     CreateSessionAnalysisScript tempScriptName, reportPath
+>     ExecuteOracleScript tempScriptName
+>     CleanupScript tempScriptName
+>   
+>     ' 显示结果位置
+>     xsh.Dialog.MsgBox "会话分析完成，报告保存在: " & reportPath
+> End Sub
+>
+> Sub SendCommand(command)
+>     xsh.Screen.Send command & vbCr
+>     xsh.Screen.WaitForString "$"
+>     xsh.Session.Sleep 100
+> End Sub
+>
+> Sub CreateSessionAnalysisScript(scriptName, reportPath)
+>     SendCommand "cat << 'EOF' > " & scriptName
+>   
+>     ' 设置SQL*Plus格式
+>     xsh.Screen.Send "SET LINESIZE 200" & vbNewLine
+>     xsh.Screen.Send "SET PAGESIZE 1000" & vbNewLine
+>     xsh.Screen.Send "SET HEADING ON" & vbNewLine
+>     xsh.Screen.Send "SET FEEDBACK ON" & vbNewLine
+>     xsh.Screen.Send "SPOOL " & reportPath & "/session_analysis.txt" & vbNewLine
+>   
+>     ' 活跃会话分析
+>     xsh.Screen.Send "PROMPT ============= 活跃会话信息 =============" & vbNewLine
+>     xsh.Screen.Send "SELECT s.sid, s.serial#, s.username, s.status, " & _
+>                     "s.schemaname, s.osuser, s.machine, s.program, " & _
+>                     "s.event, s.wait_time, s.seconds_in_wait " & _
+>                     "FROM v$session s " & _
+>                     "WHERE status = 'ACTIVE' " & _
+>                     "AND type != 'BACKGROUND';" & vbNewLine
+>   
+>     ' 长时间运行的SQL
+>     xsh.Screen.Send "PROMPT ============= 长时间运行的SQL =============" & vbNewLine
+>     xsh.Screen.Send "SELECT sql_id, cpu_time/1000000 as cpu_seconds, " & _
+>                     "elapsed_time/1000000 as elapsed_seconds, " & _
+>                     "executions, disk_reads, buffer_gets, " & _
+>                     "rows_processed, sql_text " & _
+>                     "FROM v$sql " & _
+>                     "WHERE elapsed_time > 1000000 " & _
+>                     "ORDER BY elapsed_time DESC " & _
+>                     "FETCH FIRST 10 ROWS ONLY;" & vbNewLine
+>   
+>     ' 锁等待分析
+>     xsh.Screen.Send "PROMPT ============= 锁等待情况 =============" & vbNewLine
+>     xsh.Screen.Send "SELECT l.sid, " & _
+>                     "s.username, " & _
+>                     "l.type, " & _
+>                     "l.lmode, " & _
+>                     "l.request, " & _
+>                     "l.ctime, " & _
+>                     "s.sql_id " & _
+>                     "FROM v$lock l, v$session s " & _
+>                     "WHERE l.sid = s.sid " & _
+>                     "AND l.block > 0;" & vbNewLine
+>   
+>     ' CPU使用率TOP会话
+>     xsh.Screen.Send "PROMPT ============= CPU使用率TOP会话 =============" & vbNewLine
+>     xsh.Screen.Send "SELECT s.sid, s.serial#, s.username, " & _
+>                     "s.status, ss.value as cpu_usage, " & _
+>                     "s.sql_id, s.event " & _
+>                     "FROM v$session s, v$sesstat ss, v$statname sn " & _
+>                     "WHERE s.sid = ss.sid " & _
+>                     "AND ss.statistic# = sn.statistic# " & _
+>                     "AND sn.name = 'CPU used by this session' " & _
+>                     "AND s.type != 'BACKGROUND' " & _
+>                     "ORDER BY ss.value DESC " & _
+>                     "FETCH FIRST 10 ROWS ONLY;" & vbNewLine
+>   
+>     xsh.Screen.Send "SPOOL OFF" & vbNewLine
+>     xsh.Screen.Send "EXIT;" & vbNewLine
+>   
+>     xsh.Screen.Send "EOF" & vbNewLine
+>     xsh.Session.Sleep 500
+> End Sub
+>
+> Sub ExecuteOracleScript(scriptName)
+>     ' 执行Oracle SQL脚本
+>     SendCommand "sqlplus / as sysdba @" & scriptName
+>     xsh.Session.Sleep 5000  ' 等待SQL执行完成
+> End Sub
+>
+> Sub CleanupScript(scriptName)
+>     SendCommand "rm " & scriptName
+> End Sub
+>
+> Function GetCurrentDateTime()
+>     Dim now
+>     now = Date & "_" & Time
+>     GetCurrentDateTime = Replace(Replace(Replace(now, "/", ""), ":", ""), " ", "_")
+> End Function
+>
+> Function CreateGUID()
+>     Dim TypeLib
+>     Set TypeLib = CreateObject("Scriptlet.TypeLib")
+>     CreateGUID = Mid(TypeLib.Guid, 2, 36)
+> End Function
+> ```
+
+
+
+
+3. SQL性能分析脚本：
+
+* 生成AWR报告
+* 查看TOP SQL
+* 检查执行计划
+
+> ```
+> Option Explicit
+>
+> Sub Main()
+>     ''''''''''''''''''''''''''''''''
+>     ' 名称：Oracle SQL性能分析脚本
+>     ' 版本：v1
+>     ' 作者：lifu
+>     ' 
+>     ' 说明：
+>     ' 本脚本用于分析Oracle数据库中的SQL性能问题
+>     ' 包括生成AWR报告、分析TOP SQL、检查执行计划等
+>     ' 
+>     ' 使用方法：
+>     ' 1. 确保具有Oracle数据库的SYSDBA权限
+>     ' 2. 运行脚本后会生成详细的性能分析报告
+>     ''''''''''''''''''''''''''''''''
+>   
+>     ' 初始化变量
+>     Dim reportPath, tempScriptName
+>     reportPath = "sql_analysis_" & GetCurrentDateTime()
+>     tempScriptName = "temp_" & CreateGUID() & ".sql"
+>   
+>     ' 设置屏幕同步模式
+>     xsh.Screen.Synchronous = True
+>   
+>     ' 创建报告目录
+>     SendCommand "mkdir -p " & reportPath
+>   
+>     ' 创建并执行SQL分析脚本
+>     CreateSQLAnalysisScript tempScriptName, reportPath
+>     ExecuteOracleScript tempScriptName
+>     CleanupScript tempScriptName
+>   
+>     ' 显示结果位置
+>     xsh.Dialog.MsgBox "SQL性能分析完成，报告保存在: " & reportPath
+> End Sub
+>
+> Sub SendCommand(command)
+>     xsh.Screen.Send command & vbCr
+>     xsh.Screen.WaitForString "$"
+>     xsh.Session.Sleep 100
+> End Sub
+>
+> Sub CreateSQLAnalysisScript(scriptName, reportPath)
+>     SendCommand "cat << 'EOF' > " & scriptName
+>   
+>     ' 设置SQL*Plus格式
+>     xsh.Screen.Send "SET LINESIZE 200" & vbNewLine
+>     xsh.Screen.Send "SET PAGESIZE 1000" & vbNewLine
+>     xsh.Screen.Send "SET HEADING ON" & vbNewLine
+>     xsh.Screen.Send "SET FEEDBACK ON" & vbNewLine
+>     xsh.Screen.Send "SET LONG 1000000" & vbNewLine
+>     xsh.Screen.Send "SET LONGCHUNKSIZE 1000000" & vbNewLine
+>     xsh.Screen.Send "SPOOL " & reportPath & "/sql_analysis.txt" & vbNewLine
+>   
+>     ' 生成AWR快照ID
+>     xsh.Screen.Send "PROMPT ============= 最近的AWR快照 =============" & vbNewLine
+>     xsh.Screen.Send "SELECT snap_id, begin_interval_time, end_interval_time " & _
+>                     "FROM dba_hist_snapshot " & _
+>                     "WHERE begin_interval_time > SYSDATE - 1 " & _
+>                     "ORDER BY snap_id DESC " & _
+>                     "FETCH FIRST 5 ROWS ONLY;" & vbNewLine
+>   
+>     ' TOP SQL (按CPU使用率排序)
+>     xsh.Screen.Send "PROMPT ============= CPU使用率TOP SQL =============" & vbNewLine
+>     xsh.Screen.Send "SELECT sql_id, " & _
+>                     "cpu_time/1000000 as cpu_seconds, " & _
+>                     "elapsed_time/1000000 as elapsed_seconds, " & _
+>                     "executions, " & _
+>                     "buffer_gets, " & _
+>                     "disk_reads, " & _
+>                     "rows_processed, " & _
+>                     "SUBSTR(sql_text, 1, 200) as sql_text " & _
+>                     "FROM v$sqlarea " & _
+>                     "WHERE cpu_time > 0 " & _
+>                     "ORDER BY cpu_time DESC " & _
+>                     "FETCH FIRST 10 ROWS ONLY;" & vbNewLine
+>   
+>     ' SQL执行计划分析
+>     xsh.Screen.Send "PROMPT ============= TOP SQL的执行计划 =============" & vbNewLine
+>     xsh.Screen.Send "SELECT * FROM TABLE(DBMS_XPLAN.DISPLAY_CURSOR(" & _
+>                     "(SELECT sql_id FROM v$sqlarea " & _
+>                     "WHERE cpu_time > 0 " & _
+>                     "ORDER BY cpu_time DESC " & _
+>                     "FETCH FIRST 1 ROW ONLY), NULL, 'ALLSTATS LAST'));" & vbNewLine
+>   
+>     ' SQL统计信息
+>     xsh.Screen.Send "PROMPT ============= SQL统计信息 =============" & vbNewLine
+>     xsh.Screen.Send "SELECT sql_id, " & _
+>                     "plan_hash_value, " & _
+>                     "optimizer_cost, " & _
+>                     "optimizer_mode, " & _
+>                     "parsing_schema_name, " & _
+>                     "module, " & _
+>                     "first_load_time, " & _
+>                     "last_load_time " & _
+>                     "FROM v$sql " & _
+>                     "WHERE cpu_time > 0 " & _
+>                     "ORDER BY cpu_time DESC " & _
+>                     "FETCH FIRST 10 ROWS ONLY;" & vbNewLine
+>   
+>     ' 检查未使用索引的SQL
+>     xsh.Screen.Send "PROMPT ============= 没有使用索引的SQL =============" & vbNewLine
+>     xsh.Screen.Send "SELECT sql_id, " & _
+>                     "operation, " & _
+>                     "options, " & _
+>                     "object_owner, " & _
+>                     "object_name " & _
+>                     "FROM v$sql_plan " & _
+>                     "WHERE operation LIKE '%TABLE%' " & _
+>                     "AND options LIKE '%FULL%' " & _
+>                     "AND object_owner NOT IN ('SYS','SYSTEM') " & _
+>                     "GROUP BY sql_id, operation, options, object_owner, object_name;" & vbNewLine
+>   
+>     ' 生成AWR报告（HTML格式）
+>     xsh.Screen.Send "PROMPT ============= 生成AWR报告 =============" & vbNewLine
+>     xsh.Screen.Send "DEFINE report_type = 'html'" & vbNewLine
+>     xsh.Screen.Send "DEFINE begin_snap = &1" & vbNewLine
+>     xsh.Screen.Send "DEFINE end_snap = &2" & vbNewLine
+>     xsh.Screen.Send "DEFINE report_name = '" & reportPath & "/awr_report.html'" & vbNewLine
+>     xsh.Screen.Send "@?/rdbms/admin/awrrpt" & vbNewLine
+>   
+>     xsh.Screen.Send "SPOOL OFF" & vbNewLine
+>     xsh.Screen.Send "EXIT;" & vbNewLine
+>   
+>     xsh.Screen.Send "EOF" & vbNewLine
+>     xsh.Session.Sleep 500
+> End Sub
+>
+> Sub ExecuteOracleScript(scriptName)
+>     ' 获取最近的AWR快照ID
+>     Dim beginSnap, endSnap
+>     beginSnap = GetLatestAWRSnapshots(1) ' 获取倒数第二个快照
+>     endSnap = GetLatestAWRSnapshots(0)   ' 获取最新快照
+>   
+>     ' 执行Oracle SQL脚本
+>     SendCommand "sqlplus / as sysdba @" & scriptName & " " & beginSnap & " " & endSnap
+>     xsh.Session.Sleep 10000  ' 等待SQL执行完成
+> End Sub
+>
+> Function GetLatestAWRSnapshots(offset)
+>     ' 此函数应该查询并返回最近的AWR快照ID
+>     ' 实际实现中需要查询dba_hist_snapshot表
+>     ' 这里简化处理，返回固定值
+>     GetLatestAWRSnapshots = "SELECT snap_id FROM dba_hist_snapshot ORDER BY snap_id DESC OFFSET " & offset & " ROWS FETCH FIRST 1 ROW ONLY"
+> End Function
+>
+> Sub CleanupScript(scriptName)
+>     SendCommand "rm " & scriptName
+> End Sub
+>
+> Function GetCurrentDateTime()
+>     Dim now
+>     now = Date & "_" & Time
+>     GetCurrentDateTime = Replace(Replace(Replace(now, "/", ""), ":", ""), " ", "_")
+> End Function
+>
+> Function CreateGUID()
+>     Dim TypeLib
+>     Set TypeLib = CreateObject("Scriptlet.TypeLib")
+>     CreateGUID = Mid(TypeLib.Guid, 2, 36)
+> End Function
+> ```
+>
+
+
+
+4. 汇总分析脚本：
+
+* 将上述信息汇总成易读的报告
+* 给出可能的问题诊断建议
+
+> ```
+> Option Explicit
+>
+> Sub Main()
+>     ''''''''''''''''''''''''''''''''
+>     ' 名称：Oracle诊断信息汇总脚本
+>     ' 版本：v1
+>     ' 作者：lifu
+>     ' 
+>     ' 说明：
+>     ' 本脚本用于汇总之前收集的所有诊断信息
+>     ' 生成一个综合性的分析报告
+>     ' 
+>     ' 使用方法：
+>     ' 1. 在运行完前面的诊断脚本后执行此脚本
+>     ' 2. 指定前面生成的诊断文件路径
+>     ''''''''''''''''''''''''''''''''
+>   
+>     ' 获取诊断文件路径
+>     Dim systemInfoPath, sessionAnalysisPath, sqlAnalysisPath
+>     systemInfoPath = xsh.Dialog.Prompt("请输入系统信息报告路径:", "诊断报告", "", False)
+>     sessionAnalysisPath = xsh.Dialog.Prompt("请输入会话分析报告路径:", "诊断报告", "", False)
+>     sqlAnalysisPath = xsh.Dialog.Prompt("请输入SQL分析报告路径:", "诊断报告", "", False)
+>   
+>     ' 生成汇总报告
+>     Dim reportPath
+>     reportPath = "summary_report_" & GetCurrentDateTime()
+>   
+>     ' 创建报告目录
+>     SendCommand "mkdir -p " & reportPath
+>   
+>     ' 创建汇总报告
+>     CreateSummaryReport reportPath, systemInfoPath, sessionAnalysisPath, sqlAnalysisPath
+>   
+>     ' 显示结果位置
+>     xsh.Dialog.MsgBox "汇总报告已生成，保存在: " & reportPath
+> End Sub
+>
+> Sub SendCommand(command)
+>     xsh.Screen.Send command & vbCr
+>     xsh.Screen.WaitForString "$"
+>     xsh.Session.Sleep 100
+> End Sub
+>
+> Sub CreateSummaryReport(reportPath, systemInfoPath, sessionAnalysisPath, sqlAnalysisPath)
+>     ' 创建HTML报告
+>     SendCommand "cat << 'EOF' > " & reportPath & "/summary.html"
+>   
+>     ' HTML头部
+>     xsh.Screen.Send "<html><head>" & vbNewLine
+>     xsh.Screen.Send "<title>Oracle数据库CPU问题诊断报告</title>" & vbNewLine
+>     xsh.Screen.Send "<style>" & vbNewLine
+>     xsh.Screen.Send "body { font-family: Arial, sans-serif; margin: 20px; }" & vbNewLine
+>     xsh.Screen.Send "h1, h2 { color: #333; }" & vbNewLine
+>     xsh.Screen.Send "pre { background: #f5f5f5; padding: 10px; }" & vbNewLine
+>     xsh.Screen.Send ".warning { color: red; }" & vbNewLine
+>     xsh.Screen.Send ".normal { color: green; }" & vbNewLine
+>     xsh.Screen.Send "</style>" & vbNewLine
+>     xsh.Screen.Send "</head><body>" & vbNewLine
+>   
+>     ' 报告标题
+>     xsh.Screen.Send "<h1>Oracle数据库CPU问题诊断报告</h1>" & vbNewLine
+>     xsh.Screen.Send "<p>生成时间: " & Now & "</p>" & vbNewLine
+>   
+>     ' 系统信息摘要
+>     xsh.Screen.Send "<h2>1. 系统资源使用情况</h2>" & vbNewLine
+>     xsh.Screen.Send "<pre>" & vbNewLine
+>     SendCommand "cat " & systemInfoPath & "/system_info.txt >> " & reportPath & "/summary.html"
+>     xsh.Screen.Send "</pre>" & vbNewLine
+>   
+>     ' 会话分析摘要
+>     xsh.Screen.Send "<h2>2. 数据库会话分析</h2>" & vbNewLine
+>     xsh.Screen.Send "<pre>" & vbNewLine
+>     SendCommand "cat " & sessionAnalysisPath & "/session_analysis.txt >> " & reportPath & "/summary.html"
+>     xsh.Screen.Send "</pre>" & vbNewLine
+>   
+>     ' SQL分析摘要
+>     xsh.Screen.Send "<h2>3. SQL性能分析</h2>" & vbNewLine
+>     xsh.Screen.Send "<pre>" & vbNewLine
+>     SendCommand "cat " & sqlAnalysisPath & "/sql_analysis.txt >> " & reportPath & "/summary.html"
+>     xsh.Screen.Send "</pre>" & vbNewLine
+>   
+>     ' 问题诊断和建议
+>     xsh.Screen.Send "<h2>4. 问题诊断和优化建议</h2>" & vbNewLine
+>     xsh.Screen.Send "<div id='recommendations'>" & vbNewLine
+>   
+>     ' 分析CPU使用情况
+>     AnalyzeCPUUsage reportPath, systemInfoPath
+>   
+>     ' 分析会话情况
+>     AnalyzeSessionStatus reportPath, sessionAnalysisPath
+>   
+>     ' 分析SQL性能
+>     AnalyzeSQLPerformance reportPath, sqlAnalysisPath
+>   
+>     xsh.Screen.Send "</div>" & vbNewLine
+>   
+>     ' HTML尾部
+>     xsh.Screen.Send "</body></html>" & vbNewLine
+>     xsh.Screen.Send "EOF" & vbNewLine
+> End Sub
+>
+> Sub AnalyzeCPUUsage(reportPath, systemInfoPath)
+>     ' 分析CPU使用情况并给出建议
+>     xsh.Screen.Send "<h3>CPU使用情况分析</h3>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>   
+>     ' 这里应该添加具体的CPU使用分析逻辑
+>     ' 例如检查CPU使用率是否超过阈值等
+>   
+>     xsh.Screen.Send "<li>检查系统CPU使用率是否超过80%</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查是否存在CPU密集型进程</li>" & vbNewLine
+>     xsh.Screen.Send "<li>建议检查系统负载均衡情况</li>" & vbNewLine
+>     xsh.Screen.Send "</ul>" & vbNewLine
+> End Sub
+>
+> Sub AnalyzeSessionStatus(reportPath, sessionAnalysisPath)
+>     ' 分析会话状态并给出建议
+>     xsh.Screen.Send "<h3>会话状态分析</h3>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>   
+>     ' 活跃会话分析
+>     xsh.Screen.Send "<li>检查活跃会话数量是否异常</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查是否存在长时间运行的会话</li>" & vbNewLine
+>   
+>     ' 锁等待分析
+>     xsh.Screen.Send "<li>检查是否存在锁等待情况：</li>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>     xsh.Screen.Send "<li>如果存在锁等待，建议检查相关SQL语句</li>" & vbNewLine
+>     xsh.Screen.Send "<li>考虑调整应用程序的事务处理逻辑</li>" & vbNewLine
+>     xsh.Screen.Send "</ul>" & vbNewLine
+>   
+>     ' 资源使用分析
+>     xsh.Screen.Send "<li>检查会话资源使用情况：</li>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>     xsh.Screen.Send "<li>高CPU使用的会话是否属于关键业务</li>" & vbNewLine
+>     xsh.Screen.Send "<li>是否需要实施会话资源限制</li>" & vbNewLine
+>     xsh.Screen.Send "</ul>" & vbNewLine
+>   
+>     xsh.Screen.Send "</ul>" & vbNewLine
+> End Sub
+>
+> Sub AnalyzeSQLPerformance(reportPath, sqlAnalysisPath)
+>     ' 分析SQL性能并给出建议
+>     xsh.Screen.Send "<h3>SQL性能分析</h3>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>   
+>     ' TOP SQL分析
+>     xsh.Screen.Send "<li>高CPU消耗SQL分析：</li>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>     xsh.Screen.Send "<li>检查是否存在全表扫描操作</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查是否缺少适当的索引</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查是否存在不必要的排序操作</li>" & vbNewLine
+>     xsh.Screen.Send "</ul>" & vbNewLine
+>   
+>     ' 执行计划分析
+>     xsh.Screen.Send "<li>执行计划优化建议：</li>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>     xsh.Screen.Send "<li>检查统计信息是否需要更新</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查是否需要创建新的索引</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查是否需要改写SQL语句</li>" & vbNewLine
+>     xsh.Screen.Send "</ul>" & vbNewLine
+>   
+>     ' AWR报告分析
+>     xsh.Screen.Send "<li>AWR报告分析：</li>" & vbNewLine
+>     xsh.Screen.Send "<ul>" & vbNewLine
+>     xsh.Screen.Send "<li>对比历史性能数据寻找异常点</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查系统等待事件是否异常</li>" & vbNewLine
+>     xsh.Screen.Send "<li>检查共享池和缓冲区命中率</li>" & vbNewLine
+>     xsh.Screen.Send "</ul>" & vbNewLine
+>   
+>     xsh.Screen.Send "</ul>" & vbNewLine
+> End Sub
+>
+> Function GetCurrentDateTime()
+>     Dim now
+>     now = Date & "_" & Time
+>     GetCurrentDateTime = Replace(Replace(Replace(now, "/", ""), ":", ""), " ", "_")
+> End Function
+>
+>
+> ```
+
+
 # 扩展
 
 ## MySQL 数据库的解决方案
 
->
 > 如果数据库使用的是MySQL，处理类似CPU占用率高的问题，解决步骤大体相似，但涉及的工具和方法会有所不同。下面是一个基于MySQL的处理流程：
 >
 > 1. 使用 `top`等系统监控工具识别问题进程。
@@ -191,7 +808,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ### 8. 性能监控和验证
 >
 > 优化完索引和查询后，再次通过 `SHOW FULL PROCESSLIST`或 `mysqladmin processlist`查看当前的执行情况，确认CPU使用率是否下降。还可以通过 `top`命令验证整体系统的性能恢复情况。
->
 
 ## DB2 数据库的解决方案
 
@@ -288,13 +904,9 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ### 9. 验证和监控
 >
 > 在优化索引和SQL查询后，使用 `LIST APPLICATIONS`、`EXPLAIN`等工具验证CPU使用率的下降。再次通过 `top`等系统级工具检查系统性能，确认CPU占用率是否恢复到正常水平。
->
-
-
 
 ## PostgreSQL的解决方案
 
->
 > 如果数据库使用的是PostgreSQL，处理类似的CPU占用率高的问题也有一些特定的方法和工具。以下是详细的分析和解决流程：
 >
 > 1. 使用 `pg_stat_activity`和 `pg_stat_statements`查看当前活动的SQL查询。
@@ -421,8 +1033,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ### 9. 验证和监控
 >
 > 完成优化操作后，再次使用 `pg_stat_activity`、`EXPLAIN ANALYZE`和系统级监控工具（如 `top`）验证CPU使用率是否降低。同时，可以将 `pg_stat_statements`作为持续监控的一部分，定期检查高耗时查询。
->
->
 
 ## SQL Server的解决方案
 
@@ -466,7 +1076,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ORDER BY 
 >     r.cpu_time DESC;
 > ```
->
 > 这个查询会返回所有正在执行的SQL语句，并按照CPU使用时间排序，帮助你锁定那些消耗资源较多的查询。
 >
 > ### 3. 使用SQL Server Profiler
@@ -490,7 +1099,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ```sql
 > EXEC sp_whoisactive;
 > ```
->
 > 此命令将列出当前所有活跃的会话，帮助你识别那些消耗大量CPU的查询。
 >
 > ### 5. 查看执行计划（Execution Plan）
@@ -505,7 +1113,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > SELECT ... ;
 > SET SHOWPLAN_ALL OFF;
 > ```
->
 > 或者直接在SSMS中选择“包括实际执行计划”，在查询执行后可以查看详细的执行计划。
 >
 > 执行计划会显示SQL Server如何执行该查询，是否进行了全表扫描、索引扫描，或者存在其他性能问题。通过分析执行计划，可以确定是否需要对查询或索引进行优化。
@@ -517,7 +1124,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ```sql
 > CREATE INDEX idx_column_name ON table_name(column_name);
 > ```
->
 > 创建索引后，可以再次执行查询并查看执行计划，确认索引已被有效利用。
 >
 > ### 7. 使用 `sys.dm_exec_query_stats`分析高频查询
@@ -547,7 +1153,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ORDER BY 
 >     qs.total_worker_time DESC;
 > ```
->
 > 此查询会列出执行次数最多的SQL语句及其CPU使用情况，帮助你找到性能瓶颈。
 >
 > ### 8. 设置数据库的 `Query Store`
@@ -560,7 +1165,6 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > ALTER DATABASE [YourDatabase]
 > SET QUERY_STORE = ON;
 > ```
->
 > 之后你可以通过SQL Server Management Studio的“查询存储”视图查看执行频率高、CPU消耗大的查询。
 >
 > ### 9. 配置和优化
@@ -573,20 +1177,17 @@ CREATE INDEX idx_column_name ON table_name(column_name);
 > EXEC sp_configure 'max degree of parallelism', 4;  -- 例如设置为4
 > RECONFIGURE;
 > ```
->
 > - **cost threshold for parallelism**：调整并行查询的代价阈值，使得只有代价较高的查询才使用并行处理。
 >
 > ```sql
 > EXEC sp_configure 'cost threshold for parallelism', 50;  -- 例如设置为50
 > RECONFIGURE;
 > ```
->
 > - **index maintenance**：定期进行索引的维护（重建或重组），保证查询能够高效使用索引。
 >
 > ```sql
 > ALTER INDEX ALL ON table_name REBUILD;
 > ```
->
 > ### 10. 使用自动化维护计划
 >
 > 定期执行索引维护、更新统计信息和清理历史数据，可以有效减少CPU消耗。可以通过SQL Server Agent设置自动化维护计划，定期执行这些操作。
