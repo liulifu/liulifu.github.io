@@ -1,6 +1,6 @@
 # LIU LIFU
 
-+86 15810517437 | initlifu@hotmail.com
+ initlifu@hotmail.com
 
 ## POSITION SOUGHT: Senior Database Administrator (DBA)
 
