@@ -48,6 +48,11 @@
     title: "A Guide to User Management on Linux",
     file: "demo/A Guide to User Management on Linux.md",
     date: "2023-08-02",
+  },  
+  {
+    title: "docker-compose.yml 和 Dockerfile 的执行关系",
+    file: "demo/dockerfile.md",
+    date: "2023-07-21",
   },
   {
     title: "使用 VBS 脚本实现 Xshell 自动化",
