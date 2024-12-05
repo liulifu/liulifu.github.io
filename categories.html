@@ -6,60 +6,50 @@
     <title>Categories - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         .category-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
         }
-
+        
         .category-title {
             color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-            margin-bottom: 15px;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eee;
+            margin-bottom: 1rem;
         }
-
+        
         .post-list {
             list-style: none;
-            padding-left: 20px;
-            margin: 0;
+            padding: 0;
         }
-
+        
         .post-list li {
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
+            margin-bottom: 0.5rem;
         }
-
-        .post-link {
+        
+        .post-list a {
             color: #34495e;
             text-decoration: none;
             transition: color 0.3s ease;
-            flex: 1;
         }
-
-        .post-link:hover {
+        
+        .post-list a:hover {
             color: #3498db;
         }
-
+        
         .post-date {
             color: #7f8c8d;
-            font-size: 0.9em;
-            margin-left: 15px;
+            font-size: 0.9rem;
+            margin-left: 1rem;
         }
-
+        
         .categories-container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
         }
-
+        
         .page-title {
             color: #2c3e50;
             text-align: center;
@@ -71,7 +61,7 @@
     <header>
         <nav class="site-nav">
             <div class="nav-links">
-                <a href="/">Home</a>
+                <a href="index.html">Home</a>
                 <a href="categories.html" class="active">Categories</a>
                 <a href="about.html">About</a>
             </div>
@@ -81,67 +71,86 @@
     <main class="content">
         <div class="categories-container">
             <h1 class="page-title">Categories</h1>
-            <div id="categories-list">
+            <div id="categories-container">
                 <!-- 分类列表将通过JavaScript动态加载 -->
             </div>
         </div>
     </main>
 
     <footer>
-        <p>© <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
+        <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
     </footer>
 
     <script>
+        // 获取当前仓库的基础URL
+        const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
+
+        // 加载文章列表并按分类组织
         async function loadCategories() {
             try {
-                const response = await fetch('posts.json');
+                const response = await fetch(baseUrl + 'metadata.json');
                 const data = await response.json();
-                const categoriesContainer = document.getElementById('categories-list');
                 
-                // 收集所有分类和文章
+                // 创建分类映射
                 const categories = {};
-                data.posts.forEach(post => {
-                    post.categories.forEach(category => {
+                
+                // 遍历所有文章
+                Object.entries(data.posts).forEach(([file, metadata]) => {
+                    metadata.categories.forEach(category => {
                         if (!categories[category]) {
                             categories[category] = [];
                         }
-                        categories[category].push(post);
+                        categories[category].push({
+                            title: metadata.title,
+                            date: metadata.date,
+                            file: file
+                        });
                     });
                 });
-
-                // 按字母顺序排序分类
+                
+                // 按分类名称排序
                 const sortedCategories = Object.keys(categories).sort();
-
-                // 为每个分类创建一个部分
+                
+                // 生成HTML
+                const container = document.getElementById('categories-container');
                 sortedCategories.forEach(category => {
+                    // 对每个分类中的文章按日期排序
+                    categories[category].sort((a, b) => new Date(b.date) - new Date(a.date));
+                    
                     const section = document.createElement('section');
                     section.className = 'category-section';
                     section.id = category.toLowerCase();
-
-                    // 对该分类下的文章按日期排序
-                    const posts = categories[category].sort((a, b) => 
-                        new Date(b.date) - new Date(a.date)
-                    );
-
-                    section.innerHTML = `
-                        <h2 class="category-title">${category}</h2>
-                        <ul class="post-list">
-                            ${posts.map(post => `
-                                <li>
-                                    <a href="post.html?post=${encodeURIComponent(post.file)}" 
-                                       class="post-link">${post.title}</a>
-                                    <span class="post-date">${post.date}</span>
-                                </li>
-                            `).join('')}
-                        </ul>
-                    `;
-
-                    categoriesContainer.appendChild(section);
+                    
+                    const title = document.createElement('h2');
+                    title.className = 'category-title';
+                    title.textContent = category;
+                    
+                    const list = document.createElement('ul');
+                    list.className = 'post-list';
+                    
+                    categories[category].forEach(post => {
+                        const date = new Date(post.date);
+                        const formattedDate = date.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                        
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <a href="${baseUrl}post.html?post=${encodeURIComponent(post.file)}">${post.title}</a>
+                            <span class="post-date">${formattedDate}</span>
+                        `;
+                        list.appendChild(li);
+                    });
+                    
+                    section.appendChild(title);
+                    section.appendChild(list);
+                    container.appendChild(section);
                 });
             } catch (error) {
                 console.error('Error loading categories:', error);
-                document.getElementById('categories-list').innerHTML = 
-                    '<p>Error loading categories.</p>';
+                document.getElementById('categories-container').innerHTML = '<p>Error loading categories.</p>';
             }
         }
 
