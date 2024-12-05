@@ -1,6 +1,6 @@
 # docker-compose.yml 和 Dockerfile 的执行关系
 
-```   
+
 
 1. docker-compose.yml 中的 build 指令触发 Dockerfile 执行：
 ```yaml
@@ -65,4 +65,3 @@ docker-compose up -d
    - Dockerfile 和 docker-compose.yml 应该一起提交
    - 保持构建上下文清晰
 
-```
