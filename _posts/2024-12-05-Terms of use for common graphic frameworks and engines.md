@@ -1,13 +1,3 @@
----
-categories:
-- Uncategorized
-date: '2024-12-05'
-description: ''
-layout: post
-tags: []
-title: 常见的图形框架和引擎的使用条款
----
-
 # 常见的图形框架和引擎的使用条款
 
 ### 1. **OpenGL / OpenGL ES**
