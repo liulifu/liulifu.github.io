@@ -1,3 +1,13 @@
+---
+categories:
+- Uncategorized
+date: '2024-12-05'
+description: ''
+layout: post
+tags: []
+title: '## Predictive Maintenance in Smart Manufacturing'
+---
+
 ### Predictive Maintenance in Smart Manufacturing
 
 #### **1. What is Predictive Maintenance?**

@@ -1,3 +1,15 @@
+---
+categories:
+- Programming
+- Python
+date: '2024-12-05'
+description: ''
+layout: post
+tags: []
+title: 使用 Docker Desktop + Python 镜像 + VS Code + Remote Development (Dev Containers)
+  构建 Python 开发环境
+---
+
 # 使用 Docker Desktop + Python 镜像 + VS Code + Remote Development (Dev Containers) 构建 Python 开发环境
 
 本文档描述了如何使用 Docker Desktop、Python 官方镜像、VS Code 和 Remote Development (Dev Containers) 插件来构建一个完整的 Python 开发环境，并演示如何编写、运行 Python 代码。

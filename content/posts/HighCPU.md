@@ -1,3 +1,13 @@
+---
+categories:
+- Uncategorized
+date: '2024-12-05'
+description: ''
+layout: post
+tags: []
+title: 处理ERP系统中CPU占用率高的问题案例分析
+---
+
 # 处理ERP系统中CPU占用率高的问题案例分析
 
 ## 背景

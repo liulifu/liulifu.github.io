@@ -1,3 +1,13 @@
+---
+categories:
+- Cloud
+date: '2024-12-05'
+description: ''
+layout: post
+tags: []
+title: 腾讯云服务器部署（转发）
+---
+
 # 腾讯云服务器部署（转发）
 
 

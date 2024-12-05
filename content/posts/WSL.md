@@ -1,3 +1,13 @@
+---
+categories:
+- Uncategorized
+date: '2024-12-05'
+description: ''
+layout: post
+tags: []
+title: 查看状态及常用命令
+---
+
 **Windows Subsystem for Linux**
 
 简称  **WSL** 。

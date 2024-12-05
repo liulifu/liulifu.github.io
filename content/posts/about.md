@@ -1,3 +1,13 @@
+---
+categories:
+- Uncategorized
+date: '2024-12-05'
+description: ''
+layout: post
+tags: []
+title: '## 1. **将 Markdown 转换为 HTML**'
+---
+
 为了能在浏览器中看到Markdown的效果，使用一个页面通过一个[Showdown.js](https://github.com/showdownjs/showdown)库，对md纯文本格式进行渲染。
 
 

@@ -10,7 +10,7 @@
       rel="stylesheet"
     />
     <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="styles/index2.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
     <!-- Meta Tags for SEO -->
     <meta
       name="description"
@@ -27,172 +27,32 @@
         <div class="nav-content">
           <h1><a href="/">Liu Lifu's Blog</a></h1>
           <ul>
-            <li><a href="/content/pages/articles.html">Articles</a></li>
-            <li><a href="/content/pages/cloud.html">Cloud</a></li>
-            <li><a href="/content/pages/demo.html">Demo</a></li>
+            <li><a href="/content/posts/">Articles</a></li>
+            <li><a href="/content/posts/cloud/">Cloud</a></li>
+            <li><a href="/content/posts/demo/">Demo</a></li>
           </ul>
         </div>
       </nav>
     </header>
 
     <div id="container">
-      <section id="mainContent">
-        <!-- 使用 iframe 作为内容区 -->
-        <iframe
-          id="contentFrame"
-          src="articles.html"
-          style="width: 100%; height: 100vh; overflow: auto; border: none"
-          scrolling="yes"
-        ></iframe>
-      </section>
+      <main>
+        <section class="recent-posts">
+          <h2>Recent Posts</h2>
+          <!-- Content will be populated by Jekyll -->
+          {% for post in site.posts limit:5 %}
+          <article>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+            <p>{{ post.excerpt }}</p>
+          </article>
+          {% endfor %}
+        </section>
+      </main>
     </div>
 
     <footer>
       <p>&copy; 2024 Lifu's Blog. All rights reserved.</p>
-      <p>
-        <a href="https://github.com/liulifu">GitHub</a> |
-        <a href="mailto:initlifu@hotmail.com">Contact Me</a>
-      </p>
     </footer>
-
-    <script>
-      // 动态调整 iframe 高度的函数
-      function resizeIframe() {
-        var iframe = document.getElementById("contentFrame");
-        iframe.onload = function () {
-          adjustIframeHeight(); // 初次加载时调整高度
-          startDynamicHeightCheck(); // 开启动态高度检查
-        };
-      }
-
-      // 调整 iframe 高度的函数
-      function adjustIframeHeight() {
-        var iframe = document.getElementById("contentFrame");
-        var iframeHeight = iframe.contentWindow.document.body.scrollHeight;
-        iframe.style.height = iframeHeight + "px"; // 设置 iframe 高度
-      }
-
-      // 定时器：每秒检查一次 iframe 高度
-      function startDynamicHeightCheck() {
-        setInterval(() => {
-          adjustIframeHeight(); // 每秒动态调整 iframe 高度
-        }, 1000); // 每秒检查一次
-      }
-
-      // 监听导航点击事件，切换 iframe 内容
-      document.querySelectorAll("nav a").forEach((link) => {
-        link.addEventListener("click", function (event) {
-          event.preventDefault(); // 阻止默认链接跳转行为
-          const page = this.getAttribute("data-page"); // 获取 data-page 属性的值
-          document.getElementById("contentFrame").src = page; // 动态更换 iframe 的 src
-        });
-      });
-
-      // 页面加载时初始化调整 iframe 高度
-      window.onload = resizeIframe;
-    </script>
-
-    <script>
-      // 内嵌md.html 页面中的TOP，点击后，父页面index.html回到顶部
-      // 这样看起来的效果就是回到顶部。
-      // 关联的页面是md.html
-
-      window.addEventListener("message", function (event) {
-        if (event.data.action === "scroll-to-top") {
-          // 让父页面自己滚动到顶部
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      });
-    </script>
-
-    <script>
-      // 跨文档脚本通信：通过 JavaScript 实现宿主页面（页面 A）与 iframe 页面之间的通信，
-      // 监听宿主页面的滚动事件，并将滚动信息传递到 iframe 中的 style-switcher，以此来手动控制其位置。
-      // 关联的页面是md.html
-
-      window.addEventListener("scroll", function () {
-        var scrollTop = window.scrollY; // 获取宿主页面滚动的Y轴位置
-        var iframe = document.getElementById("contentFrame");
-        iframe.contentWindow.postMessage({ scrollTop: scrollTop }, "*"); // 发送滚动信息到 iframe
-      });
-    </script>
-
-    <script>
-      function changeStyle(styleName) {
-        const styles = {
-          modern: document.getElementById("modern-style"),
-          cyberpunk: document.getElementById("cyberpunk-style"),
-          minimalist: document.getElementById("minimalist-style"),
-          retro: document.getElementById("retro-style"),
-          neon: document.getElementById("neon-style"),
-          old_book: document.getElementById("old_book_style_resume"),
-        };
-
-        // 关闭所有样式
-        Object.keys(styles).forEach((key) => {
-          if (styles[key]) {
-            styles[key].disabled = true;
-          }
-        });
-
-        // 启用所选样式
-        if (styles[styleName]) {
-          styles[styleName].disabled = false;
-        }
-
-        // 将选中的样式发送到 md.html
-        const iframe = document.getElementById("contentFrame");
-        if (iframe) {
-          iframe.contentWindow.postMessage(
-            { action: "change-style", styleName: styleName },
-            "*"
-          );
-        }
-
-        // 保存样式到 localStorage
-        localStorage.setItem("preferredStyle", styleName);
-      }
-
-      // 初始化样式
-      const savedStyle = localStorage.getItem("preferredStyle") || "modern";
-      document.getElementById("style-select").value = savedStyle;
-      changeStyle(savedStyle);
-
-      // 监听样式切换事件
-      document
-        .getElementById("style-select")
-        .addEventListener("change", function () {
-          changeStyle(this.value);
-        });
-    </script>
-
-    <script>
-      function toggleStyleSwitcher() {
-        const iframe = document.getElementById("contentFrame");
-        const styleSwitcher = document.getElementById("style-switcher");
-
-        // 检查 iframe 加载的页面是否是 md.html
-        if (iframe.src.includes("md.html")) {
-          styleSwitcher.style.display = "block"; // 显示样式切换器
-        } else {
-          styleSwitcher.style.display = "none"; // 隐藏样式切换器
-        }
-      }
-
-      // 监听页面加载事件
-      document.getElementById("contentFrame").onload = function () {
-        const iframe = document.getElementById("contentFrame");
-
-        // 由于有时 iframe.src 是相对路径，需要获取绝对路径
-        const iframeSrc = iframe.contentWindow.location.href;
-
-        // 检查 iframe 加载的页面是否是 md.html
-        if (iframeSrc.includes("md.html")) {
-          document.getElementById("style-switcher").style.display = "block"; // 显示样式切换器
-        } else {
-          document.getElementById("style-switcher").style.display = "none"; // 隐藏样式切换器
-        }
-      };
-    </script>
   </body>
 </html>

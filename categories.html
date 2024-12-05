@@ -1,0 +1,82 @@
+---
+layout: default
+title: Categories
+permalink: /categories/
+---
+
+<style>
+.categories-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+}
+
+.category-section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.category-title {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.post-list {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.post-item {
+    margin: 10px 0;
+}
+
+.post-link {
+    color: #34495e;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.post-link:hover {
+    color: #3498db;
+}
+
+.post-date {
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+</style>
+
+<div class="categories-page">
+    <h1>Categories</h1>
+    
+    {% assign categories = site.posts | map: "categories" | flatten | uniq | sort %}
+    
+    <div class="category-list">
+        {% for category in categories %}
+        <div class="category-section">
+            <h2 id="{{ category | slugify }}" class="category-title">{{ category }}</h2>
+            <ul class="post-list">
+                {% for post in site.posts %}
+                    {% if post.categories contains category %}
+                    <li class="post-item">
+                        <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
