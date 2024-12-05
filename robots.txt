@@ -1,7 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://liulifu.github.io/sitemap.xml
-
-Disallow: /content/drafts/
-Disallow: /_layouts/
-Disallow: /_includes/
+Sitemap: https://liulifu.github.io/Resume/sitemap.xml

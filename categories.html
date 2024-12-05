@@ -1,82 +1,155 @@
----
-layout: default
-title: Categories
-permalink: /categories/
----
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - Liu Lifu's Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .category-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
 
-<style>
-.categories-page {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
+        .category-title {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
 
-.category-list {
-    list-style: none;
-    padding: 0;
-}
+        .post-list {
+            list-style: none;
+            padding-left: 20px;
+            margin: 0;
+        }
 
-.category-section {
-    margin-bottom: 30px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+        .post-list li {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
 
-.category-title {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-}
+        .post-link {
+            color: #34495e;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            flex: 1;
+        }
 
-.post-list {
-    list-style: none;
-    padding-left: 20px;
-}
+        .post-link:hover {
+            color: #3498db;
+        }
 
-.post-item {
-    margin: 10px 0;
-}
+        .post-date {
+            color: #7f8c8d;
+            font-size: 0.9em;
+            margin-left: 15px;
+        }
 
-.post-link {
-    color: #34495e;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
+        .categories-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-.post-link:hover {
-    color: #3498db;
-}
+        .page-title {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="site-nav">
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="categories.html" class="active">Categories</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
 
-.post-date {
-    color: #7f8c8d;
-    font-size: 0.9em;
-    margin-left: 10px;
-}
-</style>
-
-<div class="categories-page">
-    <h1>Categories</h1>
-    
-    {% assign categories = site.posts | map: "categories" | flatten | uniq | sort %}
-    
-    <div class="category-list">
-        {% for category in categories %}
-        <div class="category-section">
-            <h2 id="{{ category | slugify }}" class="category-title">{{ category }}</h2>
-            <ul class="post-list">
-                {% for post in site.posts %}
-                    {% if post.categories contains category %}
-                    <li class="post-item">
-                        <a class="post-link" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-                        <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-                    </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
+    <main class="content">
+        <div class="categories-container">
+            <h1 class="page-title">Categories</h1>
+            <div id="categories-list">
+                <!-- 分类列表将通过JavaScript动态加载 -->
+            </div>
         </div>
-        {% endfor %}
-    </div>
-</div>
+    </main>
+
+    <footer>
+        <p>© <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
+    </footer>
+
+    <script>
+        async function loadCategories() {
+            try {
+                const response = await fetch('posts.json');
+                const data = await response.json();
+                const categoriesContainer = document.getElementById('categories-list');
+                
+                // 收集所有分类和文章
+                const categories = {};
+                data.posts.forEach(post => {
+                    post.categories.forEach(category => {
+                        if (!categories[category]) {
+                            categories[category] = [];
+                        }
+                        categories[category].push(post);
+                    });
+                });
+
+                // 按字母顺序排序分类
+                const sortedCategories = Object.keys(categories).sort();
+
+                // 为每个分类创建一个部分
+                sortedCategories.forEach(category => {
+                    const section = document.createElement('section');
+                    section.className = 'category-section';
+                    section.id = category.toLowerCase();
+
+                    // 对该分类下的文章按日期排序
+                    const posts = categories[category].sort((a, b) => 
+                        new Date(b.date) - new Date(a.date)
+                    );
+
+                    section.innerHTML = `
+                        <h2 class="category-title">${category}</h2>
+                        <ul class="post-list">
+                            ${posts.map(post => `
+                                <li>
+                                    <a href="post.html?post=${encodeURIComponent(post.file)}" 
+                                       class="post-link">${post.title}</a>
+                                    <span class="post-date">${post.date}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    `;
+
+                    categoriesContainer.appendChild(section);
+                });
+            } catch (error) {
+                console.error('Error loading categories:', error);
+                document.getElementById('categories-list').innerHTML = 
+                    '<p>Error loading categories.</p>';
+            }
+        }
+
+        // 设置年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 加载分类
+        loadCategories();
+    </script>
+</body>
+</html>

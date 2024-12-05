@@ -1,29 +1,29 @@
-# Liu Lifu's Personal Blog
+# Liu Lifu's Blog
 
-This repository contains the source code for my personal blog hosted at [liulifu.github.io](https://liulifu.github.io).
+这是我的个人博客，使用纯静态 HTML + JavaScript 实现，通过 showdown.js 解析 Markdown 文件。
 
-## Project Structure
+## 目录结构
 
 ```
-├── assets/           # Static assets
-│   ├── images/       # Image files
-│   ├── styles/       # CSS files
-│   └── scripts/      # JavaScript files
-├── content/          # Content files
-│   ├── posts/        # Blog posts
-│   ├── pages/        # Static pages
-│   └── drafts/       # Draft content
-├── _layouts/         # Page templates
-├── _includes/        # Reusable components
-└── _config.json5     # Site configuration
+Resume/
+├── index.html          # 主页
+├── post.html          # 文章页面模板
+├── categories.html    # 分类页面
+├── styles.css         # 样式文件
+├── posts.json         # 文章元数据
+├── _posts/           # 存放所有 Markdown 文章
+└── README.md         # 项目说明
 ```
 
-## Local Development
+## 如何添加新文章
 
-1. Clone the repository
-2. Make your changes
-3. Push to main branch to deploy
+1. 在 `_posts` 目录下创建新的 Markdown 文件
+2. 在 `posts.json` 中添加文章的元数据信息
+3. 提交并推送到 GitHub
 
-## Contact
+## 技术栈
 
-- GitHub: [@liulifu](https://github.com/liulifu)
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- showdown.js (Markdown 解析)

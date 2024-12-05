@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章标题 - Liu Lifu's Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .post-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .post-title {
+            margin: 0 0 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .post-content {
+            line-height: 1.8;
+        }
+        
+        .post-content h1,
+        .post-content h2,
+        .post-content h3 {
+            color: #2c3e50;
+            margin-top: 2rem;
+        }
+        
+        .post-content p {
+            margin: 1rem 0;
+        }
+        
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .post-content code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        
+        .post-content pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            overflow-x: auto;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="site-nav">
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content">
+        <article>
+            <div class="post-header">
+                <h1 class="post-title" id="post-title">Loading...</h1>
+                <div class="post-meta">
+                    <span id="post-date"></span>
+                    <span id="post-categories"></span>
+                </div>
+            </div>
+            <div class="post-content" id="post-content">
+                <!-- 文章内容将通过JavaScript动态加载 -->
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 获取URL参数中的文件名
+        const urlParams = new URLSearchParams(window.location.search);
+        const postFile = urlParams.get('post');
+
+        // 加载文章内容和元数据
+        async function loadPost() {
+            try {
+                // 首先加载元数据
+                const metadataResponse = await fetch('metadata.json');
+                const metadata = await metadataResponse.json();
+                const postMetadata = metadata.posts[postFile];
+
+                if (!postMetadata) {
+                    throw new Error('Post metadata not found');
+                }
+
+                // 设置标题
+                const title = postMetadata.title || 'Untitled';
+                document.title = `${title} - Liu Lifu's Blog`;
+                document.getElementById('post-title').textContent = title;
+                
+                // 设置日期
+                if (postMetadata.date) {
+                    const date = new Date(postMetadata.date);
+                    const formattedDate = date.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    document.getElementById('post-date').textContent = `Published on ${formattedDate}`;
+                }
+                
+                // 设置分类
+                if (postMetadata.categories && postMetadata.categories.length > 0) {
+                    const categories = postMetadata.categories.filter(cat => cat && cat !== 'Uncategorized');
+                    if (categories.length > 0) {
+                        document.getElementById('post-categories').innerHTML = 
+                            ` in ${categories.map(cat => 
+                                `<a href="categories.html#${cat.toLowerCase()}">${cat}</a>`
+                            ).join(', ')}`;
+                    }
+                }
+
+                // 加载文章内容
+                const response = await fetch(`_posts/${postFile}`);
+                const markdown = await response.text();
+                
+                // 转换内容
+                const converter = new showdown.Converter({
+                    tables: true,
+                    strikethrough: true,
+                    tasklists: true,
+                    ghCodeBlocks: true,
+                    emoji: true
+                });
+                const html = converter.makeHtml(markdown);
+                document.getElementById('post-content').innerHTML = html;
+
+                // 移除 Loading...
+                const titleElement = document.getElementById('post-title');
+                if (titleElement.textContent === 'Loading...') {
+                    titleElement.textContent = title;
+                }
+            } catch (error) {
+                console.error('Error loading post:', error);
+                document.getElementById('post-content').innerHTML = '<p>Error loading post content.</p>';
+            }
+        }
+
+        // 设置年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 加载文章
+        loadPost();
+    </script>
+</body>
+</html>

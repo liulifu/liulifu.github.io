@@ -1,0 +1,158 @@
+{
+    "posts": {
+        "2024-12-05-Blog Architecture Design.md": {
+            "title": "Blog Architecture Design Documentation",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-Building a Modern Automated IT Operations System in 2024.md": {
+            "title": "Building a Modern Automated IT Operations System in 2024",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-Exploring the Core of ERP Systems.md": {
+            "title": "Exploring the Core of ERP Systems",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-Help Desk Support.md": {
+            "title": "Help Desk Support",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-HighCPU.md": {
+            "title": "处理ERP系统中CPU占用率高的问题案例分析",
+            "date": "2024-12-05",
+            "categories": ["技术分享"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-PHP报表.md": {
+            "title": "PHP报表开发指南",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-Predictive Maintenance in Smart Manufacturing.md": {
+            "title": "Predictive Maintenance in Smart Manufacturing",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-SAP 各模块从2013年至2023年主要差异分析.md": {
+            "title": "SAP 各模块从2013年至2023年主要差异分析",
+            "date": "2024-12-05",
+            "categories": ["技术分析"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-Terms of use for common graphic frameworks and engines.md": {
+            "title": "Terms of use for common graphic frameworks and engines",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-WSL.md": {
+            "title": "WSL使用指南",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-about.md": {
+            "title": "关于我",
+            "date": "2024-12-05",
+            "categories": ["个人简介"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-aliecs.md": {
+            "title": "阿里云ECS使用笔记",
+            "date": "2024-12-05",
+            "categories": ["技术笔记"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-ddd.md": {
+            "title": "领域驱动设计实践",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-hwcloud.md": {
+            "title": "华为云使用笔记",
+            "date": "2024-12-05",
+            "categories": ["技术笔记"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-kernel_lesson.md": {
+            "title": "Linux内核学习笔记",
+            "date": "2024-12-05",
+            "categories": ["技术笔记"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-resume_dba_en.md": {
+            "title": "DBA Resume",
+            "date": "2024-12-05",
+            "categories": ["简历"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-txcloud.md": {
+            "title": "腾讯云使用笔记",
+            "date": "2024-12-05",
+            "categories": ["技术笔记"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-visitor tracking system.md": {
+            "title": "Visitor Tracking System Design",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-一种文件加密设计.md": {
+            "title": "一种文件加密设计",
+            "date": "2024-12-05",
+            "categories": ["技术设计"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-构建CPLUSPLUS测试环境.md": {
+            "title": "构建C++测试环境",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-构建Python开发环境.md": {
+            "title": "构建Python开发环境",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        },
+        "2024-12-05-模拟器的使用方法.md": {
+            "title": "模拟器的使用方法",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "",
+            "tags": []
+        }
+    }
+}

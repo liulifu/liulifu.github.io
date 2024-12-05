@@ -1,13 +1,3 @@
----
-categories:
-- Uncategorized
-date: '2024-12-05'
-description: ''
-layout: post
-tags: []
-title: Blog Architecture Design Documentation
----
-
 # Blog Architecture Design Documentation
 
 This document outlines the architecture design for liulifu.github.io blog hosted on `github.io`, focusing on technical implementation.

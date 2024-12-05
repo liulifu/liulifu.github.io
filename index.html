@@ -1,60 +1,174 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ site.title }}</title>
-    <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <!-- CSS Stylesheet -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/styles.css" />
-    <!-- Meta Tags for SEO -->
-    <meta
-      name="description"
-      content="{{ site.description }}"
-    />
-    <meta
-      name="keywords"
-      content="Lifu, blog, technology, innovation, programming"
-    />
-  </head>
-  <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liu Lifu's Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <meta name="description" content="Personal blog about technology and innovation">
+    <meta name="keywords" content="Lifu, blog, technology, innovation, programming">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+            gap: 1rem;
+        }
+        
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .pagination button:hover {
+            background: #f0f0f0;
+        }
+        
+        .pagination button:disabled {
+            background: #f5f5f5;
+            cursor: not-allowed;
+            color: #999;
+        }
+        
+        .pagination .page-info {
+            margin: 0 1rem;
+        }
+    </style>
+</head>
+<body>
     <header>
-      {% include navigation.html %}
+        <nav class="site-nav">
+            <div class="nav-links">
+                <a href="/" class="active">Home</a>
+                <a href="categories.html">Categories</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
     </header>
 
     <main class="content">
-      <div class="posts-list">
-        {% for post in site.posts %}
-          <article class="post-preview">
-            <h2 class="post-title">
-              <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-            </h2>
-            <div class="post-meta">
-              <span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-              {% if post.categories.size > 0 %}
-                <span class="post-categories">
-                  in 
-                  {% for category in post.categories %}
-                    <a href="{{ site.baseurl }}/categories/#{{ category | slugify }}">{{ category }}</a>
-                    {% unless forloop.last %}, {% endunless %}
-                  {% endfor %}
-                </span>
-              {% endif %}
-            </div>
-            <div class="post-excerpt">
-              {{ post.excerpt | strip_html | truncatewords: 50 }}
-            </div>
-          </article>
-        {% endfor %}
-      </div>
+        <div id="posts-list" class="posts-list">
+            <!-- 文章列表将通过JavaScript动态加载 -->
+        </div>
+        <div class="pagination">
+            <button id="prev-page" disabled>Previous</button>
+            <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
+            <button id="next-page">Next</button>
+        </div>
     </main>
 
     <footer>
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. All rights reserved.</p>
+        <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
     </footer>
-  </body>
+
+    <script>
+        const POSTS_PER_PAGE = 5; // 每页显示的文章数量
+        let currentPage = 1;
+        let totalPosts = [];
+
+        // 加载文章列表
+        async function loadPosts() {
+            try {
+                const response = await fetch('metadata.json');
+                const data = await response.json();
+                
+                // 将对象转换为数组并排序
+                totalPosts = Object.entries(data.posts)
+                    .map(([file, metadata]) => ({
+                        file,
+                        ...metadata
+                    }))
+                    .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                updatePagination();
+                displayCurrentPage();
+            } catch (error) {
+                console.error('Error loading posts:', error);
+                document.getElementById('posts-list').innerHTML = '<p>Error loading posts.</p>';
+            }
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE);
+            document.getElementById('total-pages').textContent = totalPages;
+            document.getElementById('current-page').textContent = currentPage;
+            document.getElementById('prev-page').disabled = currentPage === 1;
+            document.getElementById('next-page').disabled = currentPage === totalPages;
+        }
+
+        function displayCurrentPage() {
+            const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+            const endIndex = startIndex + POSTS_PER_PAGE;
+            const currentPosts = totalPosts.slice(startIndex, endIndex);
+            const postsContainer = document.getElementById('posts-list');
+            
+            postsContainer.innerHTML = '';
+            
+            currentPosts.forEach(post => {
+                const article = document.createElement('article');
+                article.className = 'post-preview';
+                
+                const date = new Date(post.date);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                article.innerHTML = `
+                    <h2 class="post-title">
+                        <a href="post.html?post=${encodeURIComponent(post.file)}">${post.title}</a>
+                    </h2>
+                    <div class="post-meta">
+                        <span class="post-date">${formattedDate}</span>
+                        ${post.categories && post.categories.length ? `
+                            <span class="post-categories">
+                                in 
+                                ${post.categories.map(category => 
+                                    `<a href="categories.html#${category.toLowerCase()}">${category}</a>`
+                                ).join(', ')}
+                            </span>
+                        ` : ''}
+                    </div>
+                `;
+                
+                postsContainer.appendChild(article);
+            });
+        }
+
+        // 设置事件监听器
+        document.getElementById('prev-page').addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                updatePagination();
+                displayCurrentPage();
+                window.scrollTo(0, 0);
+            }
+        });
+
+        document.getElementById('next-page').addEventListener('click', () => {
+            const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE);
+            if (currentPage < totalPages) {
+                currentPage++;
+                updatePagination();
+                displayCurrentPage();
+                window.scrollTo(0, 0);
+            }
+        });
+
+        // 设置年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 加载文章列表
+        loadPosts();
+    </script>
+</body>
 </html>

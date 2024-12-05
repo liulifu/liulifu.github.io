@@ -1,0 +1,74 @@
+{
+  "posts": [
+    {
+      "title": "Blog Architecture Design",
+      "date": "2024-12-05",
+      "categories": ["Architecture", "Design"],
+      "url": "/posts/blog-architecture-design.html",
+      "file": "2024-12-05-Blog Architecture Design.md"
+    },
+    {
+      "title": "Building a Modern Automated IT Operations System in 2024",
+      "date": "2024-12-05",
+      "categories": ["IT Operations", "Automation"],
+      "url": "/posts/building-modern-automated-it-operations.html",
+      "file": "2024-12-05-Building a Modern Automated IT Operations System in 2024.md"
+    },
+    {
+      "title": "Exploring the Core of ERP Systems",
+      "date": "2024-12-05",
+      "categories": ["ERP", "Business Systems"],
+      "url": "/posts/exploring-erp-systems.html",
+      "file": "2024-12-05-Exploring the Core of ERP Systems.md"
+    },
+    {
+      "title": "Help Desk Support",
+      "date": "2024-12-05",
+      "categories": ["IT Support", "Service Desk"],
+      "url": "/posts/help-desk-support.html",
+      "file": "2024-12-05-Help Desk Support.md"
+    },
+    {
+      "title": "High CPU Troubleshooting",
+      "date": "2024-12-05",
+      "categories": ["Performance", "Troubleshooting"],
+      "url": "/posts/high-cpu.html",
+      "file": "2024-12-05-HighCPU.md"
+    },
+    {
+      "title": "PHP报表开发",
+      "date": "2024-12-05",
+      "categories": ["PHP", "Development"],
+      "url": "/posts/php-reporting.html",
+      "file": "2024-12-05-PHP报表.md"
+    },
+    {
+      "title": "Predictive Maintenance in Smart Manufacturing",
+      "date": "2024-12-05",
+      "categories": ["Manufacturing", "AI"],
+      "url": "/posts/predictive-maintenance.html",
+      "file": "2024-12-05-Predictive Maintenance in Smart Manufacturing.md"
+    },
+    {
+      "title": "SAP模块分析 (2013-2023)",
+      "date": "2024-12-05",
+      "categories": ["SAP", "ERP"],
+      "url": "/posts/sap-module-analysis.html",
+      "file": "2024-12-05-SAP 各模块从2013年至2023年主要差异分析.md"
+    },
+    {
+      "title": "About Me",
+      "date": "2024-12-05",
+      "categories": ["Personal"],
+      "url": "/about.html",
+      "file": "2024-12-05-about.md"
+    },
+    {
+      "title": "Visitor Tracking System",
+      "date": "2024-12-05",
+      "categories": ["System Design", "Analytics"],
+      "url": "/posts/visitor-tracking-system.html",
+      "file": "2024-12-05-visitor tracking system.md"
+    }
+  ]
+}
