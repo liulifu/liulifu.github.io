@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Markdown Viewer</title>
+    <link
+      id="cyberpunk-style"
+      rel="stylesheet"
+      href="styles/cyberpunk.css"
+      disabled
+    />
+    <link
+      id="modern-style"
+      rel="stylesheet"
+      href="styles/modern.css"
+      disabled
+    />
+    <link
+      id="minimalist-style"
+      rel="stylesheet"
+      href="styles/minimalist.css"
+      disabled
+    />
+    <link id="retro-style" rel="stylesheet" href="styles/retro.css" disabled />
+    <link id="neon-style" rel="stylesheet" href="styles/neon.css" disabled />
+    <link
+      id="old_book_style_resume"
+      rel="stylesheet"
+      href="styles/old_book_style_resume.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+
+    <style>
+      #style {
+        text-decoration: none;
+        color: rgb(221, 135, 14); /* 链接文本颜色 */
+        font-size: 12px; /* 字体大小 */
+        font-family: Arial, sans-serif; /* 字体 */
+        font-weight: bold; /* 字体加粗 */
+        transition: color 0.3s ease; /* 文字颜色变化的过渡效果 */
+      }
+
+      #nav a {
+        text-decoration: none;
+        color: rgb(95, 6, 196); /* 链接文本颜色 */
+        font-size: 12px; /* 字体大小 */
+        font-family: Arial, sans-serif; /* 字体 */
+        font-weight: bold; /* 字体加粗 */
+        transition: color 0.3s ease; /* 文字颜色变化的过渡效果 */
+      }
+
+      #gohome a:hover {
+        color: #ee54ca; /* 悬停时的文字颜色变化 */
+      }
+
+      #style-switcher {
+        position: fixed;
+        top: 10px; /* 距离页面顶部的距离 */
+        right: 20px; /* 距离页面右侧的距离 */
+        z-index: 1000; /* 保证浮动层在页面上层 */
+        background-color: rgb(239, 239, 247); /* 可以根据需要设置背景颜色 */
+        padding: 5px; /* 设置内边距，让内容看起来更美观 */
+        border: 2px solid rgb(92, 93, 107); /* 边框颜色 */
+        width: 60px;
+        transition: background-color 0.3s ease; /* 过渡效果 */
+        flex-direction: column; /* 元素按列排列 */
+        justify-content: center; /* 垂直居中 */
+        align-items: center; /* 水平居中 */
+      }
+
+      #style-switcher:hover {
+        background-color: rgba(221, 135, 14, 0.1); /* 悬停时背景颜色变化 */
+      }
+
+      /* 为 style-select 添加样式 */
+      #style-select {
+        font-size: 12px; /* 字体大小 */
+        font-family: Arial, sans-serif; /* 字体 */
+        font-weight: bold; /* 字体加粗 */
+        color: rgb(221, 135, 14); /* 选项颜色 */
+        background-color: white; /* 背景颜色 */
+        border: 2px solid rgb(221, 135, 14); /* 边框颜色 */
+        padding: 5px; /* 内边距 */
+        transition: border-color 0.3s ease, color 0.3s ease; /* 过渡效果 */
+      }
+
+      /* 悬停时效果 */
+      #style-select:hover {
+        border-color: rgb(95, 6, 196); /* 悬停时边框颜色 */
+        color: rgb(95, 6, 196); /* 悬停时文字颜色 */
+      }
+
+      #gotop a {
+        text-decoration: none;
+        color: rgb(95, 6, 196); /* 链接文本颜色 */
+        font-size: 12px; /* 字体大小 */
+        font-family: Arial, sans-serif; /* 字体 */
+        font-weight: bold; /* 字体加粗 */
+        transition: color 0.3s ease; /* 文字颜色变化的过渡效果 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- add different style -->
+      <div id="style-switcher">
+        <!-- 回到父页面顶部的链接 -->
+
+        <h3>
+          <div id="gotop">
+            <a
+              href="#"
+              onclick="window.parent.postMessage({action: 'scroll-to-top'}, '*'); return false;"
+            >
+              <img
+                src="../img/To-Top-icon.png"
+                alt="go top"
+                style="width: 50%"
+              />
+            </a>
+          </div>
+        </h3>
+
+        <h3>
+          <div id="nav">
+            <a href="articles.html">
+              <img
+                src="../img/Arrow-Back-icon.png"
+                alt="go back"
+                style="width: 50%"
+              />
+            </a>
+          </div>
+        </h3>
+      </div>
+
+      <div id="content"></div>
+    </div>
+
+    <script>
+      // 跨文档脚本通信：通过 JavaScript 实现宿主页面（页面 A）与 iframe 页面之间的通信，
+      // 监听宿主页面的滚动事件，并将滚动信息传递到 iframe 中的 style-switcher，以此来手动控制其位置。
+      // 关联的页面是index.html
+
+      window.addEventListener("message", function (event) {
+        if (event.data.scrollTop !== undefined) {
+          var styleSwitcher = document.getElementById("style-switcher");
+          styleSwitcher.style.top = 10 + event.data.scrollTop + "px"; // 根据宿主页面的滚动位置调整浮动层位置
+        }
+      });
+    </script>
+
+    <script>
+      function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+          var pair = vars[i].split("=");
+          if (pair[0] === variable) {
+            return pair[1];
+          }
+        }
+        return null;
+      }
+
+      // 获取 URL 中的 'file' 参数值
+      var file = getQueryVariable("file");
+
+      if (file) {
+        // 动态加载指定的 Markdown 文件
+        fetch(file)
+          .then((response) => response.text())
+          .then((text) => {
+            var converter = new showdown.Converter();
+            document.getElementById("content").innerHTML =
+              converter.makeHtml(text);
+          })
+          .catch((error) => {
+            document.getElementById("content").innerHTML =
+              "<p>Error loading file.</p>";
+          });
+      } else {
+        document.getElementById("content").innerHTML =
+          "<p>No file specified.</p>";
+      }
+    </script>
+
+    <script src="scripts/md.js"></script>
+  </body>
+</html>

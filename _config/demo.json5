@@ -1,0 +1,62 @@
+[
+  // 为了方便管理文章，这里使用了JSON5 替代没有注释的JSON
+  // 单行注释
+  // /* 多行注释 */
+
+  {
+    title: "黑白棋游戏的设计与实现",
+    file: "demo/Othello.md",
+    date: "2024-10-14",
+  },  
+  {
+    title: "AutoHotKey 开发示例",
+    file: "demo/AutoHotKey 开发示例.md",
+    date: "2024-10-07",
+  },
+  {
+    title: "使用 Python 脚本自动分类横向或竖向的照片",
+    file: "demo/使用 Python 脚本自动分类横向或竖向的照片.md",
+    date: "2024-10-03",
+  },
+  {
+    title: "Python Data Cleaning",
+    file: "demo/PythonDataCleaning.md",
+    date: "2024-09-20",
+  },
+  {
+    title: "PyScript and the Rise of Python in WebAssembly",
+    file: "demo/Python in WebAssembly.md",
+    date: "2024-09-12",
+  },
+  {
+    title: "PyScript介绍",
+    file: "demo/PyScript.md",
+    date: "2024-09-07",
+  },
+
+  {
+    title: "如何写一个 Lua 脚本 ",
+    file: "demo/howtolua.md",
+    date: "2023-11-11",
+  },
+  {
+    title: "Linux Kernel 运维：ERP 系统宿主机的核心管理",
+    file: "demo/kernel.md",
+    date: "2023-09-07",
+  },
+  {
+    title: "A Guide to User Management on Linux",
+    file: "demo/A Guide to User Management on Linux.md",
+    date: "2023-08-02",
+  },  
+  {
+    title: "docker-compose.yml 和 Dockerfile 的执行关系",
+    file: "demo/关于dockerfile.md",
+    date: "2023-07-21",
+  },
+  {
+    title: "使用 VBS 脚本实现 Xshell 自动化",
+    file: "demo/使用 VBS 脚本实现 Xshell 自动化.md",
+    date: "2023-07-20",
+  },
+]
