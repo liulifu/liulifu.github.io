@@ -1,0 +1,92 @@
+{
+  "tools": {
+    "python-interpreter": {
+      "title": "Python Interpreter",
+      "description": "在线练习Python的工具，支持基本的Python代码执行和调试",
+      "url": "Pyscript/index.html",
+      "categories": ["开发工具"],
+      "tags": ["Python", "在线编程", "教育"],
+      "date": "2024-01-01"
+    },
+    "unit-conversion": {
+      "title": "Unit Conversion",
+      "description": "支持多种单位之间的转换，包括长度、重量、面积等",
+      "url": "unit/v1/index.html",
+      "categories": ["实用工具"],
+      "tags": ["单位转换", "计算工具"],
+      "date": "2024-01-01"
+    },
+    "rmb-converter": {
+      "title": "人民币大写转换",
+      "description": "将数字金额转换为中文大写形式，适用于合同、发票等场景",
+      "url": "number-converter/v2/index.html",
+      "categories": ["金融工具"],
+      "tags": ["人民币", "中文转换", "金额"],
+      "date": "2024-01-01"
+    },
+    "rgb-color-picker": {
+      "title": "RGB Color Picker",
+      "description": "RGB颜色选择器，支持RGB和十六进制颜色值的转换和预览",
+      "url": "RGBtool/v1/index.html",
+      "categories": ["设计工具"],
+      "tags": ["RGB", "颜色", "设计"],
+      "date": "2024-01-01"
+    },
+    "insurance-calculator": {
+      "title": "五险一金&个税计算器",
+      "description": "根据工资计算五险一金和个人所得税的计算器",
+      "url": "wuxianyijin/v6/index.html",
+      "categories": ["金融工具"],
+      "tags": ["五险一金", "个税", "工资计算"],
+      "date": "2024-01-01"
+    },
+    "vat-calculator": {
+      "title": "VAT Calculator",
+      "description": "增值税计算器，支持各种税率的增值税计算",
+      "url": "VAT/v1/index.html",
+      "categories": ["金融工具"],
+      "tags": ["增值税", "税务", "计算器"],
+      "date": "2024-01-01"
+    },
+    "sterilization-guide": {
+      "title": "可用于杀菌的物品一览",
+      "description": "常见消毒杀菌物品的使用指南和注意事项",
+      "url": "sterilization/sterilization.html",
+      "categories": ["生活指南"],
+      "tags": ["消毒", "杀菌", "健康"],
+      "date": "2024-01-01"
+    },
+    "cron-designer": {
+      "title": "Cron Designer",
+      "description": "Cron表达式生成器，帮助生成和验证cron定时任务表达式",
+      "url": "crontab/v4/index.html",
+      "categories": ["开发工具"],
+      "tags": ["Cron", "定时任务", "Linux"],
+      "date": "2024-01-01"
+    },
+    "password-generator": {
+      "title": "Random Password Generator",
+      "description": "随机密码生成器，支持自定义密码长度和字符类型",
+      "url": "password/v1/index.html",
+      "categories": ["安全工具"],
+      "tags": ["密码", "安全", "随机生成"],
+      "date": "2024-01-01"
+    },
+    "gomoku-game": {
+      "title": "五子棋人机对战",
+      "description": "支持人机对战的五子棋游戏",
+      "url": "five/index4.html",
+      "categories": ["游戏"],
+      "tags": ["五子棋", "AI", "游戏"],
+      "date": "2024-01-01"
+    },
+    "tic-tac-toe": {
+      "title": "Tic Tac Toe",
+      "description": "井字棋 Tic Tac Toe",
+      "url": "TicTacToe/v1/index.html",
+      "categories": ["游戏"],
+      "tags": ["井字棋", "游戏"],
+      "date": "2024-01-01"
+    }
+  }
+}
