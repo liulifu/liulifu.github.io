@@ -197,18 +197,18 @@
             "tags": ["网络安全", "安全防护", "威胁检测", "安全加固"]
         },
         "2024-12-06-example-article.md": {
-            "title": "示例文章标题",
+            "title": "Example Article",
             "date": "2024-12-06",
-            "categories": ["技术文档"],
-            "description": "这是一个示例文章，展示如何在这个博客系统中发布新的文章。",
-            "tags": ["示例", "教程", "文档"]
+            "categories": ["示例"],
+            "description": "这是一篇示例文章，用于展示博客的基本功能和格式。",
+            "tags": ["示例", "教程"]
         },
         "2024-12-06-git-workflow.md": {
-            "title": "Git 工作流最佳实践",
+            "title": "Git Workflow Guide",
             "date": "2024-12-06",
             "categories": ["技术文档"],
-            "description": "在团队开发中，规范的 Git 工作流程对于提高协作效率和代码质量至关重要。本文将介绍几种常用的 Git 工作流模式及其实践建议。",
-            "tags": ["Git", "工作流", "版本控制", "最佳实践", "团队协作"]
+            "description": "介绍 Git 工作流程的最佳实践，包括分支管理、提交规范和版本控制策略。",
+            "tags": ["Git", "版本控制", "工作流程"]
         }
     }
 }
