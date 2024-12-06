@@ -150,7 +150,7 @@
                 if (categories.length > 0) {
                     document.getElementById('post-categories').innerHTML = 
                         ` in ${categories.map(cat => 
-                            `<a href="${siteConfig.getUrl(`categories.html#${cat.toLowerCase()}`)}">${cat}</a>`
+                            `<a href="categories.html#${cat.toLowerCase()}">${cat}</a>`
                         ).join(', ')}`;
                 }
             }
