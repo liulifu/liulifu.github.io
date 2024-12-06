@@ -95,72 +95,81 @@
         const urlParams = new URLSearchParams(window.location.search);
         const postFile = urlParams.get('post');
 
-        // 获取当前仓库的基础URL
-        const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
-
         // 加载文章内容和元数据
         async function loadPost() {
+            if (!postFile) {
+                showError('No post specified');
+                return;
+            }
+
             try {
-                // 首先加载元数据
-                const metadataResponse = await fetch(baseUrl + 'metadata.json');
+                // 加载文章元数据
+                const metadataResponse = await fetch('metadata.json');
                 const metadata = await metadataResponse.json();
-                const postMetadata = metadata.posts[postFile];
-
-                if (!postMetadata) {
-                    throw new Error('Post metadata not found');
-                }
-
-                // 设置标题
-                const title = postMetadata.title || 'Untitled';
-                document.title = `${title} - Liu Lifu's Blog`;
-                document.getElementById('post-title').textContent = title;
                 
-                // 设置日期
-                if (postMetadata.date) {
-                    const date = new Date(postMetadata.date);
-                    const formattedDate = date.toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    });
-                    document.getElementById('post-date').textContent = `Published on ${formattedDate}`;
-                }
-                
-                // 设置分类
-                if (postMetadata.categories && postMetadata.categories.length > 0) {
-                    const categories = postMetadata.categories.filter(cat => cat && cat !== 'Uncategorized');
-                    if (categories.length > 0) {
-                        document.getElementById('post-categories').innerHTML = 
-                            ` in ${categories.map(cat => 
-                                `<a href="${baseUrl}categories.html#${cat.toLowerCase()}">${cat}</a>`
-                            ).join(', ')}`;
-                    }
+                if (!metadata.posts[postFile]) {
+                    showError('Post not found in metadata');
+                    return;
                 }
 
                 // 加载文章内容
-                const response = await fetch(baseUrl + '_posts/' + postFile);
-                const markdown = await response.text();
-                
-                // 转换内容
-                const converter = new showdown.Converter({
-                    tables: true,
-                    strikethrough: true,
-                    tasklists: true,
-                    ghCodeBlocks: true,
-                    emoji: true
-                });
-                const html = converter.makeHtml(markdown);
-                document.getElementById('post-content').innerHTML = html;
-
-                // 移除 Loading...
-                const titleElement = document.getElementById('post-title');
-                if (titleElement.textContent === 'Loading...') {
-                    titleElement.textContent = title;
+                const postResponse = await fetch(`_posts/${postFile}`);
+                if (!postResponse.ok) {
+                    showError('Failed to load post content');
+                    return;
                 }
+
+                const postContent = await postResponse.text();
+                displayPost(postContent, metadata.posts[postFile]);
             } catch (error) {
                 console.error('Error loading post:', error);
-                document.getElementById('post-content').innerHTML = '<p>Error loading post content.</p>';
+                showError('Error loading post');
             }
+        }
+
+        function showError(message) {
+            document.getElementById('post-title').textContent = 'Error';
+            document.getElementById('post-content').innerHTML = `<p>${message}</p>`;
+        }
+
+        function displayPost(markdown, metadata) {
+            // 设置标题
+            const title = metadata.title || 'Untitled';
+            document.title = `${title} - Liu Lifu's Blog`;
+            document.getElementById('post-title').textContent = title;
+
+            // 设置日期
+            if (metadata.date) {
+                const date = new Date(metadata.date);
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                document.getElementById('post-date').textContent = `Published on ${formattedDate}`;
+            }
+
+            // 设置分类
+            if (metadata.categories && metadata.categories.length > 0) {
+                const categories = metadata.categories.filter(cat => cat && cat !== 'Uncategorized');
+                if (categories.length > 0) {
+                    document.getElementById('post-categories').innerHTML = 
+                        ` in ${categories.map(cat => 
+                            `<a href="categories.html#${cat.toLowerCase()}">${cat}</a>`
+                        ).join(', ')}`;
+                }
+            }
+
+            // 转换并显示内容
+            const converter = new showdown.Converter({
+                tables: true,
+                strikethrough: true,
+                tasklists: true,
+                ghCodeBlocks: true,
+                emoji: true
+            });
+            const html = converter.makeHtml(markdown);
+            document.getElementById('post-content').innerHTML = html;
         }
 
         // 设置年份
