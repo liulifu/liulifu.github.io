@@ -167,6 +167,13 @@
             "categories": ["技术文档"],
             "description": "介绍 Git 工作流程的最佳实践，包括分支管理、提交规范和版本控制策略。",
             "tags": ["Git", "版本控制", "工作流程"]
+        },
+        "2024-12-07-test-article.md": {
+            "title": "测试文章：使用Markdown写作指南",
+            "date": "2024-12-07",
+            "categories": ["技术文档"],
+            "description": "这是一篇测试文章，展示了Markdown的基本语法和使用方法，包括标题、文本格式化、列表、代码展示等常用功能。",
+            "tags": ["Markdown", "写作指南", "测试"]
         }
     }
 }
