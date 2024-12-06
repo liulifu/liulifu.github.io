@@ -5,73 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tags - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/showdown.min.js"></script>
-    <script src="config.js"></script>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="styles.css?v=" + new Date().getTime()>
+    <script src="js/showdown.min.js?v=" + new Date().getTime()></script>
+    <script src="config.js?v=" + new Date().getTime()></script>
     <meta name="description" content="Liu Lifu's blog tags">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
-        .tags-container {
-            display: flex;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .tags-list {
-            flex: 0 0 200px;
-            border-right: 1px solid #eee;
-            padding-right: 2rem;
-        }
-
-        .tags-list h2 {
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
-
-        .tag-link {
-            display: block;
-            padding: 0.5rem 0;
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .tag-link:hover {
-            color: #007bff;
-        }
-
-        .tag-link.active {
-            color: #007bff;
-            font-weight: 500;
-        }
-
-        .posts-list {
-            flex: 1;
-        }
-
-        .posts-list h2 {
-            margin-top: 0;
-            margin-bottom: 2rem;
-        }
-
-        @media (max-width: 768px) {
-            .tags-container {
-                flex-direction: column;
-                padding: 1rem;
-            }
-
-            .tags-list {
-                flex: none;
-                border-right: none;
-                border-bottom: 1px solid #eee;
-                padding-right: 0;
-                padding-bottom: 1rem;
-                margin-bottom: 1rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -212,13 +153,29 @@
                 const date = document.createElement('span');
                 date.className = 'post-date';
                 date.textContent = post.date;
-
-                const category = document.createElement('span');
-                category.className = 'post-category';
-                category.textContent = ` in ${post.categories[0]}`;
-
                 postMeta.appendChild(date);
-                postMeta.appendChild(category);
+
+                const separator = document.createElement('span');
+                separator.className = 'meta-separator';
+                separator.textContent = ' • ';
+                postMeta.appendChild(separator);
+
+                const tagsSpan = document.createElement('span');
+                tagsSpan.className = 'inline-tags';
+                post.tags.forEach((tag, index) => {
+                    const tagLink = document.createElement('a');
+                    tagLink.href = `?tag=${encodeURIComponent(tag)}`;
+                    tagLink.className = 'inline-tag';
+                    tagLink.textContent = tag;
+                    tagsSpan.appendChild(tagLink);
+                    
+                    if (index < post.tags.length - 1) {
+                        const comma = document.createElement('span');
+                        comma.textContent = ', ';
+                        tagsSpan.appendChild(comma);
+                    }
+                });
+                postMeta.appendChild(tagsSpan);
 
                 const description = document.createElement('p');
                 description.className = 'post-description';
@@ -237,6 +194,17 @@
         // 获取URL中的标签并初始化
         currentTag = getTagFromUrl();
         loadPosts();
+    </script>
+    <script>
+        // 防止样式文件缓存
+        function loadStyles() {
+            const timestamp = new Date().getTime();
+            const existingLink = document.querySelector('link[rel="stylesheet"]');
+            existingLink.href = `styles.css?v=${timestamp}`;
+        }
+
+        // 页面加载时执行
+        window.addEventListener('load', loadStyles);
     </script>
 </body>
 </html>

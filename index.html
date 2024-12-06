@@ -5,73 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/showdown.min.js"></script>
-    <script src="config.js"></script>
+    <link rel="stylesheet" href="styles.css?v=" + new Date().getTime()>
+    <script src="js/showdown.min.js?v=" + new Date().getTime()></script>
+    <script src="config.js?v=" + new Date().getTime()></script>
     <meta name="description" content="Liu Lifu's personal blog">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 2rem 0;
-            gap: 1rem;
-        }
-        
-        .pagination button {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ddd;
-            background: #fff;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-        
-        .pagination button:hover {
-            background: #f0f0f0;
-        }
-        
-        .pagination button:disabled {
-            background: #f5f5f5;
-            cursor: not-allowed;
-            color: #999;
-        }
-        
-        .pagination .page-info {
-            margin: 0 1rem;
-        }
-        
-        .post-meta {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .post-date {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .post-category {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .post-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .tag {
-            padding: 0.2rem 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background: #f0f0f0;
-            font-size: 0.8rem;
-        }
-    </style>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
     <header>
@@ -134,32 +75,22 @@
                     const date = document.createElement('span');
                     date.className = 'post-date';
                     date.textContent = post.date;
-
-                    const category = document.createElement('span');
-                    category.className = 'post-category';
-                    category.textContent = ` in ${post.categories[0]}`;
-
                     postMeta.appendChild(date);
-                    postMeta.appendChild(category);
+
+                    const tagsHtml = post.tags.map(tag => 
+                        `<a href="tags.html?tag=${encodeURIComponent(tag)}" class="post-tag">${tag}</a>`
+                    ).join('');
+                    const tagsSpan = document.createElement('span');
+                    tagsSpan.innerHTML = tagsHtml;
+                    postMeta.appendChild(tagsSpan);
 
                     const description = document.createElement('p');
                     description.className = 'post-description';
                     description.textContent = post.description;
 
-                    const tags = document.createElement('div');
-                    tags.className = 'post-tags';
-                    post.tags.forEach(tag => {
-                        const tagLink = document.createElement('a');
-                        tagLink.href = `tags.html?tag=${encodeURIComponent(tag)}`;
-                        tagLink.className = 'tag';
-                        tagLink.textContent = tag;
-                        tags.appendChild(tagLink);
-                    });
-
                     li.appendChild(link);
                     li.appendChild(postMeta);
                     li.appendChild(description);
-                    li.appendChild(tags);
                     postList.appendChild(li);
                 });
             } catch (error) {
@@ -197,6 +128,17 @@
 
         // 初始加载文章列表
         loadPosts();
+    </script>
+    <script>
+        // 防止样式文件缓存
+        function loadStyles() {
+            const timestamp = new Date().getTime();
+            const existingLink = document.querySelector('link[rel="stylesheet"]');
+            existingLink.href = `styles.css?v=${timestamp}`;
+        }
+
+        // 页面加载时执行
+        window.addEventListener('load', loadStyles);
     </script>
 </body>
 </html>

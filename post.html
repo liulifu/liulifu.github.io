@@ -5,62 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading... - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="js/showdown.min.js"></script>
-    <script src="config.js"></script>
+    <link rel="stylesheet" href="styles.css?v=" + new Date().getTime()>
+    <script src="js/showdown.min.js?v=" + new Date().getTime()></script>
+    <script src="config.js?v=" + new Date().getTime()></script>
     <meta name="description" content="Article page">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <style>
-        .post-header {
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .post-title {
-            margin: 0 0 0.5rem;
-            color: #2c3e50;
-        }
-        
-        .post-meta {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-        }
-        
-        .post-content {
-            line-height: 1.8;
-        }
-        
-        .post-content h1,
-        .post-content h2,
-        .post-content h3 {
-            color: #2c3e50;
-            margin-top: 2rem;
-        }
-        
-        .post-content p {
-            margin: 1rem 0;
-        }
-        
-        .post-content img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        .post-content code {
-            background: #f8f9fa;
-            padding: 0.2rem 0.4rem;
-            border-radius: 3px;
-            font-family: monospace;
-        }
-        
-        .post-content pre {
-            background: #f8f9fa;
-            padding: 1rem;
-            overflow-x: auto;
-            border-radius: 4px;
-        }
-    </style>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 </head>
 <body>
     <header>
@@ -85,6 +37,7 @@
             <div class="post-content" id="post-content">
                 <!-- 文章内容将通过JavaScript动态加载 -->
             </div>
+            <a href="index.html" class="back-button">返回列表</a>
         </article>
     </main>
 
