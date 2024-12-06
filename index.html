@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="js/showdown.min.js"></script>
     <script src="config.js"></script>
-    <meta name="description" content="Personal blog about technology and innovation">
-    <meta name="keywords" content="Lifu, blog, technology, innovation, programming">
+    <meta name="description" content="Liu Lifu's personal blog">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         .pagination {
@@ -42,6 +41,70 @@
         .pagination .page-info {
             margin: 0 1rem;
         }
+        
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-button:hover {
+            background: #f0f0f0;
+        }
+        
+        .filter-button.active {
+            background: #007bff;
+            color: #fff;
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .post-date {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .post-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .category-tag {
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f0f0f0;
+            font-size: 0.8rem;
+        }
+        
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            padding: 0.2rem 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f0f0f0;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -56,6 +119,9 @@
     </header>
 
     <main class="content">
+        <div class="category-filter" id="category-filter">
+            <!-- 分类过滤器将通过JavaScript动态加载 -->
+        </div>
         <div id="post-list" class="post-list">
             <!-- 文章列表将通过JavaScript动态加载 -->
         </div>
@@ -70,76 +136,124 @@
     </footer>
 
     <script>
+        let currentFilter = 'all';
+        let allPosts = {};
+
         async function loadPosts() {
             try {
                 const response = await fetch('metadata.json');
                 const data = await response.json();
-                const posts = data.posts;
-                const postList = document.getElementById('post-list');
-                postList.innerHTML = '';
+                allPosts = data.posts;
 
-                for (const [id, post] of Object.entries(posts)) {
-                    const li = document.createElement('li');
-                    const link = document.createElement('a');
-                    
-                    // 根据内容类型决定链接行为
-                    if (post.type === 'tool') {
-                        // 工具类型直接链接到HTML页面
-                        link.href = post.url;
-                        link.target = '_blank';  // 在新标签页打开工具
-                    } else {
-                        // 文章类型使用showdown.js渲染
-                        link.href = `#${id}`;
-                        link.onclick = () => loadPost(id);
-                    }
-                    
-                    link.textContent = post.title;
-                    
-                    const date = document.createElement('span');
-                    date.className = 'post-date';
-                    date.textContent = post.date;
-                    
-                    const description = document.createElement('p');
-                    description.className = 'post-description';
-                    description.textContent = post.description;
-                    
-                    const categories = document.createElement('div');
-                    categories.className = 'post-categories';
-                    post.categories.forEach(category => {
-                        const span = document.createElement('span');
-                        span.className = 'category-tag';
-                        span.textContent = category;
-                        categories.appendChild(span);
-                    });
-                    
-                    const tags = document.createElement('div');
-                    tags.className = 'post-tags';
-                    post.tags.forEach(tag => {
-                        const span = document.createElement('span');
-                        span.className = 'tag';
-                        span.textContent = tag;
-                        tags.appendChild(span);
-                    });
+                // 收集所有唯一的分类
+                const categories = new Set();
+                Object.values(allPosts).forEach(post => {
+                    post.categories.forEach(category => categories.add(category));
+                });
 
-                    li.appendChild(link);
-                    li.appendChild(date);
-                    li.appendChild(description);
-                    li.appendChild(categories);
-                    li.appendChild(tags);
-                    postList.appendChild(li);
-                }
+                // 创建分类过滤器
+                const filterContainer = document.getElementById('category-filter');
+                const allButton = document.createElement('button');
+                allButton.textContent = 'All';
+                allButton.className = 'filter-button active';
+                allButton.onclick = () => filterPosts('all');
+                filterContainer.appendChild(allButton);
+
+                // 按字母顺序排序分类
+                Array.from(categories).sort().forEach(category => {
+                    const button = document.createElement('button');
+                    button.textContent = category;
+                    button.className = 'filter-button';
+                    button.onclick = () => filterPosts(category);
+                    filterContainer.appendChild(button);
+                });
+
+                // 显示所有文章
+                displayPosts('all');
             } catch (error) {
                 console.error('Error loading posts:', error);
             }
         }
 
+        function filterPosts(category) {
+            currentFilter = category;
+            // 更新按钮状态
+            document.querySelectorAll('.filter-button').forEach(button => {
+                button.className = 'filter-button' + (button.textContent === category || (category === 'all' && button.textContent === 'All') ? ' active' : '');
+            });
+            displayPosts(category);
+        }
+
+        function displayPosts(category) {
+            const postList = document.getElementById('post-list');
+            postList.innerHTML = '';
+
+            // 按日期排序文章，最新的在前面
+            const sortedPosts = Object.entries(allPosts)
+                .sort(([, a], [, b]) => new Date(b.date) - new Date(a.date));
+
+            sortedPosts.forEach(([id, post]) => {
+                // 如果选择了特定分类，只显示该分类的文章
+                if (category !== 'all' && !post.categories.includes(category)) {
+                    return;
+                }
+
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                
+                if (post.type === 'tool') {
+                    link.href = post.url;
+                    link.target = '_blank';
+                } else {
+                    link.href = `#${id}`;
+                    link.onclick = () => loadPost(id);
+                }
+                
+                link.textContent = post.title;
+
+                const postMeta = document.createElement('div');
+                postMeta.className = 'post-meta';
+                
+                const date = document.createElement('span');
+                date.className = 'post-date';
+                date.textContent = post.date;
+                postMeta.appendChild(date);
+
+                const description = document.createElement('p');
+                description.className = 'post-description';
+                description.textContent = post.description;
+
+                const categories = document.createElement('div');
+                categories.className = 'post-categories';
+                post.categories.forEach(cat => {
+                    const span = document.createElement('span');
+                    span.className = 'category-tag';
+                    span.textContent = cat;
+                    categories.appendChild(span);
+                });
+
+                const tags = document.createElement('div');
+                tags.className = 'post-tags';
+                post.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'tag';
+                    span.textContent = tag;
+                    tags.appendChild(span);
+                });
+
+                li.appendChild(link);
+                li.appendChild(postMeta);
+                li.appendChild(description);
+                li.appendChild(categories);
+                li.appendChild(tags);
+                postList.appendChild(li);
+            });
+        }
+
         async function loadPost(id) {
             try {
-                const response = await fetch('metadata.json');
-                const data = await response.json();
-                const post = data.posts[id];
+                const post = allPosts[id];
                 
-                // 只处理文章类型
                 if (post.type === 'article') {
                     const postResponse = await fetch(`posts/${id}`);
                     const postContent = await postResponse.text();
@@ -149,6 +263,7 @@
                     
                     document.getElementById('post-content').innerHTML = html;
                     document.getElementById('post-list').style.display = 'none';
+                    document.getElementById('category-filter').style.display = 'none';
                     document.getElementById('post-detail').style.display = 'block';
                 }
             } catch (error) {
@@ -158,8 +273,12 @@
 
         function showPostList() {
             document.getElementById('post-list').style.display = 'block';
+            document.getElementById('category-filter').style.display = 'flex';
             document.getElementById('post-detail').style.display = 'none';
         }
+
+        // 设置年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
         // 初始加载文章列表
         loadPosts();

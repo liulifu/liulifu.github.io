@@ -9,7 +9,7 @@ body {
 
 .site-nav {
     background: #fff;
-    padding: 1rem;
+    padding: 0.5rem 1rem;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
@@ -23,6 +23,9 @@ body {
     display: flex;
     justify-content: center;
     gap: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -32,6 +35,8 @@ body {
     padding: 0.5rem;
     font-weight: 500;
     transition: color 0.2s ease;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.9rem;
 }
 
 .nav-links a:hover {
@@ -83,18 +88,31 @@ body {
     margin-bottom: 1rem;
     font-size: 0.9rem;
     color: #666;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin: 0.3rem 0;
 }
 
 .post-date {
     display: inline-flex;
     align-items: center;
     color: #666;
+    display: inline-block;
+    color: #7f8c8d;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
 }
 
 .post-categories {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0;
 }
 
 .post-categories a {
@@ -113,6 +131,10 @@ body {
     line-height: 1.6;
     margin: 1rem 0;
     font-size: 1rem;
+    color: #34495e;
+    margin: 0.4rem 0;
+    line-height: 1.4;
+    font-size: 0.9rem;
 }
 
 .post-tags {
@@ -120,6 +142,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin: 0;
 }
 
 .tag {
@@ -130,6 +156,11 @@ body {
     border-radius: 15px;
     font-size: 0.85rem;
     transition: all 0.2s ease;
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    white-space: nowrap;
 }
 
 .tag:hover {
@@ -186,6 +217,7 @@ body {
     padding: 1rem;
     overflow-x: auto;
     border-radius: 4px;
+    margin: 1rem 0;
 }
 
 footer {
@@ -197,72 +229,140 @@ footer {
 
 /* 文章和工具列表样式 */
 .post-list {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .post-list li {
-    list-style: none;
     margin-bottom: 2rem;
     padding: 1.5rem;
+    border: 1px solid #eee;
     border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.3s ease;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .post-list li:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .post-list a {
-    font-size: 1.4rem;
-    color: #2c3e50;
+    color: #333;
     text-decoration: none;
-    font-weight: 600;
+    font-size: 1.2rem;
+    font-weight: 500;
     margin-bottom: 0.5rem;
     display: block;
 }
 
 .post-list a:hover {
-    color: #42b983;
+    color: #007bff;
 }
 
-.post-date {
-    display: block;
-    color: #7f8c8d;
-    font-size: 0.9rem;
+.post-meta {
     margin: 0.5rem 0;
+    color: #666;
+    font-size: 0.9rem;
 }
 
 .post-description {
-    color: #34495e;
-    margin: 0.8rem 0;
-    line-height: 1.6;
-}
-
-.post-categories, .post-tags {
+    color: #666;
     margin: 0.5rem 0;
+    line-height: 1.5;
 }
 
-.category-tag, .tag {
-    display: inline-block;
-    padding: 0.2rem 0.8rem;
-    margin: 0.2rem;
-    border-radius: 15px;
-    font-size: 0.85rem;
+.post-categories {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .category-tag {
-    background-color: #42b983;
-    color: white;
+    padding: 0.2rem 0.8rem;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #495057;
+    transition: all 0.2s ease;
+}
+
+.category-tag:hover {
+    background: #e9ecef;
+}
+
+.post-tags {
+    margin: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .tag {
-    background-color: #f0f2f5;
-    color: #606f7b;
+    padding: 0.2rem 0.8rem;
+    background: #e9ecef;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #495057;
+}
+
+.category-filter {
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.filter-button {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid #ddd;
+    background: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #495057;
+    transition: all 0.3s ease;
+}
+
+.filter-button:hover {
+    background: #f8f9fa;
+    transform: translateY(-1px);
+}
+
+.filter-button.active {
+    background: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .post-list li {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-list a {
+        font-size: 1.1rem;
+    }
+
+    .category-filter {
+        margin: 1rem 0;
+    }
+
+    .filter-button {
+        padding: 0.4rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .category-tag, .tag {
+        padding: 0.2rem 0.6rem;
+        font-size: 0.7rem;
+    }
 }
 
 /* 文章详情页样式 */
@@ -345,6 +445,30 @@ footer {
     .content {
         padding: 0 0.5rem;
     }
+    .post-list {
+        padding: 8px;
+    }
+
+    .post-list li {
+        padding: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .post-list a {
+        font-size: 1rem;
+    }
+
+    .post-description {
+        font-size: 0.85rem;
+    }
+
+    .category-section {
+        min-width: 100%;
+    }
+
+    .categories-list {
+        padding: 0.5rem;
+    }
 }
 
 @media (max-width: 600px) {
@@ -354,20 +478,49 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
-    .post-list {
-        padding: 10px;
-    }
+/* 分类页面样式 */
+.categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
 
-    .post-list li {
-        padding: 1rem;
-    }
+.category-section {
+    flex: 1;
+    min-width: 250px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-    .post-list a {
-        font-size: 1.2rem;
-    }
+.category-section h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
 
-    #post-detail {
-        padding: 15px;
-    }
+.category-section ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.category-section li {
+    margin: 0.3rem 0;
+}
+
+.category-section a {
+    color: #34495e;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: block;
+    padding: 0.2rem 0;
+}
+
+.category-section a:hover {
+    color: #42b983;
 }

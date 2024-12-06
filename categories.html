@@ -6,6 +6,8 @@
     <title>Categories - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="config.js"></script>
+    <meta name="description" content="Categories page">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         .category-section {
@@ -63,7 +65,7 @@
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="categories.html" class="active">Categories</a>
-                <a href="about.html">About</a>
+                <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
             </div>
         </nav>
     </header>
@@ -71,7 +73,7 @@
     <main class="content">
         <div class="categories-container">
             <h1 class="page-title">Categories</h1>
-            <div id="categories-container">
+            <div class="categories-list" id="categories-container">
                 <!-- 分类列表将通过JavaScript动态加载 -->
             </div>
         </div>
@@ -82,75 +84,66 @@
     </footer>
 
     <script>
-        // 获取当前仓库的基础URL
-        const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
-
-        // 加载文章列表并按分类组织
         async function loadCategories() {
             try {
-                const response = await fetch(baseUrl + 'metadata.json');
+                const response = await fetch('metadata.json');
                 const data = await response.json();
+                const posts = data.posts;
                 
-                // 创建分类映射
+                // 收集所有分类及其文章
                 const categories = {};
-                
-                // 遍历所有文章
-                Object.entries(data.posts).forEach(([file, metadata]) => {
-                    metadata.categories.forEach(category => {
+                for (const [id, post] of Object.entries(posts)) {
+                    for (const category of post.categories) {
                         if (!categories[category]) {
                             categories[category] = [];
                         }
                         categories[category].push({
-                            title: metadata.title,
-                            date: metadata.date,
-                            file: file
+                            id,
+                            title: post.title,
+                            type: post.type,
+                            url: post.url
                         });
-                    });
-                });
-                
+                    }
+                }
+
                 // 按分类名称排序
                 const sortedCategories = Object.keys(categories).sort();
                 
-                // 生成HTML
+                // 创建分类区块
                 const container = document.getElementById('categories-container');
                 sortedCategories.forEach(category => {
-                    // 对每个分类中的文章按日期排序
-                    categories[category].sort((a, b) => new Date(b.date) - new Date(a.date));
-                    
-                    const section = document.createElement('section');
+                    const section = document.createElement('div');
                     section.className = 'category-section';
-                    section.id = category.toLowerCase();
                     
                     const title = document.createElement('h2');
                     title.className = 'category-title';
                     title.textContent = category;
+                    section.appendChild(title);
                     
                     const list = document.createElement('ul');
                     list.className = 'post-list';
-                    
-                    categories[category].forEach(post => {
-                        const date = new Date(post.date);
-                        const formattedDate = date.toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
+                    // 按标题排序文章
+                    categories[category]
+                        .sort((a, b) => a.title.localeCompare(b.title))
+                        .forEach(post => {
+                            const li = document.createElement('li');
+                            const link = document.createElement('a');
+                            if (post.type === 'tool') {
+                                link.href = post.url;
+                                link.target = '_blank';
+                            } else {
+                                link.href = `post.html?post=${post.id}`;
+                            }
+                            link.textContent = post.title;
+                            li.appendChild(link);
+                            list.appendChild(li);
                         });
-                        
-                        const li = document.createElement('li');
-                        li.innerHTML = `
-                            <a href="${baseUrl}post.html?post=${encodeURIComponent(post.file)}">${post.title}</a>
-                            <span class="post-date">${formattedDate}</span>
-                        `;
-                        list.appendChild(li);
-                    });
                     
-                    section.appendChild(title);
                     section.appendChild(list);
                     container.appendChild(section);
                 });
             } catch (error) {
                 console.error('Error loading categories:', error);
-                document.getElementById('categories-container').innerHTML = '<p>Error loading categories.</p>';
             }
         }
 
