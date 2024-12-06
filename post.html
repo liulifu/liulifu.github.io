@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>文章标题 - Liu Lifu's Blog</title>
+    <title>Loading... - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
+    <script src="config.js"></script>
+    <meta name="description" content="Article page">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         .post-header {
@@ -91,7 +93,7 @@
     </footer>
 
     <script>
-        // 获取URL参数中的文件名
+        // 获取文章文件名
         const urlParams = new URLSearchParams(window.location.search);
         const postFile = urlParams.get('post');
 
@@ -104,8 +106,7 @@
 
             try {
                 // 加载文章元数据
-                const metadataResponse = await fetch('metadata.json');
-                const metadata = await metadataResponse.json();
+                const metadata = await siteConfig.loadMetadata();
                 
                 if (!metadata.posts[postFile]) {
                     showError('Post not found in metadata');
@@ -113,13 +114,7 @@
                 }
 
                 // 加载文章内容
-                const postResponse = await fetch(`_posts/${postFile}`);
-                if (!postResponse.ok) {
-                    showError('Failed to load post content');
-                    return;
-                }
-
-                const postContent = await postResponse.text();
+                const postContent = await siteConfig.loadMarkdown(`_posts/${postFile}`);
                 displayPost(postContent, metadata.posts[postFile]);
             } catch (error) {
                 console.error('Error loading post:', error);
@@ -155,7 +150,7 @@
                 if (categories.length > 0) {
                     document.getElementById('post-categories').innerHTML = 
                         ` in ${categories.map(cat => 
-                            `<a href="categories.html#${cat.toLowerCase()}">${cat}</a>`
+                            `<a href="${siteConfig.getUrl(`categories.html#${cat.toLowerCase()}`)}">${cat}</a>`
                         ).join(', ')}`;
                 }
             }
