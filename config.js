@@ -15,7 +15,9 @@ const siteConfig = {
     // 加载文章内容
     async loadMarkdown(path) {
         try {
-            const response = await fetch(path);
+            // 确保路径以斜杠开头
+            const fullPath = path.startsWith('/') ? path : '/' + path;
+            const response = await fetch(fullPath);
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
@@ -29,7 +31,7 @@ const siteConfig = {
     // 加载元数据
     async loadMetadata() {
         try {
-            const response = await fetch('metadata.json');
+            const response = await fetch('/metadata.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
