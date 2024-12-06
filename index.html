@@ -75,7 +75,9 @@
         let totalPosts = [];
 
         // 获取当前仓库的基础URL
-        const baseUrl = window.location.pathname.replace(/\/[^/]*$/, '/');
+        const baseUrl = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+            ? '/'  // 本地开发环境
+            : '/liulifu.github.io/';  // GitHub Pages 环境
 
         // 加载文章列表
         async function loadPosts() {
@@ -87,7 +89,7 @@
                 totalPosts = Object.entries(data.posts)
                     .map(([file, metadata]) => ({
                         file,
-                        url: `post.html?post=${encodeURIComponent(file)}`,
+                        url: `${baseUrl}post.html?post=${encodeURIComponent(file)}`,
                         ...metadata
                     }))
                     .sort((a, b) => new Date(b.date) - new Date(a.date));
