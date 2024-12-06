@@ -4,60 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Liu Lifu's Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="config.js"></script>
+    <script>
+        // 重定向到post.html来解析about.md
+        window.onload = function() {
+            const postPath = '2024-12-05-about.md';
+            window.location.href = `${getBasePath()}/post.html?post=${encodeURIComponent(postPath)}`;
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <nav class="site-nav">
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/categories.html">Categories</a>
-                <a href="/about.html" class="active">About</a>
-            </div>
-        </nav>
-    </header>
-
-    <main class="content">
-        <article class="post-content">
-            <!-- 关于页内容将通过JavaScript动态加载 -->
-        </article>
-    </main>
-
-    <footer>
-        <p>  <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
-    </footer>
-
-    <script>
-        async function loadAboutContent() {
-            try {
-                // 加载 about.md 文件
-                const response = await fetch('_posts/2024-12-05-about.md');
-                const markdown = await response.text();
-                
-                const converter = new showdown.Converter({
-                    tables: true,
-                    strikethrough: true,
-                    tasklists: true,
-                    ghCodeBlocks: true,
-                    emoji: true
-                });
-                const html = converter.makeHtml(markdown);
-                
-                document.querySelector('.post-content').innerHTML = html;
-            } catch (error) {
-                console.error('Error loading about content:', error);
-                document.querySelector('.post-content').innerHTML = '<p>Error loading about content.</p>';
-            }
-        }
-
-        // 设置年份
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // 加载关于页内容
-        loadAboutContent();
-    </script>
+    <p>Redirecting to about page...</p>
 </body>
 </html>
