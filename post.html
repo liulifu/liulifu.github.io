@@ -107,15 +107,23 @@
             try {
                 // 加载文章元数据
                 const metadata = await siteConfig.loadMetadata();
+                const post = metadata.posts[postFile];
                 
-                if (!metadata.posts[postFile]) {
+                if (!post) {
                     showError('Post not found in metadata');
                     return;
                 }
 
-                // 加载文章内容
+                // 检查内容类型
+                if (post.type === 'tool') {
+                    // 如果是工具类型，重定向到工具页面
+                    window.location.href = post.url;
+                    return;
+                }
+
+                // 加载文章内容（仅对article类型）
                 const postContent = await siteConfig.loadMarkdown('posts/' + postFile);
-                displayPost(postContent, metadata.posts[postFile]);
+                displayPost(postContent, post);
             } catch (error) {
                 console.error('Error loading post:', error);
                 showError('Error loading post');

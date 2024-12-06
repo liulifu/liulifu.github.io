@@ -1,0 +1,27 @@
+{
+    "pension": {
+      "employer": 19,
+      "personal": 8
+    },
+    "medical": {
+      "employer": 10,
+      "personal": 2
+    },
+    "unemployment": {
+      "employer": 0.8,
+      "personal": 0.2
+    },
+    "injury": {
+      "employer": 0.5,
+      "personal": 0
+    },
+    "maternity": {
+      "employer": 0.8,
+      "personal": 0
+    },
+    "housing": {
+      "employer": 12,
+      "personal": 12
+    }
+  }
+  

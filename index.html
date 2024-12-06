@@ -50,19 +50,18 @@
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="categories.html">Categories</a>
-                <a href="about.html">About</a>
+                <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
             </div>
         </nav>
     </header>
 
     <main class="content">
-        <div id="posts-list" class="posts-list">
+        <div id="post-list" class="post-list">
             <!-- 文章列表将通过JavaScript动态加载 -->
         </div>
-        <div class="pagination">
-            <button id="prev-page" disabled>Previous</button>
-            <span class="page-info">Page <span id="current-page">1</span> of <span id="total-pages">1</span></span>
-            <button id="next-page">Next</button>
+        <div id="post-detail" style="display: none;">
+            <div id="post-content"></div>
+            <button onclick="showPostList()" class="back-button">返回列表</button>
         </div>
     </main>
 
@@ -71,114 +70,98 @@
     </footer>
 
     <script>
-        const POSTS_PER_PAGE = 5; // 每页显示的文章数量
-        let currentPage = 1;
-        let totalPosts = [];
-
-        // 加载文章列表
         async function loadPosts() {
             try {
                 const response = await fetch('metadata.json');
                 const data = await response.json();
-                
-                // 将对象转换为数组并排序
-                totalPosts = Object.entries(data.posts)
-                    .map(([file, metadata]) => ({
-                        file,
-                        url: `${siteConfig.getBaseUrl()}post.html?post=${encodeURIComponent(file)}`,
-                        ...metadata
-                    }))
-                    .sort((a, b) => new Date(b.date) - new Date(a.date));
+                const posts = data.posts;
+                const postList = document.getElementById('post-list');
+                postList.innerHTML = '';
 
-                updatePagination();
-                displayCurrentPage();
+                for (const [id, post] of Object.entries(posts)) {
+                    const li = document.createElement('li');
+                    const link = document.createElement('a');
+                    
+                    // 根据内容类型决定链接行为
+                    if (post.type === 'tool') {
+                        // 工具类型直接链接到HTML页面
+                        link.href = post.url;
+                        link.target = '_blank';  // 在新标签页打开工具
+                    } else {
+                        // 文章类型使用showdown.js渲染
+                        link.href = `#${id}`;
+                        link.onclick = () => loadPost(id);
+                    }
+                    
+                    link.textContent = post.title;
+                    
+                    const date = document.createElement('span');
+                    date.className = 'post-date';
+                    date.textContent = post.date;
+                    
+                    const description = document.createElement('p');
+                    description.className = 'post-description';
+                    description.textContent = post.description;
+                    
+                    const categories = document.createElement('div');
+                    categories.className = 'post-categories';
+                    post.categories.forEach(category => {
+                        const span = document.createElement('span');
+                        span.className = 'category-tag';
+                        span.textContent = category;
+                        categories.appendChild(span);
+                    });
+                    
+                    const tags = document.createElement('div');
+                    tags.className = 'post-tags';
+                    post.tags.forEach(tag => {
+                        const span = document.createElement('span');
+                        span.className = 'tag';
+                        span.textContent = tag;
+                        tags.appendChild(span);
+                    });
+
+                    li.appendChild(link);
+                    li.appendChild(date);
+                    li.appendChild(description);
+                    li.appendChild(categories);
+                    li.appendChild(tags);
+                    postList.appendChild(li);
+                }
             } catch (error) {
                 console.error('Error loading posts:', error);
-                document.getElementById('posts-list').innerHTML = '<p>Error loading posts.</p>';
             }
         }
 
-        function updatePagination() {
-            const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE);
-            document.getElementById('total-pages').textContent = totalPages;
-            document.getElementById('current-page').textContent = currentPage;
-            document.getElementById('prev-page').disabled = currentPage === 1;
-            document.getElementById('next-page').disabled = currentPage === totalPages;
+        async function loadPost(id) {
+            try {
+                const response = await fetch('metadata.json');
+                const data = await response.json();
+                const post = data.posts[id];
+                
+                // 只处理文章类型
+                if (post.type === 'article') {
+                    const postResponse = await fetch(`posts/${id}`);
+                    const postContent = await postResponse.text();
+                    
+                    const converter = new showdown.Converter();
+                    const html = converter.makeHtml(postContent);
+                    
+                    document.getElementById('post-content').innerHTML = html;
+                    document.getElementById('post-list').style.display = 'none';
+                    document.getElementById('post-detail').style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error loading post:', error);
+            }
         }
 
-        function displayCurrentPage() {
-            const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-            const endIndex = startIndex + POSTS_PER_PAGE;
-            const currentPosts = totalPosts.slice(startIndex, endIndex);
-            const postsContainer = document.getElementById('posts-list');
-            
-            postsContainer.innerHTML = '';
-            
-            currentPosts.forEach(post => {
-                const article = document.createElement('article');
-                article.className = 'post-preview';
-                
-                const date = new Date(post.date);
-                const formattedDate = date.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-
-                const description = post.description ? `<p class="post-description">${post.description}</p>` : '';
-                const tags = post.tags && post.tags.length ? `
-                    <div class="post-tags">
-                        Tags: ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ')}
-                    </div>
-                ` : '';
-                
-                article.innerHTML = `
-                    <h2 class="post-title">
-                        <a href="${post.url}">${post.title}</a>
-                    </h2>
-                    <div class="post-meta">
-                        <span class="post-date">${formattedDate}</span>
-                        ${post.categories && post.categories.length ? `
-                            <span class="post-categories">
-                                in 
-                                ${post.categories.map(category => 
-                                    `<a href="categories.html#${category.toLowerCase()}">${category}</a>`
-                                ).join(', ')}
-                            </span>
-                        ` : ''}
-                    </div>
-                    ${description}
-                    ${tags}
-                `;
-                
-                postsContainer.appendChild(article);
-            });
+        function showPostList() {
+            document.getElementById('post-list').style.display = 'block';
+            document.getElementById('post-detail').style.display = 'none';
         }
 
-        // 设置事件监听器
-        document.getElementById('prev-page').addEventListener('click', () => {
-            if (currentPage > 1) {
-                currentPage--;
-                updatePagination();
-                displayCurrentPage();
-                window.scrollTo(0, 0);
-            }
-        });
-
-        document.getElementById('next-page').addEventListener('click', () => {
-            const totalPages = Math.ceil(totalPosts.length / POSTS_PER_PAGE);
-            if (currentPage < totalPages) {
-                currentPage++;
-                updatePagination();
-                displayCurrentPage();
-                window.scrollTo(0, 0);
-            }
-        });
-
-        // 设置年份
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // 加载文章列表
+        // 初始加载文章列表
         loadPosts();
     </script>
 </body>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cron Expression Generator with Explanation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, select {
+            margin: 5px;
+        }
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cron Expression Generator</h1>
+    <form id="cronForm">
+        <label>Minute: </label>
+        <input type="text" id="minute" placeholder="0-59"><br>
+        <label>Hour: </label>
+        <input type="text" id="hour" placeholder="0-23"><br>
+        <label>Day of Month: </label>
+        <input type="text" id="day" placeholder="1-31"><br>
+        <label>Month: </label>
+        <input type="text" id="month" placeholder="1-12"><br>
+        <label>Day of Week: </label>
+        <input type="text" id="weekday" placeholder="0-7 (Sun=0)"><br>
+        <button type="submit">Generate Cron</button>
+    </form>
+    <div class="output">
+        <h3>Cron Expression:</h3>
+        <p id="output"></p>
+        <h3>Explanation:</h3>
+        <p id="explanation"></p>
+    </div>
+
+    <script>
+        // 解析并生成cron表达式的解释
+        function parseCron(minute, hour, day, month, weekday) {
+            let minuteExp = (minute === '*') ? 'every minute' : `at minute ${minute}`;
+            let hourExp = (hour === '*') ? 'every hour' : `at hour ${hour}`;
+            let dayExp = (day === '*') ? 'every day' : `on day ${day}`;
+            let monthExp = (month === '*') ? 'every month' : `in month ${month}`;
+            let weekdayExp = (weekday === '*') ? 'every day of the week' : `on weekday ${weekday}`;
+            
+            return `${minuteExp}, ${hourExp}, ${dayExp}, ${monthExp}, ${weekdayExp}`;
+        }
+
+        document.getElementById('cronForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 获取用户输入的数据
+            const minute = document.getElementById('minute').value || '*';
+            const hour = document.getElementById('hour').value || '*';
+            const day = document.getElementById('day').value || '*';
+            const month = document.getElementById('month').value || '*';
+            const weekday = document.getElementById('weekday').value || '*';
+            
+            // 生成 cron 表达式
+            const cronExpression = `${minute} ${hour} ${day} ${month} ${weekday}`;
+            
+            // 解析生成的解释
+            const explanation = parseCron(minute, hour, day, month, weekday);
+            
+            // 显示结果
+            document.getElementById('output').innerText = cronExpression;
+            document.getElementById('explanation').innerText = explanation;
+        });
+    </script>
+</body>
+</html>
