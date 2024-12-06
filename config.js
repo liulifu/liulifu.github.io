@@ -1,7 +1,9 @@
 // 站点配置
 const siteConfig = {
-    // 基础路径，如果部署在子目录则需要修改
-    baseUrl: '',
+    // 基础路径，GitHub Pages 上会是 /username.github.io/
+    baseUrl: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? '' 
+        : '/liulifu.github.io/',
 
     // 获取完整路径
     getFullPath(path) {
