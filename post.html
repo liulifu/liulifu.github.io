@@ -114,7 +114,7 @@
                 }
 
                 // 加载文章内容
-                const postContent = await siteConfig.loadMarkdown(`_posts/${postFile}`);
+                const postContent = await siteConfig.loadMarkdown('_posts/' + postFile);
                 displayPost(postContent, metadata.posts[postFile]);
             } catch (error) {
                 console.error('Error loading post:', error);
