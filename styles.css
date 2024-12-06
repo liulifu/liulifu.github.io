@@ -524,3 +524,118 @@ footer {
 .category-section a:hover {
     color: #42b983;
 }
+
+/* 标签页面样式 */
+.tags-container {
+    display: flex;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.tags-list {
+    flex: 0 0 200px;
+    border-right: 1px solid #eee;
+    padding-right: 2rem;
+}
+
+.tags-list h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.tag-link {
+    display: block;
+    padding: 0.5rem 0;
+    color: #666;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.tag-link:hover {
+    color: #007bff;
+    transform: translateX(5px);
+}
+
+.tag-link.active {
+    color: #007bff;
+    font-weight: 500;
+}
+
+.posts-list {
+    flex: 1;
+}
+
+.posts-list h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+#filtered-posts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#filtered-posts li {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+#filtered-posts li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#filtered-posts a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+#filtered-posts a:hover {
+    color: #007bff;
+}
+
+@media (max-width: 768px) {
+    .tags-container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .tags-list {
+        flex: none;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding-right: 0;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .tag-link:hover {
+        transform: none;
+    }
+
+    #filtered-posts li {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    #filtered-posts a {
+        font-size: 1.1rem;
+    }
+}

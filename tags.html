@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags - Liu Lifu's Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/showdown.min.js"></script>
+    <script src="config.js"></script>
+    <meta name="description" content="Liu Lifu's blog tags">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        .tags-container {
+            display: flex;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tags-list {
+            flex: 0 0 200px;
+            border-right: 1px solid #eee;
+            padding-right: 2rem;
+        }
+
+        .tags-list h2 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .tag-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .tag-link:hover {
+            color: #007bff;
+        }
+
+        .tag-link.active {
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        .posts-list {
+            flex: 1;
+        }
+
+        .posts-list h2 {
+            margin-top: 0;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .tags-container {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .tags-list {
+                flex: none;
+                border-right: none;
+                border-bottom: 1px solid #eee;
+                padding-right: 0;
+                padding-bottom: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="site-nav">
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="tags.html" class="active">Tags</a>
+                <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content">
+        <div class="tags-container">
+            <div class="tags-list">
+                <h2>Tags</h2>
+                <div id="all-tags">
+                    <!-- 标签列表将通过JavaScript动态加载 -->
+                </div>
+            </div>
+            <div class="posts-list">
+                <h2 id="current-tag">All Posts</h2>
+                <div id="filtered-posts">
+                    <!-- 文章列表将通过JavaScript动态加载 -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
+    </footer>
+
+    <script>
+        let allPosts = {};
+        let currentTag = '';
+
+        // 从URL获取标签参数
+        function getTagFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('tag') || '';
+        }
+
+        // 更新URL中的标签参数
+        function updateUrlTag(tag) {
+            const url = new URL(window.location);
+            if (tag) {
+                url.searchParams.set('tag', tag);
+            } else {
+                url.searchParams.delete('tag');
+            }
+            window.history.pushState({}, '', url);
+        }
+
+        async function loadPosts() {
+            try {
+                const response = await fetch('metadata.json');
+                const data = await response.json();
+                allPosts = data.posts;
+
+                // 收集所有唯一的标签
+                const tags = new Set();
+                Object.values(allPosts).forEach(post => {
+                    post.tags.forEach(tag => tags.add(tag));
+                });
+
+                // 创建标签列表
+                const tagsList = document.getElementById('all-tags');
+                const sortedTags = Array.from(tags).sort();
+
+                // 添加"All"选项
+                const allLink = document.createElement('a');
+                allLink.href = 'tags.html';
+                allLink.className = 'tag-link' + (currentTag === '' ? ' active' : '');
+                allLink.textContent = 'All';
+                allLink.onclick = (e) => {
+                    e.preventDefault();
+                    filterPosts('');
+                };
+                tagsList.appendChild(allLink);
+
+                // 添加其他标签
+                sortedTags.forEach(tag => {
+                    const link = document.createElement('a');
+                    link.href = `?tag=${encodeURIComponent(tag)}`;
+                    link.className = 'tag-link' + (tag === currentTag ? ' active' : '');
+                    link.textContent = tag;
+                    link.onclick = (e) => {
+                        e.preventDefault();
+                        filterPosts(tag);
+                    };
+                    tagsList.appendChild(link);
+                });
+
+                // 显示文章
+                filterPosts(currentTag);
+            } catch (error) {
+                console.error('Error loading posts:', error);
+            }
+        }
+
+        function filterPosts(tag) {
+            currentTag = tag;
+            updateUrlTag(tag);
+
+            // 更新标签链接状态
+            document.querySelectorAll('.tag-link').forEach(link => {
+                link.className = 'tag-link' + (link.textContent === (tag || 'All') ? ' active' : '');
+            });
+
+            // 更新标题
+            document.getElementById('current-tag').textContent = tag ? `Posts tagged with "${tag}"` : 'All Posts';
+
+            // 过滤并显示文章
+            const filteredPosts = Object.entries(allPosts)
+                .filter(([, post]) => !tag || post.tags.includes(tag))
+                .sort(([, a], [, b]) => new Date(b.date) - new Date(a.date));
+
+            const postsContainer = document.getElementById('filtered-posts');
+            postsContainer.innerHTML = '';
+
+            filteredPosts.forEach(([id, post]) => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                
+                if (post.type === 'tool') {
+                    link.href = post.url;
+                    link.target = '_blank';
+                } else {
+                    link.href = `index.html#${id}`;
+                }
+                
+                link.textContent = post.title;
+
+                const postMeta = document.createElement('div');
+                postMeta.className = 'post-meta';
+                
+                const date = document.createElement('span');
+                date.className = 'post-date';
+                date.textContent = post.date;
+
+                const category = document.createElement('span');
+                category.className = 'post-category';
+                category.textContent = ` in ${post.categories[0]}`;
+
+                postMeta.appendChild(date);
+                postMeta.appendChild(category);
+
+                const description = document.createElement('p');
+                description.className = 'post-description';
+                description.textContent = post.description;
+
+                li.appendChild(link);
+                li.appendChild(postMeta);
+                li.appendChild(description);
+                postsContainer.appendChild(li);
+            });
+        }
+
+        // 设置年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // 获取URL中的标签并初始化
+        currentTag = getTagFromUrl();
+        loadPosts();
+    </script>
+</body>
+</html>
