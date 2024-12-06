@@ -87,7 +87,7 @@
                 totalPosts = Object.entries(data.posts)
                     .map(([file, metadata]) => ({
                         file,
-                        url: `${baseUrl}post.html?post=${encodeURIComponent(file)}`,
+                        url: `post.html?post=${encodeURIComponent(file)}`,
                         ...metadata
                     }))
                     .sort((a, b) => new Date(b.date) - new Date(a.date));
