@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/Resume/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
     <meta name="description" content="Personal blog about technology and innovation">
     <meta name="keywords" content="Lifu, blog, technology, innovation, programming">
-    <link rel="icon" type="image/x-icon" href="/Resume/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         .pagination {
             display: flex;
@@ -87,6 +87,7 @@
                 totalPosts = Object.entries(data.posts)
                     .map(([file, metadata]) => ({
                         file,
+                        url: `${baseUrl}post.html?post=${encodeURIComponent(file)}`,
                         ...metadata
                     }))
                     .sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -125,10 +126,17 @@
                     month: 'long',
                     day: 'numeric'
                 });
+
+                const description = post.description ? `<p class="post-description">${post.description}</p>` : '';
+                const tags = post.tags && post.tags.length ? `
+                    <div class="post-tags">
+                        Tags: ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join(' ')}
+                    </div>
+                ` : '';
                 
                 article.innerHTML = `
                     <h2 class="post-title">
-                        <a href="${baseUrl}post.html?post=${encodeURIComponent(post.file)}">${post.title}</a>
+                        <a href="${post.url}">${post.title}</a>
                     </h2>
                     <div class="post-meta">
                         <span class="post-date">${formattedDate}</span>
@@ -141,6 +149,8 @@
                             </span>
                         ` : ''}
                     </div>
+                    ${description}
+                    ${tags}
                 `;
                 
                 postsContainer.appendChild(article);

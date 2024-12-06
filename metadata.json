@@ -4,64 +4,99 @@
             "title": "Blog Architecture Design Documentation",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "详细介绍了这个博客系统的架构设计，包括静态页面生成、Markdown渲染和数据管理等核心功能的实现方案。",
+            "tags": ["架构设计", "静态网站", "JavaScript", "Markdown"]
         },
         "2024-12-05-Building a Modern Automated IT Operations System in 2024.md": {
             "title": "Building a Modern Automated IT Operations System in 2024",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "探讨现代IT运维自动化系统的构建，包括监控、告警、自动化部署等关键组件的最佳实践和实现方案。",
+            "tags": ["IT运维", "自动化", "DevOps", "监控系统"]
         },
         "2024-12-05-Exploring the Core of ERP Systems.md": {
             "title": "Exploring the Core of ERP Systems",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "深入探讨企业资源规划(ERP)系统的核心组件，分析其架构设计、数据流和业务流程集成等关键特性。",
+            "tags": ["ERP", "企业软件", "系统集成", "业务流程"]
         },
         "2024-12-05-Help Desk Support.md": {
-            "title": "Help Desk Support",
+            "title": "Help Desk Support Guide",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "提供全面的技术支持指南，涵盖问题分类、处理流程、升级策略和知识库管理等Help Desk运营的核心要素。",
+            "tags": ["技术支持", "服务台", "ITIL", "问题管理"]
         },
         "2024-12-05-HighCPU.md": {
             "title": "处理ERP系统中CPU占用率高的问题案例分析",
             "date": "2024-12-05",
-            "categories": ["技术分享"],
-            "description": "",
-            "tags": []
+            "categories": ["技术文档"],
+            "description": "通过实际案例分析ERP系统中CPU高占用问题的排查方法、优化策略和解决方案，提供系统性能调优的实践指南。",
+            "tags": ["性能优化", "问题排查", "ERP系统", "性能监控"]
         },
         "2024-12-05-PHP报表.md": {
-            "title": "PHP报表开发指南",
+            "title": "PHP报表开发实践指南",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "详细介绍PHP报表开发的最佳实践，包括数据处理、图表生成、性能优化等关键技术点的实现方案。",
+            "tags": ["PHP", "报表开发", "数据可视化", "性能优化"]
         },
         "2024-12-05-Predictive Maintenance in Smart Manufacturing.md": {
             "title": "Predictive Maintenance in Smart Manufacturing",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "探索智能制造中的预测性维护技术，包括数据采集、分析模型、预警系统等关键技术的实现方案。",
+            "tags": ["智能制造", "预测维护", "机器学习", "工业物联网"]
         },
         "2024-12-05-SAP 各模块从2013年至2023年主要差异分析.md": {
             "title": "SAP 各模块从2013年至2023年主要差异分析",
             "date": "2024-12-05",
-            "categories": ["技术分析"],
-            "description": "",
-            "tags": []
+            "categories": ["技术文档"],
+            "description": "深入分析SAP各核心模块在过去十年间的演变，包括功能更新、技术架构变化、用户体验改进等方面的详细对比。",
+            "tags": ["SAP", "ERP系统", "系统演进", "模块分析"]
+        },
+        "2024-12-05-SAP Basis.md": {
+            "title": "SAP Basis 技术管理指南",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "全面介绍SAP Basis的核心概念、日常维护、性能优化和故障排查等关键技术点，为系统管理员提供实用指南。",
+            "tags": ["SAP", "Basis", "系统管理", "性能优化"]
+        },
+        "2024-12-05-SAP MM.md": {
+            "title": "SAP MM模块实施指南",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "详细讲解SAP MM（物料管理）模块的实施流程、关键配置、业务流程设计和集成要点，助力企业优化采购和库存管理。",
+            "tags": ["SAP", "MM模块", "物料管理", "采购管理"]
+        },
+        "2024-12-05-SAP PP.md": {
+            "title": "SAP PP模块开发指南",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "深入探讨SAP PP（生产计划）模块的开发技术，包括主数据配置、生产计划流程、产能规划等核心功能的实现方案。",
+            "tags": ["SAP", "PP模块", "生产计划", "制造管理"]
+        },
+        "2024-12-05-SAP SD.md": {
+            "title": "SAP SD模块实施与开发",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "全面介绍SAP SD（销售与分销）模块的实施方法和开发技巧，包括订单处理、定价、交付等核心业务流程的设计与实现。",
+            "tags": ["SAP", "SD模块", "销售管理", "分销管理"]
+        },
+        "2024-12-05-SAP 项目实施.md": {
+            "title": "SAP项目实施最佳实践",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "总结SAP项目实施的关键成功因素、常见挑战及解决方案，提供从需求分析到上线维护的完整项目实施指南。",
+            "tags": ["SAP", "项目管理", "系统实施", "变更管理"]
         },
         "2024-12-05-Terms of use for common graphic frameworks and engines.md": {
             "title": "Terms of use for common graphic frameworks and engines",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "详细对比主流图形框架和引擎的使用条款、授权方式和商业限制，帮助开发者在项目中做出正确的技术选择。",
+            "tags": ["图形引擎", "开源协议", "商业授权", "技术选型"]
         },
         "2024-12-05-WSL.md": {
             "title": "WSL使用指南",
@@ -73,7 +108,7 @@
         "2024-12-05-about.md": {
             "title": "关于我",
             "date": "2024-12-05",
-            "categories": ["个人简介"],
+            "categories": ["技术笔记"],
             "description": "",
             "tags": []
         },
@@ -92,25 +127,25 @@
             "tags": []
         },
         "2024-12-05-hwcloud.md": {
-            "title": "华为云使用笔记",
+            "title": "华为云服务实践指南",
             "date": "2024-12-05",
-            "categories": ["技术笔记"],
-            "description": "",
-            "tags": []
+            "categories": ["技术文档"],
+            "description": "详细介绍华为云各项服务的使用方法、最佳实践和架构设计，帮助开发者更好地利用云服务构建应用。",
+            "tags": ["华为云", "云计算", "云服务", "架构设计"]
         },
         "2024-12-05-kernel_lesson.md": {
             "title": "Linux内核学习笔记",
             "date": "2024-12-05",
-            "categories": ["技术笔记"],
-            "description": "",
-            "tags": []
+            "categories": ["技术文档"],
+            "description": "整理Linux内核的核心概念、重要组件和关键机制，包括进程管理、内存管理、文件系统等基础知识的深入解析。",
+            "tags": ["Linux", "内核", "操作系统", "系统编程"]
         },
         "2024-12-05-resume_dba_en.md": {
             "title": "DBA Resume",
             "date": "2024-12-05",
             "categories": ["简历"],
-            "description": "",
-            "tags": []
+            "description": "专业数据库管理员（DBA）的英文简历，展示数据库管理、性能优化、高可用架构等方面的专业技能和项目经验。",
+            "tags": ["DBA", "简历", "数据库管理", "职业发展"]
         },
         "2024-12-05-txcloud.md": {
             "title": "腾讯云使用笔记",
@@ -144,15 +179,22 @@
             "title": "构建Python开发环境",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "详细指导如何搭建专业的Python开发环境，包括IDE选择、虚拟环境配置、包管理、开发工具链等最佳实践。",
+            "tags": ["Python", "开发环境", "IDE", "工具链"]
         },
         "2024-12-05-模拟器的使用方法.md": {
             "title": "模拟器的使用方法",
             "date": "2024-12-05",
             "categories": ["技术文档"],
-            "description": "",
-            "tags": []
+            "description": "全面介绍各类模拟器的配置方法、使用技巧和性能优化，帮助开发者搭建高效的测试环境。",
+            "tags": ["模拟器", "测试环境", "开发工具", "性能优化"]
+        },
+        "2024-12-05-网络安全.md": {
+            "title": "网络安全实践指南",
+            "date": "2024-12-05",
+            "categories": ["技术文档"],
+            "description": "深入探讨网络安全的关键技术、防护策略和最佳实践，包括威胁检测、漏洞修复和安全加固等重要内容。",
+            "tags": ["网络安全", "安全防护", "威胁检测", "安全加固"]
         }
     }
 }

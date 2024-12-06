@@ -1,13 +1,4 @@
----
-categories:
-- Uncategorized
-date: '2024-12-05'
-description: ''
-layout: post
-tags: []
-title: 使用 Docker Desktop + `gcc` 镜像 + VS Code + Remote Development (Dev Containers)
-  构建 C++ 测试环境
----
+
 
 # 使用 Docker Desktop + `gcc` 镜像 + VS Code + Remote Development (Dev Containers) 构建 C++ 测试环境
 
