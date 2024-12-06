@@ -4,17 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Liu Lifu's Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="config.js"></script>
-    <script>
-        // 重定向到post.html来解析about.md
-        window.onload = function() {
-            const postPath = '2024-12-05-about.md';
-            window.location.href = `${getBasePath()}/post.html?post=${encodeURIComponent(postPath)}`;
-        }
-    </script>
+    <script src="showdown.min.js"></script>
 </head>
 <body>
-    <p>Redirecting to about page...</p>
+    <header>
+        <nav class="site-nav">
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/categories.html">Categories</a>
+                <a href="/about.html" class="active">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="content">
+        <article class="post-content">
+            <!-- 文章内容将通过JavaScript动态加载 -->
+        </article>
+    </main>
+
+    <footer>
+        <p>  <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 设置年份
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        async function loadMarkdownContent() {
+            try {
+                const postPath = '2024-12-05-about.md';
+                const response = await fetch(`${getBasePath()}/posts/${postPath}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const markdown = await response.text();
+                
+                const converter = new showdown.Converter({
+                    tables: true,
+                    strikethrough: true,
+                    tasklists: true,
+                    ghCodeBlocks: true,
+                    emoji: true
+                });
+                const html = converter.makeHtml(markdown);
+                document.querySelector('.post-content').innerHTML = html;
+            } catch (error) {
+                console.error('Error loading content:', error);
+                document.querySelector('.post-content').innerHTML = '<p>Error loading content. Please try again later.</p>';
+            }
+        }
+
+        // 加载内容
+        loadMarkdownContent();
+    </script>
 </body>
 </html>
