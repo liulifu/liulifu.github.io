@@ -55,8 +55,8 @@ body {
 .post-item {
     background: white;
     border-radius: 12px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     transition: all 0.3s ease;
 }
@@ -68,15 +68,15 @@ body {
 
 /* 文章标题样式 */
 .post-title {
-    margin: 0 0 1rem;
+    margin: 0;
 }
 
 .post-title a {
     color: #2c3e50;
     text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: 500;
-    line-height: 1.4;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.3;
 }
 
 .post-title a:hover {
@@ -87,10 +87,11 @@ body {
 .post-meta {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 0.8rem 0;
+    margin: 0.4rem 0;
     color: #666;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .post-date {
@@ -109,9 +110,10 @@ body {
 }
 
 .post-tag {
-    color: #666;
+    color: #007bff;
     text-decoration: none;
     transition: color 0.2s ease;
+    font-size: 0.9rem;
 }
 
 .post-tag:not(:last-child)::after {
@@ -121,15 +123,15 @@ body {
 }
 
 .post-tag:hover {
-    color: #007bff;
+    color: #0056b3;
     text-decoration: underline;
 }
 
 /* 文章描述样式 */
 .post-description {
     color: #666;
-    margin: 0.8rem 0;
-    line-height: 1.6;
+    margin: 0.4rem 0 0 0;
+    line-height: 1.5;
     font-size: 0.95rem;
 }
 

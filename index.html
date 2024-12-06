@@ -63,7 +63,7 @@
                         link.href = post.url;
                         link.target = '_blank';
                     } else {
-                        link.href = `#${id}`;
+                        link.href = `javascript:void(0)`;
                         link.onclick = () => loadPost(id);
                     }
                     
@@ -112,6 +112,9 @@
                     document.getElementById('post-content').innerHTML = html;
                     document.getElementById('post-list').style.display = 'none';
                     document.getElementById('post-detail').style.display = 'block';
+                    
+                    // 确保页面滚动到顶部
+                    window.scrollTo(0, 0);
                 }
             } catch (error) {
                 console.error('Error loading post:', error);
