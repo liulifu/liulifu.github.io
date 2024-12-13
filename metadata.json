@@ -170,21 +170,23 @@
             "description": "详细介绍Windows Subsystem for Linux的安装、配置和使用方法，包括常见问题解决和性能优化建议。",
             "tags": ["WSL", "Linux", "Windows"]
         },
-        "2024-12-05-about.md": {
+        "2024-12-05-about": {
             "title": "关于项目",
             "type": "article",
             "date": "2024-12-05",
             "categories": ["Others"],
             "description": "本Blog项目介绍",
-            "tags": ["项目介绍", "关于"]
+            "tags": ["项目介绍", "关于"],
+            "language": "zh"
         },
-        "2024-12-05-about-en.md": {
-            "title": "Blog Architecture Design Documentation (English)",
+        "2024-12-05-about-en": {
+            "title": "About Project",
             "type": "article",
             "date": "2024-12-05",
-            "categories": ["Documentation"],
-            "tags": ["Architecture", "Static Site", "Documentation", "English"],
-            "description": "English version of the blog architecture design documentation, explaining the technical implementation and features of this static blog system."
+            "categories": ["Others"],
+            "description": "Introduction to this blog project",
+            "tags": ["project introduction", "about"],
+            "language": "en"
         },
         "2024-12-05-aliecs.md": {
             "title": "阿里云ECS使用笔记",

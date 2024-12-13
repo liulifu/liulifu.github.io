@@ -9,6 +9,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <link rel="stylesheet" href="styles.css?v=" + new Date().getTime()>
+    <link rel="stylesheet" href="css/themes/theme-styles.css?v=" + new Date().getTime()>
     <script src="js/showdown.min.js?v=" + new Date().getTime()></script>
     <script src="config.js?v=" + new Date().getTime()></script>
     <meta name="description" content="Liu Lifu's blog tags">
@@ -21,6 +22,7 @@
                 <a href="index.html">Home</a>
                 <a href="tags.html" class="active">Tags</a>
                 <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
+                <!-- Theme switcher will be inserted here by JavaScript -->
             </div>
         </nav>
     </header>
@@ -195,6 +197,7 @@
         currentTag = getTagFromUrl();
         loadPosts();
     </script>
+    <script src="js/themes/theme-manager.js"></script>
     <script>
         // 防止样式文件缓存
         function loadStyles() {

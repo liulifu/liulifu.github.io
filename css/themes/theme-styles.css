@@ -1,0 +1,243 @@
+/* Theme System Base Styles */
+:root {
+    /* Default theme variables */
+    --primary-color: #4a90e2;
+    --secondary-color: #2c3e50;
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #4a90e2;
+    --accent-color: #e74c3c;
+    --surface-color: #f8f9fa;
+    --border-color: #dee2e6;
+
+    /* Animation settings */
+    --theme-transition: all 0.3s ease;
+}
+
+/* Theme Switcher UI */
+.theme-switcher {
+    position: relative;
+    display: inline-block;
+    margin-left: 1rem;
+    z-index: 1000;
+}
+
+.theme-switcher-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--theme-transition);
+}
+
+.theme-switcher-toggle:hover {
+    background: var(--background-color);
+    border-color: var(--primary-color);
+}
+
+.theme-switcher-toggle svg {
+    transition: transform 0.2s ease;
+}
+
+.theme-switcher.active .theme-switcher-toggle svg {
+    transform: rotate(180deg);
+}
+
+.theme-switcher-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 200px;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+}
+
+.theme-switcher.active .theme-switcher-dropdown {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+.theme-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition: var(--theme-transition);
+}
+
+.theme-option:hover {
+    background: var(--background-color);
+}
+
+.theme-preview {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    background: var(--primary-color);
+}
+
+/* Language Switcher Styles */
+.language-switcher {
+    margin-left: 1rem;
+    display: inline-block;
+}
+
+.lang-select {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    background: var(--surface-color);
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--theme-transition);
+}
+
+.lang-select:hover {
+    border-color: var(--primary-color);
+}
+
+.lang-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color), 0.2);
+}
+
+/* Theme-specific styles */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: var(--theme-transition);
+}
+
+/* Navigation */
+.nav-container {
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-links a {
+    color: var(--text-color);
+    transition: var(--theme-transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Post Cards */
+.post-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    transition: var(--theme-transition);
+}
+
+.post-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+    color: var(--primary-color);
+}
+
+.post-meta {
+    color: var(--secondary-color);
+}
+
+.post-excerpt {
+    color: var(--text-color);
+}
+
+.read-more {
+    color: var(--link-color);
+    transition: var(--theme-transition);
+}
+
+.read-more:hover {
+    color: var(--accent-color);
+}
+
+/* Post Content */
+.post-content {
+    color: var(--text-color);
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+    color: var(--primary-color);
+}
+
+.post-content a {
+    color: var(--link-color);
+    transition: var(--theme-transition);
+}
+
+.post-content a:hover {
+    color: var(--accent-color);
+}
+
+.post-content blockquote {
+    border-left: 4px solid var(--primary-color);
+    background: var(--surface-color);
+}
+
+.post-content code {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+.post-content pre {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Tags */
+.tag {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    transition: var(--theme-transition);
+}
+
+.tag:hover {
+    background: var(--primary-color);
+    color: var(--background-color);
+    border-color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background: var(--surface-color);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -6,6 +6,7 @@
     <title>Loading... - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/themes/theme-styles.css">
     <link rel="stylesheet" href="css/themes.css">
     <script src="js/showdown.min.js"></script>
     <script src="js/theme-switcher.js"></script>
@@ -24,6 +25,7 @@
                 <a href="index.html">Home</a>
                 <a href="tags.html">Tags</a>
                 <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
+                <!-- Theme switcher will be inserted here by JavaScript -->
             </div>
             <div class="search-container">
                 <input type="text" id="ai-search" placeholder="AI-powered search...">
@@ -68,6 +70,7 @@
         <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
     </footer>
 
+    <script src="js/themes/theme-manager.js"></script>
     <script>
         // 获取文章文件名
         const urlParams = new URLSearchParams(window.location.search);
