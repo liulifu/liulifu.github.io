@@ -178,6 +178,14 @@
             "description": "本Blog项目介绍",
             "tags": ["项目介绍", "关于"]
         },
+        "2024-12-05-about-en.md": {
+            "title": "Blog Architecture Design Documentation (English)",
+            "type": "article",
+            "date": "2024-12-05",
+            "categories": ["Documentation"],
+            "tags": ["Architecture", "Static Site", "Documentation", "English"],
+            "description": "English version of the blog architecture design documentation, explaining the technical implementation and features of this static blog system."
+        },
         "2024-12-05-aliecs.md": {
             "title": "阿里云ECS使用笔记",
             "type": "article",
