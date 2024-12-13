@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=" + new Date().getTime()>
-    <script src="js/showdown.min.js?v=" + new Date().getTime()></script>
-    <script src="config.js?v=" + new Date().getTime()></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <script src="js/showdown.min.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="config.js"></script>
     <meta name="description" content="Liu Lifu's personal blog">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 </head>
-<body>
+<body class="theme-default">
     <header>
         <nav class="site-nav">
             <div class="nav-links">
@@ -27,11 +29,7 @@
 
     <main class="content">
         <div id="post-list" class="post-list">
-            <!-- 文章列表将通过JavaScript动态加载 -->
-        </div>
-        <div id="post-detail" style="display: none;">
-            <div id="post-content"></div>
-            <button onclick="showPostList()" class="back-button">返回列表</button>
+            <!-- Posts will be loaded dynamically -->
         </div>
     </main>
 
@@ -40,6 +38,11 @@
     </footer>
 
     <script>
+        // Initialize theme switcher
+        document.addEventListener('DOMContentLoaded', () => {
+            ThemeSwitcher.init();
+        });
+
         let allPosts = {};
 
         async function loadPosts() {
@@ -48,88 +51,51 @@
                 const data = await response.json();
                 allPosts = data.posts;
 
-                // 按日期排序文章，最新的在前面
+                // Sort posts by date, newest first
                 const sortedPosts = Object.entries(allPosts)
-                    .sort(([, a], [, b]) => new Date(b.date) - new Date(a.date));
+                    .filter(([_, post]) => post.type === 'article')
+                    .sort(([,a], [,b]) => new Date(b.date) - new Date(a.date));
 
+                // Create post cards
                 const postList = document.getElementById('post-list');
-                postList.innerHTML = '';
+                postList.innerHTML = sortedPosts.map(([id, post]) => `
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="post.html?post=${id}">${post.title}</a>
+                        </h2>
+                        <div class="post-meta">
+                            <span class="post-date">${new Date(post.date).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}</span>
+                            ${post.categories ? `
+                                <span class="post-categories">
+                                    in ${post.categories.map(cat => 
+                                        `<a href="tags.html#${cat.toLowerCase()}">${cat}</a>`
+                                    ).join(', ')}
+                                </span>
+                            ` : ''}
+                        </div>
+                        <p class="post-description">${post.description || ''}</p>
+                        <div class="post-tags">
+                            ${(post.tags || []).map(tag => 
+                                `<a href="tags.html#${tag.toLowerCase()}" class="tag">${tag}</a>`
+                            ).join('')}
+                        </div>
+                    </article>
+                `).join('');
 
-                sortedPosts.forEach(([id, post]) => {
-                    const li = document.createElement('li');
-                    const link = document.createElement('a');
-                    
-                    if (post.type === 'tool') {
-                        link.href = post.url;
-                        link.target = '_blank';
-                    } else {
-                        link.href = `javascript:void(0)`;
-                        link.onclick = () => loadPost(id);
-                    }
-                    
-                    link.textContent = post.title;
-
-                    const postMeta = document.createElement('div');
-                    postMeta.className = 'post-meta';
-                    
-                    const date = document.createElement('span');
-                    date.className = 'post-date';
-                    date.textContent = post.date;
-                    postMeta.appendChild(date);
-
-                    const tagsHtml = post.tags.map(tag => 
-                        `<a href="tags.html?tag=${encodeURIComponent(tag)}" class="post-tag">${tag}</a>`
-                    ).join('');
-                    const tagsSpan = document.createElement('span');
-                    tagsSpan.innerHTML = tagsHtml;
-                    postMeta.appendChild(tagsSpan);
-
-                    const description = document.createElement('p');
-                    description.className = 'post-description';
-                    description.textContent = post.description;
-
-                    li.appendChild(link);
-                    li.appendChild(postMeta);
-                    li.appendChild(description);
-                    postList.appendChild(li);
-                });
             } catch (error) {
                 console.error('Error loading posts:', error);
+                document.getElementById('post-list').innerHTML = '<p>Error loading posts</p>';
             }
         }
 
-        async function loadPost(id) {
-            try {
-                const post = allPosts[id];
-                
-                if (post.type === 'article') {
-                    const postResponse = await fetch(`posts/${id}`);
-                    const postContent = await postResponse.text();
-                    
-                    const converter = new showdown.Converter();
-                    const html = converter.makeHtml(postContent);
-                    
-                    document.getElementById('post-content').innerHTML = html;
-                    document.getElementById('post-list').style.display = 'none';
-                    document.getElementById('post-detail').style.display = 'block';
-                    
-                    // 确保页面滚动到顶部
-                    window.scrollTo(0, 0);
-                }
-            } catch (error) {
-                console.error('Error loading post:', error);
-            }
-        }
-
-        function showPostList() {
-            document.getElementById('post-list').style.display = 'block';
-            document.getElementById('post-detail').style.display = 'none';
-        }
-
-        // 设置年份
+        // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // 初始加载文章列表
+        // Load posts when page loads
         loadPosts();
     </script>
     <script>

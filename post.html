@@ -6,7 +6,9 @@
     <title>Loading... - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/themes.css">
     <script src="js/showdown.min.js"></script>
+    <script src="js/theme-switcher.js"></script>
     <script src="js/ai-features.js"></script>
     <script src="config.js"></script>
     <meta name="description" content="Article page">
@@ -15,7 +17,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 </head>
-<body>
+<body class="theme-default">
     <header>
         <nav class="site-nav">
             <div class="nav-links">
@@ -47,7 +49,7 @@
                 <h3>Related Posts</h3>
                 <!-- Related posts loaded via AI -->
             </div>
-            <a href="index.html" class="back-button">返回列表</a>
+            <a href="index.html" class="back-button">Back to List</a>
         </article>
     </main>
 
@@ -216,6 +218,11 @@
 
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Initialize theme switcher
+        document.addEventListener('DOMContentLoaded', () => {
+            ThemeSwitcher.init();
+        });
 
         // Load post
         loadPost();
