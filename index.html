@@ -4,27 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liu Lifu's Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Base Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/themes/theme-styles.css">
-    <link rel="stylesheet" href="css/themes.css">
-    <script src="js/showdown.min.js"></script>
-    <script src="js/theme-switcher.js"></script>
-    <script src="config.js"></script>
+    <!-- Theme Styles -->
+    <link rel="stylesheet" href="css/themes/theme-base.css">
+    <link rel="stylesheet" href="css/themes/theme-quantum.css">
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
     <meta name="description" content="Liu Lifu's personal blog">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
 </head>
-<body class="theme-default">
+<body class="theme-quantum">
     <header>
         <nav class="site-nav">
             <div class="nav-links">
-                <a href="index.html" class="active">Home</a>
-                <a href="tags.html">Tags</a>
-                <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
-                <!-- Theme switcher will be inserted here by JavaScript -->
+                <a href="index.html" class="active neon-text">Home</a>
+                <a href="tags.html" class="neon-text">Tags</a>
+            </div>
+            <div class="theme-selector">
+                <select id="theme-select" onchange="themeManager.setTheme(this.value)">
+                    <option value="quantum">Quantum Dark</option>
+                    <option value="cyberpunk">Cyberpunk Neon</option>
+                    <option value="steampunk">Steampunk Bronze</option>
+                    <option value="hologram">Hologram Future</option>
+                    <option value="neoindustrial">Neo Industrial</option>
+                </select>
             </div>
         </nav>
     </header>
@@ -36,81 +44,63 @@
     </main>
 
     <footer>
-        <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
+        <p class="neon-text">&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
     </footer>
 
     <script>
-        // Initialize theme switcher
+        // Initialize theme manager when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            ThemeSwitcher.init();
+            // Initialize theme
+            themeManager.init();
+            
+            // Set the theme selector to match current theme
+            const currentTheme = themeManager.getCurrentTheme();
+            const themeSelect = document.getElementById('theme-select');
+            if (themeSelect) {
+                themeSelect.value = currentTheme;
+            }
+            
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Load posts
+            loadPosts();
         });
 
-        let allPosts = {};
-
+        // Load posts
         async function loadPosts() {
             try {
                 const response = await fetch('metadata.json');
                 const data = await response.json();
-                allPosts = data.posts;
-
-                // Sort posts by date, newest first
-                const sortedPosts = Object.entries(allPosts)
-                    .filter(([_, post]) => post.type === 'article')
-                    .sort(([,a], [,b]) => new Date(b.date) - new Date(a.date));
-
-                // Create post cards
+                const posts = data.posts;
+                
                 const postList = document.getElementById('post-list');
-                postList.innerHTML = sortedPosts.map(([id, post]) => `
-                    <article class="post-card">
-                        <h2 class="post-title">
-                            <a href="post.html?post=${id}">${post.title}</a>
-                        </h2>
-                        <div class="post-meta">
-                            <span class="post-date">${new Date(post.date).toLocaleDateString('en-US', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                            })}</span>
-                            ${post.categories ? `
-                                <span class="post-categories">
-                                    in ${post.categories.map(cat => 
-                                        `<a href="tags.html#${cat.toLowerCase()}">${cat}</a>`
-                                    ).join(', ')}
-                                </span>
-                            ` : ''}
-                        </div>
-                        <p class="post-description">${post.description || ''}</p>
-                        <div class="post-tags">
-                            ${(post.tags || []).map(tag => 
-                                `<a href="tags.html#${tag.toLowerCase()}" class="tag">${tag}</a>`
-                            ).join('')}
-                        </div>
-                    </article>
-                `).join('');
-
+                Object.entries(posts).forEach(([filename, post]) => {
+                    // 只显示文章类型的内容
+                    if (post.type === 'article') {
+                        const card = document.createElement('div');
+                        card.className = 'post-card card hover-float';
+                        
+                        card.innerHTML = `
+                            <div class="card-content">
+                                <a href="post.html?post=${filename}" class="post-title-link">
+                                    <h2 class="neon-text">${post.title}</h2>
+                                </a>
+                                <p class="post-date">${new Date(post.date).toLocaleDateString()}</p>
+                                <p class="post-excerpt">${post.description || ''}</p>
+                                <div class="post-tags">
+                                    ${post.tags ? post.tags.map(tag => `<span class="tag neon-text">${tag}</span>`).join('') : ''}
+                                </div>
+                            </div>
+                        `;
+                        
+                        postList.appendChild(card);
+                    }
+                });
             } catch (error) {
                 console.error('Error loading posts:', error);
-                document.getElementById('post-list').innerHTML = '<p>Error loading posts</p>';
             }
         }
-
-        // Set current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Load posts when page loads
-        loadPosts();
     </script>
-    <script>
-        // 防止样式文件缓存
-        function loadStyles() {
-            const timestamp = new Date().getTime();
-            const existingLink = document.querySelector('link[rel="stylesheet"]');
-            existingLink.href = `styles.css?v=${timestamp}`;
-        }
-
-        // 页面加载时执行
-        window.addEventListener('load', loadStyles);
-    </script>
-    <script src="js/themes/theme-manager.js"></script>
 </body>
 </html>

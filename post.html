@@ -1,31 +1,29 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading... - Liu Lifu's Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="css/themes/theme-styles.css">
-    <link rel="stylesheet" href="css/themes.css">
+    <title>Post - Liu Lifu's Blog</title>
+    <link rel="stylesheet" href="css/themes/theme-base.css">
+    <link rel="stylesheet" href="css/themes/theme-cyberpunk.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Markdown -->
     <script src="js/showdown.min.js"></script>
-    <script src="js/theme-switcher.js"></script>
-    <script src="js/ai-features.js"></script>
-    <script src="config.js"></script>
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
     <meta name="description" content="Article page">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 </head>
-<body class="theme-default">
+<body class="theme-cyberpunk">
     <header>
         <nav class="site-nav">
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="tags.html">Tags</a>
-                <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
-                <!-- Theme switcher will be inserted here by JavaScript -->
+                <a href="index.html" class="neon-text">Home</a>
+                <a href="tags.html" class="neon-text">Tags</a>
             </div>
             <div class="search-container">
                 <input type="text" id="ai-search" placeholder="AI-powered search...">
@@ -34,18 +32,10 @@
         </nav>
     </header>
 
-    <main class="content">
-        <article>
-            <div class="post-header">
-                <h1 class="post-title" id="post-title">Loading...</h1>
-                <div class="post-meta">
-                    <span id="post-date"></span>
-                    <span id="post-categories"></span>
-                    <span id="reading-time"></span>
-                </div>
-            </div>
-            <div class="post-content" id="post-content">
-                <!-- Content loaded via JavaScript -->
+    <main class="post-container">
+        <article class="post-content">
+            <div id="post" class="markdown-content">
+                <!-- Post content will be loaded here -->
             </div>
             <div id="related-posts" class="related-posts">
                 <h3>Related Posts</h3>
@@ -70,89 +60,96 @@
         <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
     </footer>
 
-    <script src="js/themes/theme-manager.js"></script>
     <script>
-        // 获取文章文件名
-        const urlParams = new URLSearchParams(window.location.search);
-        const postFile = urlParams.get('post');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme manager
+            initializeThemeManager();
+        });
 
-        // 加载文章内容和元数据
-        async function loadPost() {
-            if (!postFile) {
-                showError('No post specified');
-                return;
+        // Show loading animation
+        function showLoading() {
+            const overlay = document.createElement('div');
+            overlay.className = 'loading-overlay';
+            overlay.innerHTML = '<div class="loading-spinner"></div>';
+            document.body.appendChild(overlay);
+        }
+
+        function hideLoading() {
+            const overlay = document.querySelector('.loading-overlay');
+            if (overlay) {
+                overlay.addEventListener('transitionend', () => overlay.remove());
+                overlay.style.opacity = '0';
             }
+        }
 
+        // Load and display post content
+        async function loadPost(filename) {
+            showLoading();
             try {
-                // 加载文章元数据
-                const metadata = await siteConfig.loadMetadata();
-                const post = metadata.posts[postFile];
+                // Get post file from URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const postFile = urlParams.get('post');
+                if (!postFile) {
+                    throw new Error('No post specified');
+                }
+
+                // Load post content
+                const response = await fetch(`posts/${postFile}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const markdown = await response.text();
                 
-                if (!post) {
-                    showError('Post not found in metadata');
-                    return;
+                // Convert markdown to HTML
+                const converter = new showdown.Converter(config.markdown.converter);
+                const html = converter.makeHtml(markdown);
+                
+                // Display content
+                const postElement = document.getElementById('post');
+                postElement.innerHTML = html;
+                
+                // Add syntax highlighting
+                if (window.Prism) {
+                    Prism.highlightAll();
                 }
-
-                // 检查内容类型
-                if (post.type === 'tool') {
-                    // 如果是工具类型，重定向到工具页面
-                    window.location.href = post.url;
-                    return;
-                }
-
-                // 加载文章内容（仅对article类型）
-                const postContent = await siteConfig.loadMarkdown('posts/' + postFile);
-                displayPost(postContent, post);
+                
+                // Update page title
+                updatePageTitle(postFile);
+                
             } catch (error) {
                 console.error('Error loading post:', error);
-                showError('Error loading post');
+                document.getElementById('post').innerHTML = `<div class="error-message">
+                    <h2>Error Loading Post</h2>
+                    <p>${error.message}</p>
+                    <a href="index.html" class="back-link">Return to Home</a>
+                </div>`;
+            } finally {
+                hideLoading();
             }
         }
 
-        function showError(message) {
-            document.getElementById('post-title').textContent = 'Error';
-            document.getElementById('post-content').innerHTML = `<p>${message}</p>`;
-        }
-
-        async function displayPost(markdown, metadata) {
-            // Set title
-            const title = metadata.title || 'Untitled';
-            document.title = `${title} - Liu Lifu's Blog`;
-            document.getElementById('post-title').textContent = title;
-
-            // Set date
-            if (metadata.date) {
-                const date = new Date(metadata.date);
-                document.getElementById('post-date').textContent = date.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const postFile = urlParams.get('post');
+            if (postFile) {
+                loadPost(postFile);
             }
+        });
 
-            // Convert markdown to HTML
-            const converter = new showdown.Converter({
-                tables: true,
-                strikethrough: true,
-                tasklists: true,
-                ghCodeBlocks: true,
-                emoji: true
-            });
-            const html = converter.makeHtml(markdown);
-            document.getElementById('post-content').innerHTML = html;
-
-            // Calculate and display reading time
-            const words = markdown.trim().split(/\s+/).length;
-            const readingTime = Math.ceil(words / 200); // Assuming 200 words per minute
-            document.getElementById('reading-time').textContent = `${readingTime} min read`;
-
-            // Load related posts
-            const relatedPosts = await AIFeatures.getRelatedPosts(postFile);
-            displayRelatedPosts(relatedPosts);
-
-            // Initialize syntax highlighting
-            if (window.Prism) {
-                Prism.highlightAll();
+        // Update page title based on metadata
+        async function updatePageTitle(filename) {
+            try {
+                const response = await fetch('metadata.json');
+                const metadata = await response.json();
+                const postInfo = metadata[filename];
+                
+                if (postInfo && postInfo.title) {
+                    document.title = `${postInfo.title} - Liu Lifu's Blog`;
+                    document.getElementById('post-title').textContent = postInfo.title;
+                }
+            } catch (error) {
+                console.error('Error loading metadata:', error);
             }
         }
 
@@ -221,14 +218,6 @@
 
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Initialize theme switcher
-        document.addEventListener('DOMContentLoaded', () => {
-            ThemeSwitcher.init();
-        });
-
-        // Load post
-        loadPost();
     </script>
 </body>
 </html>

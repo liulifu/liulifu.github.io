@@ -1,0 +1,249 @@
+/* Quantum Dark Theme */
+.theme-quantum {
+    /* Colors */
+    --primary-color: #9B30FF;    /* Purple */
+    --secondary-color: #1E90FF;  /* Dodger Blue */
+    --accent-color: #FF1493;     /* Deep Pink */
+    --background-color: #0A0A1F; /* Very Dark Blue */
+    --text-color: #E6E6FA;       /* Lavender */
+    --link-color: #1E90FF;       /* Dodger Blue */
+    --border-color: #9B30FF;     /* Purple */
+    --hover-color: #FF1493;      /* Deep Pink */
+    
+    /* Typography */
+    --font-primary: 'Quantum', 'Space Grotesk', sans-serif;
+    --font-secondary: 'Inter', sans-serif;
+    
+    /* Shadows */
+    --shadow-sm: 0 0 10px rgba(155, 48, 255, 0.3);
+    --shadow-md: 0 0 20px rgba(155, 48, 255, 0.4);
+    --shadow-lg: 0 0 30px rgba(155, 48, 255, 0.5);
+}
+
+/* Base Styles */
+.theme-quantum body {
+    background: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-secondary);
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(155, 48, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(30, 144, 255, 0.1) 0%, transparent 50%);
+}
+
+/* Navigation */
+.theme-quantum .site-nav {
+    background: rgba(10, 10, 31, 0.95);
+    border-bottom: 1px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(155, 48, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+}
+
+.theme-quantum .nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.theme-quantum .nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.theme-quantum .nav-links a:hover::before,
+.theme-quantum .nav-links a.active::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Cards and Content */
+.theme-quantum .post-card {
+    background: rgba(10, 10, 31, 0.8);
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.theme-quantum .post-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(155, 48, 255, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.theme-quantum .post-card:hover::before {
+    transform: translateX(100%);
+}
+
+.theme-quantum .post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(155, 48, 255, 0.3);
+}
+
+.theme-quantum .post-title {
+    font-family: var(--font-primary);
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(30, 144, 255, 0.5);
+}
+
+.theme-quantum .post-meta {
+    color: var(--text-color);
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* Buttons and Interactive Elements */
+.theme-quantum .theme-select {
+    background: rgba(10, 10, 31, 0.9);
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+    padding: 0.5rem 2rem;
+    border-radius: 4px;
+    font-family: var(--font-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-quantum .theme-select:hover {
+    box-shadow: 0 0 20px rgba(155, 48, 255, 0.4);
+}
+
+.theme-quantum .theme-select option {
+    background: var(--background-color);
+    color: var(--text-color);
+    padding: 1rem;
+}
+
+/* Tags */
+.theme-quantum .tag {
+    background: rgba(155, 48, 255, 0.1);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.theme-quantum .tag:hover {
+    background: rgba(30, 144, 255, 0.2);
+    box-shadow: 0 0 15px rgba(30, 144, 255, 0.3);
+}
+
+/* Markdown Content */
+.theme-quantum .markdown-content {
+    line-height: 1.8;
+}
+
+.theme-quantum .markdown-content h1,
+.theme-quantum .markdown-content h2,
+.theme-quantum .markdown-content h3 {
+    font-family: var(--font-primary);
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(30, 144, 255, 0.3);
+    margin-top: 2rem;
+}
+
+.theme-quantum .markdown-content a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 1px dotted var(--link-color);
+}
+
+.theme-quantum .markdown-content a:hover {
+    color: var(--hover-color);
+    border-bottom-style: solid;
+}
+
+.theme-quantum .markdown-content code {
+    background: rgba(155, 48, 255, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+    color: var(--secondary-color);
+}
+
+/* Quantum Effects */
+@keyframes quantumPulse {
+    0% {
+        box-shadow: 0 0 10px var(--primary-color);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--secondary-color);
+    }
+    100% {
+        box-shadow: 0 0 10px var(--primary-color);
+    }
+}
+
+@keyframes quantumSpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.theme-quantum .loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--primary-color);
+    border-top: 3px solid var(--secondary-color);
+    border-radius: 50%;
+    animation: quantumSpin 1s linear infinite;
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Scrollbar */
+.theme-quantum ::-webkit-scrollbar {
+    width: 10px;
+}
+
+.theme-quantum ::-webkit-scrollbar-track {
+    background: rgba(10, 10, 31, 0.8);
+}
+
+.theme-quantum ::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--primary-color);
+}
+
+.theme-quantum ::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+    box-shadow: 0 0 10px var(--secondary-color);
+}

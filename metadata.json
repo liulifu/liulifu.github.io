@@ -220,14 +220,7 @@
             "description": "整理Linux内核的核心概念、重要组件和关键机制，包括进程管理、内存管理、文件系统等基础知识的深入解析。",
             "tags": ["Linux", "内核", "系统编程"]
         },
-        "2024-12-05-resume_dba_en.md": {
-            "title": "DBA Resume",
-            "type": "article",
-            "date": "2024-12-05",
-            "categories": ["Resume"],
-            "description": "专业数据库管理员（DBA）的英文简历，展示数据库管理、性能优化、高可用架构等方面的专业技能和项目经验。",
-            "tags": ["简历", "DBA", "数据库"]
-        },
+
         "2024-12-05-txcloud.md": {
             "title": "腾讯云使用笔记",
             "type": "article",

@@ -1,47 +1,50 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tags - Liu Lifu's Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <link rel="stylesheet" href="styles.css?v=" + new Date().getTime()>
-    <link rel="stylesheet" href="css/themes/theme-styles.css?v=" + new Date().getTime()>
+    <link rel="stylesheet" href="css/themes/theme-base.css">
+    <link rel="stylesheet" href="css/themes/theme-cyberpunk.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Scripts -->
+    <script src="js/config.js?v=" + new Date().getTime()></script>
+    <script src="js/theme-manager.js?v=" + new Date().getTime()></script>
     <script src="js/showdown.min.js?v=" + new Date().getTime()></script>
-    <script src="config.js?v=" + new Date().getTime()></script>
     <meta name="description" content="Liu Lifu's blog tags">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-<body>
+<body class="theme-cyberpunk">
     <header>
         <nav class="site-nav">
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="tags.html" class="active">Tags</a>
-                <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
+                <a href="index.html" class="neon-text">Home</a>
+                <a href="tags.html" class="active neon-text">Tags</a>
                 <!-- Theme switcher will be inserted here by JavaScript -->
+                <select id="themeSelect" class="theme-select">
+                    <option value="cyberpunk">Cyberpunk Neon</option>
+                    <option value="steampunk">Steampunk</option>
+                    <option value="matrix">Matrix</option>
+                </select>
             </div>
         </nav>
     </header>
 
-    <main class="content">
-        <div class="tags-container">
-            <div class="tags-list">
-                <h2>Tags</h2>
-                <div id="all-tags">
-                    <!-- 标签列表将通过JavaScript动态加载 -->
-                </div>
+    <main class="tags-container">
+        <aside class="tags-section">
+            <h2>Tags</h2>
+            <div class="tag-list" id="all-tags">
+                <!-- 标签列表将通过JavaScript动态加载 -->
             </div>
-            <div class="posts-list">
-                <h2 id="current-tag">All Posts</h2>
-                <div id="filtered-posts">
-                    <!-- 文章列表将通过JavaScript动态加载 -->
-                </div>
+        </aside>
+
+        <section class="posts-section">
+            <h2 id="current-tag">All Posts</h2>
+            <div class="post-list" id="filtered-posts">
+                <!-- 文章列表将通过JavaScript动态加载 -->
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -197,17 +200,11 @@
         currentTag = getTagFromUrl();
         loadPosts();
     </script>
-    <script src="js/themes/theme-manager.js"></script>
     <script>
-        // 防止样式文件缓存
-        function loadStyles() {
-            const timestamp = new Date().getTime();
-            const existingLink = document.querySelector('link[rel="stylesheet"]');
-            existingLink.href = `styles.css?v=${timestamp}`;
-        }
-
-        // 页面加载时执行
-        window.addEventListener('load', loadStyles);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize theme manager
+            initializeThemeManager();
+        });
     </script>
 </body>
 </html>
