@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loading... - Liu Lifu's Blog</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=" + new Date().getTime()>
-    <script src="js/showdown.min.js?v=" + new Date().getTime()></script>
-    <script src="config.js?v=" + new Date().getTime()></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/showdown.min.js"></script>
+    <script src="js/ai-features.js"></script>
+    <script src="config.js"></script>
     <meta name="description" content="Article page">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -22,6 +23,10 @@
                 <a href="tags.html">Tags</a>
                 <a href="https://liulifu.github.io/post.html?post=2024-12-05-about.md">About</a>
             </div>
+            <div class="search-container">
+                <input type="text" id="ai-search" placeholder="AI-powered search...">
+                <div id="search-results" class="search-results"></div>
+            </div>
         </nav>
     </header>
 
@@ -32,14 +37,30 @@
                 <div class="post-meta">
                     <span id="post-date"></span>
                     <span id="post-categories"></span>
+                    <span id="reading-time"></span>
                 </div>
             </div>
             <div class="post-content" id="post-content">
-                <!-- 文章内容将通过JavaScript动态加载 -->
+                <!-- Content loaded via JavaScript -->
+            </div>
+            <div id="related-posts" class="related-posts">
+                <h3>Related Posts</h3>
+                <!-- Related posts loaded via AI -->
             </div>
             <a href="index.html" class="back-button">返回列表</a>
         </article>
     </main>
+
+    <div id="ai-assistant" class="ai-assistant">
+        <div class="ai-assistant-header">
+            <span>AI Assistant</span>
+            <button id="toggle-ai">Toggle AI</button>
+        </div>
+        <div class="ai-assistant-content">
+            <div id="ai-messages"></div>
+            <input type="text" id="ai-input" placeholder="Ask about this article...">
+        </div>
+    </div>
 
     <footer>
         <p>&copy; <span id="current-year"></span> Liu Lifu. All rights reserved.</p>
@@ -88,35 +109,23 @@
             document.getElementById('post-content').innerHTML = `<p>${message}</p>`;
         }
 
-        function displayPost(markdown, metadata) {
-            // 设置标题
+        async function displayPost(markdown, metadata) {
+            // Set title
             const title = metadata.title || 'Untitled';
             document.title = `${title} - Liu Lifu's Blog`;
             document.getElementById('post-title').textContent = title;
 
-            // 设置日期
+            // Set date
             if (metadata.date) {
                 const date = new Date(metadata.date);
-                const formattedDate = date.toLocaleDateString('en-US', {
+                document.getElementById('post-date').textContent = date.toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
                 });
-                document.getElementById('post-date').textContent = `Published on ${formattedDate}`;
             }
 
-            // 设置分类
-            if (metadata.categories && metadata.categories.length > 0) {
-                const categories = metadata.categories.filter(cat => cat && cat !== 'Uncategorized');
-                if (categories.length > 0) {
-                    document.getElementById('post-categories').innerHTML = 
-                        ` in ${categories.map(cat => 
-                            `<a href="${siteConfig.baseUrl}categories.html#${cat.toLowerCase()}">${cat}</a>`
-                        ).join(', ')}`;
-                }
-            }
-
-            // 转换并显示内容
+            // Convert markdown to HTML
             const converter = new showdown.Converter({
                 tables: true,
                 strikethrough: true,
@@ -126,12 +135,89 @@
             });
             const html = converter.makeHtml(markdown);
             document.getElementById('post-content').innerHTML = html;
+
+            // Calculate and display reading time
+            const words = markdown.trim().split(/\s+/).length;
+            const readingTime = Math.ceil(words / 200); // Assuming 200 words per minute
+            document.getElementById('reading-time').textContent = `${readingTime} min read`;
+
+            // Load related posts
+            const relatedPosts = await AIFeatures.getRelatedPosts(postFile);
+            displayRelatedPosts(relatedPosts);
+
+            // Initialize syntax highlighting
+            if (window.Prism) {
+                Prism.highlightAll();
+            }
         }
 
-        // 设置年份
+        // Initialize AI features
+        window.addEventListener('DOMContentLoaded', async () => {
+            await AIFeatures.init();
+            
+            // Setup AI search
+            const searchInput = document.getElementById('ai-search');
+            const searchResults = document.getElementById('search-results');
+            
+            searchInput.addEventListener('input', async (e) => {
+                if (e.target.value.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const results = await AIFeatures.searchContent(e.target.value);
+                displaySearchResults(results);
+            });
+        });
+
+        function displaySearchResults(results) {
+            const searchResults = document.getElementById('search-results');
+            searchResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            results.forEach(result => {
+                const div = document.createElement('div');
+                div.className = 'search-result';
+                div.innerHTML = `
+                    <a href="post.html?post=${result.id}">
+                        <h4>${result.title}</h4>
+                        <p>${result.excerpt}</p>
+                    </a>
+                `;
+                searchResults.appendChild(div);
+            });
+            
+            searchResults.style.display = 'block';
+        }
+
+        function displayRelatedPosts(posts) {
+            const container = document.getElementById('related-posts');
+            if (posts.length === 0) {
+                container.style.display = 'none';
+                return;
+            }
+
+            const html = posts.map(post => `
+                <div class="related-post">
+                    <a href="post.html?post=${post.id}">
+                        <h4>${post.title}</h4>
+                        <p>${post.excerpt}</p>
+                    </a>
+                </div>
+            `).join('');
+
+            container.innerHTML = `<h3>Related Posts</h3>${html}`;
+            container.style.display = 'block';
+        }
+
+        // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
 
-        // 加载文章
+        // Load post
         loadPost();
     </script>
 </body>
