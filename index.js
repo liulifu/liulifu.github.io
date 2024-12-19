@@ -20,6 +20,17 @@ class BlogManager {
         this.currentPageNum = 1;
         this.postsPerPage = 20;
         
+        // 检测设备类型
+        this.isMobile = this.checkIfMobile();
+        
+        // 根据设备类型调整设置
+        if (this.isMobile) {
+            this.postsPerPage = 10; // 移动设备显示更少的文章
+            log.info('Mobile device detected');
+        } else {
+            log.info('Desktop device detected');
+        }
+        
         // Initialize event listeners
         this.initializeEventListeners();
         
@@ -27,6 +38,71 @@ class BlogManager {
         this.loadHomePage();
         
         log.info('Blog Manager initialized');
+    }
+
+    checkIfMobile() {
+        // 方法1: 使用 matchMedia 检查是否是移动设备
+        const mobileMediaQuery = window.matchMedia('(max-width: 768px), (hover: none)');
+        
+        // 方法2: 检查是否支持触摸
+        const hasTouchScreen = (
+            ('ontouchstart' in window) ||
+            (navigator.maxTouchPoints > 0) ||
+            (navigator.msMaxTouchPoints > 0)
+        );
+        
+        // 方法3: 检查 User Agent（作为补充）
+        const userAgent = navigator.userAgent.toLowerCase();
+        const mobileKeywords = ['mobile', 'android', 'iphone', 'ipad', 'ipod'];
+        const isMobileUserAgent = mobileKeywords.some(keyword => userAgent.includes(keyword));
+        
+        // 综合判断
+        const isMobile = mobileMediaQuery.matches || hasTouchScreen || isMobileUserAgent;
+        
+        // 切换样式表
+        this.switchStylesheet(isMobile);
+        
+        // 添加窗口大小变化监听
+        mobileMediaQuery.addListener((e) => {
+            this.isMobile = e.matches;
+            this.switchStylesheet(this.isMobile);
+            log.info(`Device type changed: ${this.isMobile ? 'Mobile' : 'Desktop'}`);
+        });
+        
+        return isMobile;
+    }
+
+    switchStylesheet(isMobile) {
+        // 动态加载对应的样式表
+        const head = document.head;
+        let desktopCss = head.querySelector('link[href="index.css"]');
+        let mobileCss = head.querySelector('link[href="mobile.css"]');
+
+        // 如果样式表不存在，创建它们
+        if (!desktopCss) {
+            desktopCss = document.createElement('link');
+            desktopCss.rel = 'stylesheet';
+            desktopCss.href = 'index.css';
+            head.appendChild(desktopCss);
+        }
+
+        if (!mobileCss) {
+            mobileCss = document.createElement('link');
+            mobileCss.rel = 'stylesheet';
+            mobileCss.href = 'mobile.css';
+            head.appendChild(mobileCss);
+        }
+
+        // 切换样式表
+        if (isMobile) {
+            desktopCss.disabled = true;
+            mobileCss.disabled = false;
+            log.info('Switched to mobile stylesheet');
+        } else {
+            desktopCss.disabled = false;
+            mobileCss.disabled = true;
+            log.info('Switched to desktop stylesheet');
+        }
     }
     
     initializeEventListeners() {
