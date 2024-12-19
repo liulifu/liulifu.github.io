@@ -211,10 +211,20 @@ table.header {
 
 .article-content img,
 .article-content video {
-    max-width: 100%;
-    height: auto;
+    display: block;
+    max-width: 100%;    /* 只限制最大宽度 */
+    height: auto;       /* 保持宽高比 */
+    object-fit: contain;
+    overflow: hidden;
+    /* 添加黑白效果 */
+    filter: grayscale(100%) contrast(1.2);
+    transition: filter 0.3s ease;
     margin: 1rem 0;
-    border: var(--border-thickness) solid var(--text-color);
+}
+
+.article-content img:hover, 
+.article-content video:hover {
+    filter: grayscale(0%) contrast(1);
 }
 
 .article-content pre {

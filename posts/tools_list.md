@@ -1,4 +1,7 @@
+<!-- <img src="IMG/caffe.webp" alt="caffe" width="300" style="max-width: 100%;">
 
+<img src="IMG/caffe.webp" alt="caffe" width="300" height="200"> -->
+<img src="IMG/caffe.webp" alt="caffe" width="50%">
 
 <br>
 
