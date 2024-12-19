@@ -17,6 +17,7 @@
         "file": "2024-12-05-Exploring the Core of ERP Systems.md",
         "excerpt": "Deep dive into ERP system fundamentals"
     },
+
     {
         "title": "Help Desk Support",
         "date": "2024-12-05",
@@ -30,16 +31,16 @@
         "excerpt": "Guide to diagnosing and fixing high CPU issues"
     },
     {
+        "title": "PHP Report System",
+        "date": "2024-12-05",
+        "file": "2024-12-05-PHP报表.md",
+        "excerpt": "Building effective PHP reporting systems"
+    },
+    {
         "title": "Predictive Maintenance in Smart Manufacturing",
         "date": "2024-12-05",
         "file": "2024-12-05-Predictive Maintenance in Smart Manufacturing.md",
         "excerpt": "Advanced techniques in manufacturing maintenance"
-    },
-    {
-        "title": "SAP Module Analysis 2013-2023",
-        "date": "2024-12-05",
-        "file": "2024-12-05-SAP 各模块从2013年至2023年主要差异分析.md",
-        "excerpt": "Comprehensive analysis of SAP module changes"
     },
     {
         "title": "Graphic Frameworks Usage Terms",
@@ -52,6 +53,42 @@
         "date": "2024-12-05",
         "file": "2024-12-05-WSL.md",
         "excerpt": "Complete guide to Windows Subsystem for Linux"
+    },
+    {
+        "title": "About Me (English)",
+        "date": "2024-12-05",
+        "file": "2024-12-05-about-en.md",
+        "excerpt": "Professional profile and background"
+    },
+    {
+        "title": "About Me",
+        "date": "2024-12-05",
+        "file": "2024-12-05-about.md",
+        "excerpt": "个人简介和背景"
+    },
+    {
+        "title": "Aliyun ECS Guide",
+        "date": "2024-12-05",
+        "file": "2024-12-05-aliecs.md",
+        "excerpt": "Guide to Alibaba Cloud ECS"
+    },
+    {
+        "title": "Huawei Cloud Guide",
+        "date": "2024-12-05",
+        "file": "2024-12-05-hwcloud.md",
+        "excerpt": "Guide to Huawei Cloud services"
+    },
+    {
+        "title": "Linux Kernel Lessons",
+        "date": "2024-12-05",
+        "file": "2024-12-05-kernel_lesson.md",
+        "excerpt": "Understanding Linux kernel concepts"
+    },
+    {
+        "title": "Tencent Cloud Guide",
+        "date": "2024-12-05",
+        "file": "2024-12-05-txcloud.md",
+        "excerpt": "Guide to Tencent Cloud services"
     },
     {
         "title": "Visitor Tracking System",
@@ -78,6 +115,18 @@
         "excerpt": "Guide to setting up Python development"
     },
     {
+        "title": "Simulator Usage Guide",
+        "date": "2024-12-05",
+        "file": "2024-12-05-模拟器的使用方法.md",
+        "excerpt": "Comprehensive guide to simulator usage"
+    },
+    {
+        "title": "Example Article",
+        "date": "2024-12-06",
+        "file": "2024-12-06-example-article.md",
+        "excerpt": "A sample blog post"
+    },
+    {
         "title": "Git Workflow",
         "date": "2024-12-06",
         "file": "2024-12-06-git-workflow.md",
@@ -88,5 +137,12 @@
         "date": "2024-12-07",
         "file": "2024-12-07-test-article.md",
         "excerpt": "A demonstration of blog features"
+    }
+    ,
+    {
+        "title": "Tools List",
+        "date": "2024-12-19",
+        "file": "tools_list.md",
+        "excerpt": "A Collection of Tools"
     }
 ]

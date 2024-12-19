@@ -150,33 +150,51 @@ class BlogManager {
             const indexResponse = await fetch('posts/index.json');
             if (!indexResponse.ok) throw new Error(`HTTP error! status: ${indexResponse.status}`);
             const posts = await indexResponse.json();
-            
-            // Find the current post's metadata
             const postMeta = posts.find(p => p.file === postFile);
-            if (!postMeta) throw new Error(`Post metadata not found for: ${postFile}`);
             
-            // Get the post content
+            // Fetch the post content
             const response = await fetch(`posts/${postFile}`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            const markdown = await response.text();
+            const content = await response.text();
             
+            // Show post content and hide posts list
             this.postsListElement.style.display = 'none';
             this.postContentElement.style.display = 'block';
             
-            // Extract title and format it properly
-            const title = postFile
-                .replace(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/, '$1')
-                .replace(/-/g, ' ')
-                .toUpperCase();
+            // Convert content based on file type
+            let htmlContent;
+            if (postFile.toLowerCase().endsWith('.html')) {
+                // For HTML files, extract the body content and fix CSS paths
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = content;
+                
+                // Remove the original style tag
+                const styleTag = tempDiv.querySelector('style');
+                if (styleTag) {
+                    styleTag.remove();
+                }
+                
+                // Get only the body content
+                const bodyContent = tempDiv.querySelector('body').innerHTML;
+                htmlContent = bodyContent;
+                log.info(`Loaded HTML post: ${postFile}`);
+            } else {
+                // For MD files, convert using showdown
+                htmlContent = converter.makeHtml(content);
+                log.info(`Converted MD post: ${postFile}`);
+            }
             
-            // Create article header table
-            const headerTable = `
+            // Update the post content with the table header
+            const title = postMeta ? postMeta.title : postFile.replace(/^\d{4}-\d{2}-\d{2}-(.+)\.(md|html)$/, '$1');
+            const date = postMeta ? postMeta.date : postFile.slice(0, 10);
+            
+            this.postContentElement.innerHTML = `
                 <table class="header">
                     <tbody>
                         <tr>
                             <td colspan="2" rowspan="2" class="width-auto">
                                 <h1 class="title">${title}</h1>
-                                <span class="subtitle">${postMeta.excerpt}</span>
+                                <span class="subtitle">${postMeta ? postMeta.excerpt : ''}</span>
                             </td>
                             <th>Version</th>
                             <td class="width-min">v0.1.1</td>
@@ -184,7 +202,7 @@ class BlogManager {
                         <tr>
                             <th>Updated</th>
                             <td class="width-min">
-                                <time style="white-space: pre;">${new Date(postFile.slice(0, 10)).toISOString().split('T')[0]}</time>
+                                <time style="white-space: pre;">${new Date(date).toISOString().split('T')[0]}</time>
                             </td>
                         </tr>
                         <tr>
@@ -196,13 +214,14 @@ class BlogManager {
                     </tbody>
                 </table>
                 <div class="article-content">
-                    ${converter.makeHtml(markdown)}
+                    ${htmlContent}
+                </div>
+                <div class="back-link-container" style="margin-top: 2rem;">
+                    <a href="#" onclick="window.blog.navigateToPage('home'); return false;">← Back to Posts</a>
                 </div>
             `;
             
-            this.postContentElement.innerHTML = headerTable;
-            
-            // Process images and videos
+            // Process any media in the post
             this.processMedia();
             
             // Update URL
@@ -210,7 +229,7 @@ class BlogManager {
             
             log.info(`Post loaded successfully: ${postFile}`);
         } catch (error) {
-            log.error(`Error loading post ${postFile}: ${error.message}`);
+            log.error(`Error loading post: ${error.message}`);
             this.postContentElement.innerHTML = '<p>Error loading post. Please try again later.</p>';
         }
     }
