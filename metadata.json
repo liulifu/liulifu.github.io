@@ -1,0 +1,154 @@
+{
+    "posts": {
+        "2024-12-05-Blog-Architecture-Design": {
+            "title": "Blog Architecture Design Documentation",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "详细介绍了这个博客系统的架构设计，包括静态页面生成、Markdown渲染和数据管理等核心功能的实现方案。",
+            "tags": ["架构设计", "静态网站", "JavaScript", "Markdown"]
+        },
+        "2024-12-05-Building-a-Modern-Automated-IT-Operations-System-in-2024": {
+            "title": "Building a Modern Automated IT Operations System in 2024",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "探讨现代IT运维自动化系统的构建，包括监控、告警、自动化部署等关键组件的最佳实践和实现方案。",
+            "tags": ["IT运维", "自动化", "DevOps", "监控系统"]
+        },
+        "2024-12-05-Exploring-the-Core-of-ERP-Systems": {
+            "title": "Exploring the Core of ERP Systems",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "深入探讨企业资源规划(ERP)系统的核心组件，分析其架构设计、数据流和业务流程集成等关键特性。",
+            "tags": ["ERP", "系统架构", "企业应用"]
+        },
+        "2024-12-05-Help-Desk-Support": {
+            "title": "Help Desk Support Guide",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "提供全面的技术支持指南，涵盖问题分类、处理流程、升级策略和知识库管理等Help Desk运营的核心要素。",
+            "tags": ["技术支持", "Help Desk", "服务管理"]
+        },
+        "2024-12-05-HighCPU": {
+            "title": "处理ERP系统中CPU占用率高的问题案例分析",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "分析和解决ERP系统中CPU使用率过高的问题，包括性能优化和问题排查方法。",
+            "tags": ["性能优化", "问题排查", "ERP"]
+        },
+        "2024-12-05-PHP报表": {
+            "title": "PHP报表开发实践指南",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "PHP报表开发的最佳实践和实现方案，包括数据处理、图表生成和性能优化。",
+            "tags": ["PHP", "报表开发", "数据可视化"]
+        },
+        "2024-12-05-一种文件加密设计": {
+            "title": "一种文件加密设计",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "详细介绍一种安全的文件加密方案，包括加密算法选择和实现细节。",
+            "tags": ["加密", "安全", "文件系统"]
+        },
+        "2024-12-05-构建CPLUSPLUS测试环境": {
+            "title": "构建C++测试环境",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "如何搭建和配置C++开发测试环境，包括工具链和测试框架的选择。",
+            "tags": ["C++", "测试", "开发环境"]
+        },
+        "2024-12-05-构建Python开发环境": {
+            "title": "构建Python开发环境",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "Python开发环境的搭建指南，包括虚拟环境和包管理工具的使用。",
+            "tags": ["Python", "开发环境", "虚拟环境"]
+        },
+        "2024-12-05-模拟器的使用方法": {
+            "title": "模拟器的使用方法",
+            "type": "article",
+            "date": "2024-12-05",
+            "description": "各种模拟器的使用指南和最佳实践。",
+            "tags": ["模拟器", "测试", "开发工具"]
+        },
+        "python-interpreter": {
+            "title": "Python Interpreter",
+            "description": "在线练习Python的工具，支持基本的Python代码执行和调试",
+            "type": "tool",
+            "url": "Tools/Pyscript/index.html",
+            "tags": ["Python", "在线编程", "教育"],
+            "date": "2024-01-01"
+        },
+        "unit-conversion": {
+            "title": "Unit Conversion",
+            "description": "支持多种单位之间的转换，包括长度、重量、面积等",
+            "type": "tool",
+            "url": "Tools/unit/v1/index.html",
+            "tags": ["单位转换", "计算工具"],
+            "date": "2024-01-01"
+        },
+        "rmb-converter": {
+            "title": "人民币大写转换",
+            "description": "将数字金额转换为中文大写形式，适用于合同、发票等场景",
+            "type": "tool",
+            "url": "Tools/number-converter/v2/index.html",
+            "tags": ["人民币", "中文转换", "金额"],
+            "date": "2024-01-01"
+        },
+        "rgb-color-picker": {
+            "title": "RGB Color Picker",
+            "description": "RGB颜色选择器，支持RGB和十六进制颜色值的转换和预览",
+            "type": "tool",
+            "url": "Tools/RGBtool/v1/index.html",
+            "tags": ["RGB", "颜色", "设计"],
+            "date": "2024-01-01"
+        },
+        "insurance-calculator": {
+            "title": "五险一金&个税计算器",
+            "description": "根据工资计算五险一金和个人所得税的计算器",
+            "type": "tool",
+            "url": "Tools/wuxianyijin/v6/index.html",
+            "tags": ["五险一金", "个税", "工资计算"],
+            "date": "2024-01-01"
+        },
+        "vat-calculator": {
+            "title": "VAT Calculator",
+            "description": "增值税计算器，支持各种税率的增值税计算",
+            "type": "tool",
+            "url": "Tools/VAT/v1/index.html",
+            "tags": ["增值税", "税务", "计算器"],
+            "date": "2024-01-01"
+        },
+        "sterilization-guide": {
+            "title": "可用于杀菌的物品一览",
+            "description": "常见消毒杀菌物品的使用指南和注意事项",
+            "type": "tool",
+            "url": "Tools/sterilization/sterilization.html",
+            "tags": ["消毒", "杀菌", "健康"],
+            "date": "2024-01-01"
+        },
+        "cron-designer": {
+            "title": "Cron Designer",
+            "description": "Cron表达式生成器，帮助生成和验证cron定时任务表达式",
+            "type": "tool",
+            "url": "Tools/crontab/v4/index.html",
+            "tags": ["Cron", "定时任务", "Linux"],
+            "date": "2024-01-01"
+        },
+        "password-generator": {
+            "title": "Random Password Generator",
+            "description": "随机密码生成器，支持自定义密码长度和字符类型",
+            "type": "tool",
+            "url": "Tools/password/v1/index.html",
+            "tags": ["密码", "安全", "随机生成"],
+            "date": "2024-01-01"
+        },
+        "gomoku-game": {
+            "title": "五子棋人机对战",
+            "description": "支持人机对战的五子棋游戏",
+            "type": "tool",
+            "url": "Tools/five/index4.html",
+            "tags": ["五子棋", "AI", "游戏"],
+            "date": "2024-01-01"
+        }
+    }
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机密码生成器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result {
+            font-weight: bold;
+            color: green;
+        }
+        button {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        p.notice {
+            color: red;
+            font-size: 14px;
+        }
+        #strength {
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // 生成随机密码函数
+        function generatePassword() {
+            const length = document.getElementById('passwordLength').value;
+            const strategy = document.getElementById('strategy').value;
+            const characters = {
+                NIST: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?/`~',
+                GDPR: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?/`~',
+                China: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+[]{}|;:,.<>?/`~'
+            };
+
+            // 设置策略对应的最小密码长度
+            const minLength = {
+                NIST: 8,
+                GDPR: 12,
+                China: 8
+            };
+
+            if (length < minLength[strategy]) {
+                alert(`根据${strategy}策略，密码长度应至少为${minLength[strategy]}位。`);
+                return;
+            }
+
+            let charSet = characters[strategy];
+            let password = '';
+
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charSet.length);
+                password += charSet[randomIndex];
+            }
+
+            document.getElementById('result').textContent = password;
+            document.getElementById('passwordContainer').style.display = 'block';
+            document.getElementById('notice').style.display = 'block';
+            checkPasswordStrength(password);
+        }
+
+        // 检查密码强度函数
+        function checkPasswordStrength(password) {
+            let strength = '弱';
+            let score = 0;
+
+            if (password.length >= 12) score++; // 长度超过12位
+            if (/[a-z]/.test(password)) score++; // 包含小写字母
+            if (/[A-Z]/.test(password)) score++; // 包含大写字母
+            if (/\d/.test(password)) score++; // 包含数字
+            if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) score++; // 包含特殊字符
+
+            switch (score) {
+                case 5:
+                    strength = '非常强';
+                    break;
+                case 4:
+                    strength = '强';
+                    break;
+                case 3:
+                    strength = '中等';
+                    break;
+                case 2:
+                    strength = '弱';
+                    break;
+                default:
+                    strength = '非常弱';
+            }
+
+            document.getElementById('strength').textContent = `密码强度：${strength}`;
+        }
+
+        // 复制密码到剪切板
+        function copyToClipboard() {
+            const password = document.getElementById('result').textContent;
+            navigator.clipboard.writeText(password).then(() => {
+                alert('密码已复制到剪切板！');
+            }).catch(err => {
+                alert('复制失败，请手动复制。');
+            });
+        }
+    </script>
+</head>
+<body>
+    <h1>随机密码生成器</h1>
+    <label for="passwordLength">选择密码长度：</label>
+    <input type="number" id="passwordLength" value="12" min="8" max="64">
+    
+    <label for="strategy">选择安全策略：</label>
+    <select id="strategy">
+        <option value="NIST">美国 NIST 策略</option>
+        <option value="GDPR">欧盟 GDPR 策略</option>
+        <option value="China">中国 网络安全法 策略</option>
+    </select>
+
+    <button onclick="generatePassword()">生成密码</button>
+    
+    <div id="passwordContainer" style="display:none;">
+        <p>生成的密码：<span id="result"></span></p>
+        <p id="strength">密码强度：<span></span></p>
+        <button onclick="copyToClipboard()">复制密码</button>
+    </div>
+    
+    <p class="notice" id="notice" style="display:none;">注意：请妥善保存您的密码，避免丢失或泄露。</p>
+</body>
+</html>

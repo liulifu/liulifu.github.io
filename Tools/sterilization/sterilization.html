@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杀菌</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <h2>可用于杀菌的物品</h2>
+    <table id="csv-table" border="1"></table>
+
+    <script>
+        // Function to load the CSV file from the specified path
+        function loadCSV() {
+            Papa.parse('sterilization.csv', {
+                download: true,
+                header: true,
+                dynamicTyping: true,
+                complete: function(results) {
+                    const data = results.data;
+                    const table = document.getElementById('csv-table');
+                    
+                    // Create table headers
+                    let headers = Object.keys(data[0]);
+                    let headerRow = table.insertRow();
+                    headers.forEach(header => {
+                        let th = document.createElement('th');
+                        th.textContent = header;
+                        headerRow.appendChild(th);
+                    });
+
+                    // Create table rows
+                    data.forEach(row => {
+                        let tr = table.insertRow();
+                        headers.forEach(header => {
+                            let td = tr.insertCell();
+                            td.textContent = row[header] !== undefined ? row[header] : '';
+                        });
+                    });
+                },
+                error: function(error) {
+                    console.error("Error loading CSV:", error);
+                }
+            });
+        }
+
+        // Load the CSV when the page loads
+        document.addEventListener('DOMContentLoaded', loadCSV);
+    </script>
+</body>
+</html>

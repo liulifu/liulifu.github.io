@@ -1,0 +1,237 @@
+@import url('https://fonts.cdnfonts.com/css/jetbrains-mono-2');
+
+:root {
+    --font-family: "JetBrains Mono", monospace;
+    --line-height: 1.20rem;
+    --border-thickness: 2px;
+    --text-color: #000;
+    --text-color-alt: #666;
+    --background-color: #fff;
+    --background-color-alt: #eee;
+    --font-weight-normal: 500;
+    --font-weight-medium: 600;
+    --font-weight-bold: 800;
+    --max-width: 800px;
+    --side-padding: 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #fff;
+        --text-color-alt: #aaa;
+        --background-color: #000;
+        --background-color-alt: #111;
+    }
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: var(--line-height);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--side-padding);
+}
+
+header {
+    border-bottom: var(--border-thickness) solid var(--text-color);
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 1rem;
+}
+
+nav ul {
+    display: flex;
+    gap: 1rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+}
+
+nav a.active {
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
+/* Home page post list */
+#posts-list {
+    margin-top: 2rem;
+}
+
+#posts-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+#posts-list li {
+    margin: 0.8rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+#posts-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0.5rem;
+    color: var(--text-color);
+}
+
+#posts-list a {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#posts-list a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination */
+.pagination {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+}
+
+.pagination button {
+    background: none;
+    border: var(--border-thickness) solid var(--text-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+.pagination button:disabled {
+    border-color: var(--text-color-alt);
+    color: var(--text-color-alt);
+    cursor: not-allowed;
+}
+
+.pagination button:not(:disabled):hover {
+    background-color: var(--text-color);
+    color: var(--background-color);
+}
+
+.pagination .page-info {
+    color: var(--text-color);
+    font-family: var(--font-family);
+}
+
+/* Article page */
+/* Article header table */
+table.header {
+    width: 100%;
+    border: var(--border-thickness) solid var(--text-color);
+    border-spacing: 0;
+    margin-bottom: 2rem;
+}
+
+.header tr {
+    border-bottom: var(--border-thickness) solid var(--text-color);
+}
+
+.header tr:last-child {
+    border-bottom: none;
+}
+
+.header th {
+    font-weight: var(--font-weight-normal);
+    text-align: left;
+    padding: 0.5rem 1rem;
+    white-space: nowrap;
+    border-right: var(--border-thickness) solid var(--text-color);
+}
+
+.header td {
+    padding: 0.5rem 1rem;
+    border-right: var(--border-thickness) solid var(--text-color);
+}
+
+.header td:last-child {
+    border-right: none;
+}
+
+.header .width-min {
+    width: 6rem;
+}
+
+.header .width-auto {
+    width: auto;
+}
+
+.header h1.title {
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.header .subtitle {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--text-color-alt);
+}
+
+.header time {
+    white-space: pre;
+}
+
+.article-content {
+    margin-top: 2rem;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3 {
+    font-weight: var(--font-weight-bold);
+    margin: 2rem 0 1rem;
+}
+
+.article-content h1 { font-size: 1.8rem; }
+.article-content h2 { font-size: 1.5rem; }
+.article-content h3 { font-size: 1.2rem; }
+
+.article-content p {
+    margin: 1rem 0;
+}
+
+.article-content img,
+.article-content video {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+    border: var(--border-thickness) solid var(--text-color);
+}
+
+.article-content pre {
+    background-color: var(--background-color-alt);
+    padding: 1rem;
+    overflow-x: auto;
+    border: var(--border-thickness) solid var(--text-color);
+}
+
+.article-content code {
+    font-family: var(--font-family);
+    background-color: var(--background-color-alt);
+    padding: 0.2rem 0.4rem;
+}
+
+.article-content ul,
+.article-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+}

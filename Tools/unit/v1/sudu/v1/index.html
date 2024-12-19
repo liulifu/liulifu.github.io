@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>速度单位转换器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label, select, input {
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+        }
+        .result {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>速度单位转换器</h1>
+        <label for="inputValue">输入速度值</label>
+        <input type="number" id="inputValue" placeholder="输入数值">
+
+        <label for="unitSelect">选择单位</label>
+        <select id="unitSelect">
+            <option value="ms">米每秒 (m/s)</option>
+            <option value="mph">英里每小时 (MPH)</option>
+            <option value="kph">公里每小时 (KPH)</option>
+            <option value="knot">节 (knots)</option>
+            <option value="mach">马赫数 (Mach)</option>
+        </select>
+
+        <button onclick="convert()">转换</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const conversionRates = {
+            ms: {
+                toMS: (value) => value,
+                fromMS: (value) => value
+            },
+            mph: {
+                toMS: (value) => value * 0.44704, // 1 MPH = 0.44704 m/s
+                fromMS: (value) => value / 0.44704
+            },
+            kph: {
+                toMS: (value) => value / 3.6, // 1 KPH = 1/3.6 m/s
+                fromMS: (value) => value * 3.6
+            },
+            knot: {
+                toMS: (value) => value * 0.514444, // 1 节 = 0.514444 m/s
+                fromMS: (value) => value / 0.514444
+            },
+            mach: {
+                toMS: (value) => value * 340.29, // 1 马赫 = 340.29 m/s (在标准大气条件下)
+                fromMS: (value) => value / 340.29
+            }
+        };
+
+        function convert() {
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const selectedUnit = document.getElementById('unitSelect').value;
+
+            if (isNaN(inputValue)) {
+                document.getElementById('result').innerText = '请输入有效的数值。';
+                return;
+            }
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = ''; // 清空之前的结果
+
+            const msValue = conversionRates[selectedUnit].toMS(inputValue); // 将输入值转换为米每秒
+
+            const unitNames = {
+                ms: '米每秒 (m/s)',
+                mph: '英里每小时 (MPH)',
+                kph: '公里每小时 (KPH)',
+                knot: '节 (knots)',
+                mach: '马赫数 (Mach)'
+            };
+
+            for (const unit in conversionRates) {
+                if (unit !== selectedUnit) { // 只显示与输入单位不同的转换结果
+                    const convertedValue = conversionRates[unit].fromMS(msValue);
+                    resultElement.innerHTML += `<p>${convertedValue.toFixed(6)} ${unitNames[unit]}</p>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

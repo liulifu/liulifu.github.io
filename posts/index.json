@@ -1,0 +1,92 @@
+[
+    {
+        "title": "Blog Architecture Design",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Blog Architecture Design.md",
+        "excerpt": "A comprehensive guide to modern blog architecture design"
+    },
+    {
+        "title": "Building a Modern Automated IT Operations System",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Building a Modern Automated IT Operations System in 2024.md",
+        "excerpt": "Exploring modern IT operations automation"
+    },
+    {
+        "title": "Exploring the Core of ERP Systems",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Exploring the Core of ERP Systems.md",
+        "excerpt": "Deep dive into ERP system fundamentals"
+    },
+    {
+        "title": "Help Desk Support",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Help Desk Support.md",
+        "excerpt": "Best practices for help desk support"
+    },
+    {
+        "title": "High CPU Troubleshooting",
+        "date": "2024-12-05",
+        "file": "2024-12-05-HighCPU.md",
+        "excerpt": "Guide to diagnosing and fixing high CPU issues"
+    },
+    {
+        "title": "Predictive Maintenance in Smart Manufacturing",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Predictive Maintenance in Smart Manufacturing.md",
+        "excerpt": "Advanced techniques in manufacturing maintenance"
+    },
+    {
+        "title": "SAP Module Analysis 2013-2023",
+        "date": "2024-12-05",
+        "file": "2024-12-05-SAP 各模块从2013年至2023年主要差异分析.md",
+        "excerpt": "Comprehensive analysis of SAP module changes"
+    },
+    {
+        "title": "Graphic Frameworks Usage Terms",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Terms of use for common graphic frameworks and engines.md",
+        "excerpt": "Understanding graphic framework licensing"
+    },
+    {
+        "title": "WSL Guide",
+        "date": "2024-12-05",
+        "file": "2024-12-05-WSL.md",
+        "excerpt": "Complete guide to Windows Subsystem for Linux"
+    },
+    {
+        "title": "Visitor Tracking System",
+        "date": "2024-12-05",
+        "file": "2024-12-05-visitor tracking system.md",
+        "excerpt": "Building an effective visitor tracking system"
+    },
+    {
+        "title": "File Encryption Design",
+        "date": "2024-12-05",
+        "file": "2024-12-05-一种文件加密设计.md",
+        "excerpt": "A robust approach to file encryption"
+    },
+    {
+        "title": "C++ Testing Environment Setup",
+        "date": "2024-12-05",
+        "file": "2024-12-05-构建CPLUSPLUS测试环境.md",
+        "excerpt": "Setting up a C++ testing environment"
+    },
+    {
+        "title": "Python Development Environment",
+        "date": "2024-12-05",
+        "file": "2024-12-05-构建Python开发环境.md",
+        "excerpt": "Guide to setting up Python development"
+    },
+    {
+        "title": "Git Workflow",
+        "date": "2024-12-06",
+        "file": "2024-12-06-git-workflow.md",
+        "excerpt": "Understanding Git workflow patterns"
+    },
+    {
+        "title": "Test Article",
+        "date": "2024-12-07",
+        "file": "2024-12-07-test-article.md",
+        "excerpt": "A demonstration of blog features"
+    }
+]
