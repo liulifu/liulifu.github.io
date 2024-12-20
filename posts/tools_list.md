@@ -5,7 +5,8 @@
 
 <br>
 
- 
+* [Gobang](Tools/five/index4.html) 
+
 * [Python Interpreter](Tools/Pyscript/index.html)   
   
 * [Unit Conversion](Tools/unit/v1/index.html)

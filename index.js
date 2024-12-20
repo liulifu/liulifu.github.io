@@ -220,6 +220,96 @@ class BlogManager {
         }
     }
     
+    // async loadPost(postFile) {
+    //     try {
+    //         // First, get the post metadata from index.json
+    //         const indexResponse = await fetch('posts/index.json');
+    //         if (!indexResponse.ok) throw new Error(`HTTP error! status: ${indexResponse.status}`);
+    //         const posts = await indexResponse.json();
+    //         const postMeta = posts.find(p => p.file === postFile);
+            
+    //         // Fetch the post content
+    //         const response = await fetch(`posts/${postFile}`);
+    //         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    //         const content = await response.text();
+            
+    //         // Show post content and hide posts list
+    //         this.postsListElement.style.display = 'none';
+    //         this.postContentElement.style.display = 'block';
+            
+    //         // Convert content based on file type
+    //         let htmlContent;
+    //         if (postFile.toLowerCase().endsWith('.html')) {
+    //             // For HTML files, extract the body content and fix CSS paths
+    //             const tempDiv = document.createElement('div');
+    //             tempDiv.innerHTML = content;
+                
+    //             // Remove the original style tag
+    //             const styleTag = tempDiv.querySelector('style');
+    //             if (styleTag) {
+    //                 styleTag.remove();
+    //             }
+                
+    //             // Get only the body content
+    //             const bodyContent = tempDiv.querySelector('body').innerHTML;
+    //             htmlContent = bodyContent;
+    //             log.info(`Loaded HTML post: ${postFile}`);
+    //         } else {
+    //             // For MD files, convert using showdown
+    //             htmlContent = converter.makeHtml(content);
+    //             log.info(`Converted MD post: ${postFile}`);
+    //         }
+            
+    //         // Update the post content with the table header
+    //         const title = postMeta ? postMeta.title : postFile.replace(/^\d{4}-\d{2}-\d{2}-(.+)\.(md|html)$/, '$1');
+    //         const date = postMeta ? postMeta.date : postFile.slice(0, 10);
+            
+    //         this.postContentElement.innerHTML = `
+    //             <table class="header">
+    //                 <tbody>
+    //                     <tr>
+    //                         <td colspan="2" rowspan="2" class="width-auto">
+    //                             <h1 class="title">${title}</h1>
+    //                             <span class="subtitle">${postMeta ? postMeta.excerpt : ''}</span>
+    //                         </td>
+    //                         <th>Version</th>
+    //                         <td class="width-min">v0.1.1</td>
+    //                     </tr>
+    //                     <tr>
+    //                         <th>Updated</th>
+    //                         <td class="width-min">
+    //                             <time style="white-space: pre;">${new Date(date).toISOString().split('T')[0]}</time>
+    //                         </td>
+    //                     </tr>
+    //                     <tr>
+    //                         <th class="width-min">Author</th>
+    //                         <td class="width-auto">Lifu</td>
+    //                         <th class="width-min">License</th>
+    //                         <td>MIT</td>
+    //                     </tr>
+    //                 </tbody>
+    //             </table>
+    //             <div class="article-content">
+    //                 ${htmlContent}
+    //             </div>
+    //             <div class="back-link-container" style="margin-top: 2rem;">
+    //                 <a href="#" onclick="window.blog.navigateToPage('home'); return false;">← Back to Posts</a>
+    //             </div>
+    //         `;
+            
+    //         // Process any media in the post
+    //         this.processMedia();
+            
+    //         // Update URL
+    //         window.history.pushState(null, '', `#post/${postFile}`);
+            
+    //         log.info(`Post loaded successfully: ${postFile}`);
+    //     } catch (error) {
+    //         log.error(`Error loading post: ${error.message}`);
+    //         this.postContentElement.innerHTML = '<p>Error loading post. Please try again later.</p>';
+    //     }
+    // }
+
     async loadPost(postFile) {
         try {
             // First, get the post metadata from index.json
@@ -260,10 +350,14 @@ class BlogManager {
                 log.info(`Converted MD post: ${postFile}`);
             }
             
-            // Update the post content with the table header
+            // Get metadata with default values
             const title = postMeta ? postMeta.title : postFile.replace(/^\d{4}-\d{2}-\d{2}-(.+)\.(md|html)$/, '$1');
             const date = postMeta ? postMeta.date : postFile.slice(0, 10);
+            const version = postMeta?.version || 'v0.1.1';
+            const author = postMeta?.author || 'Lifu';
+            const license = postMeta?.license || 'MIT';
             
+            // Update the post content with the table header
             this.postContentElement.innerHTML = `
                 <table class="header">
                     <tbody>
@@ -273,7 +367,7 @@ class BlogManager {
                                 <span class="subtitle">${postMeta ? postMeta.excerpt : ''}</span>
                             </td>
                             <th>Version</th>
-                            <td class="width-min">v0.1.1</td>
+                            <td class="width-min">${version}</td>
                         </tr>
                         <tr>
                             <th>Updated</th>
@@ -283,9 +377,9 @@ class BlogManager {
                         </tr>
                         <tr>
                             <th class="width-min">Author</th>
-                            <td class="width-auto">Lifu</td>
+                            <td class="width-auto">${author}</td>
                             <th class="width-min">License</th>
-                            <td>MIT</td>
+                            <td>${license}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -329,6 +423,54 @@ class BlogManager {
         });
     }
     
+    // async loadAboutPage() {
+    //     try {
+    //         const response = await fetch('posts/about.md');
+    //         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    //         const markdown = await response.text();
+            
+    //         this.postsListElement.style.display = 'none';
+    //         this.postContentElement.style.display = 'block';
+            
+    //         // Create about page with header table
+    //         const headerTable = `
+    //             <table class="header">
+    //                 <tbody>
+    //                     <tr>
+    //                         <td colspan="2" rowspan="2" class="width-auto">
+    //                             <h1 class="title">ABOUT</h1>
+    //                             <span class="subtitle">A minimalist design exploration</span>
+    //                         </td>
+    //                         <th>Version</th>
+    //                         <td class="width-min">v0.1.1</td>
+    //                     </tr>
+    //                     <tr>
+    //                         <th>Updated</th>
+    //                         <td class="width-min">
+    //                             <time style="white-space: pre;">${new Date().toISOString().split('T')[0]}</time>
+    //                         </td>
+    //                     </tr>
+    //                     <tr>
+    //                         <th class="width-min">Author</th>
+    //                         <td class="width-auto">Lifu</td>
+    //                         <th class="width-min">License</th>
+    //                         <td>MIT</td>
+    //                     </tr>
+    //                 </tbody>
+    //             </table>
+    //             <div class="article-content">
+    //                 ${converter.makeHtml(markdown)}
+    //             </div>
+    //         `;
+            
+    //         this.postContentElement.innerHTML = headerTable;
+            
+    //         log.info('About page loaded successfully');
+    //     } catch (error) {
+    //         log.error(`Error loading about page: ${error.message}`);
+    //         this.postContentElement.innerHTML = '<p>Error loading about page. Please try again later.</p>';
+    //     }
+    // }
     async loadAboutPage() {
         try {
             const response = await fetch('posts/about.md');
@@ -337,6 +479,22 @@ class BlogManager {
             
             this.postsListElement.style.display = 'none';
             this.postContentElement.style.display = 'block';
+            
+            // Try to load about page metadata
+            let aboutMeta = {};
+            try {
+                const configResponse = await fetch('posts/about.json');
+                if (configResponse.ok) {
+                    aboutMeta = await configResponse.json();
+                }
+            } catch (error) {
+                log.info('No about page configuration found, using defaults');
+            }
+            
+            // Use metadata with defaults
+            const version = aboutMeta.version || 'v0.1.1';
+            const author = aboutMeta.author || 'Lifu';
+            const license = aboutMeta.license || 'MIT';
             
             // Create about page with header table
             const headerTable = `
@@ -348,7 +506,7 @@ class BlogManager {
                                 <span class="subtitle">A minimalist design exploration</span>
                             </td>
                             <th>Version</th>
-                            <td class="width-min">v0.1.1</td>
+                            <td class="width-min">${version}</td>
                         </tr>
                         <tr>
                             <th>Updated</th>
@@ -358,9 +516,9 @@ class BlogManager {
                         </tr>
                         <tr>
                             <th class="width-min">Author</th>
-                            <td class="width-auto">Lifu</td>
+                            <td class="width-auto">${author}</td>
                             <th class="width-min">License</th>
-                            <td>MIT</td>
+                            <td>${license}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -377,6 +535,8 @@ class BlogManager {
             this.postContentElement.innerHTML = '<p>Error loading about page. Please try again later.</p>';
         }
     }
+
+
 }
 
 // Initialize blog when DOM is loaded

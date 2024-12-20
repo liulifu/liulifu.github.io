@@ -22,7 +22,8 @@
         "title": "Help Desk Support",
         "date": "2024-12-05",
         "file": "2024-12-05-Help Desk Support.md",
-        "excerpt": "Best practices for help desk support"
+        "excerpt": "Best practices for help desk support",
+        "license": "CC BY-NC-ND 4.0" 
     },
     {
         "title": "High CPU Troubleshooting",
@@ -55,40 +56,39 @@
         "excerpt": "Complete guide to Windows Subsystem for Linux"
     },
     {
-        "title": "About Me (English)",
-        "date": "2024-12-05",
-        "file": "2024-12-05-about-en.md",
-        "excerpt": "Professional profile and background"
-    },
-    {
-        "title": "About Me",
-        "date": "2024-12-05",
-        "file": "2024-12-05-about.md",
-        "excerpt": "个人简介和背景"
-    },
-    {
-        "title": "Aliyun ECS Guide",
+        "title": "Aliyun ECS Guide[Shared]",
         "date": "2024-12-05",
         "file": "2024-12-05-aliecs.md",
-        "excerpt": "Guide to Alibaba Cloud ECS"
+        "excerpt": "Guide to Alibaba Cloud ECS",
+        "author":"tvtvfun",
+        "license":"Content rights belong to original creators"
     },
     {
-        "title": "Huawei Cloud Guide",
+        "title": "Huawei Cloud Guide[Shared]",
         "date": "2024-12-05",
         "file": "2024-12-05-hwcloud.md",
-        "excerpt": "Guide to Huawei Cloud services"
+        "excerpt": "Guide to Huawei Cloud services",
+        "version":"NA",
+        "author":"八八七七",
+        "license":"Content rights belong to original creators"
     },
     {
-        "title": "Linux Kernel Lessons",
+        "title": "Linux Kernel Lessons[Shared]",
         "date": "2024-12-05",
         "file": "2024-12-05-kernel_lesson.md",
-        "excerpt": "Understanding Linux kernel concepts"
+        "excerpt": "Understanding Linux kernel concepts",
+        "version":"NA",
+        "author":"original creators",
+        "license":"Content rights belong to original creators"
     },
     {
-        "title": "Tencent Cloud Guide",
+        "title": "Tencent Cloud Guide[Shared]",
         "date": "2024-12-05",
         "file": "2024-12-05-txcloud.md",
-        "excerpt": "Guide to Tencent Cloud services"
+        "excerpt": "Guide to Tencent Cloud services",
+        "version":"NA",
+        "author":"original creators",
+        "license":"Content rights belong to original creators"
     },
     {
         "title": "Visitor Tracking System",
@@ -100,7 +100,10 @@
         "title": "File Encryption Design",
         "date": "2024-12-05",
         "file": "2024-12-05-一种文件加密设计.md",
-        "excerpt": "A robust approach to file encryption"
+        "excerpt": "A robust approach to file encryption",
+        "version": "v1.0.0",  
+        "author": "Lifu", 
+        "license": "Apache-2.0" 
     },
     {
         "title": "C++ Testing Environment Setup",
