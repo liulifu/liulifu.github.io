@@ -12,11 +12,13 @@ Welcome to my personal blog! This space is where I share my thoughts, experience
 ## Contact
 
 Feel free to reach out to me through:
-- Email: initlifu@hotmail.com
+
+- Email:initlifu@hotmail.com
 
 ## About This Blog
 
 This blog is built with:
+
 - HTML5 & CSS3
 - JavaScript
 - Showdown.js for Markdown rendering
@@ -27,6 +29,7 @@ The design is inspired by the monospace theme from [owickstrom](https://owickstr
 ## How to Use This Blog
 
 ### For Readers
+
 - Navigate through posts using the pagination at the bottom of the home page
 - Switch between light and dark mode based on your system preferences
 - Click on any post title to read the full article
@@ -40,6 +43,7 @@ This blog features an automated post management system:
    - Create a new Markdown file in the `posts` directory
    - Use the naming format: `YYYY-MM-DD-title.md`
    - Optionally include YAML frontmatter for metadata:
+
      ```yaml
      ---
      title: Your Post Title
