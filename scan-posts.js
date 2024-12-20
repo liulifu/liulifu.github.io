@@ -9,13 +9,6 @@ const CONFIG = {
     dateFormat: /^\d{4}-\d{2}-\d{2}/  // 匹配文件名中的日期格式
 };
 
-// 默认值配置
-const DEFAULTS = {
-    author: 'Lifu',
-    version: 'v0.1.1',
-    license: 'MIT'
-};
-
 async function scanPosts() {
     try {
         // 尝试读取现有的 index.json
@@ -62,26 +55,35 @@ async function scanPosts() {
                 .replace(/-/g, ' ')
                 .trim();
 
-            // 合并配置，优先级：YAML 前端配置 > 现有配置 > 默认值
-            return {
+            // 创建基础文章对象
+            const post = {
                 title: data.title || existingPost.title || titleFromFile,
                 date: data.date || existingPost.date || date,
                 file: file,
-                excerpt: data.excerpt || existingPost.excerpt || excerpt || '',
-                // 只有在明确设置时才覆盖这些字段
-                ...(data.author || existingPost.author ? { author: data.author || existingPost.author } : {}),
-                ...(data.version || existingPost.version ? { version: data.version || existingPost.version } : {}),
-                ...(data.license || existingPost.license ? { license: data.license || existingPost.license } : {})
+                excerpt: data.excerpt || existingPost.excerpt || excerpt || ''
             };
+
+            // 只有当这些字段在 YAML 前端或现有配置中存在时才添加它们
+            if (data.author || existingPost.author) {
+                post.author = data.author || existingPost.author;
+            }
+            if (data.version || existingPost.version) {
+                post.version = data.version || existingPost.version;
+            }
+            if (data.license || existingPost.license) {
+                post.license = data.license || existingPost.license;
+            }
+
+            return post;
         }));
 
         // 按日期排序
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-        // 写入 index.json
+        // 写入 index.json，使用 4 个空格缩进以匹配现有格式
         await fs.writeFile(
             CONFIG.indexFile,
-            JSON.stringify(posts, null, 2)
+            JSON.stringify(posts, null, 4)
         );
 
         console.log(`Successfully updated index.json with ${posts.length} posts`);
