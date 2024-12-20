@@ -6,10 +6,13 @@ on:
       - main  # 或者 master，取决于您的默认分支
     paths:
       - 'posts/*.md'  # 只在 markdown 文件改变时触发
+  workflow_dispatch:
 
 jobs:
   update-index:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: write
 
     steps:
       - name: Checkout repository
