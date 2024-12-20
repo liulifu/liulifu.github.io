@@ -12,9 +12,8 @@ Welcome to my personal blog! This space is where I share my thoughts, experience
 ## Contact
 
 Feel free to reach out to me through:
-- GitHub: [Your GitHub Profile]
-- Email: [Your Email]
-- Twitter: [Your Twitter Handle]
+- Email: initlifu@hotmail.com
+
 
 ## About This Blog
 
@@ -24,4 +23,4 @@ This blog is built with:
 - Showdown.js for Markdown rendering
 - Hosted on GitHub Pages
 
-The design is inspired by the monospace theme, focusing on readability and simplicity.
+The design is inspired by the monospace theme from [owickstrom](https://owickstrom.github.io/the-monospace-web/), focusing on readability and simplicity.
