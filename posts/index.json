@@ -154,5 +154,65 @@
         "date": "2024-12-19",
         "file": "tools_list.md",
         "excerpt": "A Collection of Tools"
+    },
+    {
+        "title": "AzCopy",
+        "date": "2024-12-19",
+        "file": "AzCopy.md",
+        "excerpt": "AzCopy"
+    },
+    {
+        "title": "K8s入门",
+        "date": "2024-12-19",
+        "file": "K8s入门1.md",
+        "excerpt": "K8s入门"
+    },
+    {
+        "title": "K8s_1",
+        "date": "2024-12-19",
+        "file": "K8s_1.md",
+        "excerpt": "K8s_1"
+    },
+    {
+        "title": "K8s_2",
+        "date": "2024-12-19",
+        "file": "K8s_2.md",
+        "excerpt": "K8s_2"
+    },
+    {
+        "title": "K8s_3",
+        "date": "2024-12-19",
+        "file": "K8s_3.md",
+        "excerpt": "K8s_3"
+    },
+    {
+        "title": "K8s_4",
+        "date": "2024-12-19",
+        "file": "K8s_4.md",
+        "excerpt": "K8s_4"
+    },
+    {
+        "title": "K8s_5",
+        "date": "2024-12-19",
+        "file": "K8s_5.md",
+        "excerpt": "K8s_5"
+    },
+    {
+        "title": "K8s_6",
+        "date": "2024-12-19",
+        "file": "K8s_6.md",
+        "excerpt": "K8s_6"
+    },
+    {
+        "title": "K8s 相关问题集锦",
+        "date": "2024-12-19",
+        "file": "K8s 相关问题集锦.md",
+        "excerpt": "K8s 相关问题集锦"
+    },
+    {
+        "title": "Manage Kubernetes in Google Cloud",
+        "date": "2024-12-19",
+        "file": "Manage Kubernetes in Google Cloud.md",
+        "excerpt": "Manage Kubernetes in Google Cloud"
     }
 ]
