@@ -97,6 +97,12 @@
         "date": "2025-01-13",
         "file": "oracle-sqlloader-guide.md",
         "excerpt": "sqlloader-guide"
+    },
+    {
+        "title": "oracle-pdb-guide",
+        "date": "2025-01-13",
+        "file": "oracle-pdb-guide.md",
+        "excerpt": "howto use pdb"
     }
 
     
