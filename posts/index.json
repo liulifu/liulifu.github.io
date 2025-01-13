@@ -214,5 +214,13 @@
         "date": "2024-12-19",
         "file": "Manage Kubernetes in Google Cloud.md",
         "excerpt": "Manage Kubernetes in Google Cloud"
+    },
+    {
+        "title": "oracle-sqlloader-guide",
+        "date": "2025-01-13",
+        "file": "oracle-sqlloader-guide.md",
+        "excerpt": "sqlloader-guide"
     }
+
+    
 ]
