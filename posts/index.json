@@ -1,159 +1,42 @@
 [
     {
-        "title": "Blog Architecture Design",
-        "date": "2024-12-05",
-        "file": "2024-12-05-Blog Architecture Design.md",
-        "excerpt": "A comprehensive guide to modern blog architecture design"
+        "title": "Introduction to Docker",
+        "date": "2024-12-27",
+        "file": "Introduction to Docker.md",
+        "excerpt": ""
     },
     {
-        "title": "Building a Modern Automated IT Operations System",
-        "date": "2024-12-05",
-        "file": "2024-12-05-Building a Modern Automated IT Operations System in 2024.md",
-        "excerpt": "Exploring modern IT operations automation"
+        "title": "K8s 入门1",
+        "date": "2024-12-27",
+        "file": "K8s 入门1.md",
+        "excerpt": ""
     },
     {
-        "title": "Exploring the Core of ERP Systems",
-        "date": "2024-12-05",
-        "file": "2024-12-05-Exploring the Core of ERP Systems.md",
-        "excerpt": "Deep dive into ERP system fundamentals"
-    },
-
-    {
-        "title": "Help Desk Support",
-        "date": "2024-12-05",
-        "file": "2024-12-05-Help Desk Support.md",
-        "excerpt": "Best practices for help desk support",
-        "license": "CC BY-NC-ND 4.0" 
+        "title": "publicCloud",
+        "date": "2024-12-27",
+        "file": "publicCloud.md",
+        "excerpt": ""
     },
     {
-        "title": "High CPU Troubleshooting",
-        "date": "2024-12-05",
-        "file": "2024-12-05-HighCPU.md",
-        "excerpt": "Guide to diagnosing and fixing high CPU issues"
+        "title": "SomeHack",
+        "date": "2024-12-22",
+        "file": "2024-12-22-SomeHack.md",
+        "excerpt": ""
     },
     {
-        "title": "PHP Report System",
-        "date": "2024-12-05",
-        "file": "2024-12-05-PHP报表.md",
-        "excerpt": "Building effective PHP reporting systems"
+        "title": "nofat",
+        "date": "2024-12-22",
+        "file": "2024-12-22-nofat.md",
+        "excerpt": ""
     },
     {
-        "title": "Predictive Maintenance in Smart Manufacturing",
-        "date": "2024-12-05",
-        "file": "2024-12-05-Predictive Maintenance in Smart Manufacturing.md",
-        "excerpt": "Advanced techniques in manufacturing maintenance"
-    },
-    {
-        "title": "Graphic Frameworks Usage Terms",
-        "date": "2024-12-05",
-        "file": "2024-12-05-Terms of use for common graphic frameworks and engines.md",
-        "excerpt": "Understanding graphic framework licensing"
-    },
-    {
-        "title": "WSL Guide",
-        "date": "2024-12-05",
-        "file": "2024-12-05-WSL.md",
-        "excerpt": "Complete guide to Windows Subsystem for Linux"
-    },
-    {
-        "title": "Aliyun ECS Guide[Shared]",
-        "date": "2024-12-05",
-        "file": "2024-12-05-aliecs.md",
-        "excerpt": "Guide to Alibaba Cloud ECS",
-        "author":"tvtvfun",
-        "license":"Content rights belong to original creators"
-    },
-    {
-        "title": "Huawei Cloud Guide[Shared]",
-        "date": "2024-12-05",
-        "file": "2024-12-05-hwcloud.md",
-        "excerpt": "Guide to Huawei Cloud services",
-        "version":"NA",
-        "author":"八八七七",
-        "license":"Content rights belong to original creators"
-    },
-    {
-        "title": "Linux Kernel Lessons[Shared]",
-        "date": "2024-12-05",
-        "file": "2024-12-05-kernel_lesson.md",
-        "excerpt": "Understanding Linux kernel concepts",
-        "version":"NA",
-        "author":"original creators",
-        "license":"Content rights belong to original creators"
-    },
-    {
-        "title": "Tencent Cloud Guide[Shared]",
-        "date": "2024-12-05",
-        "file": "2024-12-05-txcloud.md",
-        "excerpt": "Guide to Tencent Cloud services",
-        "version":"NA",
-        "author":"original creators",
-        "license":"Content rights belong to original creators"
-    },
-    {
-        "title": "Visitor Tracking System",
-        "date": "2024-12-05",
-        "file": "2024-12-05-visitor tracking system.md",
-        "excerpt": "Building an effective visitor tracking system"
-    },
-    {
-        "title": "File Encryption Design",
-        "date": "2024-12-05",
-        "file": "2024-12-05-一种文件加密设计.md",
-        "excerpt": "A robust approach to file encryption",
-        "version": "v1.0.0",  
-        "author": "Lifu", 
-        "license": "Apache-2.0" 
-    },
-    {
-        "title": "C++ Testing Environment Setup",
-        "date": "2024-12-05",
-        "file": "2024-12-05-构建CPLUSPLUS测试环境.md",
-        "excerpt": "Setting up a C++ testing environment"
-    },
-    {
-        "title": "Python Development Environment",
-        "date": "2024-12-05",
-        "file": "2024-12-05-构建Python开发环境.md",
-        "excerpt": "Guide to setting up Python development"
-    },
-    {
-        "title": "Simulator Usage Guide",
-        "date": "2024-12-05",
-        "file": "2024-12-05-模拟器的使用方法.md",
-        "excerpt": "Comprehensive guide to simulator usage"
-    },
-    {
-        "title": "Example Article",
-        "date": "2024-12-06",
-        "file": "2024-12-06-example-article.md",
-        "excerpt": "A sample blog post"
-    },
-    {
-        "title": "Git Workflow",
-        "date": "2024-12-06",
-        "file": "2024-12-06-git-workflow.md",
-        "excerpt": "Understanding Git workflow patterns"
-    },
-    {
-        "title": "Test Article",
-        "date": "2024-12-07",
-        "file": "2024-12-07-test-article.md",
-        "excerpt": "A demonstration of blog features"
-    }
-    ,
-    
-    {
-        "title": "what",
-        "date": "2024-12-07",
-        "file": "what.md",
-        "excerpt": "A demonstration of blog features"
-    },
-    {
-        "title": "Tools List",
-        "date": "2024-12-19",
-        "file": "tools_list.md",
-        "excerpt": "A Collection of Tools"
+        "title": "Personal Blog Github Actions Config",
+        "date": "2024-12-20T00:00:00.000Z",
+        "file": "2024-12-20-GithubActions.md",
+        "excerpt": "A document",
+        "author": "Lifu",
+        "version": "v0.1.1",
+        "license": "MIT"
     },
     {
         "title": "AzCopy",
@@ -162,10 +45,10 @@
         "excerpt": "AzCopy"
     },
     {
-        "title": "K8s入门",
+        "title": "K8s 相关问题集锦",
         "date": "2024-12-19",
-        "file": "K8s入门1.md",
-        "excerpt": "K8s入门"
+        "file": "K8s 相关问题集锦.md",
+        "excerpt": "K8s 相关问题集锦"
     },
     {
         "title": "K8s_1",
@@ -204,18 +87,13 @@
         "excerpt": "K8s_6"
     },
     {
-        "title": "K8s 相关问题集锦",
-        "date": "2024-12-19",
-        "file": "K8s 相关问题集锦.md",
-        "excerpt": "K8s 相关问题集锦"
-    },
-    {
         "title": "Manage Kubernetes in Google Cloud",
         "date": "2024-12-19",
         "file": "Manage Kubernetes in Google Cloud.md",
         "excerpt": "Manage Kubernetes in Google Cloud"
     },
     {
+<<<<<<< HEAD
         "title": "oracle-sqlloader-guide",
         "date": "2025-01-13",
         "file": "oracle-sqlloader-guide.md",
@@ -224,3 +102,170 @@
 
     
 ]
+=======
+        "title": "Tools List",
+        "date": "2024-12-19",
+        "file": "tools_list.md",
+        "excerpt": "A Collection of Tools"
+    },
+    {
+        "title": "Test Article",
+        "date": "2024-12-07",
+        "file": "2024-12-07-test-article.md",
+        "excerpt": "A demonstration of blog features"
+    },
+    {
+        "title": "what",
+        "date": "2024-12-07",
+        "file": "what.md",
+        "excerpt": "A demonstration of blog features"
+    },
+    {
+        "title": "Example Article",
+        "date": "2024-12-06",
+        "file": "2024-12-06-example-article.md",
+        "excerpt": "A sample blog post"
+    },
+    {
+        "title": "Git Workflow",
+        "date": "2024-12-06",
+        "file": "2024-12-06-git-workflow.md",
+        "excerpt": "Understanding Git workflow patterns"
+    },
+    {
+        "title": "Blog Architecture Design",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Blog Architecture Design.md",
+        "excerpt": "A comprehensive guide to modern blog architecture design"
+    },
+    {
+        "title": "Building a Modern Automated IT Operations System",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Building a Modern Automated IT Operations System in 2024.md",
+        "excerpt": "Exploring modern IT operations automation"
+    },
+    {
+        "title": "Exploring the Core of ERP Systems",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Exploring the Core of ERP Systems.md",
+        "excerpt": "Deep dive into ERP system fundamentals"
+    },
+    {
+        "title": "Help Desk Support",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Help Desk Support.md",
+        "excerpt": "Best practices for help desk support",
+        "license": "CC BY-NC-ND 4.0"
+    },
+    {
+        "title": "High CPU Troubleshooting",
+        "date": "2024-12-05",
+        "file": "2024-12-05-HighCPU.md",
+        "excerpt": "Guide to diagnosing and fixing high CPU issues"
+    },
+    {
+        "title": "PHP Report System",
+        "date": "2024-12-05",
+        "file": "2024-12-05-PHP报表.md",
+        "excerpt": "Building effective PHP reporting systems"
+    },
+    {
+        "title": "Predictive Maintenance in Smart Manufacturing",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Predictive Maintenance in Smart Manufacturing.md",
+        "excerpt": "Advanced techniques in manufacturing maintenance"
+    },
+    {
+        "title": "Graphic Frameworks Usage Terms",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Terms of use for common graphic frameworks and engines.md",
+        "excerpt": "Understanding graphic framework licensing"
+    },
+    {
+        "title": "WSL Guide",
+        "date": "2024-12-05",
+        "file": "2024-12-05-WSL.md",
+        "excerpt": "Complete guide to Windows Subsystem for Linux"
+    },
+    {
+        "title": "about en",
+        "date": "2024-12-05",
+        "file": "2024-12-05-about-en.md",
+        "excerpt": ""
+    },
+    {
+        "title": "about",
+        "date": "2024-12-05",
+        "file": "2024-12-05-about.md",
+        "excerpt": ""
+    },
+    {
+        "title": "Aliyun ECS Guide[Shared]",
+        "date": "2024-12-05",
+        "file": "2024-12-05-aliecs.md",
+        "excerpt": "Guide to Alibaba Cloud ECS",
+        "author": "tvtvfun",
+        "license": "Content rights belong to original creators"
+    },
+    {
+        "title": "Huawei Cloud Guide[Shared]",
+        "date": "2024-12-05",
+        "file": "2024-12-05-hwcloud.md",
+        "excerpt": "Guide to Huawei Cloud services",
+        "author": "八八七七",
+        "version": "NA",
+        "license": "Content rights belong to original creators"
+    },
+    {
+        "title": "Linux Kernel Lessons[Shared]",
+        "date": "2024-12-05",
+        "file": "2024-12-05-kernel_lesson.md",
+        "excerpt": "Understanding Linux kernel concepts",
+        "author": "original creators",
+        "version": "NA",
+        "license": "Content rights belong to original creators"
+    },
+    {
+        "title": "Tencent Cloud Guide[Shared]",
+        "date": "2024-12-05",
+        "file": "2024-12-05-txcloud.md",
+        "excerpt": "Guide to Tencent Cloud services",
+        "author": "original creators",
+        "version": "NA",
+        "license": "Content rights belong to original creators"
+    },
+    {
+        "title": "Visitor Tracking System",
+        "date": "2024-12-05",
+        "file": "2024-12-05-visitor tracking system.md",
+        "excerpt": "Building an effective visitor tracking system"
+    },
+    {
+        "title": "File Encryption Design",
+        "date": "2024-12-05",
+        "file": "2024-12-05-一种文件加密设计.md",
+        "excerpt": "A robust approach to file encryption",
+        "author": "Lifu",
+        "version": "v1.0.0",
+        "license": "Apache-2.0"
+    },
+    {
+        "title": "C++ Testing Environment Setup",
+        "date": "2024-12-05",
+        "file": "2024-12-05-构建CPLUSPLUS测试环境.md",
+        "excerpt": "Setting up a C++ testing environment"
+    },
+    {
+        "title": "Python Development Environment",
+        "date": "2024-12-05",
+        "file": "2024-12-05-构建Python开发环境.md",
+        "excerpt": "Guide to setting up Python development"
+    },
+    {
+        "title": "Simulator Usage Guide",
+        "date": "2024-12-05",
+        "file": "2024-12-05-模拟器的使用方法.md",
+        "excerpt": "Comprehensive guide to simulator usage"
+    }
+]
+>>>>>>> e2f292f61030016c0aad16070803c9d083a3a147
