@@ -228,4 +228,3 @@ FROM EMPLOYEES
 ORDER BY 1;
 ```
 
-通过遵循以上指南，您可以成功地使用SQL*Loader将CSV文件导入到Oracle数据库中。记得根据实际需求调整参数和配置，并始终在生产环境导入之前进行充分的测试。
