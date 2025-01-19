@@ -91,6 +91,12 @@
         "date": "2025-01-13",
         "file": "oracle-pdb-guide.md",
         "excerpt": "howto use pdb"
+    },
+    {
+        "title": "DB-view",
+        "date": "2025-01-19",
+        "file": "DB_view.md",
+        "excerpt": "howto use db"
     }
 
     
