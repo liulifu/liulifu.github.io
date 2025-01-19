@@ -1,9 +1,33 @@
 [
     {
-        "title": "Introduction to Docker",
-        "date": "2024-12-27",
-        "file": "Introduction to Docker.md",
+        "title": "DB-view",
+        "date": "2025-01-19",
+        "file": "DB_view.md",
+        "excerpt": "howto use db"
+    },
+    {
+        "title": "tools_list",
+        "date": "2025-01-19",
+        "file": "tools_list.md",
         "excerpt": ""
+    },
+    {
+        "title": "what",
+        "date": "2025-01-19",
+        "file": "what.md",
+        "excerpt": ""
+    },
+    {
+        "title": "oracle-pdb-guide",
+        "date": "2025-01-13",
+        "file": "oracle-pdb-guide.md",
+        "excerpt": "howto use pdb"
+    },
+    {
+        "title": "oracle-sqlloader-guide",
+        "date": "2025-01-13",
+        "file": "oracle-sqlloader-guide.md",
+        "excerpt": "sqlloader-guide"
     },
     {
         "title": "K8s 入门1",
@@ -75,29 +99,141 @@
         "excerpt": "K8s_6"
     },
     {
-        "title": "Manage Kubernetes in Google Cloud",
-        "date": "2024-12-19",
-        "file": "Manage Kubernetes in Google Cloud.md",
-        "excerpt": "Manage Kubernetes in Google Cloud"
+        "title": "test article",
+        "date": "2024-12-07",
+        "file": "2024-12-07-test-article.md",
+        "excerpt": "# TEST ARTICLE\r\n\r\nA technical exploration and guide\r\n\r\n## Content\r\n\r\n# 测试文章：使用Markdown写作指南\r\n\r\n这是一篇测试文章，用来展示Markdown的基本语法和使用方法。\r\n\r\n## 1. 标题使用\r\n\r\nMarkdown中的标题使用`#`符号表示，一级标题使用一个`#`，二级标题使用两个`#`，以此类推。\r\n\r\n## 2. 文本格式化\r\n\r\n- **粗体** 使用两个星号\r\n- *斜体* 使用一个星号\r\n- ~~删除线~~ 使用两个波浪线\r\n\r\n## 3. 列表\r\n\r\n### 无序列表\r\n- 项目1\r\n- 项目2\r\n- 项目3\r\n\r\n### 有序列表\r\n1. 第一步\r\n2. 第二步\r\n3. 第三步\r\n\r\n## 4. 代码展示\r\n\r\n行内代码使用反引号：`console.log('Hello World')`\r\n\r\n代码块使用三个反引号：\r\n\r\n```javascript\r\nfunction greeting(name) {\r\n    return `Hello, ${name}!`;\r\n}\r\n```\r\n\r\n## 5. 引用\r\n\r\n> 这是一个引用示例\r\n> 可以有多行\r\n\r\n## 6. 链接和图片\r\n\r\n[这是一个链接](https://example.com)\r\n\r\n![图片描述](https://example.com/image.jpg)\r\n\r\n## 7. 表格\r\n\r\n| 列1 | 列2 | 列3 |\r\n|"
     },
     {
-        "title": "oracle-sqlloader-guide",
-        "date": "2025-01-13",
-        "file": "oracle-sqlloader-guide.md",
-        "excerpt": "sqlloader-guide"
+        "title": "example article",
+        "date": "2024-12-06",
+        "file": "2024-12-06-example-article.md",
+        "excerpt": ""
     },
     {
-        "title": "oracle-pdb-guide",
-        "date": "2025-01-13",
-        "file": "oracle-pdb-guide.md",
-        "excerpt": "howto use pdb"
+        "title": "git workflow",
+        "date": "2024-12-06",
+        "file": "2024-12-06-git-workflow.md",
+        "excerpt": ""
     },
     {
-        "title": "DB-view",
-        "date": "2025-01-19",
-        "file": "DB_view.md",
-        "excerpt": "howto use db"
+        "title": "Blog Architecture Design",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Blog Architecture Design.md",
+        "excerpt": ""
+    },
+    {
+        "title": "Building a Modern Automated IT Operations System in 2024",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Building a Modern Automated IT Operations System in 2024.md",
+        "excerpt": ""
+    },
+    {
+        "title": "Exploring the Core of ERP Systems",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Exploring the Core of ERP Systems.md",
+        "excerpt": ""
+    },
+    {
+        "title": "Help Desk Support",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Help Desk Support.md",
+        "excerpt": ""
+    },
+    {
+        "title": "HighCPU",
+        "date": "2024-12-05",
+        "file": "2024-12-05-HighCPU.md",
+        "excerpt": ""
+    },
+    {
+        "title": "PHP报表",
+        "date": "2024-12-05",
+        "file": "2024-12-05-PHP报表.md",
+        "excerpt": ""
+    },
+    {
+        "title": "Predictive Maintenance in Smart Manufacturing",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Predictive Maintenance in Smart Manufacturing.md",
+        "excerpt": ""
+    },
+    {
+        "title": "Terms of use for common graphic frameworks and engines",
+        "date": "2024-12-05",
+        "file": "2024-12-05-Terms of use for common graphic frameworks and engines.md",
+        "excerpt": ""
+    },
+    {
+        "title": "WSL",
+        "date": "2024-12-05",
+        "file": "2024-12-05-WSL.md",
+        "excerpt": "# WSL\r\n\r\nA technical exploration and guide\r\n\r\n## Content\r\n\r\n\r\n\r\n**Windows Subsystem for Linux**\r\n\r\n简称  **WSL** 。\r\n\r\n*WSL 是什么？*\r\n\r\n*WSL 是一种在 Windows 上运行 Linux 二进制文件的兼容层。它允许你在 Windows 系统上直接运行 Linux 应用，而无需虚拟机。这使得开发者可以在 Windows 环境下方便地使用 Linux 的开发工具、命令行工具和应用程序。*\r\n\r\n*WSL 的主要功能：*\r\n\r\n* *运行 Linux 应用： 可以直接在 Windows 上运行各种 Linux 应用程序，包括常用的命令行工具、开发环境、服务器软件等。*\r\n* *使用 Linux 命令行： 提供一个类似于 Linux 的命令行界面，可以执行常见的 Linux 命令。*\r\n* *访问 Windows 文件系统： 可以直接访问 Windows 的文件系统，方便在 Linux 和 Windows 之间共享文件。*\r\n\r\n*WSL 的优势：*\r\n\r\n* *方便快捷： 无需安装虚拟机，直接在 Windows 上运行 Linux 应用。*\r\n* *兼容性好： 支持多种 Linux 发行版，如 Ubuntu、Debian 等。*\r\n* *性能优异： 性能接近原生 Linux 系统。*\r\n\r\n*WSL 的应用场景：*\r\n\r\n* *开发者： 在 Windows 上进行跨平台开发，使用 Linux 工具和库。*\r\n* *系统管理员： 在 Windows 环境下管理 Linux 服务器。*\r\n* *学习 Linux： 在 Windows 上学习 Linux 系统。*\r\n\r\n"
+    },
+    {
+        "title": "about en",
+        "date": "2024-12-05",
+        "file": "2024-12-05-about-en.md",
+        "excerpt": ""
+    },
+    {
+        "title": "about",
+        "date": "2024-12-05",
+        "file": "2024-12-05-about.md",
+        "excerpt": ""
+    },
+    {
+        "title": "aliecs",
+        "date": "2024-12-05",
+        "file": "2024-12-05-aliecs.md",
+        "excerpt": ""
+    },
+    {
+        "title": "hwcloud",
+        "date": "2024-12-05",
+        "file": "2024-12-05-hwcloud.md",
+        "excerpt": ""
+    },
+    {
+        "title": "kernel_lesson",
+        "date": "2024-12-05",
+        "file": "2024-12-05-kernel_lesson.md",
+        "excerpt": ""
+    },
+    {
+        "title": "txcloud",
+        "date": "2024-12-05",
+        "file": "2024-12-05-txcloud.md",
+        "excerpt": ""
+    },
+    {
+        "title": "visitor tracking system",
+        "date": "2024-12-05",
+        "file": "2024-12-05-visitor tracking system.md",
+        "excerpt": "# VISITOR TRACKING SYSTEM\r\n\r\nA technical exploration and guide\r\n\r\n\r\n## Part 1\r\n\r\n### 1. Overview\r\n\r\nThis document outlines the implementation of a visitor tracking system for your static personal blog hosted on GitHub Pages. The system utilizes Cloudflare Workers to intercept visitor requests, capture IP addresses and timestamps, and forward this information to a Virtual Private Server (VPS) for storage. This approach ensures that your VPS remains concealed while effectively logging visitor data.\r\n\r\n### 2. Architecture\r\n\r\nThe solution comprises three primary components:\r\n\r\n1. **GitHub Pages Blog** : Your existing static blog hosted at `https://liulifu.github.io/`.\r\n2. **Cloudflare Worker** : A serverless function that intercepts incoming requests to your blog, extracts visitor information, and forwards it to the VPS.\r\n3. **VPS Backend Service** : An API endpoint on your VPS that receives the forwarded data and stores it locally.\r\n\r\n### 3. Implementation Details\r\n\r\n#### a. Cloudflare Worker\r\n\r\nThe Cloudflare Worker is responsible for:\r\n\r\n- Intercepting incoming HTTP requests to your blog.\r\n- Extracting the visitor's IP address and the current timestamp.\r\n- Forwarding the extracted data to the VPS backend service.\r\n\r\n  **Implementation Steps** :\r\n\r\n1. **Create a Cloudflare Worker** :\r\n\r\n- Log in to your Cloudflare account and navigate to **Workers & Pages** .\r\n- Click on **Create a Worker** and select the domain associated with your blog.\r\n\r\n1. **Configure the Worker Script** :\r\n\r\n- Use the following JavaScript code as a template:\r\n\r\n  <pre class=\"!overflow-visible\"><div class=\"dark bg-gray-950 contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative\"><div class=\"flex items-center text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9\">javascript</div><div class=\"sticky top-9 md:top-[5.75rem]\"><div class=\"absolute bottom-0 right-2 flex h-9 items-center\"><div class=\"flex items-center rounded bg-token-main-surface-secondary px-2 font-sans text-xs text-token-text-secondary\"><span class=\"\" data-state=\"closed\"><button class=\"flex gap-1 items-center py-1\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" class=\"icon-sm\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z\" fill=\"currentColor\"></path></svg>Copy code</button></span></div></div></div><div class=\"overflow-y-auto p-4\" dir=\"ltr\"><code class=\"!whitespace-pre hljs language-javascript\">addEventListener('fetch', event => {\r\n    event.respondWith(handleRequest(event.request));\r\n  });\r\n\r\n  async function handleRequest(request) {\r\n    // Extract visitor's IP address\r\n    const visitorIP = request.headers.get('CF-Connecting-IP');\r\n    const visitTime = new Date().toISOString();\r\n\r\n    // Send visitor information to VPS\r\n    const vpsUrl = 'https://your-vps-domain.com/api/log'; // Replace with your VPS URL\r\n    const payload = JSON.stringify({\r\n      ip: visitorIP,\r\n      time: visitTime\r\n    });\r\n\r\n    await fetch(vpsUrl, {\r\n      method: 'POST',\r\n      headers: { 'Content-Type': 'application/json' },\r\n      body: payload\r\n    });\r\n\r\n    // Proceed with the original request\r\n    return fetch(request);\r\n  }\r\n  </code></div></div></pre>\r\n- Replace `'https://your-vps-domain.com/api/log'` with the actual URL of your VPS backend service.\r\n\r\n1. **Deploy the Worker** :\r\n\r\n- Save the script and deploy the Worker.\r\n- Ensure the Worker is active and correctly linked to your blog's domain.\r\n\r\n#### b. VPS Backend Service\r\n\r\nThe VPS backend service is responsible for:\r\n\r\n- Receiving the visitor data forwarded by the Cloudflare Worker.\r\n- Storing the data in a local file or database for future reference.\r\n\r\n  **Implementation Steps** :\r\n\r\n1. **Set Up the VPS** :\r\n\r\n- Ensure your VPS is running and accessible via the domain specified in the Worker script.\r\n\r\n1. **Install Required Software** :\r\n\r\n- Install Python and the Flask framework:\r\n  <pre class=\"!overflow-visible\"><div class=\"dark bg-gray-950 contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative\"><div class=\"flex items-center text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9\">bash</div><div class=\"sticky top-9 md:top-[5.75rem]\"><div class=\"absolute bottom-0 right-2 flex h-9 items-center\"><div class=\"flex items-center rounded bg-token-main-surface-secondary px-2 font-sans text-xs text-token-text-secondary\"><span class=\"\" data-state=\"closed\"><button class=\"flex gap-1 items-center py-1\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" class=\"icon-sm\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z\" fill=\"currentColor\"></path></svg>Copy code</button></span></div></div></div><div class=\"overflow-y-auto p-4\" dir=\"ltr\"><code class=\"!whitespace-pre hljs language-bash\">sudo apt-get update\r\n  sudo apt-get install python3 python3-pip\r\n  pip3 install flask\r\n  </code></div></div></pre>\r\n\r\n1. **Create the Flask Application** :\r\n\r\n- Develop a simple Flask app to handle incoming POST requests:\r\n\r\n  <pre class=\"!overflow-visible\"><div class=\"dark bg-gray-950 contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative\"><div class=\"flex items-center text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9\">python</div><div class=\"sticky top-9 md:top-[5.75rem]\"><div class=\"absolute bottom-0 right-2 flex h-9 items-center\"><div class=\"flex items-center rounded bg-token-main-surface-secondary px-2 font-sans text-xs text-token-text-secondary\"><span class=\"\" data-state=\"closed\"><button class=\"flex gap-1 items-center py-1\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" class=\"icon-sm\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z\" fill=\"currentColor\"></path></svg>Copy code</button></span></div></div></div><div class=\"overflow-y-auto p-4\" dir=\"ltr\"><code class=\"!whitespace-pre hljs language-python\">from flask import Flask, request\r\n  from datetime import datetime\r\n\r\n  app = Flask(__name__)\r\n\r\n  @app.route('/api/log', methods=['POST'])\r\n  def log_visit():\r\n      data = request.json\r\n      visitor_ip = data.get('ip')\r\n      visit_time = data.get('time')\r\n\r\n      # Store the data locally\r\n      with open('visitor_logs.txt', 'a') as f:\r\n          f.write(f'IP: {visitor_ip}, Time: {visit_time}\\n')\r\n\r\n      return 'Data logged successfully', 200\r\n\r\n  if __name__ == '__main__':\r\n      app.run(host='0.0.0.0', port=80)\r\n  </code></div></div></pre>\r\n- Save this script as `app.py` on your VPS.\r\n\r\n1. **Run the Application** :\r\n\r\n- Start the Flask app:\r\n  <pre class=\"!overflow-visible\"><div class=\"dark bg-gray-950 contain-inline-size rounded-md border-[0.5px] border-token-border-medium relative\"><div class=\"flex items-center text-token-text-secondary bg-token-main-surface-secondary px-4 py-2 text-xs font-sans justify-between rounded-t-md h-9\">bash</div><div class=\"sticky top-9 md:top-[5.75rem]\"><div class=\"absolute bottom-0 right-2 flex h-9 items-center\"><div class=\"flex items-center rounded bg-token-main-surface-secondary px-2 font-sans text-xs text-token-text-secondary\"><span class=\"\" data-state=\"closed\"><button class=\"flex gap-1 items-center py-1\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" class=\"icon-sm\"><path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M7 5C7 3.34315 8.34315 2 10 2H19C20.6569 2 22 3.34315 22 5V14C22 15.6569 20.6569 17 19 17H17V19C17 20.6569 15.6569 22 14 22H5C3.34315 22 2 20.6569 2 19V10C2 8.34315 3.34315 7 5 7H7V5ZM9 7H14C15.6569 7 17 8.34315 17 10V15H19C19.5523 15 20 14.5523 20 14V5C20 4.44772 19.5523 4 19 4H10C9.44772 4 9 4.44772 9 5V7ZM5 9C4.44772 9 4 9.44772 4 10V19C4 19.5523 4.44772 20 5 20H14C14.5523 20 15 19.5523 15 19V10C15 9.44772 14.5523 9 14 9H5Z\" fill=\"currentColor\"></path></svg>Copy code</button></span></div></div></div><div class=\"overflow-y-auto p-4\" dir=\"ltr\"><code class=\"!whitespace-pre hljs language-bash\">python3 app.py\r\n  </code></div></div></pre>\r\n- Ensure the app is running without errors.\r\n\r\n### 4. Security Considerations\r\n\r\n- **Restrict Access** : Configure your VPS's firewall to accept requests only from Cloudflare's IP ranges to prevent unauthorized access.\r\n- **Data Validation** : Implement proper data validation and error handling in your Flask app to mitigate potential security risks.\r\n\r\n### 5. Testing and Monitoring\r\n\r\n- **Verify Functionality** : Access your blog and check if the visitor data is correctly logged on the VPS.\r\n- **Monitor Logs** : Regularly monitor the logs to ensure the system is functioning as expected.\r\n\r\nBy following these steps, you can effectively track visitor information on your static blog without exposing your VPS to the public.\r\n\r\n"
+    },
+    {
+        "title": "一种文件加密设计",
+        "date": "2024-12-05",
+        "file": "2024-12-05-一种文件加密设计.md",
+        "excerpt": "# 一种文件加密设计\r\n\r\nA technical exploration and guide\r\n\r\n## Content\r\n\r\n\r\n\r\n# 一种文件加密设计\r\n\r\n### 需求回顾：\r\n\r\n1. **文件名保密**：你需要对文件名进行随机化，使其不能通过名称识别出文件内容或顺序。\r\n2. **映射表记录**：所有的原始文件名和重命名后的文件名必须在一个映射表中完整记录，并且保留播放顺序。\r\n3. **分组信息**：需要通过映射表来表明这些文件属于同一组，方便管理。\r\n\r\n### 详细操作步骤的回顾和改进：\r\n\r\n#### 1. **获取原始文件并排序**：\r\n\r\n- 遍历目标文件夹，读取所有文件名，并解析出文件名中的数字序号以确保顺序正确。\r\n- 如果文件名中带有固定格式（如“测试文件0001.txt”），可以提取出其中的数字部分进行排序，这样在重命名后，依然可以通过映射表还原正确顺序。\r\n\r\n#### 2. **生成随机文件名**：\r\n\r\n- 随机文件名的生成方式可以基于字母和数字的组合，长度可以控制在一定范围（如16字符或更多），确保无法通过文件名推断出内容或顺序。\r\n- 示例文件名可以是 `fk23432_2343.txt` 或 `zxmnm823mnvcn.txt`，其中：\r\n  - **字母**部分随机生成，不具有任何实际意义。\r\n  - **数字**部分也随机生成，进一步增加不可预测性。\r\n- 文件扩展名保持原样，以确保文件格式不变。\r\n\r\n#### 3. **生成并保存映射表**：\r\n\r\n- 映射表应包含以下信息：\r\n\r\n  1. **原文件名**：记录原始的文件名，便于追溯。\r\n  2. **新文件名**：记录每个文件重命名后的随机名称。\r\n  3. **顺序信息**：保留文件的顺序，确保播放或使用时能够按原顺序进行。\r\n  4. **组信息**：在映射表中增加一列，用来标识文件的组。例如，所有文件属于“Group1”。\r\n\r\n  映射表的示例可以是 CSV 格式，内容如下：\r\n\r\n```\r\n   组名, 原文件名, 新文件名, 顺序\r\n   Group1, 测试文件0001.txt, fk23432_2343.txt, 1\r\n   Group1, 测试文件0002.txt, zxmnm823mnvcn.txt, 2\r\n   Group1, 测试文件0003.txt, qwerty09876.txt, 3\r\n   ...\r\n   Group1, 测试文件0068.txt, abcdefghi123.txt, 68\r\n```\r\n\r\n   **关键要点**：\r\n\r\n- **顺序字段**：通过顺序字段，你可以确保即便文件名已被打乱，仍然可以根据映射表按原顺序处理这些文件。\r\n- **组字段**：表明这组文件是一起的，方便管理。\r\n\r\n#### 4. **文件重命名**：\r\n\r\n- 使用映射表中的新文件名，对文件逐个进行实际重命名。\r\n- 确保文件的扩展名保持不变。\r\n- 文件重命名完成后，目录中的文件名应完全随机化且无规律可循。\r\n\r\n#### 5. **验证和安全性**：\r\n\r\n- **映射表的安全性**：因为映射表包含了原文件名与新文件名的对应关系，它是所有文件的核心。如果映射表丢失或泄露，保密性将受到影响。因此：\r\n\r\n  - **加密映射表**：可以对映射表进行加密存储，确保只有授权用户能够读取它。\r\n  - **备份映射表**：将映射表妥善备份，确保其不会意外丢失。\r\n  - **访问控制**：限制映射表的访问权限，确保只有你或授权人员能够读取和更新它。\r\n- **重命名验证**：在重命名之后，可以通过映射表对文件逐一验证，确保所有文件都已正确重命名，并且顺序没有错乱。\r\n\r\n#### 6. **进一步优化的建议**：\r\n\r\n- **文件名冲突检测**：确保生成的随机文件名不会与已有文件名冲突。如果存在潜在的冲突情况，可以在生成文件名时增加冲突检测机制，避免重名。\r\n- **程序化自动化**：你可以通过脚本（如 Python、Lua 等）来自动完成上述流程，确保过程高效、准确，并减少人为错误。\r\n\r\n#### 示例流程图：\r\n\r\n```\r\n获取文件 -> 解析文件名顺序 -> 生成随机文件名 -> 更新映射表 -> 执行重命名 -> 验证和安全管理\r\n```\r\n\r\n总结：\r\n\r\n你现在有一套完整的逻辑来管理这批文件：\r\n\r\n- **文件名的完全随机化**确保保密性。\r\n- **映射表**作为文件顺序和原始名称的唯一桥梁，确保保留文件的本质和顺序。\r\n- **分组信息**便于将这些文件作为一个整体来管理。\r\n\r\n### 对文件进行哈希处理\r\n\r\n1. **完整性验证**：\r\n\r\n   - **哈希值**可以作为每个文件的唯一标识符，确保文件在重命名、传输或存储过程中没有被篡改或损坏。\r\n   - 在你重命名文件后，哈希值可以帮助你验证文件是否与原始文件一致，防止因重命名或其他操作导致文件内容意外发生变化。\r\n2. **防篡改性**：\r\n\r\n   - 哈希值使得任何对文件的改动（例如文件内容的修改）都能被快速检测到。即使文件名已经改变，如果内容发生任何变化，哈希值也会随之改变，你可以通过检查哈希值确认文件是否遭到篡改。\r\n3. **文件的唯一标识**：\r\n\r\n   - 哈希值可以作为文件的指纹，即使文件名被更改，文件的哈希值依然唯一，能够帮助识别重复文件或检测文件的冲突。\r\n4. **进一步保护隐私**：\r\n\r\n   - 哈希值可以让你在映射表中进一步隐藏文件的内容。即便其他人获得了映射表，他们也无法通过哈希值推断出文件的实际内容，但你依然可以通过哈希值验证文件的真实性和一致性。\r\n\r\n#### 何时进行哈希处理：\r\n\r\n你可以在文件重命名之前或之后对文件进行哈希处理，具体操作取决于需求：\r\n\r\n1. **重命名前的哈希处理**：这样可以确保哈希值与原始文件一致，你可以使用哈希值来验证原始文件是否被更改。\r\n2. **重命名后的哈希处理**：如果你希望验证重命名后的文件是否与原文件一致，重命名后进行哈希计算也可以。\r\n\r\n#### 记录哈希值的映射表结构：\r\n\r\n映射表中可以增加一列哈希值，记录文件的哈希值，形成如下结构：\r\n\r\n```\r\n组名, 原文件名, 新文件名, 顺序, 哈希值\r\nGroup1, 测试文件0001.txt, fk23432_2343.txt, 1, 3d20e355a2b9ed3fd1621fd3b6a83572\r\nGroup1, 测试文件0002.txt, zxmnm823mnvcn.txt, 2, d3486ae9136e7856bc42212385ea7970\r\n...\r\nGroup1, 测试文件0068.txt, abcdefghi123.txt, 68, aab3238922bcc25a6f606eb525ffdc56\r\n```\r\n\r\n#### 使用哈希算法：\r\n\r\n常见的哈希算法有：\r\n\r\n- **MD5**：生成较短的哈希值，速度快，但安全性较弱（可以通过碰撞攻击破解）。\r\n- **SHA-256**：生成更长且更安全的哈希值，适用于需要高安全性的场景。\r\n\r\n你可以根据需求选择不同的哈希算法来计算文件的哈希值。\r\n\r\n#### 是否有必要使用哈希值：\r\n\r\n- 如果你希望进一步确保文件在重命名和管理过程中不会被篡改，或是需要对文件完整性进行验证，**哈希值是非常有用的**。\r\n- 如果你只关心文件名的保密性，而不关心文件内容的完整性或防篡改性，那么哈希处理可能不是绝对必要的。\r\n\r\n#### 总结：\r\n\r\n对文件进行哈希处理并记录在映射表中，可以提升文件管理过程中的**安全性**和**完整性验证**。如果你认为文件的内容完整性和篡改防护是重要的，这个步骤是非常值得的。\r\n\r\n你可以根据实际需求选择是否进行哈希处理。如果你决定执行哈希操作，后续我们可以讨论如何集成到你现有的流程中。\r\n\r\n# Demo\r\n\r\n### 映射表的字段：\r\n\r\n1. **组名**：表示这些文件属于同一组，比如 Group1。\r\n2. **原文件名**：文件的原始名称，记录文件的实际内容和来源。\r\n3. **新文件名**：随机生成的文件名，确保无法通过文件名推测内容或顺序。\r\n4. **文件顺序**：文件在播放或处理时的顺序，用于保持原来的顺序。\r\n5. **哈希值**：通过哈希算法生成的唯一值，确保文件内容没有被篡改。常用的哈希算法包括 MD5、SHA-256 等。\r\n6. **加密密钥/加密信息**：用于记录文件加密时使用的密钥或算法。如果你使用的是对称加密（如 AES），这里可以记录加密密钥。如果使用的是非对称加密（如 RSA），可以记录公钥/私钥信息。\r\n7. **分块信息**（如果文件被切分）：用于记录文件被分块后的块号及每个块的加密信息，确保还原时能够正确组装文件。\r\n8. **文件类型/扩展名**：如果你使用了自定义文件类型或隐藏了文件的扩展名，可以记录原始的文件类型，确保解密后能够正确识别文件类型。\r\n\r\n### 示例映射表：\r\n\r\n| 组名   | 原文件名         | 新文件名          | 文件顺序 | 哈希值                               | 加密密钥/加密信息 | 分块信息            | 文件类型/扩展名 |\r\n| "
+    },
+    {
+        "title": "构建CPLUSPLUS测试环境",
+        "date": "2024-12-05",
+        "file": "2024-12-05-构建CPLUSPLUS测试环境.md",
+        "excerpt": ""
+    },
+    {
+        "title": "构建Python开发环境",
+        "date": "2024-12-05",
+        "file": "2024-12-05-构建Python开发环境.md",
+        "excerpt": "# 构建PYTHON开发环境\r\n\r\nA technical exploration and guide\r\n\r\n## Content\r\n\r\n\r\n\r\n# 使用 Docker Desktop + Python 镜像 + VS Code + Remote Development (Dev Containers) 构建 Python 开发环境\r\n\r\n本文档描述了如何使用 Docker Desktop、Python 官方镜像、VS Code 和 Remote Development (Dev Containers) 插件来构建一个完整的 Python 开发环境，并演示如何编写、运行 Python 代码。\r\n\r\n## 1. 环境准备\r\n\r\n### 1.1 安装 Docker Desktop\r\n\r\n确保你已经安装了 [Docker Desktop](https://www.docker.com/products/docker-desktop)。安装后，确保 Docker 正在运行，并可以通过命令行访问。\r\n\r\n### 1.2 安装 VS Code\r\n\r\n下载并安装 [VS Code](https://code.visualstudio.com/)，这是一个非常流行的跨平台编辑器。\r\n\r\n### 1.3 安装 Remote Development 插件包\r\n\r\n在 VS Code 中，安装 **Remote Development** 插件包。它包括：\r\n\r\n- **Remote - SSH**\r\n- **Remote - WSL**\r\n- **Dev Containers**\r\n\r\n#### 安装步骤：\r\n\r\n1. 打开 VS Code，按下 `Ctrl+Shift+X` 打开扩展面板。\r\n2. 在搜索栏中输入 **Remote Development**。\r\n3. 找到由 Microsoft 发布的 **Remote Development**，点击安装。\r\n\r\n## 2. 拉取 Python Docker 镜像\r\n\r\n使用 Docker 官方的 `python` 镜像来作为开发环境。你可以通过以下命令来拉取镜像：\r\n\r\n```bash\r\ndocker pull python:latest\r\n```\r\n\r\n拉取后，`python` 镜像将可以在你的本地 Docker 中使用。\r\n\r\n## 3. 创建并运行 Docker 容器\r\n\r\n使用以下命令创建并启动容器，同时将本地工作目录挂载到容器中，以便在容器中进行开发：\r\n\r\n```bash\r\ndocker run -it -v ${PWD}:/workspace -w /workspace python:latest bash\r\n```\r\n\r\n- `-it`：启动交互模式。\r\n- `-v ${PWD}:/workspace`：将本地工作目录挂载到容器的 `/workspace` 目录。\r\n- `-w /workspace`：容器启动时的工作目录。\r\n- `python:latest`：使用最新版本的 `python` 镜像。\r\n- `bash`：进入容器的 Bash shell。\r\n\r\n这条命令启动后，你将进入容器的 Bash 环境，可以在其中编写和运行 Python 代码。\r\n\r\n## 4. 在 VS Code 中使用 Dev Containers 连接容器\r\n\r\n### 4.1 使用 Dev Containers 插件连接容器\r\n\r\n1. 在 VS Code 中按下 `F1` 或 `Ctrl+Shift+P`，调出命令面板。\r\n2. 输入并选择 **Dev Containers: Attach to Running Container**。\r\n3. VS Code 会列出所有正在运行的容器，选择你使用 `python` 镜像启动的容器。\r\n4. 连接后，你将可以在 VS Code 中像平常一样编辑容器中的文件。\r\n\r\n### 4.2 验证连接\r\n\r\n成功连接容器后，VS Code 左下角会显示一个绿色的 \"Dev Container\" 标志，表示你正在容器环境中开发。\r\n\r\n## 5. 编写、运行 Python 代码\r\n\r\n### 5.1 创建一个测试文件\r\n\r\n在容器中或在 VS Code 中，创建一个 Python 文件，例如 `hello.py`：\r\n\r\n```python\r\nprint(\"Hello, Docker and VS Code!\")\r\n```\r\n\r\n### 5.2 运行 Python 文件\r\n\r\n在 VS Code 的终端中，使用 Python 来运行文件：\r\n\r\n```bash\r\npython hello.py\r\n```\r\n\r\n你应该会看到输出：\r\n\r\n```bash\r\nHello, Docker and VS Code!\r\n```\r\n\r\n## 6. 使用 `docker-compose` 管理容器\r\n\r\n为了简化容器管理，您可以创建一个 `docker-compose.yml` 文件，以便更方便地启动和管理容器。示例如下：\r\n\r\n```yaml\r\nversion: \"3\"\r\nservices:\r\n  python-dev:\r\n    image: python:latest\r\n    container_name: python_dev_container\r\n    volumes:\r\n      - ./mytest:/workspace\r\n    working_dir: /workspace\r\n    stdin_open: true\r\n    tty: true\r\n```\r\n\r\n- 在项目目录下创建 `docker-compose.yml` 文件。\r\n- 使用以下命令启动容器：\r\n\r\n```bash\r\ndocker-compose up -d\r\n```\r\n\r\n该配置文件会自动挂载当前目录的 `./mytest` 文件夹到容器中的 `/workspace` 目录。\r\n\r\n# Python 容器与 Docker Compose 配置指南\r\n\r\n#### 1. 安装 Docker 和 Docker Compose\r\n\r\n确保已经安装了 Docker 和 Docker Compose。如果还未安装，可以参考 [Docker 官方网站](https://www.docker.com/get-started) 进行安装。\r\n\r\n#### 2. 创建 `Dockerfile`\r\n\r\n首先，创建一个 `Dockerfile` 用于定义 Python 容器的构建流程。\r\n\r\n```dockerfile\r\n# 使用官方 Python 基础镜像\r\nFROM python:3.9-slim\r\n\r\n# 设置工作目录\r\nWORKDIR /app\r\n\r\n# 复制当前目录的内容到容器的 /app 目录\r\nCOPY . /app\r\n\r\n# 安装依赖\r\nRUN pip install --upgrade pip\r\nRUN pip install -r requirements.txt\r\n\r\n# 暴露端口\r\nEXPOSE 5000\r\n\r\n# 运行应用\r\nCMD [\"python\", \"app.py\"]\r\n```\r\n\r\n#### 3. 创建 `requirements.txt`\r\n\r\n`requirements.txt` 文件记录项目所需的 Python 库。可以通过以下命令生成：\r\n\r\n```bash\r\npip freeze > requirements.txt\r\n```\r\n\r\n该命令将当前 Python 环境中的所有依赖库导出到 `requirements.txt` 中。\r\n\r\n#### 4. 创建 `docker-compose.yml`\r\n\r\n`docker-compose.yml` 是 Docker Compose 的配置文件。它定义了服务、网络和卷等内容。创建以下内容的 `docker-compose.yml` 文件：\r\n\r\n```yaml\r\nversion: \"3\"\r\n\r\nservices:\r\n  app:\r\n    build: .\r\n    ports:\r\n      - \"5000:5000\"\r\n    volumes:\r\n      - .:/app\r\n    environment:\r\n      - PYTHONUNBUFFERED=1\r\n    depends_on:\r\n      - db\r\n\r\n  db:\r\n    image: postgres:13\r\n    environment:\r\n      POSTGRES_USER: exampleuser\r\n      POSTGRES_PASSWORD: examplepass\r\n      POSTGRES_DB: exampledb\r\n    volumes:\r\n      - postgres_data:/var/lib/postgresql/data\r\n\r\nvolumes:\r\n  postgres_data:\r\n```\r\n\r\n- `app` 服务使用 Dockerfile 来构建，并将项目目录映射到容器内的 `/app` 目录，确保在本地更改代码后，容器内的代码也会自动更新。\r\n- `db` 服务使用 Postgres 数据库作为示例，并通过环境变量来设置数据库用户名、密码和数据库名。\r\n\r\n#### 5. 使用 Docker Compose 构建和启动容器\r\n\r\n在项目目录下，运行以下命令构建并启动服务：\r\n\r\n```bash\r\ndocker-compose up --build\r\n```\r\n\r\n- `--build` 选项用于在启动容器之前重新构建镜像。\r\n- 这将启动 `app` 和 `db` 两个容器，Python 应用会通过 5000 端口对外提供服务。\r\n\r\n#### 6. 后续操作和依赖管理\r\n\r\n在开发过程中，如果需要添加新的依赖库，可以通过以下命令安装新库：\r\n\r\n```bash\r\npip install new-package\r\n```\r\n\r\n然后更新 `requirements.txt`：\r\n\r\n```bash\r\npip freeze > requirements.txt\r\n```\r\n\r\n接着运行以下命令重新构建并启动容器：\r\n\r\n```bash\r\ndocker-compose up --build\r\n```\r\n\r\n#### 7. 常用 Docker Compose 命令\r\n\r\n- 启动服务（在后台运行）：\r\n\r\n```bash\r\ndocker-compose up -d\r\n```\r\n\r\n- 停止服务：\r\n\r\n```bash\r\ndocker-compose down\r\n```\r\n\r\n- 查看服务日志：\r\n\r\n```bash\r\ndocker-compose logs\r\n```\r\n\r\n- 只重新构建应用服务：\r\n\r\n```bash\r\ndocker-compose up --build app\r\n```\r\n\r\n- 进入正在运行的容器：\r\n\r\n```bash\r\ndocker-compose exec app bash\r\n```\r\n\r\n"
+    },
+    {
+        "title": "模拟器的使用方法",
+        "date": "2024-12-05",
+        "file": "2024-12-05-模拟器的使用方法.md",
+        "excerpt": ""
     }
-
-    
 ]
