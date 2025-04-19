@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP法规下的计算机系统化验证(CSV)流程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 1.25rem;
+            top: 2.5rem;
+            height: calc(100% - 2.5rem);
+            width: 2px;
+            background-color: #3b82f6;
+        }
+        .document-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .phase-card:hover {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        .glow {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- 导航栏 -->
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-laptop-medical text-2xl"></i>
+                <span class="text-xl font-bold">GxP CSV验证专家</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#overview" class="hover:text-blue-200 transition">概述</a>
+                <a href="#process" class="hover:text-blue-200 transition">验证流程</a>
+                <a href="#documents" class="hover:text-blue-200 transition">关键文档</a>
+                <a href="#resources" class="hover:text-blue-200 transition">资源</a>
+            </div>
+            <button class="md:hidden text-xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">GxP法规下的计算机系统验证(CSV)</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">符合国内外法规要求的计算机系统验证全生命周期管理</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#process" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-blue-50 transition flex items-center">
+                    <i class="fas fa-play-circle mr-2"></i> 开始学习
+                </a>
+                <a href="#resources" class="border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-blue-600 transition flex items-center">
+                    <i class="fas fa-book-open mr-2"></i> 参考资料
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 概述部分 -->
+    <section id="overview" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">什么是CSV?</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-4xl mx-auto text-lg">
+                    计算机系统验证(Computer System Validation, CSV)是GxP(包括GMP, GLP, GCP等)法规要求下的一个系统化过程，用于证明计算机化系统能够按照预定用途持续稳定地运行，并符合国内外法规要求。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition">
+                    <div class="text-blue-500 text-4xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">合规性</h3>
+                    <p class="text-gray-600">确保系统符合FDA 21 CFR Part 11, EU Annex 11, NMPA附录等国内外法规和GAMP 5指南要求</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition">
+                    <div class="text-blue-500 text-4xl mb-4">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">数据完整性</h3>
+                    <p class="text-gray-600">确保数据的ALCOA+属性（可追溯、清晰、同步、原始、准确、完整、一致、持久、可用）</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 hover:border-blue-300 transition">
+                    <div class="text-blue-500 text-4xl mb-4">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3 text-gray-800">风险管理</h3>
+                    <p class="text-gray-600">基于ICH Q9的风险管理方法，重点关注对产品质量和患者安全有影响的系统功能</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 验证流程部分 -->
+    <section id="process" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">CSV验证流程</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-4xl mx-auto text-lg">
+                    计算机系统验证遵循GAMP 5生命周期模型，从需求定义到退役，确保系统在整个生命周期内保持验证状态。
+                </p>
+            </div>
+            
+            <!-- 时间线流程 -->
+            <div class="max-w-4xl mx-auto">
+                <div class="relative">
+                    <!-- 规划阶段 -->
+                    <div class="relative timeline-item pl-16 pb-10">
+                        <div class="phase-card bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 hover:border-blue-700 transition">
+                            <div class="absolute -left-4 top-0 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">1. 规划阶段</h3>
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">主要活动:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>确定验证范围和策略</li>
+                                        <li>组建验证团队</li>
+                                        <li>制定验证主计划</li>
+                                        <li>进行初步风险评估</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">输出文档:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>验证主计划(VMP)</li>
+                                        <li>项目计划</li>
+                                        <li>初步风险评估报告</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 规范阶段 -->
+                    <div class="relative timeline-item pl-16 pb-10">
+                        <div class="phase-card bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 hover:border-blue-700 transition">
+                            <div class="absolute -left-4 top-0 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">2. 规范阶段</h3>
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">主要活动:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>收集和定义用户需求</li>
+                                        <li>制定功能规范</li>
+                                        <li>进行详细风险评估</li>
+                                        <li>执行设计确认(DQ)</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">输出文档:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>用户需求说明(URS)</li>
+                                        <li>功能需求说明(FRS)</li>
+                                        <li>风险评估报告(RA)</li>
+                                        <li>设计确认报告(DQ)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 设计与开发阶段 -->
+                    <div class="relative timeline-item pl-16 pb-10">
+                        <div class="phase-card bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 hover:border-blue-700 transition">
+                            <div class="absolute -left-4 top-0 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">3. 设计与开发阶段</h3>
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">主要活动:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>系统设计与开发</li>
+                                        <li>配置管理</li>
+                                        <li>单元测试和集成测试</li>
+                                        <li>制定测试计划和用例</li>
+                                        <li>准备操作和维护程序</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">输出文档:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>设计说明(DS)</li>
+                                        <li>配置管理文档</li>
+                                        <li>源代码审查记录</li>
+                                        <li>测试计划</li>
+                                        <li>标准操作程序(SOP)草案</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 验证测试阶段 -->
+                    <div class="relative timeline-item pl-16 pb-10">
+                        <div class="phase-card bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 hover:border-blue-700 transition">
+                            <div class="absolute -left-4 top-0 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">4. 验证测试阶段</h3>
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">主要活动:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>执行安装确认(IQ)</li>
+                                        <li>执行操作确认(OQ)</li>
+                                        <li>执行性能确认(PQ)</li>
+                                        <li>进行用户验收测试(UAT)</li>
+                                        <li>验证审计追踪功能</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">输出文档:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>IQ/OQ/PQ协议和报告</li>
+                                        <li>测试用例和测试脚本</li>
+                                        <li>偏差报告</li>
+                                        <li>测试总结报告</li>
+                                        <li>审计追踪验证记录</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 运行维护阶段 -->
+                    <div class="relative timeline-item pl-16 pb-10">
+                        <div class="phase-card bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 hover:border-blue-700 transition">
+                            <div class="absolute -left-4 top-0 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">5. 运行维护阶段</h3>
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">主要活动:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>系统上线和培训</li>
+                                        <li>变更控制管理</li>
+                                        <li>定期审核和再验证</li>
+                                        <li>备份和灾难恢复</li>
+                                        <li>审计追踪定期审核</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">输出文档:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>系统放行报告</li>
+                                        <li>变更控制记录</li>
+                                        <li>定期审核报告</li>
+                                        <li>备份和恢复记录</li>
+                                        <li>审计追踪审核记录</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 退役阶段 -->
+                    <div class="relative pl-16">
+                        <div class="phase-card bg-white p-6 rounded-lg shadow-md border-l-4 border-blue-500 hover:border-blue-700 transition">
+                            <div class="absolute -left-4 top-0 w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center">
+                                <i class="fas fa-archive"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">6. 退役阶段</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">主要活动:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>数据迁移或归档</li>
+                                        <li>系统停用</li>
+                                        <li>验证状态终止</li>
+                                        <li>退役后数据访问控制</li>
+                                        <li>经验教训总结</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-blue-600 mb-2">输出文档:</h4>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                                        <li>退役计划</li>
+                                        <li>数据迁移验证报告</li>
+                                        <li>退役报告</li>
+                                        <li>数据保留和访问控制方案</li>
+                                        <li>经验教训文档</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关键文档部分 -->
+    <section id="documents" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">CSV关键文档</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-4xl mx-auto text-lg">
+                    计算机系统验证过程中产生的一系列文档是证明系统合规性的关键证据，也是监管检查的重点。
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 文档卡片1 -->
+                <div class="document-card bg-gray-50 p-6 rounded-xl border border-gray-200 transition hover:shadow-lg">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-file-contract text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">验证主计划(VMP)</h3>
+                    <p class="text-gray-600 mb-4">概述整个验证项目的策略、方法、职责和可交付成果的高级文档。</p>
+                    <div class="bg-blue-50 text-blue-600 text-sm px-3 py-1 rounded-full inline-flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> 规划阶段
+                    </div>
+                </div>
+                
+                <!-- 文档卡片2 -->
+                <div class="document-card bg-gray-50 p-6 rounded-xl border border-gray-200 transition hover:shadow-lg">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-clipboard-list text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">用户需求说明(URS)</h3>
+                    <p class="text-gray-600 mb-4">详细描述系统预期用途和用户需求的文档，是验证的基础。</p>
+                    <div class="bg-blue-50 text-blue-600 text-sm px-3 py-1 rounded-full inline-flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> 规范阶段
+                    </div>
+                </div>
+                
+                <!-- 文档卡片3 -->
+                <div class="document-card bg-gray-50 p-6 rounded-xl border border-gray-200 transition hover:shadow-lg">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-file-check text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">设计确认报告(DQ)</h3>
+                    <p class="text-gray-600 mb-4">确认系统设计符合用户需求和法规要求的正式记录。</p>
+                    <div class="bg-blue-50 text-blue-600 text-sm px-3 py-1 rounded-full inline-flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> 规范阶段
+                    </div>
+                </div>
+                
+                <!-- 文档卡片4 -->
+                <div class="document-card bg-gray-50 p-6 rounded-xl border border-gray-200 transition hover:shadow-lg">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-file-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">功能需求说明(FRS)</h3>
+                    <p class="text-gray-600 mb-4">详细描述系统如何满足用户需求的技术规范文档。</p>
+                    <div class="bg-blue-50 text-blue-600 text-sm px-3 py-1 rounded-full inline-flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> 规范阶段
+                    </div>
+                </div>
+                
+                <!-- 文档卡片5 -->
+                <div class="document-card bg-gray-50 p-6 rounded-xl border border-gray-200 transition hover:shadow-lg">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-file-invoice text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">IQ/OQ/PQ协议和报告</h3>
+                    <p class="text-gray-600 mb-4">安装确认、操作确认和性能确认的测试计划和结果报告。</p>
+                    <div class="bg-blue-50 text-blue-600 text-sm px-3 py-1 rounded-full inline-flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> 验证测试阶段
+                    </div>
+                </div>
+                
+                <!-- 文档卡片6 -->
+                <div class="document-card bg-gray-50 p-6 rounded-xl border border-gray-200 transition hover:shadow-lg">
+                    <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-archive text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">退役计划与报告</h3>
+                    <p class="text-gray-600 mb-4">包含数据迁移验证和退役后访问控制的系统退役文档。</p>
+                    <div class="bg-blue-50 text-blue-600 text-sm px-3 py-1 rounded-full inline-flex items-center">
+                        <i class="fas fa-check-circle mr-2"></i> 退役阶段
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资源部分 -->
+    <section id="resources" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">参考资料</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+                <p class="text-gray-600 max-w-4xl mx-auto text-lg">
+                    以下是与计算机系统验证相关的重要法规、指南和标准
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">主要法规和指南</h3>
+                        
+                        <div class="space-y-4">
+                            <!-- 资源1 -->
+                            <div class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-gavel text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">FDA 21 CFR Part 11</h4>
+                                    <p class="text-gray-600 text-sm">电子记录和电子签名的法规要求</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 资源2 -->
+                            <div class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-book text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">EU Annex 11</h4>
+                                    <p class="text-gray-600 text-sm">欧盟GMP附录11 - 计算机化系统</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 资源3 -->
+                            <div class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-file-signature text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">NMPA《计算机化系统附录》</h4>
+                                    <p class="text-gray-600 text-sm">中国药品GMP计算机化系统附录</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 资源4 -->
+                            <div class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-industry text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">GAMP 5</h4>
+                                    <p class="text-gray-600 text-sm">良好自动化生产实践指南第5版</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 资源5 -->
+                            <div class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-globe-americas text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">ICH Q7</h4>
+                                    <p class="text-gray-600 text-sm">原料药GMP指南</p>
+                                </div>
+                            </div>
+                            
+                            <!-- 资源6 -->
+                            <div class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition">
+                                <div class="bg-blue-100 text-blue-600 p-3 rounded-lg mr-4">
+                                    <i class="fas fa-shield-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-800">ICH Q9</h4>
+                                    <p class="text-gray-600 text-sm">质量风险管理指南</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">常见问题</h2>
+                <div class="w-24 h-1 bg-blue-500 mx-auto mb-6"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-4">
+                    <!-- 问题1 -->
+                    <div class="bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <button class="faq-toggle w-full text-left p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-gray-800">什么是GxP环境下的CSV?</h3>
+                            <i class="fas fa-chevron-down text-blue-500 transition-transform"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                GxP环境下的计算机系统验证(CSV)是指在制药、生物技术、医疗器械等受监管行业中，通过系统化的过程证明计算机化系统能够按照预定用途持续稳定地运行，并符合相关法规要求(如GMP, GLP, GCP等)。其核心目标是确保系统的可靠性和数据完整性，从而保障产品质量和患者安全。现代CSV强调基于风险的方法和全生命周期管理，遵循GAMP 5等国际指南。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题2 -->
+                    <div class="bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <button class="faq-toggle w-full text-left p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-gray-800">设计确认(DQ)在CSV中的重要性是什么?</h3>
+                            <i class="fas fa-chevron-down text-blue-500 transition-transform"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                设计确认(DQ)是验证流程中确认设计符合需求的关键步骤，FDA指南明确要求进行DQ。其主要重要性体现在：
+                                <br><br>
+                                1. 确保系统设计符合用户需求(URS)和法规要求
+                                <br>
+                                2. 在设计阶段识别和解决潜在问题，降低后期变更成本
+                                <br>
+                                3. 为后续IQ/OQ/PQ测试提供基础
+                                <br>
+                                4. 证明系统设计适合其预期用途
+                                <br>
+                                5. 满足监管机构对"设计空间"概念的要求
+                                <br><br>
+                                DQ通常在规范阶段完成后进行，是GAMP 5生命周期模型中的关键质量控制点。
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- 问题3 -->
+                    <div class="bg-gray-50 rounded-xl overflow-hidden border border-gray-200">
+                        <button class="faq-toggle w-full text-left p-6 flex justify-between items-center">
+                            <h3 class="text-lg font-semibold text-gray-800">系统退役后需要注意哪些数据完整性要求?</h3>
+                            <i class="fas fa-chevron-down text-blue-500 transition-transform"></i>
+                        </button>
+                        <div class="faq-content px-6 pb-6 hidden">
+                            <p class="text-gray-600">
+                                根据EU GMP等法规要求，系统退役后仍需保证数据的可追溯性和完整性，具体要求包括：
+                                <br><br>
+                                1. 数据迁移验证：确保迁移过程中数据的完整性、准确性和一致性
+                                <br>
+                                2. 访问控制：退役系统应保持只读状态，防止数据篡改
+                                <br>
+                                3. 数据保留：根据法规要求确定保留期限(通常至少药品有效期后1年)
+                                <br>
+                                4. 备份管理：定期验证备份数据的可恢复性
+                                <br>
+                                5. 审计追踪：保留原始系统的审计追踪记录
+                                <br>
+                                6. 文档记录：详细记录退役过程和后续管理措施
+                                <br><br>
+                                这些要求应在退役计划中明确规定，并通过退役报告证明合规性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-laptop-medical mr-2"></i> GxP CSV验证专家
+                    </h3>
+                    <p class="text-gray-400">
+                        提供专业的计算机系统验证咨询服务，帮助制药、生物技术和医疗器械企业满足国内外GxP法规要求。
+                    </p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#overview" class="text-gray-400 hover:text-white transition">概述</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-white transition">验证流程</a></li>
+                        <li><a href="#documents" class="text-gray-400 hover:text-white transition">关键文档</a></li>
+                        <li><a href="#resources" class="text-gray-400 hover:text-white transition">参考资料</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">联系我们</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> info@csv-expert.com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2"></i> +86 10 1234 5678
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i> 北京市朝阳区科学园南里
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 GxP CSV验证专家. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // FAQ切换
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
