@@ -179,8 +179,9 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "f0e7335bb564ff92",
+  "active": "1f520589897a115b",
   "lastOpenFiles": [
+    "posts/index.json",
     "posts/test04-19.md",
     "posts/2024-12-05-一种文件加密设计.md",
     "posts/2024-12-05-WSL.md",
