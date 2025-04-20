@@ -1,0 +1,31 @@
+[
+    {
+        "title": "构建 Python 开发环境",
+        "date": "2024-12-05",
+        "file": "2024-12-05-构建Python开发环境.md",
+        "author": "Lifu",
+        "version": "v0.1.1"
+    },
+    {
+        "title": "另一篇很棒的文章",
+        "date": "2023-10-29",
+        "file": "2023-10-29-another-great-post.md",
+        "excerpt": "这只是一个占位符示例。"
+    },
+    {
+        "title": "我的第一篇博客",
+        "date": "2023-10-27",
+        "file": "2023-10-27-my-first-post.md",
+        "excerpt": "这是我博客的第一篇文章，介绍博客的搭建过程。",
+        "author": "liulifu",
+        "version": "v1.0",
+        "license": "CC BY-SA 4.0"
+    },
+    {
+        "title": "关于 Showdown.js 的使用",
+        "date": "2023-10-26",
+        "file": "2023-10-26-using-showdown.md",
+        "excerpt": "如何在静态页面中用 Showdown 渲染 Markdown。",
+        "license": "MIT"
+    }
+]
