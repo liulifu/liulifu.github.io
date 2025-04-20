@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2025-04-19.md",
+                "file": "posts/index.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "2025-04-19 的出链列表"
+              "title": "index 的出链列表"
             }
           },
           {
@@ -129,7 +129,7 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true,
-                "showSearch": false,
+                "showSearch": true,
                 "searchQuery": ""
               },
               "icon": "lucide-tags",
@@ -179,7 +179,7 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1ad146a599ddff0b",
+  "active": "f0e7335bb564ff92",
   "lastOpenFiles": [
     "posts/test04-19.md",
     "posts/2024-12-05-一种文件加密设计.md",
