@@ -179,8 +179,10 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "1ad146a599ddff0b",
+  "active": "1f520589897a115b",
   "lastOpenFiles": [
+    "generate_index.py",
+    "posts/index.md",
     "README.md",
     "posts/test04-19.md",
     "未命名.canvas",
