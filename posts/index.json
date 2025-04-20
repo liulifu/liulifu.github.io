@@ -1,5 +1,12 @@
 [
     {
+        "title": "在线程序",
+        "date": "2024-12-05",
+        "file": "tools_list.md",
+        "author": "Lifu",
+        "license": "Apache"
+    },
+    {
         "title": "构建 Python 开发环境",
         "date": "2024-12-05",
         "file": "2024-12-05-构建Python开发环境.md",
@@ -7,25 +14,83 @@
         "version": "v0.1.1"
     },
     {
-        "title": "另一篇很棒的文章",
-        "date": "2023-10-29",
-        "file": "2023-10-29-another-great-post.md",
-        "excerpt": "这只是一个占位符示例。"
+        "title": "一种加密设计",
+        "date": "2024-12-05",
+        "file": "2024-12-05-一种文件加密设计.md",
+        "author": "Lifu",
+        "version": "v0.1",
+        "license": "CC BY-SA 4.0"
+    },
+    {
+        "title": "k8s教程1",
+        "date": "2024-12-05",
+        "file": "K8s_1.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "k8s教程2",
+        "date": "2024-12-05",
+        "file": "K8s_2.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "k8s教程3",
+        "date": "2024-12-05",
+        "file": "K8s_3.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "k8s教程4",
+        "date": "2024-12-05",
+        "file": "K8s_4.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "k8s教程5",
+        "date": "2024-12-05",
+        "file": "K8s_5.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "k8s教程6",
+        "date": "2024-12-05",
+        "file": "K8s_6.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "k8s教程7",
+        "date": "2024-12-05",
+        "file": "K8s_7.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "k8s教程8",
+        "date": "2024-12-05",
+        "file": "K8s_8.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
+        "title": "Oracle PDB Guide",
+        "date": "2024-12-05",
+        "file": "oracle-pdb-guide.md",
+        "author": "Lifu",
+        "license": "MIT"
     },
     {
         "title": "我的第一篇博客",
         "date": "2023-10-27",
-        "file": "2023-10-27-my-first-post.md",
+        "file": "本Blog架构.md",
         "excerpt": "这是我博客的第一篇文章，介绍博客的搭建过程。",
         "author": "liulifu",
         "version": "v1.0",
         "license": "CC BY-SA 4.0"
-    },
-    {
-        "title": "关于 Showdown.js 的使用",
-        "date": "2023-10-26",
-        "file": "2023-10-26-using-showdown.md",
-        "excerpt": "如何在静态页面中用 Showdown 渲染 Markdown。",
-        "license": "MIT"
     }
 ]
