@@ -1,5 +1,12 @@
 [
     {
+        "title": "静态博客的浏览器缓存问题",
+        "date": "2025-04-20",
+        "file": "静态博客的浏览器缓存问题.md",
+        "author": "Lifu",
+        "license": "MIT"
+    },
+    {
         "title": "在线程序",
         "date": "2024-12-05",
         "file": "tools_list.md",
