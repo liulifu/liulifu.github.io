@@ -1,5 +1,11 @@
 [
     {
+        "title": "部署DeepSite",
+        "date": "2025-05-06",
+        "file": "deepsite_deployment.md",
+        "author": "Lifu"
+    },
+    {
         "title": "静态博客的浏览器缓存问题",
         "date": "2025-04-20",
         "file": "静态博客的浏览器缓存问题.md",
