@@ -278,23 +278,53 @@ def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
             print("Warning: Not in a Git repository, skipping Git operations.")
             return True
 
+        # 先拉取远程更改以避免冲突
+        print("🔄 Pulling latest changes from remote...")
+        try:
+            subprocess.run(['git', 'pull', 'origin', 'main'],
+                          cwd=SCRIPT_DIR, check=True, capture_output=True)
+            print("✅ Successfully pulled remote changes")
+        except subprocess.CalledProcessError as e:
+            print(f"⚠️  Pull failed, continuing with local changes: {e}")
+
         # 添加文件
         subprocess.run(['git', 'add', 'posts/index.md', 'posts/index.json'],
                       cwd=SCRIPT_DIR, check=True)
+
+        # 检查是否有更改需要提交
+        result = subprocess.run(['git', 'diff', '--cached', '--quiet'],
+                              cwd=SCRIPT_DIR, capture_output=True)
+        if result.returncode == 0:
+            print("ℹ️  No changes to commit")
+            return True
 
         # 提交
         commit_message = GIT_COMMIT_MESSAGE_TEMPLATE.format(action=action, count=count)
         subprocess.run(['git', 'commit', '-m', commit_message],
                       cwd=SCRIPT_DIR, check=True)
 
-        # 推送
-        subprocess.run(['git', 'push'], cwd=SCRIPT_DIR, check=True)
+        # 推送，如果失败则尝试强制推送（谨慎使用）
+        try:
+            subprocess.run(['git', 'push', 'origin', 'main'], cwd=SCRIPT_DIR, check=True)
+            print(f"✅ Git operations completed: {commit_message}")
+        except subprocess.CalledProcessError:
+            print("⚠️  Normal push failed, trying to pull and merge...")
+            try:
+                # 再次尝试拉取和合并
+                subprocess.run(['git', 'pull', 'origin', 'main', '--no-edit'],
+                              cwd=SCRIPT_DIR, check=True)
+                subprocess.run(['git', 'push', 'origin', 'main'], cwd=SCRIPT_DIR, check=True)
+                print(f"✅ Git operations completed after merge: {commit_message}")
+            except subprocess.CalledProcessError as e:
+                print(f"❌ Git push still failed: {e}")
+                print("💡 Please manually run: git pull origin main && git push origin main")
+                return False
 
-        print(f"✅ Git operations completed: {commit_message}")
         return True
 
     except subprocess.CalledProcessError as e:
         print(f"Warning: Git operation failed: {e}")
+        print("💡 Please manually run: git pull origin main && git push origin main")
         return False
     except FileNotFoundError:
         print("Warning: Git not found, skipping Git operations.")
