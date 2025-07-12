@@ -1,137 +1,3 @@
-<<<<<<< HEAD
-[
-    {
-        "title": "📝 博客自动化工作流程",
-        "date": "2025-07-12",
-        "file": "2025-07-12-更新博客自动脚本.md",
-        "author": "Lifu"
-    },
-    {
-        "title": "测试 2222",
-        "date": "2025-07-12",
-        "file": "测试 2222.md",
-        "author": "Lifu"
-    },
-    {
-        "title": "测试12222",
-        "date": "2025-07-12",
-        "file": "测试12222.md",
-        "author": "Lifu"
-    },
-    {
-        "title": "部署DeepSite",
-        "date": "2025-05-06",
-        "file": "deepsite_deployment.md",
-        "author": "Lifu"
-    },
-    {
-        "title": "静态博客的浏览器缓存问题",
-        "date": "2025-04-20",
-        "file": "静态博客的浏览器缓存问题.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "在线程序",
-        "date": "2024-12-05",
-        "file": "tools_list.md",
-        "author": "Lifu",
-        "license": "Apache"
-    },
-    {
-        "title": "构建 Python 开发环境",
-        "date": "2024-12-05",
-        "file": "2024-12-05-构建Python开发环境.md",
-        "author": "Lifu",
-        "version": "v0.1.1"
-    },
-    {
-        "title": "一种加密设计",
-        "date": "2024-12-05",
-        "file": "2024-12-05-一种文件加密设计.md",
-        "author": "Lifu",
-        "version": "v0.1",
-        "license": "CC BY-SA 4.0"
-    },
-    {
-        "title": "k8s教程1",
-        "date": "2024-12-05",
-        "file": "K8s_1.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "k8s教程2",
-        "date": "2024-12-05",
-        "file": "K8s_2.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "k8s教程3",
-        "date": "2024-12-05",
-        "file": "K8s_3.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "k8s教程4",
-        "date": "2024-12-05",
-        "file": "K8s_4.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "k8s教程5",
-        "date": "2024-12-05",
-        "file": "K8s_5.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "k8s教程6",
-        "date": "2024-12-05",
-        "file": "K8s_6.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "k8s教程7",
-        "date": "2024-12-05",
-        "file": "K8s_7.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "k8s教程8",
-        "date": "2024-12-05",
-        "file": "K8s_8.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "Oracle PDB Guide",
-        "date": "2024-12-05",
-        "file": "oracle-pdb-guide.md",
-        "author": "Lifu",
-        "license": "MIT"
-    },
-    {
-        "title": "ALIECS",
-        "date": "2024-12-05",
-        "file": "2024-12-05-aliecs.md",
-        "author": "Lifu"
-    },
-    {
-        "title": "我的第一篇博客",
-        "date": "2023-10-27",
-        "file": "本Blog架构.md",
-        "excerpt": "这是我博客的第一篇文章，介绍博客的搭建过程。",
-        "author": "liulifu",
-        "version": "v1.0",
-        "license": "CC BY-SA 4.0"
-    }
-=======
 [
     {
         "title": "更新博客自动脚本",
@@ -218,6 +84,18 @@
         "excerpt": "\n\n## 使用 Obsidian 和 Python 管理静态博客索引\n\n**目标：** 通过在 Obsidian 中维护一个 Markdown 文件 (`posts/index.md`) 来管理博客文章列表，并使用一个本地 Python 脚本自动将其转换为前端 JavaScript (`index.js`) 所需的 `posts/index.json` 文件。这样可以利用 Obsidian 的编辑和 Git 功能简化博客维护流程。\n\n**核心流程：**\n\n1.  在 Obsidian 中编辑文章 (`.md`) 和索引 (`posts/index.md`)。\n2.  在本地运行 Python 脚本 (`generate_index.py`) 将 `posts/index.md` 转换为 `posts/index.json`。\n3.  使用 Git (通过 Obsidian 插件或命令行) 提交并推送所有更改到 GitHub。\n\n"
     },
     {
+        "title": "测试 2222",
+        "date": "2025-07-12",
+        "file": "测试 2222.md",
+        "excerpt": ""
+    },
+    {
+        "title": "测试12222",
+        "date": "2025-07-12",
+        "file": "测试12222.md",
+        "excerpt": ""
+    },
+    {
         "title": "静态博客的浏览器缓存问题",
         "date": "2025-07-12",
         "file": "静态博客的浏览器缓存问题.md",
@@ -241,5 +119,4 @@
         "file": "2024-12-05-构建Python开发环境.md",
         "excerpt": "# 构建PYTHON开发环境\n\nA technical exploration and guide\n\n## Content\n\n\n\n# 使用 Docker Desktop + Python 镜像 + VS Code + Remote Development (Dev Containers) 构建 Python 开发环境\n\n本文档描述了如何使用 Docker Desktop、Python 官方镜像、VS Code 和 Remote Development (Dev Containers) 插件来构建一个完整的 Python 开发环境，并演示如何编写、运行 Python 代码。\n\n## 1. 环境准备\n\n### 1.1 安装 Docker Desktop\n\n确保你已经安装了 [Docker Desktop](https://www.docker.com/products/docker-desktop)。安装后，确保 Docker 正在运行，并可以通过命令行访问。\n\n### 1.2 安装 VS Code\n\n下载并安装 [VS Code](https://code.visualstudio.com/)，这是一个非常流行的跨平台编辑器。\n\n### 1.3 安装 Remote Development 插件包\n\n在 VS Code 中，安装 **Remote Development** 插件包。它包括：\n\n- **Remote - SSH**\n- **Remote - WSL**\n- **Dev Containers**\n\n#### 安装步骤：\n\n1. 打开 VS Code，按下 `Ctrl+Shift+X` 打开扩展面板。\n2. 在搜索栏中输入 **Remote Development**。\n3. 找到由 Microsoft 发布的 **Remote Development**，点击安装。\n\n## 2. 拉取 Python Docker 镜像\n\n使用 Docker 官方的 `python` 镜像来作为开发环境。你可以通过以下命令来拉取镜像：\n\n```bash\ndocker pull python:latest\n```\n\n拉取后，`python` 镜像将可以在你的本地 Docker 中使用。\n\n## 3. 创建并运行 Docker 容器\n\n使用以下命令创建并启动容器，同时将本地工作目录挂载到容器中，以便在容器中进行开发：\n\n```bash\ndocker run -it -v ${PWD}:/workspace -w /workspace python:latest bash\n```\n\n- `-it`：启动交互模式。\n- `-v ${PWD}:/workspace`：将本地工作目录挂载到容器的 `/workspace` 目录。\n- `-w /workspace`：容器启动时的工作目录。\n- `python:latest`：使用最新版本的 `python` 镜像。\n- `bash`：进入容器的 Bash shell。\n\n这条命令启动后，你将进入容器的 Bash 环境，可以在其中编写和运行 Python 代码。\n\n## 4. 在 VS Code 中使用 Dev Containers 连接容器\n\n### 4.1 使用 Dev Containers 插件连接容器\n\n1. 在 VS Code 中按下 `F1` 或 `Ctrl+Shift+P`，调出命令面板。\n2. 输入并选择 **Dev Containers: Attach to Running Container**。\n3. VS Code 会列出所有正在运行的容器，选择你使用 `python` 镜像启动的容器。\n4. 连接后，你将可以在 VS Code 中像平常一样编辑容器中的文件。\n\n### 4.2 验证连接\n\n成功连接容器后，VS Code 左下角会显示一个绿色的 \"Dev Container\" 标志，表示你正在容器环境中开发。\n\n## 5. 编写、运行 Python 代码\n\n### 5.1 创建一个测试文件\n\n在容器中或在 VS Code 中，创建一个 Python 文件，例如 `hello.py`：\n\n```python\nprint(\"Hello, Docker and VS Code!\")\n```\n\n### 5.2 运行 Python 文件\n\n在 VS Code 的终端中，使用 Python 来运行文件：\n\n```bash\npython hello.py\n```\n\n你应该会看到输出：\n\n```bash\nHello, Docker and VS Code!\n```\n\n## 6. 使用 `docker-compose` 管理容器\n\n为了简化容器管理，您可以创建一个 `docker-compose.yml` 文件，以便更方便地启动和管理容器。示例如下：\n\n```yaml\nversion: \"3\"\nservices:\n  python-dev:\n    image: python:latest\n    container_name: python_dev_container\n    volumes:\n      - ./mytest:/workspace\n    working_dir: /workspace\n    stdin_open: true\n    tty: true\n```\n\n- 在项目目录下创建 `docker-compose.yml` 文件。\n- 使用以下命令启动容器：\n\n```bash\ndocker-compose up -d\n```\n\n该配置文件会自动挂载当前目录的 `./mytest` 文件夹到容器中的 `/workspace` 目录。\n\n# Python 容器与 Docker Compose 配置指南\n\n#### 1. 安装 Docker 和 Docker Compose\n\n确保已经安装了 Docker 和 Docker Compose。如果还未安装，可以参考 [Docker 官方网站](https://www.docker.com/get-started) 进行安装。\n\n#### 2. 创建 `Dockerfile`\n\n首先，创建一个 `Dockerfile` 用于定义 Python 容器的构建流程。\n\n```dockerfile\n# 使用官方 Python 基础镜像\nFROM python:3.9-slim\n\n# 设置工作目录\nWORKDIR /app\n\n# 复制当前目录的内容到容器的 /app 目录\nCOPY . /app\n\n# 安装依赖\nRUN pip install --upgrade pip\nRUN pip install -r requirements.txt\n\n# 暴露端口\nEXPOSE 5000\n\n# 运行应用\nCMD [\"python\", \"app.py\"]\n```\n\n#### 3. 创建 `requirements.txt`\n\n`requirements.txt` 文件记录项目所需的 Python 库。可以通过以下命令生成：\n\n```bash\npip freeze > requirements.txt\n```\n\n该命令将当前 Python 环境中的所有依赖库导出到 `requirements.txt` 中。\n\n#### 4. 创建 `docker-compose.yml`\n\n`docker-compose.yml` 是 Docker Compose 的配置文件。它定义了服务、网络和卷等内容。创建以下内容的 `docker-compose.yml` 文件：\n\n```yaml\nversion: \"3\"\n\nservices:\n  app:\n    build: .\n    ports:\n      - \"5000:5000\"\n    volumes:\n      - .:/app\n    environment:\n      - PYTHONUNBUFFERED=1\n    depends_on:\n      - db\n\n  db:\n    image: postgres:13\n    environment:\n      POSTGRES_USER: exampleuser\n      POSTGRES_PASSWORD: examplepass\n      POSTGRES_DB: exampledb\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n\nvolumes:\n  postgres_data:\n```\n\n- `app` 服务使用 Dockerfile 来构建，并将项目目录映射到容器内的 `/app` 目录，确保在本地更改代码后，容器内的代码也会自动更新。\n- `db` 服务使用 Postgres 数据库作为示例，并通过环境变量来设置数据库用户名、密码和数据库名。\n\n#### 5. 使用 Docker Compose 构建和启动容器\n\n在项目目录下，运行以下命令构建并启动服务：\n\n```bash\ndocker-compose up --build\n```\n\n- `--build` 选项用于在启动容器之前重新构建镜像。\n- 这将启动 `app` 和 `db` 两个容器，Python 应用会通过 5000 端口对外提供服务。\n\n#### 6. 后续操作和依赖管理\n\n在开发过程中，如果需要添加新的依赖库，可以通过以下命令安装新库：\n\n```bash\npip install new-package\n```\n\n然后更新 `requirements.txt`：\n\n```bash\npip freeze > requirements.txt\n```\n\n接着运行以下命令重新构建并启动容器：\n\n```bash\ndocker-compose up --build\n```\n\n#### 7. 常用 Docker Compose 命令\n\n- 启动服务（在后台运行）：\n\n```bash\ndocker-compose up -d\n```\n\n- 停止服务：\n\n```bash\ndocker-compose down\n```\n\n- 查看服务日志：\n\n```bash\ndocker-compose logs\n```\n\n- 只重新构建应用服务：\n\n```bash\ndocker-compose up --build app\n```\n\n- 进入正在运行的容器：\n\n```bash\ndocker-compose exec app bash\n```\n\n"
     }
->>>>>>> 65f77301774d7b8dbe071b7706796059cc3e4d51
 ]
