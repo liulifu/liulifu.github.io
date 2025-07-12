@@ -1,5 +1,11 @@
 [
     {
+        "title": "📝 博客自动化工作流程",
+        "date": "2025-07-12",
+        "file": "2025-07-12-更新博客自动脚本.md",
+        "author": "Lifu"
+    },
+    {
         "title": "部署DeepSite",
         "date": "2025-05-06",
         "file": "deepsite_deployment.md",
@@ -96,6 +102,12 @@
         "file": "oracle-pdb-guide.md",
         "author": "Lifu",
         "license": "MIT"
+    },
+    {
+        "title": "ALIECS",
+        "date": "2024-12-05",
+        "file": "2024-12-05-aliecs.md",
+        "author": "Lifu"
     },
     {
         "title": "我的第一篇博客",
