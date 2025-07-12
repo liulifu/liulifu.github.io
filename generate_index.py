@@ -25,7 +25,7 @@ EXCLUDED_FILES = {'index.md', 'about.md'}
 
 # Git配置
 GIT_ENABLED = True  # 是否启用Git自动提交推送
-GIT_COMMIT_MESSAGE_TEMPLATE = "Auto-update blog: {action} {count} post(s)"
+GIT_COMMIT_MESSAGE_TEMPLATE = "Auto-update blog: {timestamp}"
 
 # Markdown 表格头(小写)到最终 JSON key 的映射
 HEADER_MAP = {
@@ -287,9 +287,10 @@ def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
         except subprocess.CalledProcessError as e:
             print(f"⚠️  Pull failed, continuing with local changes: {e}")
 
-        # 添加文件
-        subprocess.run(['git', 'add', 'posts/index.md', 'posts/index.json'],
+        # 添加所有文件
+        subprocess.run(['git', 'add', '.'],
                       cwd=SCRIPT_DIR, check=True)
+        print("✅ Added all changes to git")
 
         # 检查是否有更改需要提交
         result = subprocess.run(['git', 'diff', '--cached', '--quiet'],
@@ -298,10 +299,14 @@ def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
             print("ℹ️  No changes to commit")
             return True
 
+        # 生成时间戳
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        commit_message = GIT_COMMIT_MESSAGE_TEMPLATE.format(timestamp=timestamp)
+
         # 提交
-        commit_message = GIT_COMMIT_MESSAGE_TEMPLATE.format(action=action, count=count)
         subprocess.run(['git', 'commit', '-m', commit_message],
                       cwd=SCRIPT_DIR, check=True)
+        print(f"✅ Committed changes: {commit_message}")
 
         # 推送，如果失败则尝试强制推送（谨慎使用）
         try:
@@ -385,7 +390,7 @@ def auto_generate_index(git_enabled: bool = True):
         print(f"✅ Updated {OUTPUT_JSON_FILE}")
 
         # 8. Git操作
-        if new_files or missing_files:
+        if new_files or missing_files or True:  # 总是执行Git操作以确保同步
             action = "added" if new_files else "updated"
             count = len(new_files) + len(missing_files)
             run_git_commands(action, count, git_enabled)
