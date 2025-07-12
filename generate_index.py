@@ -297,9 +297,20 @@ def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
 
         # 3. 拉取远程更改并合并
         print("� Step 3: git pull origin main")
-        subprocess.run(['git', 'pull', 'origin', 'main'],
-                      cwd=SCRIPT_DIR, check=True)
-        print("✅ Pull completed")
+        try:
+            subprocess.run(['git', 'pull', 'origin', 'main'],
+                          cwd=SCRIPT_DIR, check=True)
+            print("✅ Pull completed")
+        except subprocess.CalledProcessError:
+            print("⚠️  Pull has conflicts, resolving automatically...")
+            # 使用本地版本解决冲突
+            subprocess.run(['git', 'checkout', '--ours', 'posts/index.json'],
+                          cwd=SCRIPT_DIR, check=True)
+            subprocess.run(['git', 'add', 'posts/index.json'],
+                          cwd=SCRIPT_DIR, check=True)
+            subprocess.run(['git', 'commit', '-m', f'Resolve conflict - {timestamp}'],
+                          cwd=SCRIPT_DIR, check=True)
+            print("✅ Conflicts resolved automatically")
 
         # 4. 推送到远程
         print("🚀 Step 4: git push origin main")
