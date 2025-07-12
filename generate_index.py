@@ -266,7 +266,7 @@ def generate_markdown_table(posts: List[Dict[str, str]]) -> str:
     return '\n'.join(lines)
 
 def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
-    """执行Git命令"""
+    """执行Git命令 - 简化版本，按照用户要求的固定流程"""
     if not git_enabled:
         return True
 
@@ -278,61 +278,48 @@ def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
             print("Warning: Not in a Git repository, skipping Git operations.")
             return True
 
-        # 先拉取远程更改以避免冲突
-        print("🔄 Pulling latest changes from remote...")
-        try:
-            subprocess.run(['git', 'pull', 'origin', 'main'],
-                          cwd=SCRIPT_DIR, check=True, capture_output=True)
-            print("✅ Successfully pulled remote changes")
-        except subprocess.CalledProcessError as e:
-            print(f"⚠️  Pull failed, continuing with local changes: {e}")
-
-        # 添加所有文件
-        subprocess.run(['git', 'add', '.'],
-                      cwd=SCRIPT_DIR, check=True)
-        print("✅ Added all changes to git")
-
-        # 检查是否有更改需要提交
-        result = subprocess.run(['git', 'diff', '--cached', '--quiet'],
-                              cwd=SCRIPT_DIR, capture_output=True)
-        if result.returncode == 0:
-            print("ℹ️  No changes to commit")
-            return True
-
         # 生成时间戳
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        commit_message = GIT_COMMIT_MESSAGE_TEMPLATE.format(timestamp=timestamp)
 
-        # 提交
-        subprocess.run(['git', 'commit', '-m', commit_message],
+        print("🔄 Starting Git operations...")
+
+        # 1. 添加所有文件
+        print("� Step 1: git add .")
+        subprocess.run(['git', 'add', '.'],
                       cwd=SCRIPT_DIR, check=True)
-        print(f"✅ Committed changes: {commit_message}")
+        print("✅ Add completed")
 
-        # 推送，如果失败则尝试强制推送（谨慎使用）
-        try:
-            subprocess.run(['git', 'push', 'origin', 'main'], cwd=SCRIPT_DIR, check=True)
-            print(f"✅ Git operations completed: {commit_message}")
-        except subprocess.CalledProcessError:
-            print("⚠️  Normal push failed, trying to pull and merge...")
-            try:
-                # 再次尝试拉取和合并
-                subprocess.run(['git', 'pull', 'origin', 'main', '--no-edit'],
-                              cwd=SCRIPT_DIR, check=True)
-                subprocess.run(['git', 'push', 'origin', 'main'], cwd=SCRIPT_DIR, check=True)
-                print(f"✅ Git operations completed after merge: {commit_message}")
-            except subprocess.CalledProcessError as e:
-                print(f"❌ Git push still failed: {e}")
-                print("💡 Please manually run: git pull origin main && git push origin main")
-                return False
+        # 2. 提交更改（使用时间戳）
+        print(f"� Step 2: git commit -m \"{timestamp}\"")
+        subprocess.run(['git', 'commit', '-m', timestamp],
+                      cwd=SCRIPT_DIR, check=True)
+        print("✅ Commit completed")
 
+        # 3. 拉取远程更改并合并
+        print("� Step 3: git pull origin main")
+        subprocess.run(['git', 'pull', 'origin', 'main'],
+                      cwd=SCRIPT_DIR, check=True)
+        print("✅ Pull completed")
+
+        # 4. 推送到远程
+        print("🚀 Step 4: git push origin main")
+        subprocess.run(['git', 'push', 'origin', 'main'],
+                      cwd=SCRIPT_DIR, check=True)
+        print("✅ Push completed")
+
+        print(f"🎉 All Git operations completed successfully! Commit: {timestamp}")
         return True
 
     except subprocess.CalledProcessError as e:
-        print(f"Warning: Git operation failed: {e}")
-        print("💡 Please manually run: git pull origin main && git push origin main")
+        print(f"❌ Git operation failed: {e}")
+        print("💡 Please manually run the following commands:")
+        print("   git pull origin main")
+        print("   git add .")
+        print(f"   git commit -m \"{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\"")
+        print("   git push origin main")
         return False
     except FileNotFoundError:
-        print("Warning: Git not found, skipping Git operations.")
+        print("❌ Git not found, please install Git first.")
         return False
 
 def auto_generate_index(git_enabled: bool = True):
