@@ -55,6 +55,8 @@
 | openGauss 数据库：入门与安装实践 | 2025-11-11 | dba/2025-11-11-openGauss-入门与安装实践.md |  | Lifu |  |  |
 | 人大金仓 KingbaseES：入门与安装实践 | 2025-11-11 | dba/2025-11-11-人大金仓KingbaseES-入门与安装实践.md |  | Lifu |  |  |
 | 达梦数据库 DM8：入门与安装实践 | 2025-11-11 | dba/2025-11-11-达梦DM8-入门与安装实践.md |  | Lifu |  |  |
+| MySQL、Redis、MongoDB 日常运维手册 | 2025-11-11 | dba/2025-11-11-MySQL-Redis-MongoDB-日常运维手册.md |  | Lifu |  |  |
+| MySQL、Redis、MongoDB 高可用解决方案对比与选型指南 | 2025-11-11 | dba/2025-11-11-MySQL-Redis-MongoDB-高可用解决方案对比与选型.md |  | Lifu |  |  |
 | 📝 博客自动化工作流程 | 2025-07-12 | 2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
 | ALIECS | 2024-12-05 | 2024-12-05-aliecs.md |  | Lifu |  |  |
 | 一种文件加密设计 | 2024-12-05 | 2024-12-05-一种文件加密设计.md |  | Lifu |  |  |
