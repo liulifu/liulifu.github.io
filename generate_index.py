@@ -208,6 +208,81 @@ def augment_posts_with_front_matter(posts: List[Dict[str, str]]) -> None:
             post['tags'] = fm['tags']  # type: ignore
 
 
+# --- SEO helpers: sitemap.xml, robots.txt, Atom feed ---
+BASE_URL = "https://liulifu.github.io"
+
+def _xml_escape(text: str) -> str:
+    return (text.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace('"', "&quot;")
+                .replace("'", "&apos;"))
+
+def generate_sitemap(posts: List[Dict[str, str]]) -> None:
+    url_elems = []
+    # Home
+    url_elems.append(f"  <url>\n    <loc>{BASE_URL}/</loc>\n    <priority>1.0</priority>\n  </url>")
+    # About (SPA hash route)
+    url_elems.append(f"  <url>\n    <loc>{BASE_URL}/#about</loc>\n    <priority>0.6</priority>\n  </url>")
+    # Posts (link to raw MD files)
+    for p in posts:
+        loc = f"{BASE_URL}/posts/{_xml_escape(p['file'])}"
+        lastmod = p.get('date') or datetime.datetime.now().strftime('%Y-%m-%d')
+        url_elems.append(
+            "  <url>\n"
+            f"    <loc>{loc}</loc>\n"
+            f"    <lastmod>{lastmod}</lastmod>\n"
+            "    <priority>0.7</priority>\n"
+            "  </url>"
+        )
+    xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" \
+          "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n" \
+          + "\n".join(url_elems) + "\n</urlset>\n"
+    (SCRIPT_DIR / 'sitemap.xml').write_text(xml, encoding='utf-8')
+    print("✅ Updated sitemap.xml")
+
+
+def generate_robots() -> None:
+    content = (
+        "User-agent: *\n"
+        "Allow: /\n\n"
+        f"Sitemap: {BASE_URL}/sitemap.xml\n"
+    )
+    (SCRIPT_DIR / 'robots.txt').write_text(content, encoding='utf-8')
+    print("✅ Updated robots.txt")
+
+
+def generate_atom_feed(posts: List[Dict[str, str]], limit: int = 20) -> None:
+    updated = datetime.datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+    entries = []
+    for p in sorted(posts, key=lambda x: x.get('date', ''), reverse=True)[:limit]:
+        title = _xml_escape(p.get('title', 'Untitled'))
+        link = f"{BASE_URL}/posts/{_xml_escape(p['file'])}"
+        date = p.get('date', '')
+        summary = _xml_escape(p.get('excerpt', '') or '')
+        entries.append(
+            "  <entry>\n"
+            f"    <title>{title}</title>\n"
+            f"    <link href=\"{link}\"/>\n"
+            f"    <updated>{date}T00:00:00Z</updated>\n"
+            f"    <summary>{summary}</summary>\n"
+            "  </entry>"
+        )
+    feed = (
+        "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
+        "<feed xmlns=\"http://www.w3.org/2005/Atom\">\n"
+        f"  <title>DAFU DAGUI</title>\n"
+        f"  <link href=\"{BASE_URL}/feed.xml\" rel=\"self\"/>\n"
+        f"  <link href=\"{BASE_URL}/\"/>\n"
+        f"  <updated>{updated}</updated>\n"
+        f"  <id>{BASE_URL}/</id>\n"
+        + "\n".join(entries) + "\n"
+        "</feed>\n"
+    )
+    (SCRIPT_DIR / 'feed.xml').write_text(feed, encoding='utf-8')
+    print("✅ Updated feed.xml")
+
+
 def parse_existing_index_md() -> List[Dict[str, str]]:
     """解析现有的index.md文件，返回已登记的文章列表"""
     if not SOURCE_MD_FILE.exists():
@@ -394,6 +469,7 @@ def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
         print("🚀 Step 4: git push origin main")
         subprocess.run(['git', 'push', 'origin', 'main'],
                       cwd=SCRIPT_DIR, check=True)
+
         print("✅ Push completed")
 
         print(f"🎉 All Git operations completed successfully! Commit: {timestamp}")
@@ -473,6 +549,12 @@ def auto_generate_index(git_enabled: bool = True):
         if new_files or missing_files or True:  # 总是执行Git操作以确保同步
             action = "added" if new_files else "updated"
             count = len(new_files) + len(missing_files)
+
+            # 7.1 Generate SEO files (sitemap, robots, feed)
+            generate_sitemap(sorted_posts)
+            generate_robots()
+            generate_atom_feed(sorted_posts)
+
             run_git_commands(action, count, git_enabled)
 
         print("=" * 50)
