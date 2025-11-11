@@ -3,6 +3,22 @@
 | Title | Date | File | Excerpt | Author | Version | License |
 | :----- | :---- | :---- | :------- | :------ | :------- | :------- |
 | 三项目复现与重构方案：clock、pc_monitor、paddleocrproject | 2025-11-11 | 2025-11-11-三项目复现与重构方案.md |  | Lifu |  |  |
+| 实验室信息学架构（01）总览与设计原则 | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-01-总览与设计原则.md |  | Lifu |  |  |
+| 实验室信息学架构（02）LIMS 与主数据治理 | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-02-LIMS与主数据治理.md |  | Lifu |  |  |
+| 实验室信息学架构（03）ELN、方法数字化与 LES | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-03-ELN方法数字化与LES.md |  | Lifu |  |  |
+| 实验室信息学架构（04）仪器数据、CDS 与 SDMS、数据湖 | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-04-仪器数据CDS与SDMS数据湖.md |  | Lifu |  |  |
+| 实验室信息学架构（05）合规与验证：21 CFR Part 11 / Annex 11 与 CSV/CSA | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-05-合规与验证-21CFRPart11-Annex11-CSV-CSA.md |  | Lifu |  |  |
+| 实验室信息学架构（06）集成架构与平台工程（API 网关 / 事件驱动 / 编排） | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-06-集成架构与平台工程.md |  | Lifu |  |  |
+| CSV（计算机化系统验证）资料索引 | 2025-11-11 | csv/2025-11-11-CSV-资料索引.md |  | Lifu |  |  |
+| Oracle DBA 教学（01）部署与架构设计 | 2025-11-11 | dba/2025-11-11-Oracle-DBA-01-部署与架构设计.md |  | Lifu |  |  |
+| Oracle DBA 教学（02）日常运维与性能监控 | 2025-11-11 | dba/2025-11-11-Oracle-DBA-02-日常运维与监控.md |  | Lifu |  |  |
+| Oracle DBA 教学（03）数据安全与备份恢复（RMAN / 冷备 / 热备 / 灾备） | 2025-11-11 | dba/2025-11-11-Oracle-DBA-03-数据安全与备份恢复.md |  | Lifu |  |  |
+| Oracle DBA 教学（04）故障处理与应急响应 | 2025-11-11 | dba/2025-11-11-Oracle-DBA-04-故障处理与应急响应.md |  | Lifu |  |  |
+| IT Help Desk Access Tool（PyQt5）复现与配置 | 2025-11-11 | notes/2025-11-11-brandnew-0926-复现与配置.md |  | Lifu |  |  |
+| clock 复现与重构方案 | 2025-11-11 | notes/2025-11-11-clock-复现与重构方案.md |  | Lifu |  |  |
+| fengbi PDF 工具套件：抽取/清洗/分割/偏移 复现与重构方案 | 2025-11-11 | notes/2025-11-11-fengbi-复现与重构方案.md |  | Lifu |  |  |
+| paddleocrproject 复现与重构方案 | 2025-11-11 | notes/2025-11-11-paddleocrproject-复现与重构方案.md |  | Lifu |  |  |
+| pc_monitor 复现与重构方案 | 2025-11-11 | notes/2025-11-11-pc_monitor-复现与重构方案.md |  | Lifu |  |  |
 | 📝 博客自动化工作流程 | 2025-07-12 | 2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
 | 部署DeepSite | 2025-05-06 | deepsite_deployment.md |  | Lifu |  |  |
 | 静态博客的浏览器缓存问题 | 2025-04-20 | 静态博客的浏览器缓存问题.md |  | Lifu |  | MIT |

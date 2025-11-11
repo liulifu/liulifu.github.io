@@ -39,19 +39,23 @@ HEADER_MAP = {
 REQUIRED_HEADERS = ['title', 'date', 'file'] # 必须存在的列
 
 def scan_posts_directory() -> List[str]:
-    """扫描posts目录，返回所有.md文件列表（排除特殊文件）"""
+    """扫描posts目录，返回所有.md文件列表（包括子目录，排除特殊文件）"""
     print(f"Scanning posts directory: {POSTS_DIR}")
-    
+
     if not POSTS_DIR.exists():
         print(f"Error: Posts directory not found: {POSTS_DIR}")
         return []
-    
+
     md_files = []
-    for file_path in POSTS_DIR.glob("*.md"):
+    # 使用 **/*.md 递归扫描所有子目录
+    for file_path in POSTS_DIR.glob("**/*.md"):
         filename = file_path.name
         if filename not in EXCLUDED_FILES:
-            md_files.append(filename)
-    
+            # 获取相对于posts目录的路径
+            relative_path = file_path.relative_to(POSTS_DIR)
+            # 使用正斜杠作为路径分隔符（适用于web）
+            md_files.append(str(relative_path).replace('\\', '/'))
+
     print(f"Found {len(md_files)} markdown files: {md_files}")
     return sorted(md_files)
 
