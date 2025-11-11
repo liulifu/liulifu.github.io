@@ -158,12 +158,13 @@ class BlogManager {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             this.posts = await response.json();
 
-            // Sort posts by date (newest first)
-            this.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
             // Filter by category
             const target = categoryKey === 'home' ? 'notes' : categoryKey;
             this.filteredPosts = this.posts.filter(p => this.categorize(p) === target);
+
+            // Sort by file name (ascending, base name only, natural, case-insensitive)
+            const getBase = (p) => ((p.file || '').split('/').pop() || '').toLowerCase();
+            this.filteredPosts.sort((a, b) => getBase(a).localeCompare(getBase(b), undefined, { numeric: true, sensitivity: 'base' }));
 
             this.currentPageNum = 1;
             this.postsListElement.style.display = 'block';

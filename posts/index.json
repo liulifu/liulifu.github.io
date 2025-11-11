@@ -35,6 +35,34 @@
         "category": "notes"
     },
     {
+        "title": "SQL Server 常见运维典型问题示例及解析",
+        "date": "2025-11-11",
+        "file": "dba/SQL-Server-常见运维典型问题示例及解析.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "SQL Server 故障排查",
+        "date": "2025-11-11",
+        "file": "dba/SQL-Server-故障排查.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "SQL Server 高可用方案",
+        "date": "2025-11-11",
+        "file": "dba/SQL-Server-高可用方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "基于 Windows 的生物制药行业软件运维方案",
+        "date": "2025-11-11",
+        "file": "enterprise/基于Windows的生物制药行业软件运维方案.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
         "title": "静态博客的浏览器缓存问题",
         "date": "2025-09-19",
         "file": "notes/静态博客的浏览器缓存问题.md",
