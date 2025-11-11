@@ -107,30 +107,35 @@ nav a.active {
 /* 分页 */
 .pagination {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    padding-top: 0.5rem;
+    padding: 1rem 0;
+    border-top: var(--border-thickness) solid var(--text-color-alt);
 }
 
 .pagination button {
     background: none;
     border: var(--border-thickness) solid var(--text-color);
     color: var(--text-color);
-    padding: 0.3rem 0.6rem;
+    padding: 0.4rem 0.8rem;
     cursor: pointer;
     font-family: var(--font-family);
     font-size: 0.9rem;
+    min-width: 70px;
+    transition: all 0.2s ease;
 }
 
 .pagination button:disabled {
     border-color: var(--text-color-alt);
     color: var(--text-color-alt);
     cursor: not-allowed;
+    opacity: 0.5;
 }
 
-.pagination button:not(:disabled):hover {
+.pagination button:not(:disabled):active {
     background-color: var(--text-color);
     color: var(--background-color);
 }
@@ -138,7 +143,27 @@ nav a.active {
 .pagination .page-info {
     color: var(--text-color);
     font-family: var(--font-family);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* 小屏幕优化 */
+@media (max-width: 480px) {
+    .pagination {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .pagination button {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .pagination .page-info {
+        order: -1;
+        margin-bottom: 0.5rem;
+    }
 }
 
 /* 文章页面 */

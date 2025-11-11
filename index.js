@@ -24,14 +24,13 @@ class BlogManager {
         this.posts = [];
         this.filteredPosts = [];
         this.currentPageNum = 1;
-        this.postsPerPage = 20;
+        this.postsPerPage = 20; // 统一设置为20条
 
         // 检测设备类型
         this.isMobile = this.checkIfMobile();
 
         // 根据设备类型调整设置
         if (this.isMobile) {
-            this.postsPerPage = 10; // 移动设备显示更少的文章
             log.info('Mobile device detected');
         } else {
             log.info('Desktop device detected');
