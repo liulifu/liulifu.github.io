@@ -42,6 +42,11 @@
 | Oracle GoldenGate 与 MySQL 数据交换方案 | 2025-11-11 | dba/2025-11-11-Oracle-GoldenGate与MySQL数据交换方案.md |  | Lifu |  |  |
 | Oracle RMAN 增量备份方案 | 2025-11-11 | dba/2025-11-11-Oracle-RMAN-增量备份方案.md |  | Lifu |  |  |
 | Oracle 迁移至 MySQL：50TB 级数据迁移方案 | 2025-11-11 | dba/2025-11-11-Oracle迁移至MySQL-50TB级数据迁移方案.md |  | Lifu |  |  |
+| Windows 域控服务器部署与配置 | 2025-11-11 | enterprise/2025-11-11-Windows域控服务器部署与配置.md |  | Lifu |  |  |
+| 企业 IT 管理员新员工笔记本配置指南 | 2025-11-11 | enterprise/2025-11-11-企业IT管理员新员工笔记本配置指南.md |  | Lifu |  |  |
+| 企业文件服务器与权限管理 | 2025-11-11 | enterprise/2025-11-11-企业文件服务器与权限管理.md |  | Lifu |  |  |
+| 企业邮件系统部署与管理：Exchange Server | 2025-11-11 | enterprise/2025-11-11-企业邮件系统部署与管理-Exchange-Server.md |  | Lifu |  |  |
+| 生物制药企业 IT 基础架构概览 | 2025-11-11 | enterprise/2025-11-11-生物制药企业IT基础架构概览.md |  | Lifu |  |  |
 | 📝 博客自动化工作流程 | 2025-07-12 | 2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
 | ALIECS | 2024-12-05 | 2024-12-05-aliecs.md |  | Lifu |  |  |
 | 一种文件加密设计 | 2024-12-05 | 2024-12-05-一种文件加密设计.md |  | Lifu |  |  |
