@@ -3,6 +3,14 @@
 | Title | Date | File | Excerpt | Author | Version | License |
 | :----- | :---- | :---- | :------- | :------ | :------- | :------- |
 | 三项目复现与重构方案：clock、pc_monitor、paddleocrproject | 2025-11-11 | 2025-11-11-三项目复现与重构方案.md |  | Lifu |  |  |
+| K8s 相关问题集锦（一） | 2025-11-11 | K8s_1.md |  | Lifu |  |  |
+| K8s 相关问题集锦（二） | 2025-11-11 | K8s_2.md |  | Lifu |  |  |
+| K8s 相关问题集锦（三） | 2025-11-11 | K8s_3.md |  | Lifu |  |  |
+| K8s 相关问题集锦（四） | 2025-11-11 | K8s_4.md |  | Lifu |  |  |
+| K8s 相关问题集锦（五） | 2025-11-11 | K8s_5.md |  | Lifu |  |  |
+| K8s 相关问题集锦（五） | 2025-11-11 | K8s_6.md |  | Lifu |  |  |
+| Kubernetes 的目录结构 | 2025-11-11 | K8s_7.md |  | Lifu |  |  |
+| K8s 相关问题集锦（三） | 2025-11-11 | K8s_8.md |  | Lifu |  |  |
 | 实验室信息学架构（01）总览与设计原则 | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-01-总览与设计原则.md |  | Lifu |  |  |
 | 实验室信息学架构（02）LIMS 与主数据治理 | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-02-LIMS与主数据治理.md |  | Lifu |  |  |
 | 实验室信息学架构（03）ELN、方法数字化与 LES | 2025-11-11 | biopharma/2025-11-11-实验室信息学架构-03-ELN方法数字化与LES.md |  | Lifu |  |  |
@@ -14,28 +22,20 @@
 | Oracle DBA 教学（02）日常运维与性能监控 | 2025-11-11 | dba/2025-11-11-Oracle-DBA-02-日常运维与监控.md |  | Lifu |  |  |
 | Oracle DBA 教学（03）数据安全与备份恢复（RMAN / 冷备 / 热备 / 灾备） | 2025-11-11 | dba/2025-11-11-Oracle-DBA-03-数据安全与备份恢复.md |  | Lifu |  |  |
 | Oracle DBA 教学（04）故障处理与应急响应 | 2025-11-11 | dba/2025-11-11-Oracle-DBA-04-故障处理与应急响应.md |  | Lifu |  |  |
+| How to build your own DeepSite | 2025-11-11 | deepsite_deployment.md |  | Lifu |  |  |
 | IT Help Desk Access Tool（PyQt5）复现与配置 | 2025-11-11 | notes/2025-11-11-brandnew-0926-复现与配置.md |  | Lifu |  |  |
 | clock 复现与重构方案 | 2025-11-11 | notes/2025-11-11-clock-复现与重构方案.md |  | Lifu |  |  |
 | fengbi PDF 工具套件：抽取/清洗/分割/偏移 复现与重构方案 | 2025-11-11 | notes/2025-11-11-fengbi-复现与重构方案.md |  | Lifu |  |  |
 | paddleocrproject 复现与重构方案 | 2025-11-11 | notes/2025-11-11-paddleocrproject-复现与重构方案.md |  | Lifu |  |  |
 | pc_monitor 复现与重构方案 | 2025-11-11 | notes/2025-11-11-pc_monitor-复现与重构方案.md |  | Lifu |  |  |
+| Oracle PDB 详细使用指南 | 2025-11-11 | oracle-pdb-guide.md |  | Lifu |  |  |
+| tools list | 2025-11-11 | tools_list.md |  | Lifu |  |  |
+| 本Blog架构 | 2025-11-11 | 本Blog架构.md |  | Lifu |  |  |
+| 静态博客的浏览器缓存问题 | 2025-11-11 | 静态博客的浏览器缓存问题.md |  | Lifu |  |  |
 | 📝 博客自动化工作流程 | 2025-07-12 | 2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
-| 部署DeepSite | 2025-05-06 | deepsite_deployment.md |  | Lifu |  |  |
-| 静态博客的浏览器缓存问题 | 2025-04-20 | 静态博客的浏览器缓存问题.md |  | Lifu |  | MIT |
-| 在线程序 | 2024-12-05 | tools_list.md |  | Lifu |  | Apache |
-| 构建 Python 开发环境 | 2024-12-05 | 2024-12-05-构建Python开发环境.md |  | Lifu | v0.1.1 |  |
-| 一种加密设计 | 2024-12-05 | 2024-12-05-一种文件加密设计.md |  | Lifu | v0.1 | CC BY-SA 4.0 |
-| k8s教程1 | 2024-12-05 | K8s_1.md |  | Lifu |  | MIT |
-| k8s教程2 | 2024-12-05 | K8s_2.md |  | Lifu |  | MIT |
-| k8s教程3 | 2024-12-05 | K8s_3.md |  | Lifu |  | MIT |
-| k8s教程4 | 2024-12-05 | K8s_4.md |  | Lifu |  | MIT |
-| k8s教程5 | 2024-12-05 | K8s_5.md |  | Lifu |  | MIT |
-| k8s教程6 | 2024-12-05 | K8s_6.md |  | Lifu |  | MIT |
-| k8s教程7 | 2024-12-05 | K8s_7.md |  | Lifu |  | MIT |
-| k8s教程8 | 2024-12-05 | K8s_8.md |  | Lifu |  | MIT |
-| Oracle PDB Guide | 2024-12-05 | oracle-pdb-guide.md |  | Lifu |  | MIT |
 | ALIECS | 2024-12-05 | 2024-12-05-aliecs.md |  | Lifu |  |  |
-| 我的第一篇博客 | 2023-10-27 | 本Blog架构.md | 这是我博客的第一篇文章，介绍博客的搭建过程。 | liulifu | v1.0 | CC BY-SA 4.0 |
+| 一种文件加密设计 | 2024-12-05 | 2024-12-05-一种文件加密设计.md |  | Lifu |  |  |
+| 构建PYTHON开发环境 | 2024-12-05 | 2024-12-05-构建Python开发环境.md |  | Lifu |  |  |
 
 <!-- 自动生成的文件，请勿手动编辑 -->
 <!-- 运行 python generate_index_v2.py 来更新此文件 -->
