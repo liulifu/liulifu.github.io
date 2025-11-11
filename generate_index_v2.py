@@ -35,6 +35,7 @@ HEADER_MAP = {
     'author': 'author',       # 可选
     'version': 'version',     # 可选
     'license': 'license',     # 可选
+    'category': 'category',   # 可选 (自动识别或手动指定)
 }
 REQUIRED_HEADERS = ['title', 'date', 'file'] # 必须存在的列
 
@@ -382,9 +383,22 @@ def auto_generate_index(git_enabled: bool = True):
         # 4. 创建完整的文章列表
         all_posts = []
 
-        # 保留现有的文章（排除已删除的文件）
+        # 保留现有的文章（排除已删除的文件），并自动添加 category 字段
         for post in existing_posts:
             if post['file'] in all_md_files:
+                # 如果现有文章没有 category 字段，根据文件路径自动添加
+                if 'category' not in post:
+                    filename = post['file']
+                    if filename.startswith('biopharma/'):
+                        post['category'] = 'biopharma'
+                    elif filename.startswith('dba/'):
+                        post['category'] = 'dba'
+                    elif filename.startswith('csv/'):
+                        post['category'] = 'csv'
+                    elif filename.startswith('enterprise/'):
+                        post['category'] = 'enterprise'
+                    elif filename.startswith('notes/'):
+                        post['category'] = 'notes'
                 all_posts.append(post)
 
         # 添加新文章
