@@ -210,6 +210,41 @@
         "author": "Lifu"
     },
     {
+        "title": "Oracle Data Guard 实战部署方案",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-DataGuard-实战部署方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle GoldenGate 部署方案及入门教学",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-GoldenGate-部署方案及入门教学.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle GoldenGate 与 MySQL 数据交换方案",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-GoldenGate与MySQL数据交换方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle RMAN 增量备份方案",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-RMAN-增量备份方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle 迁移至 MySQL：50TB 级数据迁移方案",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle迁移至MySQL-50TB级数据迁移方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
         "title": "📝 博客自动化工作流程",
         "date": "2025-07-12",
         "file": "2025-07-12-更新博客自动脚本.md",

@@ -37,6 +37,11 @@
 | PostgreSQL 流复制与 Patroni 高可用方案 | 2025-11-11 | dba/2025-11-11-PostgreSQL-流复制与Patroni高可用方案.md |  | Lifu |  |  |
 | 数据库性能诊断与优化实战手册 | 2025-11-11 | dba/2025-11-11-数据库性能诊断与优化实战手册.md |  | Lifu |  |  |
 | 数据库迁移方案：Oracle 到 PostgreSQL | 2025-11-11 | dba/2025-11-11-数据库迁移方案-Oracle到PostgreSQL.md |  | Lifu |  |  |
+| Oracle Data Guard 实战部署方案 | 2025-11-11 | dba/2025-11-11-Oracle-DataGuard-实战部署方案.md |  | Lifu |  |  |
+| Oracle GoldenGate 部署方案及入门教学 | 2025-11-11 | dba/2025-11-11-Oracle-GoldenGate-部署方案及入门教学.md |  | Lifu |  |  |
+| Oracle GoldenGate 与 MySQL 数据交换方案 | 2025-11-11 | dba/2025-11-11-Oracle-GoldenGate与MySQL数据交换方案.md |  | Lifu |  |  |
+| Oracle RMAN 增量备份方案 | 2025-11-11 | dba/2025-11-11-Oracle-RMAN-增量备份方案.md |  | Lifu |  |  |
+| Oracle 迁移至 MySQL：50TB 级数据迁移方案 | 2025-11-11 | dba/2025-11-11-Oracle迁移至MySQL-50TB级数据迁移方案.md |  | Lifu |  |  |
 | 📝 博客自动化工作流程 | 2025-07-12 | 2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
 | ALIECS | 2024-12-05 | 2024-12-05-aliecs.md |  | Lifu |  |  |
 | 一种文件加密设计 | 2024-12-05 | 2024-12-05-一种文件加密设计.md |  | Lifu |  |  |
