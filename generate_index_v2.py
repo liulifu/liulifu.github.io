@@ -114,15 +114,28 @@ def get_file_creation_date(file_path: Path) -> str:
 def create_post_entry(filename: str) -> Dict[str, str]:
     """为新文件创建文章条目"""
     file_path = POSTS_DIR / filename
-    
+
     # 提取标题
     title = extract_title_from_content(file_path)
-    
+
     # 提取日期
     date = extract_date_from_filename(filename)
     if not date:
         date = get_file_creation_date(file_path)
-    
+
+    # 根据文件路径自动识别分类
+    category = None
+    if filename.startswith('biopharma/'):
+        category = 'biopharma'
+    elif filename.startswith('dba/'):
+        category = 'dba'
+    elif filename.startswith('csv/'):
+        category = 'csv'
+    elif filename.startswith('enterprise/'):
+        category = 'enterprise'
+    elif filename.startswith('notes/'):
+        category = 'notes'
+
     # 创建基本条目
     entry = {
         'title': title,
@@ -130,7 +143,11 @@ def create_post_entry(filename: str) -> Dict[str, str]:
         'file': filename,
         'author': DEFAULT_AUTHOR
     }
-    
+
+    # 添加category字段（如果识别到）
+    if category:
+        entry['category'] = category
+
     print(f"Created entry for {filename}: {entry}")
     return entry
 
