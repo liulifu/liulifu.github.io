@@ -47,6 +47,8 @@
 | 企业文件服务器与权限管理 | 2025-11-11 | enterprise/2025-11-11-企业文件服务器与权限管理.md |  | Lifu |  |  |
 | 企业邮件系统部署与管理：Exchange Server | 2025-11-11 | enterprise/2025-11-11-企业邮件系统部署与管理-Exchange-Server.md |  | Lifu |  |  |
 | 生物制药企业 IT 基础架构概览 | 2025-11-11 | enterprise/2025-11-11-生物制药企业IT基础架构概览.md |  | Lifu |  |  |
+| Werum PAS-X MES 系统日常运维手册 | 2025-11-11 | biopharma/2025-11-11-Werum-PAS-X-日常运维手册.md |  | Lifu |  |  |
+| Werum PAS-X MES 系统部署安装手册 | 2025-11-11 | biopharma/2025-11-11-Werum-PAS-X-部署安装手册.md |  | Lifu |  |  |
 | 📝 博客自动化工作流程 | 2025-07-12 | 2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
 | ALIECS | 2024-12-05 | 2024-12-05-aliecs.md |  | Lifu |  |  |
 | 一种文件加密设计 | 2024-12-05 | 2024-12-05-一种文件加密设计.md |  | Lifu |  |  |

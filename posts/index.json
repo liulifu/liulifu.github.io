@@ -270,6 +270,20 @@
         "author": "Lifu"
     },
     {
+        "title": "Werum PAS-X MES 系统日常运维手册",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-Werum-PAS-X-日常运维手册.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "Werum PAS-X MES 系统部署安装手册",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-Werum-PAS-X-部署安装手册.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
         "title": "📝 博客自动化工作流程",
         "date": "2025-07-12",
         "file": "2025-07-12-更新博客自动脚本.md",
