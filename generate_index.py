@@ -32,6 +32,8 @@ HEADER_MAP = {
     'title': 'title',         # 必需
     'date': 'date',           # 必需 (YYYY-MM-DD格式)
     'file': 'file',           # 必需 (markdown文件名)
+    'category': 'category',   # 可选
+    'tags': 'tags',           # 可选 (逗号分隔字符串)
     'excerpt': 'excerpt',     # 可选
     'author': 'author',       # 可选
     'version': 'version',     # 可选
@@ -384,7 +386,7 @@ def validate_and_sort_posts(posts: List[Dict[str, str]]) -> List[Dict[str, str]]
 def generate_markdown_table(posts: List[Dict[str, str]]) -> str:
     """生成Markdown表格内容"""
     # 表头
-    headers = ['Title', 'Date', 'File', 'Excerpt', 'Author', 'Version', 'License']
+    headers = ['Title', 'Date', 'File', 'Category', 'Tags', 'Excerpt', 'Author', 'Version', 'License']
     separator = [':-' + '-' * (len(h) - 2) + '-' for h in headers]
 
     lines = [
@@ -396,10 +398,17 @@ def generate_markdown_table(posts: List[Dict[str, str]]) -> str:
 
     # 数据行
     for post in posts:
+        tags_val = post.get('tags', '')
+        if isinstance(tags_val, list):
+            tags_str = ','.join(tags_val)
+        else:
+            tags_str = tags_val or ''
         row = [
             post.get('title', ''),
             post.get('date', ''),
             post.get('file', ''),
+            post.get('category', ''),
+            tags_str,
             post.get('excerpt', ''),
             post.get('author', ''),
             post.get('version', ''),
