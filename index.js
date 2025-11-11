@@ -17,12 +17,13 @@ class BlogManager {
         this.postContentElement = document.getElementById('post-content');
         this.currentPage = 'home';
         this.posts = [];
+        this.filteredPosts = [];
         this.currentPageNum = 1;
         this.postsPerPage = 20;
-        
+
         // 检测设备类型
         this.isMobile = this.checkIfMobile();
-        
+
         // 根据设备类型调整设置
         if (this.isMobile) {
             this.postsPerPage = 10; // 移动设备显示更少的文章
@@ -30,45 +31,45 @@ class BlogManager {
         } else {
             log.info('Desktop device detected');
         }
-        
+
         // Initialize event listeners
         this.initializeEventListeners();
-        
+
         // Load initial content
         this.loadHomePage();
-        
+
         log.info('Blog Manager initialized');
     }
 
     checkIfMobile() {
         // 方法1: 使用 matchMedia 检查是否是移动设备
         const mobileMediaQuery = window.matchMedia('(max-width: 768px), (hover: none)');
-        
+
         // 方法2: 检查是否支持触摸
         const hasTouchScreen = (
             ('ontouchstart' in window) ||
             (navigator.maxTouchPoints > 0) ||
             (navigator.msMaxTouchPoints > 0)
         );
-        
+
         // 方法3: 检查 User Agent（作为补充）
         const userAgent = navigator.userAgent.toLowerCase();
         const mobileKeywords = ['mobile', 'android', 'iphone', 'ipad', 'ipod'];
         const isMobileUserAgent = mobileKeywords.some(keyword => userAgent.includes(keyword));
-        
+
         // 综合判断
         const isMobile = mobileMediaQuery.matches || hasTouchScreen || isMobileUserAgent;
-        
+
         // 切换样式表
         this.switchStylesheet(isMobile);
-        
+
         // 添加窗口大小变化监听
         mobileMediaQuery.addListener((e) => {
             this.isMobile = e.matches;
             this.switchStylesheet(this.isMobile);
             log.info(`Device type changed: ${this.isMobile ? 'Mobile' : 'Desktop'}`);
         });
-        
+
         return isMobile;
     }
 
@@ -104,7 +105,7 @@ class BlogManager {
             log.info('Switched to desktop stylesheet');
         }
     }
-    
+
     initializeEventListeners() {
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -120,11 +121,11 @@ class BlogManager {
             this.navigateToPage(page, false);
         });
     }
-    
+
     async navigateToPage(page, pushState = true) {
         log.info(`Navigating to page: ${page}`);
         this.currentPage = page;
-        
+
         // Update active nav link
         document.querySelectorAll('nav a').forEach(link => {
             link.classList.toggle('active', link.dataset.page === page);
@@ -133,43 +134,72 @@ class BlogManager {
         if (pushState) {
             window.history.pushState(null, '', `#${page}`);
         }
-        
-        if (page === 'home') {
-            await this.loadHomePage();
+
+        if (['home', 'biopharma', 'enterprise', 'dba'].includes(page)) {
+            await this.loadCategoryPage(page);
         } else if (page === 'about') {
             await this.loadAboutPage();
         }
     }
-    
+
     async loadHomePage() {
+        return this.loadCategoryPage('home');
+    }
+
+    async loadCategoryPage(categoryKey) {
         try {
             const response = await fetch('posts/index.json');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             this.posts = await response.json();
-            
-            this.postsListElement.style.display = 'block';
-            this.postContentElement.style.display = 'none';
-            
+
             // Sort posts by date
             this.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-            
+
+            // Filter by category
+            const target = categoryKey === 'home' ? 'notes' : categoryKey;
+            this.filteredPosts = this.posts.filter(p => this.categorize(p) === target);
+
+            this.currentPageNum = 1;
+            this.postsListElement.style.display = 'block';
+            this.postContentElement.style.display = 'none';
+
+            // If no posts in category
+            if (this.filteredPosts.length === 0) {
+                this.postsListElement.innerHTML = '<p>No posts in this section yet.</p>';
+                return;
+            }
+
             // Display current page
             this.displayCurrentPage();
-            
-            log.info('Home page loaded successfully');
+
+            log.info(`${categoryKey} page loaded successfully`);
         } catch (error) {
             log.error(`Error loading posts: ${error.message}`);
             this.postsListElement.innerHTML = '<p>Error loading posts. Please try again later.</p>';
         }
     }
-    
+
+    categorize(post) {
+        const t = ((post.title || '') + ' ' + (post.file || '')).toLowerCase();
+        const has = (arr) => arr.some(k => t.includes(k));
+        const biopharma = ['biopharma','biopharmaceutical','gmp','gxp','clinical','lab','qms','cro','cdmo','antibody','protein','cell','gene','生物制药','制药','临床','细胞','基因','抗体'];
+        const dba = ['oracle','mysql','postgres','postgresql','mssql','sql','pdb','database','数据库','dba'];
+        const enterprise = ['k8s','kubernetes','devops','cicd','ci/cd','docker','容器','部署','云','ops','运维','网络','linux','windows server','active directory','vpn','sso','nginx','kafka','rabbitmq','redis'];
+        if (has(biopharma)) return 'biopharma';
+        if (has(dba)) return 'dba';
+        if (has(enterprise)) return 'enterprise';
+        return 'notes';
+    }
+
+
     displayCurrentPage() {
         // Calculate pagination
-        const totalPages = Math.ceil(this.posts.length / this.postsPerPage);
+        const total = this.filteredPosts?.length || 0;
+        const totalPages = Math.max(1, Math.ceil(total / this.postsPerPage));
         const startIndex = (this.currentPageNum - 1) * this.postsPerPage;
-        const endIndex = Math.min(startIndex + this.postsPerPage, this.posts.length);
-        const currentPosts = this.posts.slice(startIndex, endIndex);
-        
+        const endIndex = Math.min(startIndex + this.postsPerPage, total);
+        const currentPosts = (this.filteredPosts || []).slice(startIndex, endIndex);
+
         // Create posts list
         const postsList = document.createElement('ul');
         currentPosts.forEach(post => {
@@ -177,7 +207,7 @@ class BlogManager {
             li.innerHTML = `<a class="post-link" data-post="${post.file}">${post.title}</a>`;
             postsList.appendChild(li);
         });
-        
+
         // Create pagination controls
         const pagination = document.createElement('div');
         pagination.className = 'pagination';
@@ -186,12 +216,12 @@ class BlogManager {
             <span class="page-info">Page ${this.currentPageNum} of ${totalPages}</span>
             <button ${this.currentPageNum === totalPages ? 'disabled' : ''} onclick="window.blog.nextPage()">Next</button>
         `;
-        
+
         // Update DOM
         this.postsListElement.innerHTML = '';
         this.postsListElement.appendChild(postsList);
         this.postsListElement.appendChild(pagination);
-        
+
         // Add click handlers to post titles
         document.querySelectorAll('.post-link').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -199,10 +229,10 @@ class BlogManager {
                 this.loadPost(e.target.dataset.post);
             });
         });
-        
+
         log.info(`Displayed page ${this.currentPageNum} of ${totalPages}`);
     }
-    
+
     prevPage() {
         if (this.currentPageNum > 1) {
             this.currentPageNum--;
@@ -210,16 +240,17 @@ class BlogManager {
             log.info(`Navigated to previous page: ${this.currentPageNum}`);
         }
     }
-    
+
     nextPage() {
-        const totalPages = Math.ceil(this.posts.length / this.postsPerPage);
+        const total = this.filteredPosts?.length || 0;
+        const totalPages = Math.max(1, Math.ceil(total / this.postsPerPage));
         if (this.currentPageNum < totalPages) {
             this.currentPageNum++;
             this.displayCurrentPage();
             log.info(`Navigated to next page: ${this.currentPageNum}`);
         }
     }
-    
+
     // async loadPost(postFile) {
     //     try {
     //         // First, get the post metadata from index.json
@@ -227,29 +258,29 @@ class BlogManager {
     //         if (!indexResponse.ok) throw new Error(`HTTP error! status: ${indexResponse.status}`);
     //         const posts = await indexResponse.json();
     //         const postMeta = posts.find(p => p.file === postFile);
-            
+
     //         // Fetch the post content
     //         const response = await fetch(`posts/${postFile}`);
     //         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     //         const content = await response.text();
-            
+
     //         // Show post content and hide posts list
     //         this.postsListElement.style.display = 'none';
     //         this.postContentElement.style.display = 'block';
-            
+
     //         // Convert content based on file type
     //         let htmlContent;
     //         if (postFile.toLowerCase().endsWith('.html')) {
     //             // For HTML files, extract the body content and fix CSS paths
     //             const tempDiv = document.createElement('div');
     //             tempDiv.innerHTML = content;
-                
+
     //             // Remove the original style tag
     //             const styleTag = tempDiv.querySelector('style');
     //             if (styleTag) {
     //                 styleTag.remove();
     //             }
-                
+
     //             // Get only the body content
     //             const bodyContent = tempDiv.querySelector('body').innerHTML;
     //             htmlContent = bodyContent;
@@ -259,11 +290,11 @@ class BlogManager {
     //             htmlContent = converter.makeHtml(content);
     //             log.info(`Converted MD post: ${postFile}`);
     //         }
-            
+
     //         // Update the post content with the table header
     //         const title = postMeta ? postMeta.title : postFile.replace(/^\d{4}-\d{2}-\d{2}-(.+)\.(md|html)$/, '$1');
     //         const date = postMeta ? postMeta.date : postFile.slice(0, 10);
-            
+
     //         this.postContentElement.innerHTML = `
     //             <table class="header">
     //                 <tbody>
@@ -296,13 +327,13 @@ class BlogManager {
     //                 <a href="#" onclick="window.blog.navigateToPage('home'); return false;">← Back to Posts</a>
     //             </div>
     //         `;
-            
+
     //         // Process any media in the post
     //         this.processMedia();
-            
+
     //         // Update URL
     //         window.history.pushState(null, '', `#post/${postFile}`);
-            
+
     //         log.info(`Post loaded successfully: ${postFile}`);
     //     } catch (error) {
     //         log.error(`Error loading post: ${error.message}`);
@@ -317,29 +348,29 @@ class BlogManager {
             if (!indexResponse.ok) throw new Error(`HTTP error! status: ${indexResponse.status}`);
             const posts = await indexResponse.json();
             const postMeta = posts.find(p => p.file === postFile);
-            
+
             // Fetch the post content
             const response = await fetch(`posts/${postFile}`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const content = await response.text();
-            
+
             // Show post content and hide posts list
             this.postsListElement.style.display = 'none';
             this.postContentElement.style.display = 'block';
-            
+
             // Convert content based on file type
             let htmlContent;
             if (postFile.toLowerCase().endsWith('.html')) {
                 // For HTML files, extract the body content and fix CSS paths
                 const tempDiv = document.createElement('div');
                 tempDiv.innerHTML = content;
-                
+
                 // Remove the original style tag
                 const styleTag = tempDiv.querySelector('style');
                 if (styleTag) {
                     styleTag.remove();
                 }
-                
+
                 // Get only the body content
                 const bodyContent = tempDiv.querySelector('body').innerHTML;
                 htmlContent = bodyContent;
@@ -349,14 +380,14 @@ class BlogManager {
                 htmlContent = converter.makeHtml(content);
                 log.info(`Converted MD post: ${postFile}`);
             }
-            
+
             // Get metadata with default values
             const title = postMeta ? postMeta.title : postFile.replace(/^\d{4}-\d{2}-\d{2}-(.+)\.(md|html)$/, '$1');
             const date = postMeta ? postMeta.date : postFile.slice(0, 10);
             const version = postMeta?.version || 'v0.1.1';
             const author = postMeta?.author || 'Lifu';
             const license = postMeta?.license || 'MIT';
-            
+
             // Update the post content with the table header
             this.postContentElement.innerHTML = `
                 <table class="header">
@@ -387,23 +418,23 @@ class BlogManager {
                     ${htmlContent}
                 </div>
                 <div class="back-link-container" style="margin-top: 2rem;">
-                    <a href="#" onclick="window.blog.navigateToPage('home'); return false;">← Back to Posts</a>
+                    <a href="#" onclick="window.blog.navigateToPage(window.blog.currentPage); return false;">← Back to Posts</a>
                 </div>
             `;
-            
+
             // Process any media in the post
             this.processMedia();
-            
+
             // Update URL
             window.history.pushState(null, '', `#post/${postFile}`);
-            
+
             log.info(`Post loaded successfully: ${postFile}`);
         } catch (error) {
             log.error(`Error loading post: ${error.message}`);
             this.postContentElement.innerHTML = '<p>Error loading post. Please try again later.</p>';
         }
     }
-    
+
     processMedia() {
         // Make images responsive
         this.postContentElement.querySelectorAll('img').forEach(img => {
@@ -412,7 +443,7 @@ class BlogManager {
                 log.error(`Failed to load image: ${img.src}`);
             });
         });
-        
+
         // Make videos responsive
         this.postContentElement.querySelectorAll('video').forEach(video => {
             video.classList.add('responsive');
@@ -422,16 +453,16 @@ class BlogManager {
             });
         });
     }
-    
+
     // async loadAboutPage() {
     //     try {
     //         const response = await fetch('posts/about.md');
     //         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     //         const markdown = await response.text();
-            
+
     //         this.postsListElement.style.display = 'none';
     //         this.postContentElement.style.display = 'block';
-            
+
     //         // Create about page with header table
     //         const headerTable = `
     //             <table class="header">
@@ -462,9 +493,9 @@ class BlogManager {
     //                 ${converter.makeHtml(markdown)}
     //             </div>
     //         `;
-            
+
     //         this.postContentElement.innerHTML = headerTable;
-            
+
     //         log.info('About page loaded successfully');
     //     } catch (error) {
     //         log.error(`Error loading about page: ${error.message}`);
@@ -476,10 +507,10 @@ class BlogManager {
             const response = await fetch('posts/about.md');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const markdown = await response.text();
-            
+
             this.postsListElement.style.display = 'none';
             this.postContentElement.style.display = 'block';
-            
+
             // Try to load about page metadata
             let aboutMeta = {};
             try {
@@ -490,12 +521,12 @@ class BlogManager {
             } catch (error) {
                 log.info('No about page configuration found, using defaults');
             }
-            
+
             // Use metadata with defaults
             const version = aboutMeta.version || 'v0.1.1';
             const author = aboutMeta.author || 'Lifu';
             const license = aboutMeta.license || 'MIT';
-            
+
             // Create about page with header table
             const headerTable = `
                 <table class="header">
@@ -526,9 +557,9 @@ class BlogManager {
                     ${converter.makeHtml(markdown)}
                 </div>
             `;
-            
+
             this.postContentElement.innerHTML = headerTable;
-            
+
             log.info('About page loaded successfully');
         } catch (error) {
             log.error(`Error loading about page: ${error.message}`);
