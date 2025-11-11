@@ -1,0 +1,576 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP CSV 计算机系统验证教学</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%);
+        }
+        .pyramid-item {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .pyramid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 30px;
+            height: calc(100% - 30px);
+            width: 2px;
+            background: #3b82f6;
+        }
+        .tooltip {
+            position: relative;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: #1e40af;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- 导航栏 -->
+    <nav class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-laptop-medical text-2xl"></i>
+                    <span class="text-xl font-bold">GxP CSV 教学平台</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="hover:text-blue-200">首页</a>
+                    <a href="#" class="hover:text-blue-200">法规体系</a>
+                    <a href="#" class="hover:text-blue-200">验证流程</a>
+                    <a href="#" class="hover:text-blue-200">案例分析</a>
+                    <a href="#" class="hover:text-blue-200">资源下载</a>
+                </div>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <header class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">GxP计算机系统验证(CSV)</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">制药行业合规性的基石 - 从法规框架到企业实践</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <button class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition">
+                    <i class="fas fa-book mr-2"></i>开始学习
+                </button>
+                <button class="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                    <i class="fas fa-video mr-2"></i>观看视频
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- 法规金字塔 -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">GxP法规金字塔体系</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">全球制药行业计算机系统验证(CSV)的法规和标准呈现金字塔式分层结构，从顶层法律要求到底层企业实践，确保数据完整性、系统可靠性和患者安全。</p>
+            </div>
+            
+            <div class="flex flex-col items-center">
+                <!-- 金字塔图形 -->
+                <div class="w-full max-w-2xl mb-8">
+                    <div class="flex flex-col items-center">
+                        <!-- 顶层 - 法律 -->
+                        <div class="pyramid-item w-3/4 md:w-1/2 bg-blue-600 text-white p-6 rounded-lg shadow-md mb-4 text-center">
+                            <h3 class="text-xl font-bold mb-2">法律层</h3>
+                            <p class="text-sm">具有法律效力的强制性法规</p>
+                            <div class="mt-4 flex flex-wrap justify-center gap-2">
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">21 CFR Part 11</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">EU GMP Annex 11</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">21 CFR Part 211</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 中层 - 标准 -->
+                        <div class="pyramid-item w-4/5 md:w-2/3 bg-blue-500 text-white p-6 rounded-lg shadow-md mb-4 text-center">
+                            <h3 class="text-xl font-bold mb-2">标准层</h3>
+                            <p class="text-sm">行业技术标准与指南</p>
+                            <div class="mt-4 flex flex-wrap justify-center gap-2">
+                                <span class="bg-blue-700 px-3 py-1 rounded-full text-xs">GAMP®5</span>
+                                <span class="bg-blue-700 px-3 py-1 rounded-full text-xs">ISO 9001</span>
+                                <span class="bg-blue-700 px-3 py-1 rounded-full text-xs">ISO 27001</span>
+                            </div>
+                        </div>
+                        
+                        <!-- 底层 - 企业实践 -->
+                        <div class="pyramid-item w-full bg-blue-400 text-white p-6 rounded-lg shadow-md text-center">
+                            <h3 class="text-xl font-bold mb-2">实践层</h3>
+                            <p class="text-sm">企业SOP与验证策略</p>
+                            <div class="mt-4 flex flex-wrap justify-center gap-2">
+                                <span class="bg-blue-600 px-3 py-1 rounded-full text-xs">风险评估</span>
+                                <span class="bg-blue-600 px-3 py-1 rounded-full text-xs">验证计划</span>
+                                <span class="bg-blue-600 px-3 py-1 rounded-full text-xs">变更控制</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 金字塔说明 -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-gavel text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">法律层</h3>
+                        <p class="text-gray-600 mb-4">具有法律强制性的法规要求，不遵守将面临监管处罚和市场准入限制。</p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>FDA 21 CFR Part 11 - 电子记录与签名</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>EU GMP Annex 11 - 计算机化系统</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>ICH Q7/Q9/Q10 - 质量风险管理</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-book text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">标准层</h3>
+                        <p class="text-gray-600 mb-4">行业最佳实践和技术指南，帮助实现法规要求的合规性。</p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>GAMP®5 - 风险导向验证方法</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>ISO 9001 - 质量管理体系</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>ISO 27001 - 信息安全管理</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <div class="text-blue-600 mb-4">
+                            <i class="fas fa-building text-3xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">实践层</h3>
+                        <p class="text-gray-600 mb-4">企业根据法规和标准制定的具体操作程序和验证策略。</p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>基于风险评估的验证策略</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>计算机系统生命周期管理SOP</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>数据完整性控制措施</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 法规影响时间线 -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">GxP法规对制药企业的影响</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">从顶层法规到底层实践，GxP要求如何影响礼来等大型制药企业的运营和质量体系。</p>
+            </div>
+            
+            <div class="relative max-w-4xl mx-auto">
+                <!-- 时间线项目 -->
+                <div class="relative timeline-item pl-12 pb-8">
+                    <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2">法律合规驱动</h3>
+                        <p class="text-gray-600 mb-3">FDA和EMA等监管机构的强制性要求是企业CSV活动的根本驱动力。</p>
+                        <div class="bg-blue-50 p-3 rounded border border-blue-100">
+                            <p class="text-sm text-blue-800"><span class="font-semibold">案例:</span> 2021年某印度药企因缺乏审计追踪功能被FDA禁止产品进入美国市场，直接损失超过$50M。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative timeline-item pl-12 pb-8">
+                    <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2">质量体系升级</h3>
+                        <p class="text-gray-600 mb-3">GxP要求推动企业建立更完善的质量风险管理体系。</p>
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">数据错误率↓ 0.5%→0.02%</span>
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-xs">审计时间↓ 40%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative timeline-item pl-12 pb-8">
+                    <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2">运营成本影响</h3>
+                        <p class="text-gray-600 mb-3">CSV验证显著增加IT项目成本和时间，但降低长期合规风险。</p>
+                        <div class="grid grid-cols-2 gap-4 mt-3">
+                            <div class="bg-blue-50 p-3 rounded border border-blue-100">
+                                <p class="text-sm text-blue-800"><span class="font-semibold">验证成本:</span> 占IT项目20-30%</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded border border-blue-100">
+                                <p class="text-sm text-blue-800"><span class="font-semibold">上线周期:</span> 延长30-50%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative timeline-item pl-12">
+                    <div class="absolute left-0 top-0 w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-2">战略竞争优势</h3>
+                        <p class="text-gray-600 mb-3">成熟的CSV体系成为企业市场竞争力的重要组成部分。</p>
+                        <div class="grid grid-cols-2 gap-4 mt-3">
+                            <div class="bg-blue-50 p-3 rounded border border-blue-100">
+                                <p class="text-sm text-blue-800"><span class="font-semibold">市场准入:</span> 未通过CSV工厂注册被拒率73%</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded border border-blue-100">
+                                <p class="text-sm text-blue-800"><span class="font-semibold">企业估值:</span> 溢价15-20%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 法规交互关系 -->
+        <section class="mb-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">法规与标准的交互关系</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">GxP法规如何通过行业标准转化为企业可执行的具体实践。</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- 法规到标准 -->
+                <div class="flip-card h-64">
+                    <div class="flip-card-inner h-full rounded-lg shadow-md">
+                        <div class="flip-card-front bg-white p-6 rounded-lg flex flex-col justify-center items-center h-full">
+                            <div class="text-blue-600 mb-4">
+                                <i class="fas fa-file-contract text-5xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 text-center">法规要求</h3>
+                            <p class="text-gray-600 text-center">21 CFR Part 11的抽象合规要求</p>
+                        </div>
+                        <div class="flip-card-back bg-blue-600 text-white p-6 rounded-lg flex flex-col justify-center items-center h-full">
+                            <h3 class="text-xl font-bold mb-2 text-center">转化为</h3>
+                            <p class="text-center">GAMP5的系统分类方法</p>
+                            <div class="mt-4">
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">Category 3</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">Category 4</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">Category 5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 标准到实践 -->
+                <div class="flip-card h-64">
+                    <div class="flip-card-inner h-full rounded-lg shadow-md">
+                        <div class="flip-card-front bg-white p-6 rounded-lg flex flex-col justify-center items-center h-full">
+                            <div class="text-blue-600 mb-4">
+                                <i class="fas fa-book-open text-5xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 text-center">行业标准</h3>
+                            <p class="text-gray-600 text-center">ISO 27001信息安全控制项</p>
+                        </div>
+                        <div class="flip-card-back bg-blue-600 text-white p-6 rounded-lg flex flex-col justify-center items-center h-full">
+                            <h3 class="text-xl font-bold mb-2 text-center">映射到</h3>
+                            <p class="text-center">Annex 11数据完整性条款</p>
+                            <div class="mt-4">
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">访问控制</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">审计追踪</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">电子签名</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 实践到合规 -->
+                <div class="flip-card h-64">
+                    <div class="flip-card-inner h-full rounded-lg shadow-md">
+                        <div class="flip-card-front bg-white p-6 rounded-lg flex flex-col justify-center items-center h-full">
+                            <div class="text-blue-600 mb-4">
+                                <i class="fas fa-clipboard-check text-5xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 text-center">企业实践</h3>
+                            <p class="text-gray-600 text-center">基于风险评估的验证策略</p>
+                        </div>
+                        <div class="flip-card-back bg-blue-600 text-white p-6 rounded-lg flex flex-col justify-center items-center h-full">
+                            <h3 class="text-xl font-bold mb-2 text-center">实现</h3>
+                            <p class="text-center">法规合规性</p>
+                            <div class="mt-4">
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">FDA检查</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">EMA审计</span>
+                                <span class="bg-blue-800 px-3 py-1 rounded-full text-xs">PMDA认证</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 大厂实践案例 -->
+        <section>
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">全球制药巨头的CSV实践</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">礼来、辉瑞等大型制药企业如何构建CSV卓越中心(CoE)应对GxP挑战</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-industry text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">礼来制药CSV CoE</h3>
+                            <p class="text-blue-600 text-sm">全球合规卓越中心</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">礼来建立了集中的计算机系统验证卓越中心，整合法规解读、技术实施和人员培训三大功能。</p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-1 rounded-full mr-3">
+                                <i class="fas fa-check text-blue-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">统一验证方法论</p>
+                                <p class="text-xs text-gray-500">全球所有工厂采用基于GAMP5的标准化验证流程</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-1 rounded-full mr-3">
+                                <i class="fas fa-check text-blue-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">自动化验证工具</p>
+                                <p class="text-xs text-gray-500">开发内部验证管理平台，减少人工文档工作40%</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-1 rounded-full mr-3">
+                                <i class="fas fa-check text-blue-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">供应商管理</p>
+                                <p class="text-xs text-gray-500">严格的供应商审计程序，确保第三方系统合规性</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-flask text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">辉瑞数字化转型</h3>
+                            <p class="text-blue-600 text-sm">云系统合规策略</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">辉瑞采用创新方法解决SaaS和云系统的CSV挑战，平衡合规要求与技术革新。</p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-1 rounded-full mr-3">
+                                <i class="fas fa-check text-blue-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">CSA STAR认证</p>
+                                <p class="text-xs text-gray-500">要求所有云服务提供商通过CSA STAR安全认证</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-1 rounded-full mr-3">
+                                <i class="fas fa-check text-blue-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">数据主权条款</p>
+                                <p class="text-xs text-gray-500">合同明确数据存储位置和司法管辖权要求</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-1 rounded-full mr-3">
+                                <i class="fas fa-check text-blue-600 text-xs"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">持续监控</p>
+                                <p class="text-xs text-gray-500">实时监控云系统性能和数据完整性指标</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="gradient-bg text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">GxP CSV 教学平台</h3>
+                    <p class="mb-4">制药行业计算机系统验证的专业教育资源</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-200"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-blue-200"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-blue-200"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-200">课程目录</a></li>
+                        <li><a href="#" class="hover:text-blue-200">法规数据库</a></li>
+                        <li><a href="#" class="hover:text-blue-200">验证模板</a></li>
+                        <li><a href="#" class="hover:text-blue-200">行业动态</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">资源下载</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-200">GAMP5指南摘要</a></li>
+                        <li><a href="#" class="hover:text-blue-200">21 CFR Part 11检查表</a></li>
+                        <li><a href="#" class="hover:text-blue-200">CSV项目计划模板</a></li>
+                        <li><a href="#" class="hover:text-blue-200">风险评估工具</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-2"></i>
+                            <span>[REDACTED]@[REDACTED].com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-2"></i>
+                            <span>+86 158 1051 7437</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
+                            <span>北京市昌平区生命科学园</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-blue-400 mt-8 pt-8 text-center">
+                <p>© 2025 GxP CSV教学平台. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 点击导航链接平滑滚动
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // 回到顶部按钮
+            const backToTop = document.createElement('div');
+            backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+            backToTop.className = 'fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center cursor-pointer shadow-lg hover:bg-blue-700 transition hidden';
+            document.body.appendChild(backToTop);
+            
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            window.addEventListener('scroll', () => {
+                if(window.pageYOffset > 300) {
+                    backToTop.classList.remove('hidden');
+                } else {
+                    backToTop.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

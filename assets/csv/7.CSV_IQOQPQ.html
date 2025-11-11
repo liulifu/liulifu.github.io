@@ -1,0 +1,1138 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP CSV培训 - IQ/OQ/PQ验证流程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .timeline-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -20px;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background-color: #3b82f6;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .highlight-box {
+            position: relative;
+            border-left: 4px solid #3b82f6;
+        }
+        .highlight-box:before {
+            content: "案例";
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            background-color: #3b82f6;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- 头部 -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-blue-800 mb-4">计算机化系统验证(CSV)生命周期</h1>
+            <h2 class="text-2xl font-semibold text-blue-600">IQ/OQ/PQ验证流程详解</h2>
+            <div class="mt-6 bg-blue-100 border-l-4 border-blue-500 p-4 text-left">
+                <p class="text-blue-800"><i class="fas fa-info-circle mr-2"></i>本课程将详细介绍CSV验证中的三个关键环节：安装确认(IQ)、运行确认(OQ)和性能确认(PQ)，并通过制药企业LIMS系统案例进行实战讲解。</p>
+            </div>
+        </header>
+
+        <!-- 导航 -->
+        <nav class="mb-8 bg-white shadow rounded-lg overflow-hidden">
+            <div class="flex flex-wrap">
+                <a href="#introduction" class="px-4 py-3 font-medium text-blue-600 hover:bg-blue-50 flex items-center">
+                    <i class="fas fa-home mr-2"></i>概述
+                </a>
+                <a href="#iq" class="px-4 py-3 font-medium text-blue-600 hover:bg-blue-50 flex items-center">
+                    <i class="fas fa-download mr-2"></i>IQ
+                </a>
+                <a href="#oq" class="px-4 py-3 font-medium text-blue-600 hover:bg-blue-50 flex items-center">
+                    <i class="fas fa-cogs mr-2"></i>OQ
+                </a>
+                <a href="#pq" class="px-4 py-3 font-medium text-blue-600 hover:bg-blue-50 flex items-center">
+                    <i class="fas fa-chart-line mr-2"></i>PQ
+                </a>
+                <a href="#case" class="px-4 py-3 font-medium text-blue-600 hover:bg-blue-50 flex items-center">
+                    <i class="fas fa-flask mr-2"></i>案例研究
+                </a>
+                <a href="#summary" class="px-4 py-3 font-medium text-blue-600 hover:bg-blue-50 flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>总结
+                </a>
+            </div>
+        </nav>
+
+        <!-- 主要内容 -->
+        <main>
+            <!-- 概述部分 -->
+            <section id="introduction" class="mb-16 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-blue-600 text-white px-6 py-4 flex items-center">
+                    <i class="fas fa-home text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">CSV验证概述</h2>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">什么是IQ/OQ/PQ?</h3>
+                        <p class="text-gray-700 mb-4">IQ (Installation Qualification, 安装确认)、OQ (Operational Qualification, 运行确认)和PQ (Performance Qualification, 性能确认)是计算机化系统验证(CSV)中的三个关键阶段，构成了系统验证的核心框架。</p>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mb-6">
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                                <div class="flex items-center mb-2">
+                                    <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                        <i class="fas fa-download text-blue-600"></i>
+                                    </div>
+                                    <h4 class="font-bold text-blue-800">IQ</h4>
+                                </div>
+                                <p class="text-gray-700">确认系统已按照设计规范正确安装，包括硬件、软件、网络环境等。</p>
+                            </div>
+                            <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                                <div class="flex items-center mb-2">
+                                    <div class="bg-green-100 p-2 rounded-full mr-3">
+                                        <i class="fas fa-cogs text-green-600"></i>
+                                    </div>
+                                    <h4 class="font-bold text-green-800">OQ</h4>
+                                </div>
+                                <p class="text-gray-700">验证系统在指定操作范围内的功能是否符合预期，包括正常和异常条件下的测试。</p>
+                            </div>
+                            <div class="bg-purple-50 p-4 rounded-lg border border-purple-200">
+                                <div class="flex items-center mb-2">
+                                    <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                        <i class="fas fa-chart-line text-purple-600"></i>
+                                    </div>
+                                    <h4 class="font-bold text-purple-800">PQ</h4>
+                                </div>
+                                <p class="text-gray-700">证明系统在真实或模拟的生产环境下能够持续稳定地满足预定用途和用户需求。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">验证生命周期中的位置</h3>
+                        <div class="relative">
+                            <!-- 时间线 -->
+                            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                                <div class="timeline-item relative mb-10 md:mb-0 w-full md:w-1/4 text-center">
+                                    <div class="bg-blue-100 p-4 rounded-lg border border-blue-300">
+                                        <h4 class="font-bold text-blue-800">URS</h4>
+                                        <p class="text-sm text-gray-600">用户需求规范</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item relative mb-10 md:mb-0 w-full md:w-1/4 text-center">
+                                    <div class="bg-blue-100 p-4 rounded-lg border border-blue-300">
+                                        <h4 class="font-bold text-blue-800">设计确认(DQ)</h4>
+                                        <p class="text-sm text-gray-600">设计规范审查</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item relative mb-10 md:mb-0 w-full md:w-1/4 text-center">
+                                    <div class="bg-blue-600 text-white p-4 rounded-lg border border-blue-700 shadow-md">
+                                        <h4 class="font-bold">IQ/OQ/PQ</h4>
+                                        <p class="text-sm">核心验证阶段</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item relative w-full md:w-1/4 text-center">
+                                    <div class="bg-blue-100 p-4 rounded-lg border border-blue-300">
+                                        <h4 class="font-bold text-blue-800">持续验证</h4>
+                                        <p class="text-sm text-gray-600">变更控制/定期评审</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">法规要求</h3>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>FDA 21 CFR Part 11</strong> - 电子记录和电子签名</li>
+                                <li><strong>EU GMP Annex 11</strong> - 计算机化系统</li>
+                                <li><strong>GAMP 5</strong> - 良好自动化生产实践指南</li>
+                                <li><strong>ICH Q7</strong> - GMP原料药指南</li>
+                                <li><strong>PIC/S</strong> - 药品检查合作计划</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- IQ部分 -->
+            <section id="iq" class="mb-16 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-blue-600 text-white px-6 py-4 flex items-center">
+                    <i class="fas fa-download text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">安装确认(IQ)</h2>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">IQ定义与目的</h3>
+                        <p class="text-gray-700 mb-4">安装确认(Installation Qualification, IQ)是验证过程的第一步，旨在证明计算机化系统已按照制造商规范、用户需求规范(URS)和设计规范正确安装。</p>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 mb-4">
+                            <h4 class="font-bold text-blue-800 mb-2"><i class="fas fa-bullseye mr-2"></i>IQ主要目标</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                <li>确认系统硬件和软件已正确安装</li>
+                                <li>验证安装环境符合要求</li>
+                                <li>确保所有必要的文档已到位</li>
+                                <li>确认系统组件与设计规范一致</li>
+                                <li>建立系统基线配置</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">IQ测试内容</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead class="bg-gray-100">
+                                    <tr>
+                                        <th class="py-2 px-4 border-b text-left">测试项目</th>
+                                        <th class="py-2 px-4 border-b text-left">测试内容</th>
+                                        <th class="py-2 px-4 border-b text-left">验收标准</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">硬件安装</td>
+                                        <td class="py-2 px-4 border-b">服务器、工作站、网络设备等物理安装检查</td>
+                                        <td class="py-2 px-4 border-b">符合设计规范，位置正确，连接稳固</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">软件安装</td>
+                                        <td class="py-2 px-4 border-b">操作系统、应用软件、数据库等安装验证</td>
+                                        <td class="py-2 px-4 border-b">正确版本，完整安装，无错误信息</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">环境条件</td>
+                                        <td class="py-2 px-4 border-b">温度、湿度、电力、网络等基础设施检查</td>
+                                        <td class="py-2 px-4 border-b">符合系统运行要求</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">文档检查</td>
+                                        <td class="py-2 px-4 border-b">安装手册、配置记录、许可证书等</td>
+                                        <td class="py-2 px-4 border-b">文档齐全、可追溯、与系统一致</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">安全设置</td>
+                                        <td class="py-2 px-4 border-b">用户权限、防火墙、防病毒等安全配置</td>
+                                        <td class="py-2 px-4 border-b">符合安全策略，防护措施到位</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">IQ文档要求</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-file-alt mr-2"></i>必备文档</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>IQ测试方案</li>
+                                    <li>IQ测试报告</li>
+                                    <li>系统安装手册</li>
+                                    <li>硬件配置清单</li>
+                                    <li>软件版本确认记录</li>
+                                    <li>环境监测记录</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-clipboard-check mr-2"></i>记录要求</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>所有测试必须有明确的验收标准</li>
+                                    <li>测试结果必须记录实际观察值</li>
+                                    <li>任何偏差必须记录并评估</li>
+                                    <li>测试必须由授权人员执行和审核</li>
+                                    <li>所有文档必须受控管理</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 案例部分 -->
+                    <div class="highlight-box bg-blue-50 p-6 rounded-lg mb-6 mt-8">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">案例：某制药企业LIMS系统IQ验证</h3>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-blue-700 mb-2"><i class="fas fa-server mr-2"></i>硬件安装验证</h4>
+                            <p class="text-gray-700 pl-6">验证LIMS服务器(HP ProLiant DL380)已安装在指定机房机柜中，电源冗余配置正确，网络连接符合设计图纸要求。记录服务器序列号、固件版本，确认与采购订单一致。</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-blue-700 mb-2"><i class="fas fa-database mr-2"></i>软件安装验证</h4>
+                            <p class="text-gray-700 pl-6">确认LIMS软件(版本8.2.1)已正确安装在服务器上，Oracle数据库(19c)安装完整，所有服务正常启动。验证安装路径、数据库实例名称与设计文档一致。</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-blue-700 mb-2"><i class="fas fa-network-wired mr-2"></i>网络环境验证</h4>
+                            <p class="text-gray-700 pl-6">测试所有客户端工作站(10台)能够正常连接LIMS服务器，网络延迟<50ms，带宽>100Mbps。验证防火墙规则已正确配置，仅开放必要端口(8080, 1521)。</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-medium text-blue-700 mb-2"><i class="fas fa-file-contract mr-2"></i>文档检查</h4>
+                            <p class="text-gray-700 pl-6">收集并审查软件许可证书(有效期至2025年)、安装日志、系统配置手册。确认所有文档均为受控版本，并归档至质量文档管理系统。</p>
+                        </div>
+                        <div class="bg-blue-100 p-3 rounded">
+                            <p class="text-blue-800"><i class="fas fa-lightbulb mr-2"></i><strong>关键点：</strong> IQ验证中发现服务器RAID配置与设计规范不符(设计为RAID 10，实际为RAID 5)，作为偏差记录并需要供应商重新配置后才能批准IQ报告。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OQ部分 -->
+            <section id="oq" class="mb-16 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-green-600 text-white px-6 py-4 flex items-center">
+                    <i class="fas fa-cogs text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">运行确认(OQ)</h2>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-green-800 mb-3">OQ定义与目的</h3>
+                        <p class="text-gray-700 mb-4">运行确认(Operational Qualification, OQ)是在IQ完成后进行的验证阶段，旨在证明系统在指定操作范围内的功能符合预期要求，能够在正常和异常条件下正确运行。</p>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200 mb-4">
+                            <h4 class="font-bold text-green-800 mb-2"><i class="fas fa-bullseye mr-2"></i>OQ主要目标</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                <li>验证系统功能符合用户需求和设计规范</li>
+                                <li>确认系统在正常操作范围内的性能</li>
+                                <li>测试系统在边界条件和异常情况下的行为</li>
+                                <li>验证报警和安全功能的有效性</li>
+                                <li>确认系统接口和数据传输的正确性</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-green-800 mb-3">OQ测试策略</h3>
+                        <div class="grid md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <h4 class="font-bold text-green-700 mb-2"><i class="fas fa-check-circle mr-2"></i>正常功能测试</h4>
+                                <p class="text-gray-700">验证系统在正常操作条件下的所有功能是否符合要求</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <h4 class="font-bold text-green-700 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i>异常情况测试</h4>
+                                <p class="text-gray-700">测试系统在错误输入、断电等异常条件下的反应和处理</p>
+                            </div>
+                            <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                                <h4 class="font-bold text-green-700 mb-2"><i class="fas fa-sliders-h mr-2"></i>边界测试</h4>
+                                <p class="text-gray-700">验证系统在参数边界值(最小/最大)时的行为</p>
+                            </div>
+                        </div>
+                        
+                        <h4 class="font-medium text-green-700 mb-2">OQ测试内容分类</h4>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                            <div class="accordion">
+                                <button class="accordion-btn flex justify-between items-center w-full py-2 font-medium text-left text-gray-800">
+                                    <span><i class="fas fa-user-shield mr-2"></i>安全功能测试</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                                        <li>用户访问控制(角色、权限)</li>
+                                        <li>密码策略执行</li>
+                                        <li>会话超时设置</li>
+                                        <li>审计追踪功能</li>
+                                        <li>数据备份与恢复</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion mt-2">
+                                <button class="accordion-btn flex justify-between items-center w-full py-2 font-medium text-left text-gray-800">
+                                    <span><i class="fas fa-exchange-alt mr-2"></i>数据完整性测试</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                                        <li>数据输入验证</li>
+                                        <li>数据计算准确性</li>
+                                        <li>数据存储完整性</li>
+                                        <li>数据传输正确性</li>
+                                        <li>数据修改记录</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="accordion mt-2">
+                                <button class="accordion-btn flex justify-between items-center w-full py-2 font-medium text-left text-gray-800">
+                                    <span><i class="fas fa-plug mr-2"></i>接口测试</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                                        <li>与仪器接口(如HPLC)</li>
+                                        <li>与ERP系统接口</li>
+                                        <li>与文档管理系统接口</li>
+                                        <li>数据格式转换验证</li>
+                                        <li>错误数据处理</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-green-800 mb-3">OQ文档要求</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-file-alt mr-2"></i>必备文档</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>OQ测试方案</li>
+                                    <li>OQ测试用例</li>
+                                    <li>测试数据准备记录</li>
+                                    <li>测试执行记录</li>
+                                    <li>OQ测试报告</li>
+                                    <li>偏差报告(如适用)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-clipboard-check mr-2"></i>记录要求</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>每个测试用例必须有明确的预期结果</li>
+                                    <li>记录实际测试结果和屏幕截图</li>
+                                    <li>测试人员签名和日期</li>
+                                    <li>独立审核人员确认</li>
+                                    <li>测试环境配置记录</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 案例部分 -->
+                    <div class="highlight-box bg-green-50 p-6 rounded-lg mb-6 mt-8">
+                        <h3 class="text-lg font-semibold text-green-800 mb-3">案例：某制药企业LIMS系统OQ验证</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-green-700 mb-3"><i class="fas fa-tasks mr-2"></i>测试项目概览</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white border border-gray-200">
+                                    <thead class="bg-green-100">
+                                        <tr>
+                                            <th class="py-2 px-4 border-b text-left">测试类别</th>
+                                            <th class="py-2 px-4 border-b text-left">测试项目</th>
+                                            <th class="py-2 px-4 border-b text-left">测试结果</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">样品管理</td>
+                                            <td class="py-2 px-4 border-b">样品接收、分配、追踪</td>
+                                            <td class="py-2 px-4 border-b text-green-600">通过</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">测试管理</td>
+                                            <td class="py-2 px-4 border-b">测试方法分配、结果录入</td>
+                                            <td class="py-2 px-4 border-b text-green-600">通过</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">数据完整性</td>
+                                            <td class="py-2 px-4 border-b">审计追踪、电子签名</td>
+                                            <td class="py-2 px-4 border-b text-yellow-600">部分通过(需调整审计追踪格式)</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">仪器接口</td>
+                                            <td class="py-2 px-4 border-b">HPLC数据自动采集</td>
+                                            <td class="py-2 px-4 border-b text-red-600">失败(需重新配置接口)</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">报表功能</td>
+                                            <td class="py-2 px-4 border-b">COA生成、趋势分析</td>
+                                            <td class="py-2 px-4 border-b text-green-600">通过</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-medium text-green-700 mb-2"><i class="fas fa-user-lock mr-2"></i>安全功能测试详情</h4>
+                            <p class="text-gray-700 pl-6">验证不同用户角色(QC分析师、QA主管、系统管理员)的权限控制：</p>
+                            <ul class="list-disc pl-10 mt-2 space-y-1 text-gray-700">
+                                <li>QC分析师可以录入测试结果但无法批准</li>
+                                <li>QA主管可以审核和批准结果但无法修改原始数据</li>
+                                <li>系统管理员可以配置系统但无法查看测试数据</li>
+                                <li>验证密码策略(8字符，包含大小写和数字，90天过期)</li>
+                                <li>确认30分钟不活动后自动注销会话</li>
+                            </ul>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-medium text-green-700 mb-2"><i class="fas fa-bug mr-2"></i>异常情况测试</h4>
+                            <p class="text-gray-700 pl-6">模拟各种异常场景验证系统反应：</p>
+                            <ul class="list-disc pl-10 mt-2 space-y-1 text-gray-700">
+                                <li>输入超出范围的值(如pH值输入15.0) - 系统正确阻止并提示</li>
+                                <li>强制关闭客户端程序 - 数据自动保存无丢失</li>
+                                <li>网络中断后恢复 - 自动重新连接并同步数据</li>
+                                <li>服务器断电 - 验证自动恢复和数据完整性</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-green-100 p-3 rounded">
+                            <p class="text-green-800"><i class="fas fa-lightbulb mr-2"></i><strong>关键点：</strong> OQ测试中发现HPLC接口配置错误导致数据采集失败，作为关键偏差记录并需要供应商提供补丁。只有所有关键偏差解决后才能批准OQ报告。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PQ部分 -->
+            <section id="pq" class="mb-16 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-purple-600 text-white px-6 py-4 flex items-center">
+                    <i class="fas fa-chart-line text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">性能确认(PQ)</h2>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-3">PQ定义与目的</h3>
+                        <p class="text-gray-700 mb-4">性能确认(Performance Qualification, PQ)是验证过程的最后阶段，旨在证明系统在真实或模拟的生产环境下能够持续稳定地满足预定用途和用户需求。</p>
+                        <div class="bg-purple-50 p-4 rounded-lg border border-purple-200 mb-4">
+                            <h4 class="font-bold text-purple-800 mb-2"><i class="fas fa-bullseye mr-2"></i>PQ主要目标</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                <li>验证系统在真实业务场景下的性能</li>
+                                <li>确认系统能够满足日常操作需求</li>
+                                <li>评估系统在负载条件下的稳定性</li>
+                                <li>验证用户工作流程的完整性和效率</li>
+                                <li>确认系统与其他系统的集成效果</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-3">PQ测试方法</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-purple-700 mb-3 flex items-center">
+                                    <i class="fas fa-users mr-2"></i>模拟业务流程测试
+                                </h4>
+                                <p class="text-gray-700 mb-2">使用真实或模拟的业务数据，按照标准操作规程(SOP)执行完整的业务流程。</p>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>端到端业务流程验证</li>
+                                    <li>多用户并发操作测试</li>
+                                    <li>跨部门协作流程测试</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-purple-700 mb-3 flex items-center">
+                                    <i class="fas fa-tachometer-alt mr-2"></i>性能与负载测试
+                                </h4>
+                                <p class="text-gray-700 mb-2">评估系统在不同负载条件下的响应时间、吞吐量和稳定性。</p>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>正常负载测试</li>
+                                    <li>峰值负载测试</li>
+                                    <li>长时间运行稳定性测试</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-purple-700 mb-3 flex items-center">
+                                    <i class="fas fa-calendar-check mr-2"></i>长期性能监测
+                                </h4>
+                                <p class="text-gray-700 mb-2">在实际使用环境中进行一段时间的监测，收集性能数据。</p>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>日常性能指标记录</li>
+                                    <li>异常事件跟踪</li>
+                                    <li>用户反馈收集</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-purple-700 mb-3 flex items-center">
+                                    <i class="fas fa-random mr-2"></i>回归测试
+                                </h4>
+                                <p class="text-gray-700 mb-2">验证系统更新或配置变更后关键功能仍然正常。</p>
+                                <ul class="list-disc pl-5 text-gray-700">
+                                    <li>关键业务流程验证</li>
+                                    <li>数据完整性检查</li>
+                                    <li>接口功能确认</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-3">PQ成功标准</h3>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>业务流程成功率</strong> - 关键业务流程成功执行率≥95%</li>
+                                <li><strong>系统可用性</strong> - 系统正常运行时间≥99%</li>
+                                <li><strong>性能指标</strong> - 关键操作响应时间<3秒，报表生成<1分钟</li>
+                                <li><strong>数据准确性</strong> - 数据输入、处理、输出100%准确</li>
+                                <li><strong>用户满意度</strong> - 关键用户满意度≥90%</li>
+                                <li><strong>偏差处理</strong> - 所有关键偏差已解决或风险可接受</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-3">PQ文档要求</h3>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-file-alt mr-2"></i>必备文档</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>PQ测试方案</li>
+                                    <li>业务流程脚本</li>
+                                    <li>测试数据记录</li>
+                                    <li>性能监测记录</li>
+                                    <li>PQ测试报告</li>
+                                    <li>用户培训记录</li>
+                                </ul>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <h4 class="font-bold text-gray-800 mb-2"><i class="fas fa-clipboard-check mr-2"></i>记录要求</h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>业务流程执行详细记录</li>
+                                    <li>性能数据图表和分析</li>
+                                    <li>用户反馈汇总</li>
+                                    <li>系统事件日志</li>
+                                    <li>最终验收确认</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 案例部分 -->
+                    <div class="highlight-box bg-purple-50 p-6 rounded-lg mb-6 mt-8">
+                        <h3 class="text-lg font-semibold text-purple-800 mb-3">案例：某制药企业LIMS系统PQ验证</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-purple-700 mb-3"><i class="fas fa-project-diagram mr-2"></i>业务流程测试</h4>
+                            <p class="text-gray-700 mb-2">模拟真实QC实验室工作流程，包括：</p>
+                            <div class="grid md:grid-cols-3 gap-4 mt-3">
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <h5 class="font-bold text-purple-700 mb-1">样品接收流程</h5>
+                                    <p class="text-sm text-gray-700">样品登记、分配测试项目、生成样品ID</p>
+                                    <p class="text-sm text-green-600 mt-1"><i class="fas fa-check-circle"></i> 成功率100%</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <h5 class="font-bold text-purple-700 mb-1">测试执行流程</h5>
+                                    <p class="text-sm text-gray-700">测试结果录入、计算、审核</p>
+                                    <p class="text-sm text-green-600 mt-1"><i class="fas fa-check-circle"></i> 成功率98%</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <h5 class="font-bold text-purple-700 mb-1">报告批准流程</h5>
+                                    <p class="text-sm text-gray-700">COA生成、QA审核、电子签名</p>
+                                    <p class="text-sm text-green-600 mt-1"><i class="fas fa-check-circle"></i> 成功率95%</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-medium text-purple-700 mb-2"><i class="fas fa-tachometer-alt mr-2"></i>性能测试结果</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-white border border-gray-200">
+                                    <thead class="bg-purple-100">
+                                        <tr>
+                                            <th class="py-2 px-4 border-b text-left">测试场景</th>
+                                            <th class="py-2 px-4 border-b text-left">指标</th>
+                                            <th class="py-2 px-4 border-b text-left">结果</th>
+                                            <th class="py-2 px-4 border-b text-left">标准</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">10用户并发</td>
+                                            <td class="py-2 px-4 border-b">平均响应时间</td>
+                                            <td class="py-2 px-4 border-b">1.2秒</td>
+                                            <td class="py-2 px-4 border-b">≤3秒</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">30用户并发</td>
+                                            <td class="py-2 px-4 border-b">平均响应时间</td>
+                                            <td class="py-2 px-4 border-b">2.8秒</td>
+                                            <td class="py-2 px-4 border-b">≤3秒</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">50用户并发</td>
+                                            <td class="py-2 px-4 border-b">平均响应时间</td>
+                                            <td class="py-2 px-4 border-b">4.5秒</td>
+                                            <td class="py-2 px-4 border-b">≤5秒</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">批量数据导入</td>
+                                            <td class="py-2 px-4 border-b">1000条记录</td>
+                                            <td class="py-2 px-4 border-b">45秒</td>
+                                            <td class="py-2 px-4 border-b">≤1分钟</td>
+                                        </tr>
+                                        <tr class="hover:bg-gray-50">
+                                            <td class="py-2 px-4 border-b">月报生成</td>
+                                            <td class="py-2 px-4 border-b">5000条数据</td>
+                                            <td class="py-2 px-4 border-b">38秒</td>
+                                            <td class="py-2 px-4 border-b">≤1分钟</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 class="font-medium text-purple-700 mb-2"><i class="fas fa-user-clock mr-2"></i>用户验收测试</h4>
+                            <p class="text-gray-700 mb-2">邀请15名来自QC、QA和生产的终端用户进行为期2周的试用，收集反馈：</p>
+                            <div class="grid md:grid-cols-3 gap-4 mt-3">
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <h5 class="font-bold text-purple-700 mb-1">易用性</h5>
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-yellow-400 h-2.5 rounded-full" style="width: 85%"></div>
+                                        </div>
+                                        <span class="ml-2 text-sm font-medium">8.5/10</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <h5 class="font-bold text-purple-700 mb-1">功能完整性</h5>
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-green-500 h-2.5 rounded-full" style="width: 92%"></div>
+                                        </div>
+                                        <span class="ml-2 text-sm font-medium">9.2/10</span>
+                                    </div>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-gray-200">
+                                    <h5 class="font-bold text-purple-700 mb-1">系统稳定性</h5>
+                                    <div class="flex items-center">
+                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                            <div class="bg-green-500 h-2.5 rounded-full" style="width: 95%"></div>
+                                        </div>
+                                        <span class="ml-2 text-sm font-medium">9.5/10</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-100 p-3 rounded">
+                            <p class="text-purple-800"><i class="fas fa-lightbulb mr-2"></i><strong>关键点：</strong> PQ阶段发现批量数据导入时偶尔会出现超时问题，经分析为数据库索引优化不足。在供应商优化后重新测试通过，最终系统获得质量部门批准投入正式使用。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 案例研究部分 -->
+            <section id="case" class="mb-16 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-indigo-600 text-white px-6 py-4 flex items-center">
+                    <i class="fas fa-flask text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">LIMS系统CSV验证案例研究</h2>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-indigo-800 mb-3">案例背景</h3>
+                        <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-200 mb-4">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <h4 class="font-bold text-indigo-700 mb-2"><i class="fas fa-building mr-2"></i>企业概况</h4>
+                                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                        <li>某大型制药企业，生产无菌注射剂</li>
+                                        <li>已通过FDA、EMA和NMPA认证</li>
+                                        <li>拥有现代化QC实验室，年检测样品超过50,000个</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-indigo-700 mb-2"><i class="fas fa-info-circle mr-2"></i>项目概况</h4>
+                                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                        <li>系统名称：LabWare LIMS v8.2.1</li>
+                                        <li>实施范围：QC实验室全流程管理</li>
+                                        <li>验证类别：GxP关键系统(直接影响患者安全)</li>
+                                        <li>验证级别：GAMP 5 Category 4</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-indigo-800 mb-3">验证策略</h3>
+                        <div class="grid md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-indigo-700 mb-2 flex items-center">
+                                    <i class="fas fa-layer-group mr-2"></i>验证方法
+                                </h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>基于风险的验证方法</li>
+                                    <li>遵循GAMP 5指南</li>
+                                    <li>模块化测试策略</li>
+                                    <li>供应商评估与审计</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-indigo-700 mb-2 flex items-center">
+                                    <i class="fas fa-users mr-2"></i>团队组成
+                                </h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>QA验证专员(负责人)</li>
+                                    <li>IT系统管理员</li>
+                                    <li>QC业务专家</li>
+                                    <li>供应商技术支持</li>
+                                    <li>质量受权人(QP)</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-indigo-700 mb-2 flex items-center">
+                                    <i class="fas fa-calendar-alt mr-2"></i>时间计划
+                                </h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>IQ: 2周</li>
+                                    <li>OQ: 4周</li>
+                                    <li>PQ: 6周</li>
+                                    <li>总计: 3个月</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-indigo-800 mb-3">验证成果</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-medium text-indigo-700 mb-2"><i class="fas fa-chart-pie mr-2"></i>验证指标</h4>
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-2/5">
+                                            <p class="text-sm font-medium text-gray-600">测试用例总数</p>
+                                        </div>
+                                        <div class="w-3/5">
+                                            <p class="text-sm">IQ: 58 | OQ: 132 | PQ: 45</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-2/5">
+                                            <p class="text-sm font-medium text-gray-600">通过率</p>
+                                        </div>
+                                        <div class="w-3/5">
+                                            <p class="text-sm">IQ: 100% | OQ: 96% | PQ: 98%</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center mb-3">
+                                        <div class="w-2/5">
+                                            <p class="text-sm font-medium text-gray-600">偏差数量</p>
+                                        </div>
+                                        <div class="w-3/5">
+                                            <p class="text-sm">IQ: 2 | OQ: 5 | PQ: 1</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="w-2/5">
+                                            <p class="text-sm font-medium text-gray-600">关键偏差</p>
+                                        </div>
+                                        <div class="w-3/5">
+                                            <p class="text-sm">1个(已解决)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-indigo-700 mb-2"><i class="fas fa-file-alt mr-2"></i>交付文档</h4>
+                                <div class="bg-white p-4 rounded-lg border border-gray-200">
+                                    <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                        <li>验证主计划(VMP)</li>
+                                        <li>IQ/OQ/PQ测试方案与报告</li>
+                                        <li>配置管理文档</li>
+                                        <li>偏差报告与CAPA</li>
+                                        <li>用户培训记录</li>
+                                        <li>最终验证总结报告</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-indigo-800 mb-3">经验教训</h3>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-indigo-700 mb-2 flex items-center">
+                                    <i class="fas fa-check-circle mr-2"></i>成功经验
+                                </h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>早期用户参与需求定义</li>
+                                    <li>详细的测试用例设计</li>
+                                    <li>严格的变更控制流程</li>
+                                    <li>充分的供应商协作</li>
+                                    <li>清晰的文档管理</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+                                <h4 class="font-bold text-indigo-700 mb-2 flex items-center">
+                                    <i class="fas fa-exclamation-triangle mr-2"></i>改进点
+                                </h4>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                    <li>应更早开始数据迁移验证</li>
+                                    <li>增加用户培训时间</li>
+                                    <li>优化测试环境配置</li>
+                                    <li>加强接口测试资源</li>
+                                    <li>完善性能测试指标</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-100 p-4 rounded-lg">
+                        <h4 class="font-bold text-indigo-800 mb-2"><i class="fas fa-graduation-cap mr-2"></i>案例启示</h4>
+                        <p class="text-gray-700">本案例展示了完整的LIMS系统CSV验证过程，强调了基于风险的方法、严格的文档控制和用户参与的重要性。验证不是一次性活动，而是贯穿系统生命周期的持续过程。通过结构化的IQ/OQ/PQ验证，确保了LIMS系统在GMP环境下的合规性和可靠性，为药品质量数据提供了有力保障。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 总结部分 -->
+            <section id="summary" class="mb-16 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-blue-600 text-white px-6 py-4 flex items-center">
+                    <i class="fas fa-check-circle text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">IQ/OQ/PQ验证总结</h2>
+                </div>
+                <div class="p-6">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">三阶段关系与区别</h3>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200">
+                                <thead class="bg-blue-100">
+                                    <tr>
+                                        <th class="py-2 px-4 border-b text-left">比较项</th>
+                                        <th class="py-2 px-4 border-b text-left">IQ</th>
+                                        <th class="py-2 px-4 border-b text-left">OQ</th>
+                                        <th class="py-2 px-4 border-b text-left">PQ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">验证目标</td>
+                                        <td class="py-2 px-4 border-b">正确安装</td>
+                                        <td class="py-2 px-4 border-b">功能正确</td>
+                                        <td class="py-2 px-4 border-b">满足用途</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">测试环境</td>
+                                        <td class="py-2 px-4 border-b">安装环境</td>
+                                        <td class="py-2 px-4 border-b">受控测试环境</td>
+                                        <td class="py-2 px-4 border-b">生产或模拟环境</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">测试数据</td>
+                                        <td class="py-2 px-4 border-b">配置数据</td>
+                                        <td class="py-2 px-4 border-b">测试用例数据</td>
+                                        <td class="py-2 px-4 border-b">真实或模拟业务数据</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">执行人员</td>
+                                        <td class="py-2 px-4 border-b">IT/供应商</td>
+                                        <td class="py-2 px-4 border-b">验证团队</td>
+                                        <td class="py-2 px-4 border-b">业务用户+验证团队</td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="py-2 px-4 border-b">时间顺序</td>
+                                        <td class="py-2 px-4 border-b">最先</td>
+                                        <td class="py-2 px-4 border-b">中间</td>
+                                        <td class="py-2 px-4 border-b">最后</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">验证成功关键因素</h3>
+                        <div class="grid md:grid-cols-4 gap-4">
+                            <div class="bg-blue-50 p-3 rounded-lg border border-blue-200 text-center">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-file-alt text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-800 mb-1">完善计划</h4>
+                                <p class="text-sm text-gray-700">详细的验证主计划和测试方案</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-lg border border-blue-200 text-center">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-users text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-800 mb-1">团队协作</h4>
+                                <p class="text-sm text-gray-700">跨部门团队与供应商紧密合作</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-lg border border-blue-200 text-center">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-clipboard-check text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-800 mb-1">严格测试</h4>
+                                <p class="text-sm text-gray-700">基于风险的全面测试用例</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-lg border border-blue-200 text-center">
+                                <div class="bg-blue-100 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2">
+                                    <i class="fas fa-archive text-blue-600 text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-blue-800 mb-1">文档控制</h4>
+                                <p class="text-sm text-gray-700">完整的受控文档记录</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-3">常见问题与对策</h3>
+                        <div class="bg-gray-100 p-4 rounded-lg">
+                            <div class="accordion mb-2">
+                                <button class="accordion-btn flex justify-between items-center w-full py-2 px-3 bg-white rounded font-medium text-left text-gray-800">
+                                    <span><i class="fas fa-question-circle mr-2 text-blue-600"></i>IQ/OQ/PQ是否可以合并执行?</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content bg-white px-3 rounded-b">
+                                    <p class="py-2 text-gray-700">在特定情况下可以合并IQ/OQ(如小型系统)，但PQ通常应独立执行。合并需基于风险评估并记录理由。GxP关键系统建议分开执行。</p>
+                                </div>
+                            </div>
+                            <div class="accordion mb-2">
+                                <button class="accordion-btn flex justify-between items-center w-full py-2 px-3 bg-white rounded font-medium text-left text-gray-800">
+                                    <span><i class="fas fa-question-circle mr-2 text-blue-600"></i>验证失败如何处理?</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content bg-white px-3 rounded-b">
+                                    <p class="py-2 text-gray-700">记录偏差并评估影响，制定纠正措施(CAPA)。关键偏差必须解决后才能批准验证报告。非关键偏差可评估风险后决定是否接受。</p>
+                                </div>
+                            </div>
+                            <div class="accordion">
+                                <button class="accordion-btn flex justify-between items-center w-full py-2 px-3 bg-white rounded font-medium text-left text-gray-800">
+                                    <span><i class="fas fa-question-circle mr-2 text-blue-600"></i>如何确定测试用例数量?</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content bg-white px-3 rounded-b">
+                                    <p class="py-2 text-gray-700">基于系统复杂性和GxP影响程度，通过风险评估确定。关键功能需全面测试，非关键功能可抽样测试。参考GAMP 5和行业实践。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-100 border-l-4 border-blue-500 p-4">
+                        <h3 class="text-lg font-semibold text-blue-800 mb-2">验证生命周期持续</h3>
+                        <p class="text-gray-700 mb-3">IQ/OQ/PQ验证不是终点，而是系统生命周期的开始。验证后应建立：</p>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                            <li><strong>变更控制程序</strong> - 任何系统变更需评估和验证</li>
+                            <li><strong>定期评审</strong> - 至少每年评审系统性能和合规状态</li>
+                            <li><strong>持续监测</strong> - 监控关键性能指标和异常事件</li>
+                            <li><strong>再验证计划</strong> - 根据风险确定再验证频率</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 资源部分 -->
+            <section class="mb-16 bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-800 text-white px-6 py-4 flex items-center">
+                    <i class="fas fa-book text-2xl mr-3"></i>
+                    <h2 class="text-xl font-bold">延伸学习资源</h2>
+                </div>
+                <div class="p-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">法规指南</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-file-pdf text-red-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">FDA 21 CFR Part 11</h4>
+                                        <p class="text-sm text-gray-600">电子记录和电子签名</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-file-pdf text-red-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">EU GMP Annex 11</h4>
+                                        <p class="text-sm text-gray-600">计算机化系统</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-book text-blue-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">GAMP 5指南</h4>
+                                        <p class="text-sm text-gray-600">良好自动化生产实践</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 mb-3">推荐书籍</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-book-open text-purple-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">《计算机化系统验证》</h4>
+                                        <p class="text-sm text-gray-600">制药行业实践指南</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-book-open text-purple-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">《Validation of Pharmaceutical Systems》</h4>
+                                        <p class="text-sm text-gray-600">James Agalloco等</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-book-open text-purple-500 mt-1 mr-3"></i>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800">《LIMS Implementation and Validation》</h4>
+                                        <p class="text-sm text-gray-600">实验室信息管理系统专业指南</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 页脚 -->
+        <footer class="bg-gray-100 py-8 rounded-lg">
+            <div class="text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">GxP计算机系统验证培训</h3>
+                <p class="text-gray-600 mb-4">掌握CSV核心技能，确保合规性与数据完整性</p>
+                <div class="flex justify-center space-x-4 mb-6">
+                    <a href="#" class="text-blue-600 hover:text-blue-800">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-blue-400 hover:text-blue-600">
+                        <i class="fab fa-twitter text-2xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-800 hover:text-gray-600">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+                <p class="text-sm text-gray-500">© 2025 GxP CSV培训课程. 保留所有权利.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // 手风琴效果
+        document.querySelectorAll('.accordion-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const accordionContent = button.nextElementSibling;
+                const icon = button.querySelector('i.fa-chevron-down');
+                
+                button.classList.toggle('active');
+                icon.classList.toggle('rotate-180');
+                
+                if(button.classList.contains('active')) {
+                    accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
+                } else {
+                    accordionContent.style.maxHeight = '0';
+                }
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

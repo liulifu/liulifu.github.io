@@ -1,0 +1,1127 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP CSV 验证主计划(VMP)教学案例</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background-color: #3b82f6;
+        }
+        .sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #3b82f6 #f1f1f1;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: #3b82f6;
+            border-radius: 6px;
+        }
+        .highlight-box {
+            position: relative;
+        }
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-blue-700 text-white shadow-md">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">GxP CSV 验证主计划(VMP)教学案例</h1>
+                    <p class="mt-2 text-blue-100">制药行业计算机化系统验证专业指南</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg flex items-center">
+                        <i class="fas fa-download mr-2"></i> PDF下载
+                    </button>
+                    <button class="bg-blue-800 hover:bg-blue-700 px-4 py-2 rounded-lg flex items-center">
+                        <i class="fas fa-share-alt mr-2"></i> 分享
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8 flex flex-col lg:flex-row">
+        <!-- Sidebar Navigation -->
+        <aside class="w-full lg:w-1/4 lg:pr-8 mb-8 lg:mb-0">
+            <div class="bg-white rounded-lg shadow-md p-6 sticky top-8 sidebar overflow-y-auto max-h-screen">
+                <h2 class="text-xl font-semibold text-blue-800 mb-4">课程导航</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#introduction" class="block px-4 py-2 rounded hover:bg-blue-50 text-blue-700 font-medium">
+                            <i class="fas fa-info-circle mr-2"></i> 简介与目标
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#regulations" class="block px-4 py-2 rounded hover:bg-blue-50 text-blue-700 font-medium">
+                            <i class="fas fa-gavel mr-2"></i> 法规框架
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#vmp-structure" class="block px-4 py-2 rounded hover:bg-blue-50 text-blue-700 font-medium">
+                            <i class="fas fa-sitemap mr-2"></i> VMP结构详解
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#case-study" class="block px-4 py-2 rounded hover:bg-blue-50 text-blue-700 font-medium">
+                            <i class="fas fa-flask mr-2"></i> 案例研究
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#best-practices" class="block px-4 py-2 rounded hover:bg-blue-50 text-blue-700 font-medium">
+                            <i class="fas fa-star mr-2"></i> 最佳实践
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#resources" class="block px-4 py-2 rounded hover:bg-blue-50 text-blue-700 font-medium">
+                            <i class="fas fa-book mr-2"></i> 资源与模板
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="mt-8">
+                    <h3 class="text-lg font-semibold text-blue-800 mb-3">相关课程</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="block px-4 py-2 rounded hover:bg-blue-50 text-gray-700">
+                                <i class="fas fa-chevron-right mr-2 text-blue-500"></i> CSV风险评估
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 rounded hover:bg-blue-50 text-gray-700">
+                                <i class="fas fa-chevron-right mr-2 text-blue-500"></i> 用户需求规范(URS)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 rounded hover:bg-blue-50 text-gray-700">
+                                <i class="fas fa-chevron-right mr-2 text-blue-500"></i> 测试用例设计
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="block px-4 py-2 rounded hover:bg-blue-50 text-gray-700">
+                                <i class="fas fa-chevron-right mr-2 text-blue-500"></i> 变更控制管理
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="w-full lg:w-3/4">
+            <!-- Introduction Section -->
+            <section id="introduction" class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-info-circle text-blue-700 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800">简介与目标</h2>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <p class="text-gray-700 mb-4">验证主计划(Validation Master Plan, VMP)是计算机化系统验证(CSV)的纲领性文件，它为整个验证活动提供战略指导和框架。在制药行业，VMP对于确保符合GxP要求至关重要。</p>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6">
+                        <h3 class="font-semibold text-blue-800 mb-2">本课程目标</h3>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                            <li>理解VMP在CSV生命周期中的核心作用</li>
+                            <li>掌握VMP的关键组成部分和编写方法</li>
+                            <li>学习如何将法规要求转化为可执行的验证策略</li>
+                            <li>通过实际案例掌握VMP创建的最佳实践</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-user-graduate text-green-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">目标学员</h3>
+                            </div>
+                            <p class="text-gray-600">新接触GxP制药行业的CSV专业人员、QA人员、IT系统所有者、验证工程师以及需要了解CSV流程的监管事务人员。</p>
+                        </div>
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-clock text-purple-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">课程时长</h3>
+                            </div>
+                            <p class="text-gray-600">本模块预计学习时间为2-3小时，包含理论学习、案例分析和实践练习。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Regulations Section -->
+            <section id="regulations" class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-gavel text-blue-700 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800">法规框架</h2>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <p class="text-gray-700 mb-6">VMP必须符合全球主要药品监管机构的法规要求。以下是影响CSV VMP的主要法规和指南：</p>
+                    
+                    <div class="overflow-x-auto mb-8">
+                        <table class="min-w-full bg-white border border-gray-200">
+                            <thead class="bg-blue-50">
+                                <tr>
+                                    <th class="py-3 px-4 border-b text-left text-blue-800 font-semibold">地区</th>
+                                    <th class="py-3 px-4 border-b text-left text-blue-800 font-semibold">主要法规/指南</th>
+                                    <th class="py-3 px-4 border-b text-left text-blue-800 font-semibold">VMP相关要求</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="py-3 px-4">美国(FDA)</td>
+                                    <td class="py-3 px-4">
+                                        <ul class="list-disc pl-5">
+                                            <li>21 CFR Part 11</li>
+                                            <li>21 CFR Part 210/211</li>
+                                            <li>FDA Guidance on General Principles of Software Validation</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-3 px-4">要求验证计划涵盖电子记录和电子签名、数据完整性、系统安全性和审计追踪</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="py-3 px-4">欧盟(EMA)</td>
+                                    <td class="py-3 px-4">
+                                        <ul class="list-disc pl-5">
+                                            <li>EU GMP Annex 11</li>
+                                            <li>EU GMP Annex 15</li>
+                                            <li>EU GMP Chapter 4</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-3 px-4">强调基于风险的方法、供应商评估、生命周期管理和持续验证</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">中国(NMPA)</td>
+                                    <td class="py-3 px-4">
+                                        <ul class="list-disc pl-5">
+                                            <li>药品生产质量管理规范(2010年修订)</li>
+                                            <li>计算机化系统附录</li>
+                                            <li>药品数据管理规范</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-3 px-4">要求验证计划包含系统分类、数据管理策略和本地化要求</td>
+                                </tr>
+                                <tr class="bg-gray-50">
+                                    <td class="py-3 px-4">国际</td>
+                                    <td class="py-3 px-4">
+                                        <ul class="list-disc pl-5">
+                                            <li>ICH Q7</li>
+                                            <li>GAMP 5</li>
+                                            <li>ISPE GAMP指南</li>
+                                        </ul>
+                                    </td>
+                                    <td class="py-3 px-4">提供验证生命周期框架、良好实践指南和行业标准</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="highlight-box bg-gray-50 p-6 rounded-lg mb-6">
+                        <h3 class="font-semibold text-blue-800 mb-3">法规层级关系</h3>
+                        <div class="flex justify-center">
+                            <div class="w-full max-w-2xl">
+                                <div class="relative">
+                                    <!-- Timeline -->
+                                    <div class="space-y-8">
+                                        <!-- Level 1 -->
+                                        <div class="relative timeline-item pl-8">
+                                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-100"></div>
+                                            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                                                <h4 class="font-bold text-blue-800">法律层级</h4>
+                                                <p class="text-gray-700 text-sm mt-1">如美国FD&C Act、欧盟Directive 2001/83/EC、中国药品管理法等</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Level 2 -->
+                                        <div class="relative timeline-item pl-8">
+                                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-blue-100"></div>
+                                            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                                                <h4 class="font-bold text-blue-800">法规层级</h4>
+                                                <p class="text-gray-700 text-sm mt-1">如21 CFR Part 11/210/211、EU GMP、中国GMP等</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Level 3 -->
+                                        <div class="relative timeline-item pl-8">
+                                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-400 border-4 border-blue-100"></div>
+                                            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                                                <h4 class="font-bold text-blue-800">指南层级</h4>
+                                                <p class="text-gray-700 text-sm mt-1">如FDA指南、EMA指南、NMPA附录、GAMP5等</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Level 4 -->
+                                        <div class="relative pl-8">
+                                            <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-300 border-4 border-blue-100"></div>
+                                            <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                                                <h4 class="font-bold text-blue-800">企业标准</h4>
+                                                <p class="text-gray-700 text-sm mt-1">企业SOP、验证主计划、质量手册等</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-circle text-yellow-500 mt-1"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-yellow-800">重要提示</h3>
+                                <div class="mt-2 text-sm text-yellow-700">
+                                    <p>VMP必须反映最新法规要求。例如，FDA 2018年数据完整性指南和欧盟2015年附录15修订对验证策略有重大影响。中国NMPA在2020年发布的计算机化系统附录也引入了新的要求。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VMP Structure Section -->
+            <section id="vmp-structure" class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-sitemap text-blue-700 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800">VMP结构详解</h2>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <p class="text-gray-700 mb-6">一个完整的验证主计划通常包含以下核心部分，每部分都有其特定的目的和内容要求：</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Document Control -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-file-alt text-blue-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">1. 文档控制</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>文档编号和版本控制</li>
+                                <li>审批签名页</li>
+                                <li>变更历史记录</li>
+                                <li>分发控制清单</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Introduction -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-info text-green-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">2. 简介</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>VMP目的和范围</li>
+                                <li>适用系统和设施</li>
+                                <li>术语和定义</li>
+                                <li>参考法规和指南</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Organization -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-users text-purple-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">3. 组织与职责</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>验证团队组织结构</li>
+                                <li>关键角色和职责</li>
+                                <li>培训要求</li>
+                                <li>跨部门协作机制</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Strategy -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-chess text-yellow-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">4. 验证策略</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>基于风险的方法</li>
+                                <li>系统分类标准</li>
+                                <li>验证生命周期阶段</li>
+                                <li>供应商评估方法</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Activities -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-red-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-tasks text-red-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">5. 验证活动</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>用户需求规范(URS)</li>
+                                <li>功能风险评估(FRA)</li>
+                                <li>设计确认(DQ)</li>
+                                <li>安装/运行/性能确认(IQ/OQ/PQ)</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Documentation -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-indigo-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-folder-open text-indigo-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">6. 文档要求</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>文档类型和模板</li>
+                                <li>记录保存政策</li>
+                                <li>电子签名要求</li>
+                                <li>审计追踪配置</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Change Control -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-pink-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-exchange-alt text-pink-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">7. 变更控制</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>变更分类标准</li>
+                                <li>变更评估流程</li>
+                                <li>再验证策略</li>
+                                <li>紧急变更处理</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Schedule -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-teal-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-calendar-alt text-teal-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">8. 时间计划</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>项目里程碑</li>
+                                <li>资源分配</li>
+                                <li>关键路径分析</li>
+                                <li>进度跟踪机制</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 rounded-lg p-6 mb-6">
+                        <h3 class="font-semibold text-blue-800 mb-3">VMP文档结构示例</h3>
+                        <div class="bg-white p-4 rounded border border-gray-200">
+                            <div class="font-mono text-sm">
+                                <div class="flex items-center py-1 pl-4 border-l-4 border-blue-500 bg-blue-50">
+                                    <i class="fas fa-folder-open mr-2 text-blue-600"></i>
+                                    <span>验证主计划_V1.0</span>
+                                </div>
+                                <div class="flex items-center py-1 pl-8 border-l-4 border-blue-400">
+                                    <i class="fas fa-file-word mr-2 text-blue-500"></i>
+                                    <span>01_文档控制.docx</span>
+                                </div>
+                                <div class="flex items-center py-1 pl-8 border-l-4 border-blue-400">
+                                    <i class="fas fa-file-word mr-2 text-blue-500"></i>
+                                    <span>02_简介与范围.docx</span>
+                                </div>
+                                <div class="flex items-center py-1 pl-8 border-l-4 border-blue-400">
+                                    <i class="fas fa-file-word mr-2 text-blue-500"></i>
+                                    <span>03_组织与职责.docx</span>
+                                </div>
+                                <div class="flex items-center py-1 pl-4 border-l-4 border-blue-500 bg-blue-50">
+                                    <i class="fas fa-folder-open mr-2 text-blue-600"></i>
+                                    <span>附件</span>
+                                </div>
+                                <div class="flex items-center py-1 pl-8 border-l-4 border-blue-400">
+                                    <i class="fas fa-file-excel mr-2 text-green-500"></i>
+                                    <span>附件1_系统清单.xlsx</span>
+                                </div>
+                                <div class="flex items-center py-1 pl-8 border-l-4 border-blue-400">
+                                    <i class="fas fa-file-pdf mr-2 text-red-500"></i>
+                                    <span>附件2_验证流程图.pdf</span>
+                                </div>
+                                <div class="flex items-center py-1 pl-8 border-l-4 border-blue-400">
+                                    <i class="fas fa-file-excel mr-2 text-green-500"></i>
+                                    <span>附件3_时间计划表.xlsx</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-6">
+                        <h3 class="font-semibold text-blue-800 mb-3">关键要素详细说明</h3>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-800 mb-2">1. 系统分类</h4>
+                            <p class="text-gray-700 text-sm">根据GAMP 5指南，计算机化系统通常分为以下几类：</p>
+                            <div class="mt-2 grid grid-cols-1 md:grid-cols-4 gap-3">
+                                <div class="bg-white p-3 rounded border border-blue-100 shadow-sm">
+                                    <h5 class="font-medium text-blue-700 text-sm">类别1</h5>
+                                    <p class="text-xs text-gray-600 mt-1">基础设施软件</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-blue-100 shadow-sm">
+                                    <h5 class="font-medium text-blue-700 text-sm">类别3</h5>
+                                    <p class="text-xs text-gray-600 mt-1">不可配置软件</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-blue-100 shadow-sm">
+                                    <h5 class="font-medium text-blue-700 text-sm">类别4</h5>
+                                    <p class="text-xs text-gray-600 mt-1">可配置软件</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-blue-100 shadow-sm">
+                                    <h5 class="font-medium text-blue-700 text-sm">类别5</h5>
+                                    <p class="text-xs text-gray-600 mt-1">定制软件</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium text-gray-800 mb-2">2. 风险评估方法</h4>
+                            <p class="text-gray-700 text-sm">VMP应描述使用的风险评估方法，例如：</p>
+                            <div class="mt-2 grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="bg-white p-3 rounded border border-green-100 shadow-sm">
+                                    <h5 class="font-medium text-green-700 text-sm">FMEA</h5>
+                                    <p class="text-xs text-gray-600 mt-1">失效模式与影响分析</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-green-100 shadow-sm">
+                                    <h5 class="font-medium text-green-700 text-sm">HACCP</h5>
+                                    <p class="text-xs text-gray-600 mt-1">危害分析关键控制点</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-green-100 shadow-sm">
+                                    <h5 class="font-medium text-green-700 text-sm">PHA</h5>
+                                    <p class="text-xs text-gray-600 mt-1">初步危害分析</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-2">3. 验证交付物</h4>
+                            <p class="text-gray-700 text-sm">VMP应明确每个验证阶段需要生成的文档：</p>
+                            <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="bg-white p-3 rounded border border-purple-100 shadow-sm">
+                                    <h5 class="font-medium text-purple-700 text-sm">验证计划(VP)</h5>
+                                    <p class="text-xs text-gray-600 mt-1">系统特定的验证策略</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-purple-100 shadow-sm">
+                                    <h5 class="font-medium text-purple-700 text-sm">测试协议</h5>
+                                    <p class="text-xs text-gray-600 mt-1">IQ/OQ/PQ测试用例</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-purple-100 shadow-sm">
+                                    <h5 class="font-medium text-purple-700 text-sm">验证报告</h5>
+                                    <p class="text-xs text-gray-600 mt-1">总结验证结果</p>
+                                </div>
+                                <div class="bg-white p-3 rounded border border-purple-100 shadow-sm">
+                                    <h5 class="font-medium text-purple-700 text-sm">追溯矩阵</h5>
+                                    <p class="text-xs text-gray-600 mt-1">需求到测试的追溯</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Study Section -->
+            <section id="case-study" class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-flask text-blue-700 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800">案例研究</h2>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <p class="text-gray-700 mb-6">以下是一个制药企业LIMS(实验室信息管理系统)验证主计划的详细案例，展示了VMP在实际项目中的应用。</p>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-6">
+                        <h3 class="font-semibold text-blue-800 mb-4">案例背景</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                            <div class="bg-white p-4 rounded shadow-sm">
+                                <h4 class="font-medium text-gray-800 text-sm mb-2">公司</h4>
+                                <p class="text-gray-700">ABC制药有限公司</p>
+                            </div>
+                            <div class="bg-white p-4 rounded shadow-sm">
+                                <h4 class="font-medium text-gray-800 text-sm mb-2">系统</h4>
+                                <p class="text-gray-700">LabWare LIMS v7.0</p>
+                            </div>
+                            <div class="bg-white p-4 rounded shadow-sm">
+                                <h4 class="font-medium text-gray-800 text-sm mb-2">范围</h4>
+                                <p class="text-gray-700">QC实验室的样品管理和分析</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 text-sm">ABC制药计划在其新建的QC实验室部署LabWare LIMS系统，用于管理样品流程、测试结果和报告生成。该系统被分类为GAMP 5类别4(可配置软件)，需要完整的验证。</p>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-blue-800 mb-4">VMP关键内容示例</h3>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">1. 验证策略</h4>
+                            <div class="bg-white p-4 rounded border border-gray-200 shadow-sm">
+                                <p class="text-gray-700 text-sm mb-3">采用基于风险的生命周期方法，遵循GAMP 5指南。验证活动将包括:</p>
+                                <ul class="list-disc pl-5 space-y-1 text-gray-700 text-sm">
+                                    <li>供应商评估(LabWare的资质审查)</li>
+                                    <li>系统影响评估(SIA)和组件关键性评估(CCA)</li>
+                                    <li>功能风险评估(FRA)研讨会</li>
+                                    <li>设计确认(DQ) - 配置规范的审查</li>
+                                    <li>安装确认(IQ) - 硬件和软件安装验证</li>
+                                    <li>操作确认(OQ) - 功能测试</li>
+                                    <li>性能确认(PQ) - 用户场景测试</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">2. 风险评估结果</h4>
+                            <div class="bg-white p-4 rounded border border-gray-200 shadow-sm overflow-x-auto">
+                                <table class="min-w-full text-sm">
+                                    <thead>
+                                        <tr class="bg-blue-50">
+                                            <th class="py-2 px-3 text-left text-blue-800">功能模块</th>
+                                            <th class="py-2 px-3 text-left text-blue-800">风险等级</th>
+                                            <th class="py-2 px-3 text-left text-blue-800">验证方法</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="py-2 px-3">样品登录</td>
+                                            <td class="py-2 px-3"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">高</span></td>
+                                            <td class="py-2 px-3">完整OQ测试+PQ用户场景</td>
+                                        </tr>
+                                        <tr class="bg-gray-50">
+                                            <td class="py-2 px-3">测试结果录入</td>
+                                            <td class="py-2 px-3"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">高</span></td>
+                                            <td class="py-2 px-3">完整OQ测试+PQ用户场景+审计追踪验证</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-3">报告生成</td>
+                                            <td class="py-2 px-3"><span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs">中</span></td>
+                                            <td class="py-2 px-3">选择性OQ测试+PQ用户场景</td>
+                                        </tr>
+                                        <tr class="bg-gray-50">
+                                            <td class="py-2 px-3">系统配置</td>
+                                            <td class="py-2 px-3"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">低</span></td>
+                                            <td class="py-2 px-3">设计审查+配置审核</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium text-gray-800 mb-3">3. 验证时间计划</h4>
+                            <div class="bg-white p-4 rounded border border-gray-200 shadow-sm">
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-full bg-gray-200 rounded-full h-4">
+                                        <div class="bg-blue-600 h-4 rounded-full" style="width: 15%"></div>
+                                    </div>
+                                    <span class="ml-4 text-sm text-gray-700 whitespace-nowrap">计划阶段 (2周)</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-full bg-gray-200 rounded-full h-4">
+                                        <div class="bg-blue-600 h-4 rounded-full" style="width: 25%"></div>
+                                    </div>
+                                    <span class="ml-4 text-sm text-gray-700 whitespace-nowrap">风险评估 (3周)</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-full bg-gray-200 rounded-full h-4">
+                                        <div class="bg-blue-600 h-4 rounded-full" style="width: 20%"></div>
+                                    </div>
+                                    <span class="ml-4 text-sm text-gray-700 whitespace-nowrap">设计确认 (2周)</span>
+                                </div>
+                                <div class="flex items-center justify-between mb-3">
+                                    <div class="w-full bg-gray-200 rounded-full h-4">
+                                        <div class="bg-blue-600 h-4 rounded-full" style="width: 60%"></div>
+                                    </div>
+                                    <span class="ml-4 text-sm text-gray-700 whitespace-nowrap">IQ/OQ执行 (8周)</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div class="w-full bg-gray-200 rounded-full h-4">
+                                        <div class="bg-blue-600 h-4 rounded-full" style="width: 40%"></div>
+                                    </div>
+                                    <span class="ml-4 text-sm text-gray-700 whitespace-nowrap">PQ执行 (5周)</span>
+                                </div>
+                                <div class="mt-4 text-sm text-gray-700">
+                                    <p><span class="font-medium">总时长:</span> 20周 (不包括供应商评估和系统部署)</p>
+                                    <p><span class="font-medium">关键路径:</span> OQ测试→PQ测试→用户培训→系统上线</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 mb-3">4. 资源分配</h4>
+                            <div class="bg-white p-4 rounded border border-gray-200 shadow-sm overflow-x-auto">
+                                <table class="min-w-full text-sm">
+                                    <thead>
+                                        <tr class="bg-blue-50">
+                                            <th class="py-2 px-3 text-left text-blue-800">角色</th>
+                                            <th class="py-2 px-3 text-left text-blue-800">职责</th>
+                                            <th class="py-2 px-3 text-left text-blue-800">FTE</th>
+                                            <th class="py-2 px-3 text-left text-blue-800">参与阶段</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="py-2 px-3">验证经理</td>
+                                            <td class="py-2 px-3">监督整个验证过程，确保合规</td>
+                                            <td class="py-2 px-3">0.5</td>
+                                            <td class="py-2 px-3">全周期</td>
+                                        </tr>
+                                        <tr class="bg-gray-50">
+                                            <td class="py-2 px-3">CSV工程师</td>
+                                            <td class="py-2 px-3">编写和执行测试协议</td>
+                                            <td class="py-2 px-3">2.0</td>
+                                            <td class="py-2 px-3">OQ/PQ阶段</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-3">QA代表</td>
+                                            <td class="py-2 px-3">审查和批准验证文档</td>
+                                            <td class="py-2 px-3">0.3</td>
+                                            <td class="py-2 px-3">各阶段结束</td>
+                                        </tr>
+                                        <tr class="bg-gray-50">
+                                            <td class="py-2 px-3">IT管理员</td>
+                                            <td class="py-2 px-3">系统安装和配置</td>
+                                            <td class="py-2 px-3">1.0</td>
+                                            <td class="py-2 px-3">IQ阶段</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-3">终端用户</td>
+                                            <td class="py-2 px-3">参与PQ测试和培训</td>
+                                            <td class="py-2 px-3">3.0</td>
+                                            <td class="py-2 px-3">PQ阶段</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+                        <h3 class="font-semibold text-green-800 mb-2">案例关键点总结</h3>
+                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                            <li>基于系统分类(GAMP 5类别4)和风险等级确定验证深度</li>
+                            <li>验证活动与系统开发生命周期同步进行</li>
+                            <li>关键功能(如样品管理和结果录入)获得更多验证关注</li>
+                            <li>资源分配与验证阶段需求相匹配</li>
+                            <li>时间计划考虑了测试、问题修复和文档审批的缓冲</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Best Practices Section -->
+            <section id="best-practices" class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-star text-blue-700 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800">最佳实践</h2>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <p class="text-gray-700 mb-6">基于行业经验和监管检查观察，以下是创建有效VMP的最佳实践：</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-blue-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">1. 基于风险的方法</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>实施系统影响评估(SIA)确定GxP相关性</li>
+                                <li>进行功能风险评估(FRA)确定关键功能</li>
+                                <li>根据风险等级调整验证力度</li>
+                                <li>记录风险评估过程和结果</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-green-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">2. 生命周期方法</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>将验证活动整合到系统开发生命周期中</li>
+                                <li>早期参与需求定义和设计阶段</li>
+                                <li>考虑从概念到退役的全过程</li>
+                                <li>实施持续验证和定期评审</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-purple-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">3. 供应商管理</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>评估供应商的质量体系</li>
+                                <li>审查供应商提供的验证文档</li>
+                                <li>明确供应商和用户的职责分工</li>
+                                <li>利用供应商提供的测试脚本和工具</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-check-circle text-yellow-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">4. 数据完整性</h3>
+                            </div>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-600 text-sm">
+                                <li>验证审计追踪功能</li>
+                                <li>确保数据的安全性和可追溯性</li>
+                                <li>实施适当的访问控制</li>
+                                <li>验证电子签名(如适用)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 mb-6">
+                        <h3 class="font-semibold text-blue-800 mb-4">常见问题与解决方案</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-2">问题1: 如何确定验证范围?</h4>
+                                <p class="text-gray-700 text-sm">解决方案: 进行系统影响评估(SIA)，考虑以下因素:</p>
+                                <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-700 text-sm">
+                                    <li>系统是否直接或间接影响产品质量、患者安全或数据完整性</li>
+                                    <li>系统是否用于GxP决策或记录保存</li>
+                                    <li>系统是否与GxP系统有接口</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-2">问题2: 如何平衡验证成本和合规要求?</h4>
+                                <p class="text-gray-700 text-sm">解决方案: 采用基于风险的方法:</p>
+                                <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-700 text-sm">
+                                    <li>对高风险的系统和功能投入更多验证资源</li>
+                                    <li>对低风险区域采用简化验证方法</li>
+                                    <li>利用供应商提供的文档和测试结果</li>
+                                    <li>考虑使用自动化测试工具提高效率</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded shadow-sm">
+                                <h4 class="font-medium text-gray-800 mb-2">问题3: 如何处理遗留系统的验证?</h4>
+                                <p class="text-gray-700 text-sm">解决方案: 实施回顾性验证:</p>
+                                <ul class="list-disc pl-5 mt-1 space-y-1 text-gray-700 text-sm">
+                                    <li>收集现有文档(规格、测试记录、变更记录等)</li>
+                                    <li>进行差距分析以识别缺失的验证元素</li>
+                                    <li>根据当前风险状况补充必要的验证活动</li>
+                                    <li>建立持续的验证状态维护计划</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-triangle text-red-500 mt-1"></i>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800">监管检查常见发现</h3>
+                                <div class="mt-2 text-sm text-red-700">
+                                    <ul class="list-disc pl-5 space-y-1">
+                                        <li>VMP未覆盖所有GxP相关系统</li>
+                                        <li>验证活动未基于风险评估结果</li>
+                                        <li>缺乏明确的验证可接受标准</li>
+                                        <li>变更控制程序不完善</li>
+                                        <li>验证文档不完整或未及时更新</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resources Section -->
+            <section id="resources" class="bg-white rounded-lg shadow-md p-8">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-book text-blue-700 text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-800">资源与模板</h2>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <p class="text-gray-700 mb-6">以下资源可帮助您创建符合要求的验证主计划：</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-blue-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-file-word text-blue-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">VMP模板</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">包含所有必要章节的标准VMP模板，可根据具体项目调整。</p>
+                            <button class="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded text-sm">
+                                <i class="fas fa-download mr-1"></i> 下载模板
+                            </button>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-green-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-file-excel text-green-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">系统清单模板</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">用于记录所有GxP系统及其分类和验证状态的Excel模板。</p>
+                            <button class="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded text-sm">
+                                <i class="fas fa-download mr-1"></i> 下载模板
+                            </button>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-purple-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-file-pdf text-purple-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">验证流程图</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">CSV生命周期各阶段及其交付物的可视化流程图。</p>
+                            <button class="bg-purple-600 hover:bg-purple-500 text-white px-3 py-1 rounded text-sm">
+                                <i class="fas fa-download mr-1"></i> 下载图表
+                            </button>
+                        </div>
+                        
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="flex items-center mb-3">
+                                <div class="bg-yellow-100 p-2 rounded-full mr-3">
+                                    <i class="fas fa-file-powerpoint text-yellow-600"></i>
+                                </div>
+                                <h3 class="font-semibold text-gray-800">培训材料</h3>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-3">VMP编写和实施的培训演示文稿。</p>
+                            <button class="bg-yellow-600 hover:bg-yellow-500 text-white px-3 py-1 rounded text-sm">
+                                <i class="fas fa-download mr-1"></i> 下载PPT
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200">
+                        <h3 class="font-semibold text-blue-800 mb-4">推荐阅读</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded shadow-sm flex items-start">
+                                <div class="bg-blue-100 p-2 rounded mr-4">
+                                    <i class="fas fa-book-open text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">GAMP 5: A Risk-Based Approach to Compliant GxP Computerized Systems</h4>
+                                    <p class="text-gray-600 text-sm mt-1">ISPE, 2008</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded shadow-sm flex items-start">
+                                <div class="bg-green-100 p-2 rounded mr-4">
+                                    <i class="fas fa-book-open text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">EU GMP Annex 11: Computerised Systems</h4>
+                                    <p class="text-gray-600 text-sm mt-1">European Commission, 2011</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded shadow-sm flex items-start">
+                                <div class="bg-purple-100 p-2 rounded mr-4">
+                                    <i class="fas fa-book-open text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">FDA Guidance for Industry: Part 11, Electronic Records; Electronic Signatures - Scope and Application</h4>
+                                    <p class="text-gray-600 text-sm mt-1">FDA, 2003</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white p-4 rounded shadow-sm flex items-start">
+                                <div class="bg-red-100 p-2 rounded mr-4">
+                                    <i class="fas fa-book-open text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium text-gray-800">药品生产质量管理规范(2010年修订)计算机化系统附录</h4>
+                                    <p class="text-gray-600 text-sm mt-1">国家食品药品监督管理总局, 2015</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-blue-50 p-6 rounded-lg border border-blue-200">
+                        <h3 class="font-semibold text-blue-800 mb-4">下一步学习建议</h3>
+                        <p class="text-gray-700 mb-4">完成本模块后，建议继续学习以下CSV相关主题：</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+                                <h4 class="font-medium text-blue-700 mb-2">CSV风险评估</h4>
+                                <p class="text-gray-600 text-sm">学习如何进行系统影响评估和功能风险评估</p>
+                            </a>
+                            
+                            <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+                                <h4 class="font-medium text-blue-700 mb-2">用户需求规范(URS)</h4>
+                                <p class="text-gray-600 text-sm">掌握如何编写清晰、可测试的用户需求</p>
+                            </a>
+                            
+                            <a href="#" class="bg-white p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow border border-gray-200">
+                                <h4 class="font-medium text-blue-700 mb-2">测试用例设计</h4>
+                                <p class="text-gray-600 text-sm">学习如何设计有效的IQ/OQ/PQ测试用例</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">关于课程</h3>
+                    <p class="text-gray-400 text-sm">本课程专为制药行业CSV专业人员设计，涵盖从基础到进阶的计算机化系统验证知识。</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-white">课程主页</a></li>
+                        <li><a href="#" class="hover:text-white">所有模块</a></li>
+                        <li><a href="#" class="hover:text-white">资源下载</a></li>
+                        <li><a href="#" class="hover:text-white">常见问题</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">联系我们</h3>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> [REDACTED]@[REDACTED].com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i> +86 158 1051 7437
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i> 北京市昌平区生命科学园
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">订阅更新</h3>
+                    <p class="text-gray-400 text-sm mb-4">订阅我们的通讯，获取最新课程和资源更新。</p>
+                    <div class="flex">
+                        <input type="email" placeholder="您的邮箱" class="px-4 py-2 rounded-l text-gray-800 w-full">
+                        <button class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-r">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-sm text-gray-400 text-center">
+                <p>© 2023 GxP CSV培训中心. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-blue-600 text-white p-3 rounded-full shadow-lg hidden">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Simulate template download
+        document.querySelectorAll('[href="#"], button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON' || e.target.parentElement.tagName === 'BUTTON') {
+                    e.preventDefault();
+                    alert('感谢您的关注！模板下载功能将在完整版课程中提供。');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

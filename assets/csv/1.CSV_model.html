@@ -1,0 +1,1093 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP CSV培训 - V模型与GAMP5模型详解</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .model-diagram {
+            transition: all 0.3s ease;
+        }
+        .model-diagram:hover {
+            transform: scale(1.02);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .accordion-content.open {
+            max-height: 1000px;
+        }
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: #555;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -150px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+    <!-- 导航栏 -->
+    <nav class="sticky-nav bg-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-laptop-medical text-2xl"></i>
+                <span class="text-xl font-bold">GxP CSV培训</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#v-model" class="hover:text-blue-200 transition">V模型</a>
+                <a href="#gamp5" class="hover:text-blue-200 transition">GAMP5</a>
+                <a href="#comparison" class="hover:text-blue-200 transition">对比分析</a>
+                <a href="#resources" class="hover:text-blue-200 transition">资源下载</a>
+            </div>
+            <button class="md:hidden text-xl" id="mobile-menu-button">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- 移动菜单 -->
+        <div class="md:hidden hidden bg-blue-700 px-4 py-2" id="mobile-menu">
+            <a href="#v-model" class="block py-2 hover:text-blue-200 transition">V模型</a>
+            <a href="#gamp5" class="block py-2 hover:text-blue-200 transition">GAMP5</a>
+            <a href="#comparison" class="block py-2 hover:text-blue-200 transition">对比分析</a>
+            <a href="#resources" class="block py-2 hover:text-blue-200 transition">资源下载</a>
+        </div>
+    </nav>
+
+    <!-- 页眉 -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">计算机系统验证(CSV)模型详解</h1>
+            <p class="text-xl md:text-2xl mb-8">深入理解GxP环境下的V模型与GAMP5模型</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#v-model" class="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-blue-100 transition shadow-lg">
+                    <i class="fas fa-project-diagram mr-2"></i>学习V模型
+                </a>
+                <a href="#gamp5" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 transition shadow-lg">
+                    <i class="fas fa-sitemap mr-2"></i>探索GAMP5
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- 介绍部分 -->
+        <section class="mb-20">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-blue-800 mb-6">计算机系统验证(CSV)概述</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-blue-700">什么是CSV?</h3>
+                        <p class="mb-4 text-gray-700 leading-relaxed">
+                            计算机系统验证(Computer System Validation, CSV)是GxP(药品生产质量管理规范)合规性要求的重要组成部分，旨在通过系统化的方法证明计算机化系统能够持续满足预定用途和法规要求。
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            CSV适用于制药、生物技术、医疗器械等行业中使用的所有计算机化系统，包括实验室信息系统(LIMS)、制造执行系统(MES)、企业资源规划(ERP)系统等。
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-blue-700">为什么需要CSV?</h3>
+                        <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                            <li>确保数据完整性和可靠性</li>
+                            <li>符合FDA 21 CFR Part 11等法规要求</li>
+                            <li>降低产品质量风险</li>
+                            <li>提高系统可靠性和可追溯性</li>
+                            <li>满足审计和检查要求</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模型选择标签 -->
+        <section class="mb-12">
+            <div class="flex border-b border-gray-200">
+                <button class="tab-button px-6 py-3 font-medium text-blue-800 border-b-2 border-blue-500" data-tab="v-model-tab">
+                    <i class="fas fa-project-diagram mr-2"></i>V模型
+                </button>
+                <button class="tab-button px-6 py-3 font-medium text-gray-600 hover:text-blue-800" data-tab="gamp5-tab">
+                    <i class="fas fa-sitemap mr-2"></i>GAMP5模型
+                </button>
+            </div>
+        </section>
+
+        <!-- V模型内容 -->
+        <section id="v-model" class="tab-content active" data-tab-content="v-model-tab">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+                <div class="bg-blue-800 text-white px-6 py-4">
+                    <h2 class="text-2xl font-bold"><i class="fas fa-project-diagram mr-3"></i>V模型详解</h2>
+                </div>
+                <div class="p-6 md:p-8">
+                    <div class="grid md:grid-cols-2 gap-8 mb-10">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-blue-700">基本概念</h3>
+                            <p class="mb-4 text-gray-700 leading-relaxed">
+                                V模型是计算机系统验证中最常用的生命周期模型之一，因其形状类似字母"V"而得名。它强调验证活动与开发阶段的对应关系，左侧是开发活动，右侧是验证活动。
+                            </p>
+                            <p class="text-gray-700 leading-relaxed">
+                                V模型体现了"测试应该与设计相对应"的理念，确保每个开发阶段都有相应的验证活动来确认其正确性。
+                            </p>
+                        </div>
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                            <h4 class="font-semibold text-blue-800 mb-3">核心特点</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>明确的阶段划分和对应关系</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>强调测试与设计的匹配</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>适用于各类计算机化系统</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                    <span>便于追溯和审计</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- V模型图示 -->
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-blue-700">V模型图示</h3>
+                        <div class="model-diagram bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                            <div class="flex justify-center">
+                                <div class="relative" style="width: 100%; max-width: 600px;">
+                                    <!-- V模型图形 -->
+                                    <div class="flex flex-col items-center">
+                                        <!-- 开发阶段 -->
+                                        <div class="w-full mb-8">
+                                            <div class="bg-blue-100 p-3 rounded-lg mb-4 border-l-4 border-blue-500">
+                                                <h4 class="font-semibold text-blue-800">1. 用户需求(URS)</h4>
+                                                <p class="text-sm text-gray-600">定义系统功能和性能要求</p>
+                                            </div>
+                                            <div class="bg-blue-100 p-3 rounded-lg mb-4 border-l-4 border-blue-500 ml-4">
+                                                <h4 class="font-semibold text-blue-800">2. 功能规格(FS)</h4>
+                                                <p class="text-sm text-gray-600">详细描述系统功能</p>
+                                            </div>
+                                            <div class="bg-blue-100 p-3 rounded-lg mb-4 border-l-4 border-blue-500 ml-8">
+                                                <h4 class="font-semibold text-blue-800">3. 设计规格(DS)</h4>
+                                                <p class="text-sm text-gray-600">系统架构和详细设计</p>
+                                            </div>
+                                            <div class="bg-blue-100 p-3 rounded-lg border-l-4 border-blue-500 ml-12">
+                                                <h4 class="font-semibold text-blue-800">4. 编码与配置</h4>
+                                                <p class="text-sm text-gray-600">系统实现</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 验证阶段 -->
+                                        <div class="w-full">
+                                            <div class="bg-green-100 p-3 rounded-lg mb-4 border-r-4 border-green-500 mr-12">
+                                                <h4 class="font-semibold text-green-800">4. 单元测试</h4>
+                                                <p class="text-sm text-gray-600">验证单个组件</p>
+                                            </div>
+                                            <div class="bg-green-100 p-3 rounded-lg mb-4 border-r-4 border-green-500 mr-8">
+                                                <h4 class="font-semibold text-green-800">3. 集成测试</h4>
+                                                <p class="text-sm text-gray-600">验证组件间交互</p>
+                                            </div>
+                                            <div class="bg-green-100 p-3 rounded-lg mb-4 border-r-4 border-green-500 mr-4">
+                                                <h4 class="font-semibold text-green-800">2. 系统测试</h4>
+                                                <p class="text-sm text-gray-600">验证完整系统</p>
+                                            </div>
+                                            <div class="bg-green-100 p-3 rounded-lg border-r-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800">1. 用户验收测试(UAT)</h4>
+                                                <p class="text-sm text-gray-600">验证用户需求满足</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- V模型活动内容 -->
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-blue-700">V模型活动内容</h3>
+                        <div class="space-y-4">
+                            <!-- 用户需求 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-blue-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-file-alt mr-2"></i>用户需求(URS)阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>收集和分析用户需求</li>
+                                            <li>定义系统功能和性能要求</li>
+                                            <li>确定合规性要求</li>
+                                            <li>编写用户需求规格文档</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>用户需求规格(URS)文档</li>
+                                            <li>需求追溯矩阵(RTM)</li>
+                                            <li>风险评估报告</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 功能规格 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-blue-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-list-alt mr-2"></i>功能规格(FS)阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>将用户需求转化为详细功能描述</li>
+                                            <li>定义系统输入、输出和处理逻辑</li>
+                                            <li>确定系统边界和接口</li>
+                                            <li>编写功能规格文档</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>功能规格(FS)文档</li>
+                                            <li>更新后的需求追溯矩阵</li>
+                                            <li>系统架构图</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 设计规格 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-blue-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-drafting-compass mr-2"></i>设计规格(DS)阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>设计系统架构和组件</li>
+                                            <li>详细设计数据库、界面和算法</li>
+                                            <li>制定配置管理计划</li>
+                                            <li>编写设计规格文档</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>设计规格(DS)文档</li>
+                                            <li>详细设计图</li>
+                                            <li>数据库设计文档</li>
+                                            <li>配置管理计划</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 编码与配置 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-blue-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-code mr-2"></i>编码与配置阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>编写和审查源代码</li>
+                                            <li>配置系统参数</li>
+                                            <li>执行代码审查</li>
+                                            <li>进行单元测试</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>源代码和配置记录</li>
+                                            <li>代码审查报告</li>
+                                            <li>单元测试计划和报告</li>
+                                            <li>版本控制记录</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 测试阶段 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-blue-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-vial mr-2"></i>测试阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>执行集成测试验证组件交互</li>
+                                            <li>执行系统测试验证完整功能</li>
+                                            <li>执行用户验收测试(UAT)</li>
+                                            <li>缺陷管理和修复</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>测试计划</li>
+                                            <li>测试用例和脚本</li>
+                                            <li>测试报告</li>
+                                            <li>缺陷记录和修复报告</li>
+                                            <li>测试总结报告</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 部署与维护 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-blue-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-server mr-2"></i>部署与维护阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>系统安装和配置</li>
+                                            <li>数据迁移和验证</li>
+                                            <li>用户培训</li>
+                                            <li>系统性能监控</li>
+                                            <li>变更管理和定期评审</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>安装确认(IQ)报告</li>
+                                            <li>操作确认(OQ)报告</li>
+                                            <li>性能确认(PQ)报告</li>
+                                            <li>培训记录</li>
+                                            <li>变更控制记录</li>
+                                            <li>定期评审报告</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAMP5模型内容 -->
+        <section id="gamp5" class="tab-content" data-tab-content="gamp5-tab">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+                <div class="bg-green-800 text-white px-6 py-4">
+                    <h2 class="text-2xl font-bold"><i class="fas fa-sitemap mr-3"></i>GAMP5模型详解</h2>
+                </div>
+                <div class="p-6 md:p-8">
+                    <div class="grid md:grid-cols-2 gap-8 mb-10">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-green-700">基本概念</h3>
+                            <p class="mb-4 text-gray-700 leading-relaxed">
+                                GAMP(良好自动化生产实践指南)是由ISPE(国际制药工程协会)发布的指南，目前最新版本是GAMP5。它提供了一种基于风险的生命周期方法，用于计算机化系统的合规性和验证。
+                            </p>
+                            <p class="text-gray-700 leading-relaxed">
+                                GAMP5强调"基于产品、基于风险、基于科学"的方法，将系统分为不同类别，并为每类系统提供适当的验证策略。
+                            </p>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-100">
+                            <h4 class="font-semibold text-green-800 mb-3">核心特点</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>基于风险的方法</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>系统分类方法</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>强调供应商评估</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                                    <span>生命周期管理</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- GAMP5系统分类 -->
+                    <div class="mb-12">
+                        <div class="flex items-center mb-4">
+                            <h3 class="text-xl font-semibold text-green-700">GAMP5系统分类</h3>
+                            <div class="tooltip ml-2">
+                                <i class="fas fa-info-circle text-green-600 cursor-pointer"></i>
+                                <span class="tooltiptext">
+                                    <strong>关于GAMP5分类为何没有第2类的说明：</strong><br><br>
+                                    GAMP5(2008)对分类体系进行了优化调整，删除了GAMP4中的第2类(固件类系统)，主要原因包括：<br>
+                                    1. 硬件验证被纳入第1类(基础设施软件)的附属部分<br>
+                                    2. 聚焦软件层级风险，固件类系统开发模式接近商用成品软件(第3类)<br>
+                                    3. 减少分类冗余，硬件验证已高度标准化<br><br>
+                                    保留原编号(1/3/4/5)是为了保持与历史文档的兼容性，反映了行业从"硬件主导"向"软件驱动"的转型趋势。
+                                </span>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+                                <thead class="bg-green-700 text-white">
+                                    <tr>
+                                        <th class="py-3 px-4 text-left">类别</th>
+                                        <th class="py-3 px-4 text-left">描述</th>
+                                        <th class="py-3 px-4 text-left">示例</th>
+                                        <th class="py-3 px-4 text-left">验证方法</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr class="hover:bg-green-50">
+                                        <td class="py-3 px-4 font-medium">1 - 基础设施软件</td>
+                                        <td class="py-3 px-4">标准操作系统和基础软件</td>
+                                        <td class="py-3 px-4">Windows, Linux, Oracle数据库</td>
+                                        <td class="py-3 px-4">安装确认和配置检查</td>
+                                    </tr>
+                                    <tr class="hover:bg-green-50">
+                                        <td class="py-3 px-4 font-medium">3 - 不可配置软件</td>
+                                        <td class="py-3 px-4">标准商业软件，不可配置</td>
+                                        <td class="py-3 px-4">Microsoft Office, 标准仪器软件</td>
+                                        <td class="py-3 px-4">供应商评估+黑盒测试</td>
+                                    </tr>
+                                    <tr class="hover:bg-green-50">
+                                        <td class="py-3 px-4 font-medium">4 - 可配置软件</td>
+                                        <td class="py-3 px-4">可配置的标准软件包</td>
+                                        <td class="py-3 px-4">LIMS, MES, ERP系统</td>
+                                        <td class="py-3 px-4">供应商评估+配置验证</td>
+                                    </tr>
+                                    <tr class="hover:bg-green-50">
+                                        <td class="py-3 px-4 font-medium">5 - 定制应用</td>
+                                        <td class="py-3 px-4">完全定制的应用程序</td>
+                                        <td class="py-3 px-4">内部开发的专用系统</td>
+                                        <td class="py-3 px-4">完整的生命周期验证</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- GAMP5生命周期 -->
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-green-700">GAMP5生命周期</h3>
+                        <div class="model-diagram bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+                            <div class="flex flex-col items-center">
+                                <div class="w-full max-w-3xl">
+                                    <!-- 生命周期阶段 -->
+                                    <div class="flex flex-col space-y-8">
+                                        <!-- 概念与启动 -->
+                                        <div class="flex items-start">
+                                            <div class="bg-green-100 p-4 rounded-lg shadow-sm flex-1 border-l-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800 mb-2">概念与启动</h4>
+                                                <p class="text-sm text-gray-700">定义项目范围、目标和合规性要求，进行初步风险评估</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 供应商评估 -->
+                                        <div class="flex items-start ml-12">
+                                            <div class="bg-green-100 p-4 rounded-lg shadow-sm flex-1 border-l-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800 mb-2">供应商评估</h4>
+                                                <p class="text-sm text-gray-700">评估供应商的质量体系和产品开发流程</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 规范与设计 -->
+                                        <div class="flex items-start ml-24">
+                                            <div class="bg-green-100 p-4 rounded-lg shadow-sm flex-1 border-l-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800 mb-2">规范与设计</h4>
+                                                <p class="text-sm text-gray-700">定义用户需求、功能规格和设计规格</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 配置与开发 -->
+                                        <div class="flex items-start ml-36">
+                                            <div class="bg-green-100 p-4 rounded-lg shadow-sm flex-1 border-l-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800 mb-2">配置与开发</h4>
+                                                <p class="text-sm text-gray-700">系统配置或定制开发，包括代码审查和单元测试</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 验证 -->
+                                        <div class="flex items-start ml-48">
+                                            <div class="bg-green-100 p-4 rounded-lg shadow-sm flex-1 border-l-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800 mb-2">验证</h4>
+                                                <p class="text-sm text-gray-700">执行IQ/OQ/PQ测试，验证系统符合预定用途</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 运营与维护 -->
+                                        <div class="flex items-start ml-36">
+                                            <div class="bg-green-100 p-4 rounded-lg shadow-sm flex-1 border-l-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800 mb-2">运营与维护</h4>
+                                                <p class="text-sm text-gray-700">系统使用、变更管理、定期评审和持续改进</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- 退役 -->
+                                        <div class="flex items-start ml-24">
+                                            <div class="bg-green-100 p-4 rounded-lg shadow-sm flex-1 border-l-4 border-green-500">
+                                                <h4 class="font-semibold text-green-800 mb-2">退役</h4>
+                                                <p class="text-sm text-gray-700">系统退役和数据归档或迁移</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GAMP5活动内容 -->
+                    <div class="mb-12">
+                        <h3 class="text-xl font-semibold mb-6 text-green-700">GAMP5活动内容</h3>
+                        <div class="space-y-4">
+                            <!-- 概念与启动 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-green-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-lightbulb mr-2"></i>概念与启动阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>定义项目目标和范围</li>
+                                            <li>确定合规性要求</li>
+                                            <li>进行初步风险评估</li>
+                                            <li>制定验证主计划(VMP)</li>
+                                            <li>组建项目团队</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>项目章程</li>
+                                            <li>验证主计划(VMP)</li>
+                                            <li>初步风险评估报告</li>
+                                            <li>项目计划</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 供应商评估 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-green-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-building mr-2"></i>供应商评估阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>评估供应商的质量体系</li>
+                                            <li>审查供应商的开发流程</li>
+                                            <li>评估供应商的支持能力</li>
+                                            <li>确定供应商提供的文档</li>
+                                            <li>进行供应商审计(如需要)</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>供应商评估问卷</li>
+                                            <li>供应商评估报告</li>
+                                            <li>供应商审计报告(如适用)</li>
+                                            <li>供应商提供的文档清单</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 规范与设计 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-green-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-pencil-ruler mr-2"></i>规范与设计阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>编写用户需求规格(URS)</li>
+                                            <li>编写功能规格(FS)</li>
+                                            <li>进行详细的风险评估</li>
+                                            <li>设计系统架构和配置</li>
+                                            <li>建立需求追溯矩阵</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>用户需求规格(URS)</li>
+                                            <li>功能规格(FS)</li>
+                                            <li>风险评估报告</li>
+                                            <li>系统设计文档</li>
+                                            <li>需求追溯矩阵(RTM)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 配置与开发 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-green-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-cogs mr-2"></i>配置与开发阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>系统配置或定制开发</li>
+                                            <li>执行代码审查</li>
+                                            <li>进行单元测试</li>
+                                            <li>管理配置项</li>
+                                            <li>准备测试环境</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>配置记录或源代码</li>
+                                            <li>代码审查报告</li>
+                                            <li>单元测试报告</li>
+                                            <li>配置管理记录</li>
+                                            <li>环境准备报告</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 验证 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-green-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-check-double mr-2"></i>验证阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>执行安装确认(IQ)</li>
+                                            <li>执行操作确认(OQ)</li>
+                                            <li>执行性能确认(PQ)</li>
+                                            <li>进行用户验收测试(UAT)</li>
+                                            <li>管理缺陷和变更</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>IQ/OQ/PQ测试计划和报告</li>
+                                            <li>UAT测试报告</li>
+                                            <li>缺陷记录和修复报告</li>
+                                            <li>验证总结报告</li>
+                                            <li>系统放行报告</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 运营与维护 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-green-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-tools mr-2"></i>运营与维护阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>系统日常使用</li>
+                                            <li>变更控制管理</li>
+                                            <li>定期系统评审</li>
+                                            <li>备份和恢复验证</li>
+                                            <li>用户培训和支持</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>变更控制记录</li>
+                                            <li>定期评审报告</li>
+                                            <li>备份和恢复测试记录</li>
+                                            <li>培训记录</li>
+                                            <li>事件和问题记录</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- 退役 -->
+                            <div class="accordion-item bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                                <button class="accordion-button w-full flex justify-between items-center p-4 text-left font-medium text-green-800 hover:bg-gray-100 transition">
+                                    <span><i class="fas fa-power-off mr-2"></i>退役阶段</span>
+                                    <i class="fas fa-chevron-down transition-transform"></i>
+                                </button>
+                                <div class="accordion-content">
+                                    <div class="p-4 pt-0">
+                                        <h4 class="font-semibold mb-2 text-gray-700">主要活动:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700 mb-3">
+                                            <li>制定退役计划</li>
+                                            <li>数据迁移或归档</li>
+                                            <li>验证数据完整性</li>
+                                            <li>系统停用和硬件处置</li>
+                                            <li>最终文档归档</li>
+                                        </ul>
+                                        <h4 class="font-semibold mb-2 text-gray-700">输出文件:</h4>
+                                        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                            <li>退役计划</li>
+                                            <li>数据迁移/归档报告</li>
+                                            <li>数据完整性验证报告</li>
+                                            <li>系统停用确认报告</li>
+                                            <li>最终归档记录</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模型对比 -->
+        <section id="comparison" class="mb-20">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-purple-800 mb-8 text-center">V模型与GAMP5模型对比分析</h2>
+                
+                <div class="overflow-x-auto mb-12">
+                    <table class="min-w-full bg-white border border-gray-200 rounded-lg overflow-hidden">
+                        <thead class="bg-purple-700 text-white">
+                            <tr>
+                                <th class="py-3 px-4 text-left">对比项</th>
+                                <th class="py-3 px-4 text-left">V模型</th>
+                                <th class="py-3 px-4 text-left">GAMP5模型</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">主要特点</td>
+                                <td class="py-3 px-4">强调开发与验证的对应关系，结构清晰</td>
+                                <td class="py-3 px-4">基于风险、基于产品分类，强调供应商评估</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">适用系统</td>
+                                <td class="py-3 px-4">适用于所有类型的计算机化系统</td>
+                                <td class="py-3 px-4">特别适合商业现货软件(COTS)和可配置系统</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">验证方法</td>
+                                <td class="py-3 px-4">固定阶段和活动，验证强度一致</td>
+                                <td class="py-3 px-4">根据系统类别和风险调整验证强度</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">供应商评估</td>
+                                <td class="py-3 px-4">通常不特别强调</td>
+                                <td class="py-3 px-4">关键组成部分，有详细评估方法</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">风险管理</td>
+                                <td class="py-3 px-4">可单独进行，非模型核心部分</td>
+                                <td class="py-3 px-4">贯穿整个生命周期，是核心方法</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">优势</td>
+                                <td class="py-3 px-4">结构简单清晰，易于理解和实施</td>
+                                <td class="py-3 px-4">灵活高效，资源分配更合理</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">劣势</td>
+                                <td class="py-3 px-4">可能对低风险系统过度验证</td>
+                                <td class="py-3 px-4">实施复杂度较高，需要更多专业知识</td>
+                            </tr>
+                            <tr class="hover:bg-purple-50">
+                                <td class="py-3 px-4 font-medium">最佳适用场景</td>
+                                <td class="py-3 px-4">定制开发系统，内部开发项目</td>
+                                <td class="py-3 px-4">商业软件实施，特别是可配置系统</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="bg-purple-50 p-6 rounded-lg border border-purple-200">
+                    <h3 class="text-xl font-semibold mb-4 text-purple-800">选择建议</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-medium text-purple-700 mb-2">选择V模型的情况:</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                <li>系统为完全定制开发</li>
+                                <li>需要简单清晰的验证结构</li>
+                                <li>团队对V模型更熟悉</li>
+                                <li>法规环境要求严格对应关系</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-purple-700 mb-2">选择GAMP5模型的情况:</h4>
+                            <ul class="list-disc pl-5 space-y-1 text-gray-700">
+                                <li>实施商业现货软件(COTS)</li>
+                                <li>系统可配置程度高</li>
+                                <li>希望优化验证资源分配</li>
+                                <li>需要整合供应商评估</li>
+                                <li>强调基于风险的方法</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 资源下载 -->
+        <section id="resources" class="mb-12">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <h2 class="text-3xl font-bold text-blue-800 mb-8">资源下载</h2>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 模板1 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="bg-blue-100 p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-blue-800">URS模板</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-600 mb-4">用户需求规格文档模板，包含GxP合规要求</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">DOCX</span>
+                                <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>下载
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 模板2 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="bg-green-100 p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-green-800">风险评估模板</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-600 mb-4">基于GAMP5的风险评估表格和指南</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">XLSX</span>
+                                <button class="text-green-600 hover:text-green-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>下载
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 模板3 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="bg-purple-100 p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-purple-800">测试用例模板</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-600 mb-4">IQ/OQ/PQ测试用例模板，含示例</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">DOCX</span>
+                                <button class="text-purple-600 hover:text-purple-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>下载
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 模板4 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="bg-yellow-100 p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-yellow-800">验证主计划模板</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-600 mb-4">VMP模板，适用于各类计算机系统</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">DOCX</span>
+                                <button class="text-yellow-600 hover:text-yellow-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>下载
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 模板5 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="bg-red-100 p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-red-800">变更控制表格</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-600 mb-4">系统变更控制记录和评估表格</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">XLSX</span>
+                                <button class="text-red-600 hover:text-red-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>下载
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 模板6 -->
+                    <div class="border border-gray-200 rounded-lg overflow-hidden hover:shadow-md transition">
+                        <div class="bg-indigo-100 p-4 border-b border-gray-200">
+                            <h3 class="font-semibold text-indigo-800">供应商评估问卷</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-600 mb-4">GAMP5供应商评估详细问卷</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">DOCX</span>
+                                <button class="text-indigo-600 hover:text-indigo-800 text-sm font-medium">
+                                    <i class="fas fa-download mr-1"></i>下载
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">关于本培训</h3>
+                    <p class="text-gray-400">
+                        本培训材料专为GxP环境下的计算机系统验证设计，涵盖V模型和GAMP5模型的核心内容，旨在帮助学员全面理解CSV要求和方法。
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#v-model" class="hover:text-white transition">V模型详解</a></li>
+                        <li><a href="#gamp5" class="hover:text-white transition">GAMP5详解</a></li>
+                        <li><a href="#comparison" class="hover:text-white transition">模型对比</a></li>
+                        <li><a href="#resources" class="hover:text-white transition">资源下载</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">联系我们</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i> [REDACTED]@[REDACTED].com
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i> +86 158 1051 7437
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i> 北京市昌平区生命科学园
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-700 text-center text-gray-400">
+                <p>© 2025 GxP CSV培训. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动菜单切换
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // 标签页切换
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // 更新按钮状态
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('text-blue-800', 'border-blue-500');
+                    btn.classList.add('text-gray-600', 'hover:text-blue-800');
+                });
+                this.classList.add('text-blue-800', 'border-blue-500');
+                this.classList.remove('text-gray-600', 'hover:text-blue-800');
+                
+                // 更新内容显示
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.querySelector(`.tab-content[data-tab-content="${tabId}"]`).classList.add('active');
+            });
+        });
+
+        // 手风琴效果
+        const accordionButtons = document.querySelectorAll('.accordion-button');
+        
+        accordionButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const item = this.closest('.accordion-item');
+                const content = item.querySelector('.accordion-content');
+                const icon = this.querySelector('i.fa-chevron-down');
+                
+                // 切换内容显示
+                content.classList.toggle('open');
+                
+                // 旋转图标
+                icon.classList.toggle('rotate-180');
+                
+                // 关闭其他打开的项目
+                accordionButtons.forEach(otherButton => {
+                    if (otherButton !== this) {
+                        const otherItem = otherButton.closest('.accordion-item');
+                        const otherContent = otherItem.querySelector('.accordion-content');
+                        const otherIcon = otherButton.querySelector('i.fa-chevron-down');
+                        
+                        otherContent.classList.remove('open');
+                        otherIcon.classList.remove('rotate-180');
+                    }
+                });
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动菜单
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

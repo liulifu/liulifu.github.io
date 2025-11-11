@@ -40,8 +40,9 @@ class BlogManager {
         // Initialize event listeners
         this.initializeEventListeners();
 
-        // Load initial content
-        this.loadHomePage();
+        // Load initial content (respect URL hash)
+        const initialPage = window.location.hash.slice(1) || 'home';
+        this.navigateToPage(initialPage, false);
 
         log.info('Blog Manager initialized');
     }
@@ -140,7 +141,7 @@ class BlogManager {
             window.history.pushState(null, '', `#${page}`);
         }
 
-        if (['home', 'biopharma', 'enterprise', 'dba'].includes(page)) {
+        if (['home', 'biopharma', 'enterprise', 'dba', 'csv'].includes(page)) {
             await this.loadCategoryPage(page);
         } else if (page === 'about') {
             await this.loadAboutPage();
@@ -191,6 +192,7 @@ class BlogManager {
             if (['biopharma','biopharm'].includes(meta)) return 'biopharma';
             if (['dba','database','databases','db'].includes(meta)) return 'dba';
             if (['enterprise','enterprise it','it','infra','ops'].includes(meta)) return 'enterprise';
+            if (['csv'].includes(meta)) return 'csv';
             if (['notes','personal','life','share','misc'].includes(meta)) return 'notes';
         }
 

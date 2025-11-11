@@ -1,0 +1,736 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP计算机化系统验证(CSV)培训</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background: #3b82f6;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .flip-card {
+            perspective: 1000px;
+        }
+        .flip-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- 页眉 -->
+    <header class="bg-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-2">GxP计算机化系统验证</h1>
+                    <p class="text-blue-200 text-lg">确保制药系统合规性</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 核心内容区 -->
+    <section class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">掌握CSV全生命周期</h2>
+                    <p class="text-xl mb-6 text-blue-100">学习在受监管制药环境中验证计算机化系统的关键流程。</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-white text-blue-800 hover:bg-blue-100 font-bold py-3 px-6 rounded-lg transition duration-300">
+                            <i class="fas fa-book-open mr-2"></i> 开始学习
+                        </button>
+                        <button class="border-2 border-white hover:bg-blue-800 font-bold py-3 px-6 rounded-lg transition duration-300">
+                            <i class="fas fa-download mr-2"></i> 下载资源
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 
+    关键法规
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">关键法规与标准</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="flip-card h-64">
+                    <div class="flip-card-inner h-full rounded-lg shadow-md">
+                        <div class="flip-card-front bg-blue-800 text-white p-6 rounded-lg flex flex-col justify-center items-center">
+                            <i class="fas fa-file-alt text-5xl mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">FDA 21 CFR Part 11</h3>
+                            <p class="text-center text-blue-200">电子记录与电子签名</p>
+                        </div>
+                        <div class="flip-card-back bg-blue-600 text-white p-6 rounded-lg flex flex-col justify-center">
+                            <p class="text-sm">定义了电子记录和电子签名被视为可信、可靠且等同于纸质记录的标准。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card h-64">
+                    <div class="flip-card-inner h-full rounded-lg shadow-md">
+                        <div class="flip-card-front bg-blue-700 text-white p-6 rounded-lg flex flex-col justify-center items-center">
+                            <i class="fas fa-globe-europe text-5xl mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">EU GMP Annex 11</h3>
+                            <p class="text-center text-blue-200">计算机化系统</p>
+                        </div>
+                        <div class="flip-card-back bg-blue-500 text-white p-6 rounded-lg flex flex-col justify-center">
+                            <p class="text-sm">规定了欧盟药品生产和质量控制中使用的计算机化系统的要求。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card h-64">
+                    <div class="flip-card-inner h-full rounded-lg shadow-md">
+                        <div class="flip-card-front bg-blue-600 text-white p-6 rounded-lg flex flex-col justify-center items-center">
+                            <i class="fas fa-shield-alt text-5xl mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">ICH Q7/Q9</h3>
+                            <p class="text-center text-blue-200">质量风险管理</p>
+                        </div>
+                        <div class="flip-card-back bg-blue-400 text-white p-6 rounded-lg flex flex-col justify-center">
+                            <p class="text-sm">提供了药品生产和原料药GMP中质量风险管理的指南。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flip-card h-64">
+                    <div class="flip-card-inner h-full rounded-lg shadow-md">
+                        <div class="flip-card-front bg-blue-500 text-white p-6 rounded-lg flex flex-col justify-center items-center">
+                            <i class="fas fa-robot text-5xl mb-4"></i>
+                            <h3 class="text-xl font-bold mb-2">GAMP 5</h3>
+                            <p class="text-center text-blue-200">良好自动化生产实践</p>
+                        </div>
+                        <div class="flip-card-back bg-blue-300 text-blue-900 p-6 rounded-lg flex flex-col justify-center">
+                            <p class="text-sm">一个关注产品和工艺理解、质量风险管理和生命周期方法的合规计算机化系统框架。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+-->
+
+    <!-- CSV流程时间线 -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">CSV生命周期流程</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <!-- 时间线项目1 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">1. 验证计划</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">基础</span>
+                        </div>
+                        <div class="accordion-content" id="step1-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>验证主计划(VMP):</strong> 定义范围、目标、职责和资源</li>
+                                <li><strong>风险评估:</strong> 基于GAMP 5分类识别关键系统功能和潜在风险</li>
+                                <li><strong>法规分析:</strong> 确保符合相关法规(FDA 21 CFR Part 11, EU GMP Annex 11)</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step1')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step1-btn-text">显示详情</span>
+                            <i id="step1-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目2 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">2. 用户需求规范(URS)</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">定义</span>
+                        </div>
+                        <div class="accordion-content" id="step2-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>用户需求文档:</strong> 明确定义系统功能、性能、安全性和数据完整性要求</li>
+                                <li><strong>可追溯性矩阵:</strong> 建立需求与后续设计/测试阶段的关联</li>
+                                <li><strong>审批流程:</strong> 利益相关者正式评审和签署</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step2')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step2-btn-text">显示详情</span>
+                            <i id="step2-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目3 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">3. 系统设计与开发</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">实施</span>
+                        </div>
+                        <div class="accordion-content" id="step3-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>功能规格(FS):</strong> 描述系统如何满足URS需求</li>
+                                <li><strong>设计规格(DS):</strong> 详细技术设计包括架构、接口和数据库设计</li>
+                                <li><strong>供应商评估:</strong> 评估GAMP 5类别3-5系统的第三方供应商</li>
+                                <li><strong>设计评审:</strong> 针对需求的正式设计评估</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step3')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step3-btn-text">显示详情</span>
+                            <i id="step3-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目4 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">4. 安装确认(IQ)</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">验证</span>
+                        </div>
+                        <div class="accordion-content" id="step4-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>硬件/软件验证:</strong> 确认正确安装、环境、版本和依赖项</li>
+                                <li><strong>文档审核:</strong> 验证安装手册、配置记录和权限设置</li>
+                                <li><strong>系统配置:</strong> 验证初始设置和参数</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step4')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step4-btn-text">显示详情</span>
+                            <i id="step4-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目5 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">5. 运行确认(OQ)</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">测试</span>
+                        </div>
+                        <div class="accordion-content" id="step5-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>功能测试:</strong> 验证系统是否符合FS和URS(用户权限、审计追踪、报警功能)</li>
+                                <li><strong>边界测试:</strong> 评估系统在极端条件下的表现(数据负载、并发用户数)</li>
+                                <li><strong>电子记录与签名(ERES)验证:</strong> 确认符合Part 11要求(数据保护、时间戳、电子签名)</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step5')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step5-btn-text">显示详情</span>
+                            <i id="step5-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目6 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">6. 性能确认(PQ)</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">确认</span>
+                        </div>
+                        <div class="accordion-content" id="step6-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>真实场景测试:</strong> 模拟实际业务流程(分析方法、批记录)</li>
+                                <li><strong>数据完整性验证:</strong> 验证数据生成、修改、删除和存储(ALCOA+原则)</li>
+                                <li><strong>用户验收测试:</strong> 最终用户确认系统适用性</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step6')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step6-btn-text">显示详情</span>
+                            <i id="step6-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目7 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">7. 验证报告与放行</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">批准</span>
+                        </div>
+                        <div class="accordion-content" id="step7-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>结果汇总:</strong> 汇总IQ/OQ/PQ测试结果和偏差记录</li>
+                                <li><strong>系统放行:</strong> 质量部门批准系统投入生产使用</li>
+                                <li><strong>培训完成:</strong> 确保所有用户都接受了系统操作培训</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step7')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step7-btn-text">显示详情</span>
+                            <i id="step7-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目8 -->
+                <div class="relative timeline-item pl-8 mb-10">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">8. 变更控制与维护</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">持续</span>
+                        </div>
+                        <div class="accordion-content" id="step8-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>变更管理:</strong> 系统修改的正式流程，根据需要重新验证</li>
+                                <li><strong>定期评审:</strong> 定期评估系统性能、偏差和法规更新</li>
+                                <li><strong>备份/恢复:</strong> 验证数据备份和灾难恢复程序</li>
+                                <li><strong>审计追踪评审:</strong> 定期检查系统审计日志</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step8')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step8-btn-text">显示详情</span>
+                            <i id="step8-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- 时间线项目9 -->
+                <div class="relative timeline-item pl-8">
+                    <div class="absolute left-0 top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-blue-300"></div>
+                    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-blue-800">9. 系统退役</h3>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">退役</span>
+                        </div>
+                        <div class="accordion-content" id="step9-content">
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                                <li><strong>数据迁移:</strong> 验证历史数据传输确保完整性和可读性</li>
+                                <li><strong>退役计划:</strong> 记录退役流程和归档要求</li>
+                                <li><strong>记录保留:</strong> 根据法规要求保留验证文档</li>
+                                <li><strong>最终报告:</strong> 记录系统退役和数据处置</li>
+                            </ul>
+                        </div>
+                        <button onclick="toggleAccordion('step9')" class="mt-4 text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                            <span id="step9-btn-text">显示详情</span>
+                            <i id="step9-icon" class="fas fa-chevron-down ml-2 text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALCOA+原则 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">数据完整性的ALCOA+原则</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">A</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800">可归属性</h3>
+                    </div>
+                    <p class="text-gray-700">数据必须明确显示由谁观察和记录，何时观察和记录，以及谁执行了该活动。</p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">L</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800">清晰可辨</h3>
+                    </div>
+                    <p class="text-gray-700">数据必须永久记录在耐久介质上，并且可读(人读和机读)。</p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">C</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800">同步性</h3>
+                    </div>
+                    <p class="text-gray-700">数据必须在工作执行时记录，并记录活动的日期和时间。</p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">O</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800">原始性</h3>
+                    </div>
+                    <p class="text-gray-700">数据必须是数据的首次记录或原始数据的认证副本。</p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">A</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800">准确性</h3>
+                    </div>
+                    <p class="text-gray-700">数据必须无错误、完整、真实，并反映所做的观察。</p>
+                </div>
+                
+                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-600">
+                    <div class="flex items-center mb-3">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                            <span class="font-bold">+</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-blue-800">完整性、一致性、持久性、可用性</h3>
+                    </div>
+                    <p class="text-gray-700">扩展原则确保数据完整、在整个生命周期中一致、持久，并可供审核。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 互动测验 -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">测试您的CSV知识</h2>
+            
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
+                <div class="p-6 bg-blue-800 text-white">
+                    <h3 class="text-xl font-bold">CSV测验</h3>
+                    <p class="text-blue-200">回答这些问题来测试您对计算机化系统验证的理解</p>
+                </div>
+                
+                <div class="p-6">
+                    <div id="quiz-container">
+                        <!-- 问题1 -->
+                        <div class="mb-8 quiz-question" id="q1">
+                            <p class="font-bold text-lg mb-4 text-blue-800">1. 验证主计划(VMP)的主要目的是什么？</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q1" value="a" class="mr-2">
+                                    <span>记录系统的所有测试用例</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q1" value="b" class="mr-2">
+                                    <span>定义验证工作的范围、目标、职责和资源</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q1" value="c" class="mr-2">
+                                    <span>列出所有系统需求</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q1" value="d" class="mr-2">
+                                    <span>提供详细的技术规范</span>
+                                </label>
+                            </div>
+                            <div id="q1-feedback" class="hidden mt-4 p-3 rounded-lg"></div>
+                        </div>
+                        
+                        <!-- 问题2 -->
+                        <div class="mb-8 quiz-question" id="q2">
+                            <p class="font-bold text-lg mb-4 text-blue-800">2. 哪项法规专门针对电子记录和电子签名？</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q2" value="a" class="mr-2">
+                                    <span>EU GMP Annex 11</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q2" value="b" class="mr-2">
+                                    <span>FDA 21 CFR Part 11</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q2" value="c" class="mr-2">
+                                    <span>ICH Q7</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q2" value="d" class="mr-2">
+                                    <span>GAMP 5</span>
+                                </label>
+                            </div>
+                            <div id="q2-feedback" class="hidden mt-4 p-3 rounded-lg"></div>
+                        </div>
+                        
+                        <!-- 问题3 -->
+                        <div class="mb-8 quiz-question" id="q3">
+                            <p class="font-bold text-lg mb-4 text-blue-800">3. ALCOA中的"A"代表什么？</p>
+                            <div class="space-y-3">
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q3" value="a" class="mr-2">
+                                    <span>准确性</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q3" value="b" class="mr-2">
+                                    <span>已批准</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q3" value="c" class="mr-2">
+                                    <span>可归属性</span>
+                                </label>
+                                <label class="flex items-center bg-gray-100 p-3 rounded-lg cursor-pointer hover:bg-gray-200">
+                                    <input type="radio" name="q3" value="d" class="mr-2">
+                                    <span>可审计性</span>
+                                </label>
+                            </div>
+                            <div id="q3-feedback" class="hidden mt-4 p-3 rounded-lg"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between mt-8">
+                        <button id="check-answers" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                            检查答案
+                        </button>
+                        <button id="reset-quiz" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg transition duration-300">
+                            重置测验
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资源区 -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-blue-900">附加资源</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-blue-700 p-4 text-white">
+                        <i class="fas fa-file-pdf text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">法规指南</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-file-alt text-blue-600 mt-1 mr-2"></i>
+                                <span>FDA 21 CFR Part 11全文</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-file-alt text-blue-600 mt-1 mr-2"></i>
+                                <span>EU GMP Annex 11指南</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-file-alt text-blue-600 mt-1 mr-2"></i>
+                                <span>GAMP 5良好实践指南</span>
+                            </li>
+                        </ul>
+                        <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                            全部下载
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-blue-600 p-4 text-white">
+                        <i class="fas fa-video text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">培训视频</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-play-circle text-blue-600 mt-1 mr-2"></i>
+                                <span>CSV生命周期概述</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-play-circle text-blue-600 mt-1 mr-2"></i>
+                                <span>CSV的风险基础方法</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-play-circle text-blue-600 mt-1 mr-2"></i>
+                                <span>数据完整性最佳实践</span>
+                            </li>
+                        </ul>
+                        <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                            观看所有视频
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition duration-300">
+                    <div class="bg-blue-500 p-4 text-white">
+                        <i class="fas fa-tools text-3xl mb-2"></i>
+                        <h3 class="text-xl font-bold">模板与工具</h3>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-file-word text-blue-600 mt-1 mr-2"></i>
+                                <span>验证计划模板</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-file-excel text-blue-600 mt-1 mr-2"></i>
+                                <span>可追溯性矩阵模板</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-file-powerpoint text-blue-600 mt-1 mr-2"></i>
+                                <span>风险评估工具</span>
+                            </li>
+                        </ul>
+                        <button class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                            下载工具
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">GxP CSV培训</h3>
+                    <p class="text-gray-400">为制药和生命科学行业提供全面的计算机化系统验证培训。</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-blue-400">快速链接</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">首页</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">培训课程</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">资源</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">关于我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-blue-400">联系我们</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope mt-1 mr-2 text-blue-400"></i>
+                            <span>[REDACTED]@[REDACTED].com</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 mr-2 text-blue-400"></i>
+                            <span>+86 158 1051 7437</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-2 text-blue-400"></i>
+                            <span>北京市昌平区生命科学园</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-blue-400">订阅</h4>
+                    <p class="text-gray-400 mb-4">获取我们最新的课程和资源更新。</p>
+                    <div class="flex">
+                        <input type="email" placeholder="您的邮箱" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-full">
+                        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-r-lg transition duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="flex space-x-4 mt-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-youtube text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 GxP CSV培训。保留所有权利。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 手风琴功能 - 修复后的版本
+        function toggleAccordion(step) {
+            const content = document.getElementById(`${step}-content`);
+            const btnText = document.getElementById(`${step}-btn-text`);
+            const icon = document.getElementById(`${step}-icon`);
+            
+            if (content.style.maxHeight) {
+                // 如果内容已展开，则折叠
+                content.style.maxHeight = null;
+                btnText.textContent = '显示详情';
+                icon.className = 'fas fa-chevron-down ml-2 text-sm';
+            } else {
+                // 如果内容已折叠，则展开
+                content.style.maxHeight = content.scrollHeight + "px";
+                btnText.textContent = '隐藏详情';
+                icon.className = 'fas fa-chevron-up ml-2 text-sm';
+            }
+        }
+        
+        // 测验功能
+        document.getElementById('check-answers').addEventListener('click', function() {
+            const answers = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'c'
+            };
+            
+            const feedback = {
+                q1: {
+                    correct: "正确！验证主计划(VMP)定义了验证工作的范围、目标、职责和资源。",
+                    incorrect: "错误。正确答案是：定义验证工作的范围、目标、职责和资源。"
+                },
+                q2: {
+                    correct: "正确！FDA 21 CFR Part 11专门针对电子记录和电子签名。",
+                    incorrect: "错误。正确答案是：FDA 21 CFR Part 11。"
+                },
+                q3: {
+                    correct: "正确！ALCOA中的'A'代表可归属性，意味着数据必须明确显示由谁观察和记录。",
+                    incorrect: "错误。正确答案是：可归属性。"
+                }
+            };
+            
+            for (let i = 1; i <= 3; i++) {
+                const question = `q${i}`;
+                const selected = document.querySelector(`input[name="${question}"]:checked`);
+                const feedbackDiv = document.getElementById(`${question}-feedback`);
+                
+                if (selected) {
+                    if (selected.value === answers[question]) {
+                        feedbackDiv.innerHTML = `<div class="bg-green-100 text-green-800">${feedback[question].correct}</div>`;
+                    } else {
+                        feedbackDiv.innerHTML = `<div class="bg-red-100 text-red-800">${feedback[question].incorrect}</div>`;
+                    }
+                    feedbackDiv.classList.remove('hidden');
+                }
+            }
+        });
+        
+        document.getElementById('reset-quiz').addEventListener('click', function() {
+            // 取消选中所有单选按钮
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            
+            // 隐藏所有反馈
+            document.querySelectorAll('[id$="-feedback"]').forEach(feedback => {
+                feedback.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

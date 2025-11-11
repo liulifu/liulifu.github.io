@@ -1,0 +1,642 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP CSV Training - Change Control & Maintenance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .timeline-item:not(:last-child):after {
+            content: "";
+            position: absolute;
+            left: 7px;
+            top: 24px;
+            height: calc(100% - 24px);
+            width: 2px;
+            background: #3b82f6;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-blue-800">GxP Computer System Validation</h1>
+                    <h2 class="text-2xl font-semibold text-gray-700 mt-2">Change Control & Maintenance in CSV Lifecycle</h2>
+                </div>
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <i class="fas fa-laptop-medical text-blue-600 text-4xl"></i>
+                </div>
+            </div>
+            <div class="mt-6 bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                <p class="text-yellow-700">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <strong>Key Concept:</strong> Effective change control and maintenance are critical to maintaining the validated state of computerized systems in regulated environments.
+                </p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Introduction -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-700 mb-4 flex items-center">
+                    <i class="fas fa-info-circle mr-2"></i> Introduction
+                </h3>
+                <p class="text-gray-700 mb-4">
+                    In the CSV lifecycle, Change Control and Maintenance ensure that computerized systems remain in a validated state after initial qualification. These processes manage modifications, updates, and ongoing verification activities throughout the system's operational life.
+                </p>
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <h4 class="font-bold text-blue-800 mb-2"><i class="fas fa-exchange-alt mr-2"></i>Change Control</h4>
+                        <p class="text-gray-700">
+                            A formal process to evaluate, approve, and document changes to validated systems to ensure they don't adversely affect product quality or regulatory compliance.
+                        </p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h4 class="font-bold text-green-800 mb-2"><i class="fas fa-cogs mr-2"></i>Maintenance</h4>
+                        <p class="text-gray-700">
+                            Ongoing activities including periodic reviews, security updates, backup verification, and audit trail monitoring to maintain system performance and compliance.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Processes -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-700 mb-4 flex items-center">
+                    <i class="fas fa-list-check mr-2"></i> Key Validation Processes in Change Control & Maintenance
+                </h3>
+                
+                <div class="mt-6">
+                    <!-- Tabs Navigation -->
+                    <div class="flex flex-wrap border-b border-gray-200">
+                        <button class="tab-btn py-2 px-4 font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-300" data-tab="change-control">
+                            <i class="fas fa-exchange-alt mr-2"></i>Change Control
+                        </button>
+                        <button class="tab-btn py-2 px-4 font-medium text-gray-600 hover:text-blue-600 border-b-2 border-transparent hover:border-blue-300" data-tab="maintenance">
+                            <i class="fas fa-cogs mr-2"></i>Maintenance
+                        </button>
+                    </div>
+                    
+                    <!-- Tabs Content -->
+                    <div class="mt-4">
+                        <!-- Change Control Tab -->
+                        <div id="change-control" class="tab-content active">
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-file-signature text-blue-600 mr-2"></i> Change Request Documentation
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        All changes must be documented through a formal change request that includes:
+                                    </p>
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                                        <li>Description of the proposed change</li>
+                                        <li>Reason/justification for the change</li>
+                                        <li>Impact assessment on system validation</li>
+                                        <li>Required testing/qualification activities</li>
+                                        <li>Regulatory impact assessment</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-search text-blue-600 mr-2"></i> Impact Assessment
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        A systematic evaluation to determine the extent of validation activities required:
+                                    </p>
+                                    <div class="grid md:grid-cols-3 gap-4 mt-3">
+                                        <div class="bg-blue-50 p-3 rounded">
+                                            <h5 class="font-semibold text-blue-800">Major Change</h5>
+                                            <p class="text-sm text-gray-700">May require full revalidation (e.g., system migration, major version upgrade)</p>
+                                        </div>
+                                        <div class="bg-yellow-50 p-3 rounded">
+                                            <h5 class="font-semibold text-yellow-800">Minor Change</h5>
+                                            <p class="text-sm text-gray-700">Requires limited testing (e.g., configuration changes, minor patches)</p>
+                                        </div>
+                                        <div class="bg-green-50 p-3 rounded">
+                                            <h5 class="font-semibold text-green-800">Emergency Change</h5>
+                                            <p class="text-sm text-gray-700">Expedited process for critical fixes with post-implementation review</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-check-double text-blue-600 mr-2"></i> Approval Process
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        Multi-disciplinary review and approval involving:
+                                    </p>
+                                    <div class="flex flex-wrap gap-3 mt-3">
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">System Owner</span>
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">QA</span>
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">IT</span>
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">End Users</span>
+                                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Regulatory Affairs</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-vial text-blue-600 mr-2"></i> Testing & Qualification
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        Based on impact assessment, appropriate testing is performed:
+                                    </p>
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                                        <li>Regression testing for affected functionality</li>
+                                        <li>Partial or full re-execution of IQ/OQ/PQ protocols</li>
+                                        <li>Verification of data integrity and security</li>
+                                        <li>Interoperability testing with connected systems</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Maintenance Tab -->
+                        <div id="maintenance" class="tab-content">
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-clipboard-list text-green-600 mr-2"></i> Periodic Review
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        Annual or biennial system reviews to confirm continued validation status:
+                                    </p>
+                                    <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                                        <li>Review of system performance metrics</li>
+                                        <li>Evaluation of deviations and incidents</li>
+                                        <li>Assessment of change history</li>
+                                        <li>Verification of current SOPs and training records</li>
+                                        <li>Review of backup and disaster recovery tests</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-user-shield text-green-600 mr-2"></i> Access Control Review
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        Periodic verification of user access rights:
+                                    </p>
+                                    <div class="grid md:grid-cols-2 gap-4 mt-3">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-700">User Access Review</h5>
+                                            <ul class="list-disc pl-5 mt-1 space-y-1 text-sm text-gray-700">
+                                                <li>Quarterly review of active users</li>
+                                                <li>Verification of role-based permissions</li>
+                                                <li>Removal of obsolete accounts</li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h5 class="font-semibold text-gray-700">Privileged Accounts</h5>
+                                            <ul class="list-disc pl-5 mt-1 space-y-1 text-sm text-gray-700">
+                                                <li>Monthly review of admin accounts</li>
+                                                <li>Justification for elevated privileges</li>
+                                                <li>Logging of privileged activities</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-history text-green-600 mr-2"></i> Audit Trail Review (ARQ)
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        Audit Trail Review and Qualification (ARQ) ensures data integrity:
+                                    </p>
+                                    <div class="mt-3 p-3 bg-white border rounded">
+                                        <div class="flex items-start">
+                                            <div class="bg-green-100 p-2 rounded-full mr-3">
+                                                <i class="fas fa-check-circle text-green-600"></i>
+                                            </div>
+                                            <div>
+                                                <h5 class="font-semibold">ARQ Best Practices</h5>
+                                                <ul class="list-disc pl-5 mt-1 space-y-1 text-sm text-gray-700">
+                                                    <li>Review critical data modifications (sample results, method changes)</li>
+                                                    <li>Verify sequence and timing of related events</li>
+                                                    <li>Check for unauthorized access attempts</li>
+                                                    <li>Confirm audit trail is complete, consistent, and secure</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-gray-50 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-800 flex items-center">
+                                        <i class="fas fa-database text-green-600 mr-2"></i> Backup & Recovery Verification
+                                    </h4>
+                                    <p class="text-gray-700 mt-2">
+                                        Regular verification of data backup and restoration procedures:
+                                    </p>
+                                    <div class="grid md:grid-cols-3 gap-3 mt-3">
+                                        <div class="bg-white p-3 rounded border text-center">
+                                            <div class="bg-blue-100 inline-flex p-3 rounded-full mb-2">
+                                                <i class="fas fa-calendar-check text-blue-600 text-xl"></i>
+                                            </div>
+                                            <h5 class="font-semibold text-sm">Schedule</h5>
+                                            <p class="text-xs text-gray-600 mt-1">Quarterly test restorations</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border text-center">
+                                            <div class="bg-purple-100 inline-flex p-3 rounded-full mb-2">
+                                                <i class="fas fa-file-alt text-purple-600 text-xl"></i>
+                                            </div>
+                                            <h5 class="font-semibold text-sm">Documentation</h5>
+                                            <p class="text-xs text-gray-600 mt-1">Restoration logs and reports</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border text-center">
+                                            <div class="bg-green-100 inline-flex p-3 rounded-full mb-2">
+                                                <i class="fas fa-clock text-green-600 text-xl"></i>
+                                            </div>
+                                            <h5 class="font-semibold text-sm">RTO/RPO</h5>
+                                            <p class="text-xs text-gray-600 mt-1">Verify recovery time/point objectives</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Study -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-700 mb-4 flex items-center">
+                    <i class="fas fa-microscope mr-2"></i> Case Study: LIMS Change Control & Maintenance at PharmaCorp
+                </h3>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6 rounded-r">
+                    <h4 class="font-bold text-blue-800 mb-2">System Background</h4>
+                    <p class="text-gray-700">
+                        PharmaCorp's Laboratory Information Management System (LIMS) manages sample tracking, test results, and compliance reporting for GMP operations. The system was validated 3 years ago and requires ongoing change control and maintenance.
+                    </p>
+                </div>
+                
+                <div class="space-y-6">
+                    <!-- Change Control Scenario -->
+                    <div class="border rounded-lg overflow-hidden">
+                        <button class="accordion-btn w-full text-left p-4 bg-gray-100 hover:bg-gray-200 font-medium flex justify-between items-center">
+                            <span><i class="fas fa-exchange-alt text-blue-600 mr-2"></i> Change Control Scenario: LIMS Upgrade</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="accordion-content bg-white">
+                            <div class="p-4">
+                                <h4 class="font-bold text-gray-800 mb-3">Scenario: Upgrade from LIMS v4.2 to v5.1</h4>
+                                
+                                <div class="grid md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700 border-b pb-1 mb-2">Change Details</h5>
+                                        <ul class="space-y-2 text-gray-700">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-blue-500 text-xs mt-1 mr-2"></i>
+                                                <span>New features: Enhanced audit trail, electronic signatures, and data visualization</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-blue-500 text-xs mt-1 mr-2"></i>
+                                                <span>Security patches and bug fixes</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-circle text-blue-500 text-xs mt-1 mr-2"></i>
+                                                <span>Database schema changes</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700 border-b pb-1 mb-2">Validation Approach</h5>
+                                        <ul class="space-y-2 text-gray-700">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                                                <span>Impact assessment classified as "Major Change" requiring partial revalidation</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                                                <span>Updated IQ for new infrastructure requirements</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                                                <span>Revised OQ for new functionality</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check-circle text-green-500 mr-2 mt-0.5"></i>
+                                                <span>Data migration validation protocol</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-6 bg-yellow-50 p-3 rounded border border-yellow-200">
+                                    <h5 class="font-semibold text-yellow-800 flex items-center">
+                                        <i class="fas fa-lightbulb mr-2"></i> Key Learning
+                                    </h5>
+                                    <p class="text-gray-700 mt-1 text-sm">
+                                        The change control board required additional testing for electronic signatures (21 CFR Part 11 compliance) and data migration integrity checks, extending the validation timeline by 2 weeks but ensuring regulatory compliance.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Maintenance Scenario -->
+                    <div class="border rounded-lg overflow-hidden">
+                        <button class="accordion-btn w-full text-left p-4 bg-gray-100 hover:bg-gray-200 font-medium flex justify-between items-center">
+                            <span><i class="fas fa-cogs text-green-600 mr-2"></i> Maintenance Scenario: Routine Activities</span>
+                            <i class="fas fa-chevron-down transition-transform"></i>
+                        </button>
+                        <div class="accordion-content bg-white">
+                            <div class="p-4">
+                                <h4 class="font-bold text-gray-800 mb-3">Ongoing Maintenance Activities</h4>
+                                
+                                <div class="space-y-4">
+                                    <div class="border-b pb-4">
+                                        <h5 class="font-semibold text-gray-700 flex items-center">
+                                            <i class="fas fa-clipboard-check text-green-500 mr-2"></i> Periodic Review Findings
+                                        </h5>
+                                        <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
+                                            <li>Identified 3 unused user accounts that were removed</li>
+                                            <li>Found backup verification records were incomplete for Q2</li>
+                                            <li>Noted 2 SOPs needed updating to reflect current practices</li>
+                                            <li>Confirmed all critical incidents were properly investigated</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="border-b pb-4">
+                                        <h5 class="font-semibold text-gray-700 flex items-center">
+                                            <i class="fas fa-user-lock text-green-500 mr-2"></i> Access Control Audit
+                                        </h5>
+                                        <div class="grid md:grid-cols-2 gap-4 mt-3">
+                                            <div>
+                                                <h6 class="font-medium text-sm text-gray-600">Findings:</h6>
+                                                <ul class="list-disc pl-5 mt-1 space-y-1 text-sm text-gray-700">
+                                                    <li>2 former employees still had active accounts</li>
+                                                    <li>1 analyst had incorrect permissions</li>
+                                                    <li>3 shared accounts were being used</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h6 class="font-medium text-sm text-gray-600">Corrective Actions:</h6>
+                                                <ul class="list-disc pl-5 mt-1 space-y-1 text-sm text-gray-700">
+                                                    <li>Disabled obsolete accounts</li>
+                                                    <li>Corrected permission assignments</li>
+                                                    <li>Eliminated shared accounts</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h5 class="font-semibold text-gray-700 flex items-center">
+                                            <i class="fas fa-history text-green-500 mr-2"></i> Audit Trail Review (ARQ)
+                                        </h5>
+                                        <div class="mt-3">
+                                            <div class="overflow-x-auto">
+                                                <table class="min-w-full bg-white border">
+                                                    <thead class="bg-gray-100">
+                                                        <tr>
+                                                            <th class="py-2 px-3 border text-left text-xs font-medium text-gray-500 uppercase">Review Period</th>
+                                                            <th class="py-2 px-3 border text-left text-xs font-medium text-gray-500 uppercase">Records Reviewed</th>
+                                                            <th class="py-2 px-3 border text-left text-xs font-medium text-gray-500 uppercase">Findings</th>
+                                                            <th class="py-2 px-3 border text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="py-2 px-3 border text-sm">Jan-Mar 2023</td>
+                                                            <td class="py-2 px-3 border text-sm">125 critical data modifications</td>
+                                                            <td class="py-2 px-3 border text-sm">3 unexplained time gaps</td>
+                                                            <td class="py-2 px-3 border text-sm">Implemented system time sync</td>
+                                                        </tr>
+                                                        <tr class="bg-gray-50">
+                                                            <td class="py-2 px-3 border text-sm">Apr-Jun 2023</td>
+                                                            <td class="py-2 px-3 border text-sm">98 method changes</td>
+                                                            <td class="py-2 px-3 border text-sm">2 changes without proper approval</td>
+                                                            <td class="py-2 px-3 border text-sm">Retrained affected users</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Best Practices -->
+            <section class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h3 class="text-xl font-bold text-blue-700 mb-4 flex items-center">
+                    <i class="fas fa-star mr-2"></i> Best Practices for Change Control & Maintenance
+                </h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-exchange-alt text-blue-500 mr-2"></i> Change Control
+                        </h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-blue-600 text-xs"></i>
+                                </div>
+                                <span>Implement a tiered approach based on risk and impact</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-blue-600 text-xs"></i>
+                                </div>
+                                <span>Maintain a centralized change log with traceability</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-blue-600 text-xs"></i>
+                                </div>
+                                <span>Include regression testing in all change implementations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-blue-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-blue-600 text-xs"></i>
+                                </div>
+                                <span>Document all decisions and rationales</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                            <i class="fas fa-cogs text-green-500 mr-2"></i> Maintenance
+                        </h4>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-green-600 text-xs"></i>
+                                </div>
+                                <span>Schedule maintenance activities in advance</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-green-600 text-xs"></i>
+                                </div>
+                                <span>Automate monitoring where possible</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-green-600 text-xs"></i>
+                                </div>
+                                <span>Maintain an up-to-date system documentation library</span>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="bg-green-100 p-1 rounded-full mr-2">
+                                    <i class="fas fa-check text-green-600 text-xs"></i>
+                                </div>
+                                <span>Conduct periodic GxP training for all system users</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-purple-50 border-l-4 border-purple-400 p-4 rounded-r">
+                    <h4 class="font-bold text-purple-800 mb-2">Regulatory Considerations</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h5 class="text-sm font-medium text-purple-700">FDA 21 CFR Part 11</h5>
+                            <ul class="list-disc pl-5 mt-1 space-y-1 text-sm text-gray-700">
+                                <li>Audit trail requirements</li>
+                                <li>Electronic signature controls</li>
+                                <li>Change documentation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-medium text-purple-700">EU GMP Annex 11</h5>
+                            <ul class="list-disc pl-5 mt-1 space-y-1 text-sm text-gray-700">
+                                <li>Periodic evaluation</li>
+                                <li>Change management</li>
+                                <li>Incident management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary -->
+            <section class="bg-blue-50 rounded-lg p-6 border border-blue-200">
+                <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center">
+                    <i class="fas fa-graduation-cap mr-2"></i> Key Takeaways
+                </h3>
+                
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <div class="bg-blue-100 inline-flex p-2 rounded-full mb-2">
+                            <i class="fas fa-sitemap text-blue-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Process Integration</h4>
+                        <p class="text-sm text-gray-700 mt-1">Change control and maintenance must be integrated into the overall quality system</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <div class="bg-green-100 inline-flex p-2 rounded-full mb-2">
+                            <i class="fas fa-file-alt text-green-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Documentation</h4>
+                        <p class="text-sm text-gray-700 mt-1">Maintain complete records of all activities to demonstrate compliance</p>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg shadow-sm">
+                        <div class="bg-purple-100 inline-flex p-2 rounded-full mb-2">
+                            <i class="fas fa-shield-alt text-purple-600"></i>
+                        </div>
+                        <h4 class="font-semibold text-gray-800">Data Integrity</h4>
+                        <p class="text-sm text-gray-700 mt-1">All activities must preserve ALCOA+ principles for data integrity</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 bg-white p-4 rounded border">
+                    <h4 class="font-bold text-gray-800 mb-2">Remember:</h4>
+                    <p class="text-gray-700">
+                        Effective change control and maintenance are not one-time activities but ongoing processes that require commitment from all stakeholders to maintain the validated state of computerized systems in regulated environments.
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-600 text-sm">
+            <p>© 2025 GxP CSV Training Program. All rights reserved.</p>
+            <p class="mt-2">For educational purposes only - based on regulatory requirements including FDA 21 CFR Part 11 and EU GMP Annex 11</p>
+        </footer>
+    </div>
+
+    <script>
+        // Accordion functionality
+        const accordionBtns = document.querySelectorAll('.accordion-btn');
+        accordionBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('.fa-chevron-down');
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+        
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Hide all tab contents
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                // Show selected tab content
+                document.getElementById(tabId).classList.add('active');
+                
+                // Update active tab button styling
+                tabBtns.forEach(btn => {
+                    btn.classList.remove('border-blue-500', 'text-blue-600');
+                    btn.classList.add('border-transparent');
+                });
+                
+                btn.classList.add('border-blue-500', 'text-blue-600');
+                btn.classList.remove('border-transparent');
+            });
+        });
+        
+        // Initialize first tab as active
+        if (tabBtns.length > 0) {
+            tabBtns[0].classList.add('border-blue-500', 'text-blue-600');
+            tabBtns[0].classList.remove('border-transparent');
+        }
+    </script>
+</body>
+</html>

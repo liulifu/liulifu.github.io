@@ -6,6 +6,95 @@
         "excerpt": "# Blog Post Index\n\n| Title | Date | File | Category | Tags | Excerpt | Author | Version | License |\n| :"
     },
     {
+        "title": "CSV（计算机化系统验证）资料索引",
+        "date": "2025-11-11",
+        "file": "csv/2025-11-11-CSV-资料索引.md",
+        "author": "Lifu",
+        "category": "csv"
+    },
+    {
+        "title": "实验室信息学架构（01）总览与设计原则",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-实验室信息学架构-01-总览与设计原则.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "实验室信息学架构（02）LIMS与主数据治理",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-实验室信息学架构-02-LIMS与主数据治理.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "实验室信息学架构（03）ELN、方法数字化与LES",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-实验室信息学架构-03-ELN方法数字化与LES.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "实验室信息学架构（04）仪器数据、CDS与SDMS、数据湖",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-实验室信息学架构-04-仪器数据CDS与SDMS数据湖.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "实验室信息学架构（05）合规与验证：21 CFR Part 11 / Annex 11、CSV/CSA",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-实验室信息学架构-05-合规与验证-21CFRPart11-Annex11-CSV-CSA.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "实验室信息学架构（06）集成架构与平台工程",
+        "date": "2025-11-11",
+        "file": "biopharma/2025-11-11-实验室信息学架构-06-集成架构与平台工程.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "fengbi PDF 工具套件 复现与重构方案",
+        "date": "2025-11-11",
+        "file": "notes/2025-11-11-fengbi-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "IT Help Desk Access Tool 复现与配置",
+        "date": "2025-11-11",
+        "file": "notes/2025-11-11-brandnew-0926-复现与配置.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "clock 复现与重构方案",
+        "date": "2025-11-11",
+        "file": "notes/2025-11-11-clock-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "pc_monitor 复现与重构方案",
+        "date": "2025-11-11",
+        "file": "notes/2025-11-11-pc_monitor-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "paddleocrproject 复现与重构方案",
+        "date": "2025-11-11",
+        "file": "notes/2025-11-11-paddleocrproject-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "三项目复现与重构方案：clock、pc_monitor、paddleocrproject",
+        "date": "2025-11-11",
+        "file": "2025-11-11-三项目复现与重构方案.md",
+        "author": "Lifu"
+    },
         "title": "📝 博客自动化工作流程",
         "date": "2025-07-12",
         "file": "2025-07-12-更新博客自动脚本.md",

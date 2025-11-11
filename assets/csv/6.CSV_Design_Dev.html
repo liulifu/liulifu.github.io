@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GxP CSV培训 - 系统设计与开发</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #3b82f6;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12px;
+            background-color: white;
+            border: 4px solid #3b82f6;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .right::after {
+            left: -12px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::after {
+                left: 18px;
+            }
+            .left::after, .right::after {
+                left: 18px;
+            }
+            .right {
+                left: 0%;
+            }
+        }
+        
+        .accordion {
+            transition: all 0.3s ease;
+        }
+        .accordion-header {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #f3f4f6;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion.active .accordion-content {
+            max-height: 1000px;
+        }
+        
+        .highlight-box {
+            border-left: 4px solid #3b82f6;
+            background-color: #f8fafc;
+            padding: 16px;
+            margin: 16px 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- 头部导航 -->
+        <nav class="flex items-center justify-between mb-8">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-flask text-blue-500 text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-800">GxP CSV培训</h1>
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-blue-500 hover:text-blue-700">首页</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">课程</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500">资源</a>
+            </div>
+        </nav>
+        
+        <!-- 面包屑导航 -->
+        <div class="flex items-center text-sm text-gray-600 mb-6">
+            <a href="#" class="hover:text-blue-500">GxP CSV培训</a>
+            <span class="mx-2">/</span>
+            <a href="#" class="hover:text-blue-500">CSV生命周期</a>
+            <span class="mx-2">/</span>
+            <span class="text-blue-500">系统设计与开发</span>
+        </div>
+        
+        <!-- 主标题 -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">计算机系统验证(CSV) - 系统设计与开发</h1>
+            <p class="text-gray-600">了解GxP环境下计算机系统验证的系统设计与开发阶段关键要素</p>
+        </div>
+        
+        <!-- 主要内容 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">系统设计与开发概述</h2>
+            <p class="text-gray-700 mb-4">在计算机系统验证(CSV)生命周期中，系统设计与开发阶段是将用户需求转化为实际系统的重要环节。这一阶段需要确保系统设计能够满足所有法规要求和用户需求，并为后续的验证活动奠定基础。</p>
+            
+            <div class="highlight-box mb-6">
+                <h3 class="font-semibold text-lg text-gray-800 mb-2"><i class="fas fa-info-circle text-blue-500 mr-2"></i>关键概念</h3>
+                <p class="text-gray-700">系统设计与开发阶段通常包括功能规格(FS)、设计规格(DS)、供应商评估和设计评审等内容。对于商业现货(COTS)系统，处理方式会有所不同。</p>
+            </div>
+            
+            <!-- 时间线 -->
+            <h3 class="text-xl font-semibold text-gray-800 mt-8 mb-4">CSV生命周期中的系统设计与开发</h3>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h4 class="font-bold text-gray-800">用户需求规范(URS)</h4>
+                        <p class="text-gray-600 text-sm">定义系统需要满足的业务和法规要求</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content bg-blue-50">
+                        <h4 class="font-bold text-blue-800">系统设计与开发</h4>
+                        <p class="text-blue-600 text-sm">当前阶段 - 将需求转化为系统设计</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h4 class="font-bold text-gray-800">系统测试</h4>
+                        <p class="text-gray-600 text-sm">验证系统是否符合设计规格</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h4 class="font-bold text-gray-800">用户验收测试(UAT)</h4>
+                        <p class="text-gray-600 text-sm">确认系统满足用户需求</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 定制开发 vs COTS系统 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- 定制开发系统 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-code text-blue-500 text-xl"></i>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800">定制开发系统</h2>
+                </div>
+                <p class="text-gray-700 mb-4">对于定制开发的系统，系统设计与开发阶段通常包括以下关键活动：</p>
+                <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                    <li><span class="font-medium">功能规格(FS)</span> - 详细描述系统功能，包括输入、处理、输出和数据流</li>
+                    <li><span class="font-medium">设计规格(DS)</span> - 描述系统架构、数据库设计、接口设计等技术细节</li>
+                    <li><span class="font-medium">设计评审</span> - 确保设计满足URS和法规要求</li>
+                    <li><span class="font-medium">编码与单元测试</span> - 开发人员按照设计规格进行编码和初步测试</li>
+                </ul>
+            </div>
+            
+            <!-- COTS系统 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 p-3 rounded-full mr-4">
+                        <i class="fas fa-shopping-cart text-green-500 text-xl"></i>
+                    </div>
+                    <h2 class="text-xl font-semibold text-gray-800">商业现货(COTS)系统</h2>
+                </div>
+                <p class="text-gray-700 mb-4">对于购买的COTS系统，系统设计与开发阶段的重点有所不同：</p>
+                <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                    <li><span class="font-medium">供应商评估</span> - 评估供应商资质、系统成熟度和验证支持能力</li>
+                    <li><span class="font-medium">配置规格</span> - 描述如何配置系统以满足特定需求，而非设计规格</li>
+                    <li><span class="font-medium">差距分析</span> - 比较系统功能与URS，识别需要定制或妥协的领域</li>
+                    <li><span class="font-medium">接口设计</span> - 设计与其他系统的接口，确保数据完整性</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 关键文档 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">关键文档与活动</h2>
+            
+            <div class="accordion mb-4 border rounded-lg overflow-hidden">
+                <div class="accordion-header p-4 bg-gray-50 flex justify-between items-center">
+                    <h3 class="font-semibold text-gray-800">功能规格(FS)</h3>
+                    <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                </div>
+                <div class="accordion-content px-4">
+                    <div class="py-4">
+                        <p class="text-gray-700 mb-3">功能规格文档详细描述了系统应该如何运行以满足用户需求。它应包括：</p>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                            <li>系统功能的详细描述</li>
+                            <li>输入、处理和输出要求</li>
+                            <li>数据流和转换规则</li>
+                            <li>用户界面要求</li>
+                            <li>错误处理和报警机制</li>
+                        </ul>
+                        <p class="text-gray-700">对于COTS系统，功能规格可能更侧重于如何配置系统功能而非设计新功能。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mb-4 border rounded-lg overflow-hidden">
+                <div class="accordion-header p-4 bg-gray-50 flex justify-between items-center">
+                    <h3 class="font-semibold text-gray-800">设计规格(DS)或配置规格</h3>
+                    <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                </div>
+                <div class="accordion-content px-4">
+                    <div class="py-4">
+                        <p class="text-gray-700 mb-3">对于定制系统，设计规格描述如何实现功能规格：</p>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2 mb-4">
+                            <li>系统架构和组件</li>
+                            <li>数据库设计</li>
+                            <li>算法和逻辑</li>
+                            <li>接口设计</li>
+                        </ul>
+                        <p class="text-gray-700 mb-3">对于COTS系统，配置规格描述如何设置系统参数和选项：</p>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>系统参数设置</li>
+                            <li>用户角色和权限配置</li>
+                            <li>工作流程定制</li>
+                            <li>报告模板设计</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion mb-4 border rounded-lg overflow-hidden">
+                <div class="accordion-header p-4 bg-gray-50 flex justify-between items-center">
+                    <h3 class="font-semibold text-gray-800">供应商评估</h3>
+                    <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                </div>
+                <div class="accordion-content px-4">
+                    <div class="py-4">
+                        <p class="text-gray-700 mb-3">对于COTS系统，供应商评估至关重要：</p>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>供应商资质和行业经验</li>
+                            <li>系统验证状态和文档</li>
+                            <li>变更控制流程</li>
+                            <li>技术支持和服务水平协议</li>
+                            <li>其他客户的参考案例</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="accordion border rounded-lg overflow-hidden">
+                <div class="accordion-header p-4 bg-gray-50 flex justify-between items-center">
+                    <h3 class="font-semibold text-gray-800">设计评审</h3>
+                    <i class="fas fa-chevron-down text-gray-500 transition-transform"></i>
+                </div>
+                <div class="accordion-content px-4">
+                    <div class="py-4">
+                        <p class="text-gray-700 mb-3">设计评审确保系统设计满足所有要求：</p>
+                        <ul class="list-disc pl-5 text-gray-700 space-y-2">
+                            <li>验证设计是否覆盖所有URS要求</li>
+                            <li>识别潜在的设计缺陷或风险</li>
+                            <li>确保符合GxP和21 CFR Part 11等法规</li>
+                            <li>确认数据完整性和安全性设计</li>
+                            <li>记录评审结果和任何必要的设计变更</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 案例研究 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 border-b pb-2">案例研究：制药企业LIMS系统验证</h2>
+            
+            <div class="bg-blue-50 rounded-lg p-4 mb-6">
+                <h3 class="text-lg font-semibold text-blue-800 mb-2"><i class="fas fa-vial text-blue-500 mr-2"></i>案例背景</h3>
+                <p class="text-blue-700">某制药企业决定实施新的实验室信息管理系统(LIMS)以符合GMP要求。该系统为商业现货(COTS)产品，需要进行配置以满足企业特定需求。</p>
+            </div>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">系统设计与开发阶段活动</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-2"><i class="fas fa-search text-green-500 mr-2"></i>供应商评估</h4>
+                    <ul class="list-disc pl-5 text-gray-700 text-sm space-y-1">
+                        <li>评估3家LIMS供应商的资质和系统功能</li>
+                        <li>检查供应商的验证文档包和GMP合规声明</li>
+                        <li>确认供应商的变更控制和版本发布流程</li>
+                        <li>评估系统审计追踪和电子签名功能</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-gray-800 mb-2"><i class="fas fa-file-alt text-purple-500 mr-2"></i>差距分析</h4>
+                    <ul class="list-disc pl-5 text-gray-700 text-sm space-y-1">
+                        <li>比较所选LIMS功能与企业URS</li>
+                        <li>识别需要定制开发的接口(如与ERP系统集成)</li>
+                        <li>确定需要妥协或调整的业务流程</li>
+                        <li>记录所有差距和解决方案</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">关键文档示例</h3>
+            
+            <div class="border rounded-lg overflow-hidden mb-6">
+                <div class="bg-gray-100 px-4 py-3 border-b">
+                    <h4 class="font-semibold text-gray-800">LIMS配置规格</h4>
+                </div>
+                <div class="p-4">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">配置项</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">配置要求</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">参考URS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm">
+                            <tr>
+                                <td class="px-4 py-2">用户角色</td>
+                                <td class="px-4 py-2">定义QC分析师、QC主管、QA审核员等角色，分配适当权限</td>
+                                <td class="px-4 py-2">URS-0012</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">样品工作流</td>
+                                <td class="px-4 py-2">配置样品接收、分配、测试、审核和批准流程</td>
+                                <td class="px-4 py-2">URS-0034</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">审计追踪</td>
+                                <td class="px-4 py-2">启用所有关键数据变更的审计追踪，配置审计追踪审查流程</td>
+                                <td class="px-4 py-2">URS-0056</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-2">报告模板</td>
+                                <td class="px-4 py-2">设计COA(分析证书)模板，包括所有GMP要求字段</td>
+                                <td class="px-4 py-2">URS-0078</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="border rounded-lg overflow-hidden">
+                <div class="bg-gray-100 px-4 py-3 border-b">
+                    <h4 class="font-semibold text-gray-800">设计评审报告</h4>
+                </div>
+                <div class="p-4">
+                    <div class="mb-4">
+                        <h5 class="font-medium text-gray-800 mb-2">评审结论</h5>
+                        <p class="text-gray-700 text-sm">LIMS系统设计(配置)满足所有关键用户需求，符合GMP和21 CFR Part 11要求。需开发与ERP系统的定制接口，该接口设计已单独评审。</p>
+                    </div>
+                    <div>
+                        <h5 class="font-medium text-gray-800 mb-2">待解决问题</h5>
+                        <ul class="list-disc pl-5 text-gray-700 text-sm space-y-1">
+                            <li>需确认电子签名流程是否符合公司SOP</li>
+                            <li>需增加样品有效期预警功能</li>
+                            <li>需验证系统备份和恢复流程</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 总结 -->
+        <div class="bg-blue-50 rounded-lg shadow-md p-6">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4 border-b border-blue-200 pb-2"><i class="fas fa-check-circle text-blue-500 mr-2"></i>关键要点总结</h2>
+            <ul class="list-disc pl-5 text-blue-700 space-y-2">
+                <li>系统设计与开发阶段是将用户需求转化为实际系统的关键环节</li>
+                <li>定制系统和COTS系统在此阶段的重点有所不同</li>
+                <li>对于COTS系统，供应商评估和差距分析尤为重要</li>
+                <li>配置规格取代设计规格成为COTS系统的主要设计文档</li>
+                <li>设计评审确保系统设计满足所有法规和业务要求</li>
+                <li>所有设计决策和评审结果应妥善记录，作为验证证据</li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer class="bg-gray-100 py-6 mt-8">
+        <div class="container mx-auto px-4 text-center text-gray-600 text-sm">
+            <p>© 2025 GxP CSV培训 - 制药行业计算机系统验证</p>
+            <p class="mt-2">本材料仅用于培训目的，不构成法规建议</p>
+        </div>
+    </footer>
+    
+    <script>
+        // 手风琴效果
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const accordion = header.parentElement;
+                accordion.classList.toggle('active');
+                
+                const icon = header.querySelector('i');
+                if (accordion.classList.contains('active')) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
