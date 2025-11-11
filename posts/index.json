@@ -1,5 +1,41 @@
 [
     {
+        "title": "Oracle DBA 教学（04）故障处理与应急响应",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-DBA-04-故障处理与应急响应.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle DBA 教学（03）数据安全与备份恢复",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-DBA-03-数据安全与备份恢复.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle DBA 教学（02）日常运维与监控",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-DBA-02-日常运维与监控.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle DBA 教学（01）部署与架构设计",
+        "date": "2025-11-11",
+        "file": "dba/2025-11-11-Oracle-DBA-01-部署与架构设计.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "CSV（计算机化系统验证）资料索引",
+        "date": "2025-11-11",
+        "file": "csv/2025-11-11-CSV-资料索引.md",
+        "author": "Lifu",
+        "category": "csv"
+    },
+
+    {
         "title": "三项目复现与重构方案",
         "date": "2025-11-11",
         "file": "2025-11-11-三项目复现与重构方案.md",
