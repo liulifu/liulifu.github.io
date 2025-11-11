@@ -136,6 +136,8 @@ def create_post_entry(filename: str) -> Dict[str, str]:
         category = 'enterprise'
     elif filename.startswith('notes/'):
         category = 'notes'
+    elif filename.startswith('devops/'):
+        category = 'devops'
 
     # 创建基本条目
     entry = {
@@ -399,6 +401,8 @@ def auto_generate_index(git_enabled: bool = True):
                         post['category'] = 'enterprise'
                     elif filename.startswith('notes/'):
                         post['category'] = 'notes'
+                    elif filename.startswith('devops/'):
+                        post['category'] = 'devops'
                 all_posts.append(post)
 
         # 添加新文章

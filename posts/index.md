@@ -2,19 +2,7 @@
 
 | Title | Date | File | Excerpt | Author | Version | License |
 | :----- | :---- | :---- | :------- | :------ | :------- | :------- |
-| K8s 相关问题集锦（一） | 2025-11-11 | K8s_1.md |  | Lifu |  |  |
-| K8s 相关问题集锦（二） | 2025-11-11 | K8s_2.md |  | Lifu |  |  |
-| K8s 相关问题集锦（三） | 2025-11-11 | K8s_3.md |  | Lifu |  |  |
-| K8s 相关问题集锦（四） | 2025-11-11 | K8s_4.md |  | Lifu |  |  |
-| K8s 相关问题集锦（五） | 2025-11-11 | K8s_5.md |  | Lifu |  |  |
-| K8s 相关问题集锦（五） | 2025-11-11 | K8s_6.md |  | Lifu |  |  |
-| Kubernetes 的目录结构 | 2025-11-11 | K8s_7.md |  | Lifu |  |  |
-| K8s 相关问题集锦（三） | 2025-11-11 | K8s_8.md |  | Lifu |  |  |
-| How to build your own DeepSite | 2025-11-11 | deepsite_deployment.md |  | Lifu |  |  |
-| Oracle PDB 详细使用指南 | 2025-11-11 | oracle-pdb-guide.md |  | Lifu |  |  |
 | tools list | 2025-11-11 | tools_list.md |  | Lifu |  |  |
-| 本Blog架构 | 2025-11-11 | 本Blog架构.md |  | Lifu |  |  |
-| 静态博客的浏览器缓存问题 | 2025-11-11 | 静态博客的浏览器缓存问题.md |  | Lifu |  |  |
 | Werum PAS-X MES 系统部署安装手册 | 2025-11-11 | biopharma/2023-03-13-Werum-PAS-X-部署安装手册.md |  | Lifu |  |  |
 | 实验室信息学架构（02）LIMS 与主数据治理 | 2025-11-11 | biopharma/2023-04-04-实验室信息学架构-02-LIMS与主数据治理.md |  | Lifu |  |  |
 | Werum PAS-X MES 系统日常运维手册 | 2025-11-11 | biopharma/2023-04-15-Werum-PAS-X-日常运维手册.md |  | Lifu |  |  |
@@ -56,11 +44,23 @@
 | pc_monitor 复现与重构方案 | 2025-11-11 | notes/2025-01-04-pc_monitor-复现与重构方案.md |  | Lifu |  |  |
 | paddleocrproject 复现与重构方案 | 2025-11-11 | notes/2025-03-29-paddleocrproject-复现与重构方案.md |  | Lifu |  |  |
 | IT Help Desk Access Tool（PyQt5）复现与配置 | 2025-11-11 | notes/2025-06-18-brandnew-0926-复现与配置.md |  | Lifu |  |  |
-| 📝 博客自动化工作流程 | 2025-07-12 | 2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
-| 三项目复现与重构方案：clock、pc_monitor、paddleocrproject | 2025-05-02 | 2025-05-02-三项目复现与重构方案.md |  | Lifu |  |  |
-| ALIECS | 2024-12-05 | 2024-12-05-aliecs.md |  | Lifu |  |  |
-| 一种文件加密设计 | 2024-12-05 | 2024-12-05-一种文件加密设计.md |  | Lifu |  |  |
-| 构建PYTHON开发环境 | 2024-12-05 | 2024-12-05-构建Python开发环境.md |  | Lifu |  |  |
+| Oracle PDB 详细使用指南 | 2025-11-11 | dba/oracle-pdb-guide.md |  | Lifu |  |  |
+| K8s 相关问题集锦（一） | 2025-11-11 | devops/K8s_1.md |  | Lifu |  |  |
+| K8s 相关问题集锦（二） | 2025-11-11 | devops/K8s_2.md |  | Lifu |  |  |
+| K8s 相关问题集锦（三） | 2025-11-11 | devops/K8s_3.md |  | Lifu |  |  |
+| K8s 相关问题集锦（四） | 2025-11-11 | devops/K8s_4.md |  | Lifu |  |  |
+| K8s 相关问题集锦（五） | 2025-11-11 | devops/K8s_5.md |  | Lifu |  |  |
+| K8s 相关问题集锦（五） | 2025-11-11 | devops/K8s_6.md |  | Lifu |  |  |
+| Kubernetes 的目录结构 | 2025-11-11 | devops/K8s_7.md |  | Lifu |  |  |
+| K8s 相关问题集锦（三） | 2025-11-11 | devops/K8s_8.md |  | Lifu |  |  |
+| ALIECS | 2025-11-11 | enterprise/2024-12-05-aliecs.md |  | Lifu |  |  |
+| 一种文件加密设计 | 2025-11-11 | notes/2024-12-05-一种文件加密设计.md |  | Lifu |  |  |
+| 构建PYTHON开发环境 | 2025-11-11 | notes/2024-12-05-构建Python开发环境.md |  | Lifu |  |  |
+| 三项目复现与重构方案：clock、pc_monitor、paddleocrproject | 2025-11-11 | notes/2025-05-02-三项目复现与重构方案.md |  | Lifu |  |  |
+| 📝 博客自动化工作流程 | 2025-11-11 | notes/2025-07-12-更新博客自动脚本.md |  | Lifu |  |  |
+| How to build your own DeepSite | 2025-11-11 | notes/deepsite_deployment.md |  | Lifu |  |  |
+| 本Blog架构 | 2025-11-11 | notes/本Blog架构.md |  | Lifu |  |  |
+| 静态博客的浏览器缓存问题 | 2025-11-11 | notes/静态博客的浏览器缓存问题.md |  | Lifu |  |  |
 
 <!-- 自动生成的文件，请勿手动编辑 -->
 <!-- 运行 python generate_index_v2.py 来更新此文件 -->
