@@ -153,11 +153,12 @@ class BlogManager {
 
     async loadCategoryPage(categoryKey) {
         try {
-            const response = await fetch('posts/index.json');
+            // Add cache-busting parameter to force reload
+            const response = await fetch(`posts/index.json?v=${Date.now()}`);
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             this.posts = await response.json();
 
-            // Sort posts by date
+            // Sort posts by date (newest first)
             this.posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             // Filter by category
