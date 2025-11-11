@@ -12,7 +12,6 @@ from typing import List, Dict, Optional, Tuple
 SCRIPT_DIR = Path(__file__).parent.resolve()
 # 输入和输出文件相对于脚本目录的路径
 POSTS_DIR = SCRIPT_DIR / 'posts'
-SOURCE_MD_FILE = POSTS_DIR / 'index.md'
 OUTPUT_JSON_FILE = POSTS_DIR / 'index.json'
 
 # 默认配置
@@ -21,7 +20,7 @@ DEFAULT_LICENSE = "MIT"
 DEFAULT_VERSION = "v0.1.0"
 
 # 排除的文件（不作为博客文章处理）
-EXCLUDED_FILES = {'index.md', 'about.md'}
+EXCLUDED_FILES = {'about.md'}
 
 # Git配置
 GIT_ENABLED = True  # 是否启用Git自动提交推送
@@ -154,85 +153,21 @@ def create_post_entry(filename: str) -> Dict[str, str]:
     print(f"Created entry for {filename}: {entry}")
     return entry
 
-def parse_existing_index_md() -> List[Dict[str, str]]:
-    """解析现有的index.md文件，返回已登记的文章列表"""
-    if not SOURCE_MD_FILE.exists():
-        print("No existing index.md found, will create new one.")
+def parse_existing_index_json() -> List[Dict[str, str]]:
+    """解析现有的index.json文件，返回已登记的文章列表"""
+    if not OUTPUT_JSON_FILE.exists():
+        print("No existing index.json found, will create new one.")
         return []
-    
+
     try:
-        content = SOURCE_MD_FILE.read_text(encoding='utf-8')
-        posts = parse_markdown_table(content)
+        with open(OUTPUT_JSON_FILE, 'r', encoding='utf-8') as f:
+            posts = json.load(f)
         return posts if posts else []
     except Exception as e:
-        print(f"Error parsing existing index.md: {e}")
+        print(f"Error parsing existing index.json: {e}")
         return []
 
-def parse_markdown_table(md_content: str) -> Optional[List[Dict[str, str]]]:
-    """解析Markdown表格"""
-    posts = []
-    lines = md_content.strip().splitlines()
-    headers = []
-    header_indices = {}
-    in_table_data = False
 
-    for line_num, line in enumerate(lines):
-        line = line.strip()
-        if not line.startswith('|') or not line.endswith('|'):
-            if in_table_data:
-                break
-            continue
-
-        parts = [p.strip() for p in line.strip('|').split('|')]
-
-        # 识别分隔行
-        if headers and re.match(r'^[:\- ]+$', parts[0].replace(':', '')) and len(parts) == len(headers):
-            missing_headers = [h for h in REQUIRED_HEADERS if h not in header_indices]
-            if missing_headers:
-                return None
-            in_table_data = True
-            continue
-
-        # 识别表头行
-        if not headers and not in_table_data:
-            raw_headers = parts
-            headers = [h.lower() for h in raw_headers]
-            for i, h in enumerate(headers):
-                if h:
-                   header_indices[h] = i
-            continue
-
-        # 解析数据行
-        if in_table_data and len(parts) == len(headers):
-            row_data = {}
-            is_valid_row = True
-
-            # 检查必需字段
-            for req_h in REQUIRED_HEADERS:
-                header_index = header_indices.get(req_h)
-                if header_index is None or header_index >= len(parts):
-                    is_valid_row = False
-                    break
-                value = parts[header_index]
-                if not value:
-                    is_valid_row = False
-                    break
-
-            if not is_valid_row:
-                continue
-
-            # 填充数据
-            for md_header_lower, json_key in HEADER_MAP.items():
-                header_index = header_indices.get(md_header_lower)
-                if header_index is not None and header_index < len(parts):
-                    value = parts[header_index]
-                    if value:
-                        row_data[json_key] = value
-
-            if all(key in row_data for key in REQUIRED_HEADERS):
-                posts.append(row_data)
-
-    return posts if in_table_data else None
 
 def validate_and_sort_posts(posts: List[Dict[str, str]]) -> List[Dict[str, str]]:
     """验证日期格式并按日期排序"""
@@ -251,40 +186,7 @@ def validate_and_sort_posts(posts: List[Dict[str, str]]) -> List[Dict[str, str]]
     print(f"Sorting complete. {len(valid_posts)} posts remain after validation.")
     return valid_posts
 
-def generate_markdown_table(posts: List[Dict[str, str]]) -> str:
-    """生成Markdown表格内容"""
-    # 表头
-    headers = ['Title', 'Date', 'File', 'Excerpt', 'Author', 'Version', 'License']
-    separator = [':-' + '-' * (len(h) - 2) + '-' for h in headers]
-    
-    lines = [
-        '# Blog Post Index',
-        '',
-        '| ' + ' | '.join(headers) + ' |',
-        '| ' + ' | '.join(separator) + ' |'
-    ]
-    
-    # 数据行
-    for post in posts:
-        row = [
-            post.get('title', ''),
-            post.get('date', ''),
-            post.get('file', ''),
-            post.get('excerpt', ''),
-            post.get('author', ''),
-            post.get('version', ''),
-            post.get('license', '')
-        ]
-        lines.append('| ' + ' | '.join(row) + ' |')
-    
-    # 添加注释
-    lines.extend([
-        '',
-        '<!-- 自动生成的文件，请勿手动编辑 -->',
-        '<!-- 运行 python generate_index_v2.py 来更新此文件 -->'
-    ])
-    
-    return '\n'.join(lines)
+
 
 def run_git_commands(git_enabled: bool = True) -> bool:
     """执行Git命令 - 按照用户要求的重试流程"""
@@ -368,8 +270,8 @@ def auto_generate_index(git_enabled: bool = True):
             print("No markdown files found in posts directory.")
             return
 
-        # 2. 解析现有的index.md
-        existing_posts = parse_existing_index_md()
+        # 2. 解析现有的index.json
+        existing_posts = parse_existing_index_json()
         existing_files = {post['file'] for post in existing_posts}
 
         # 3. 找出新文件和需要更新的文件
@@ -413,12 +315,7 @@ def auto_generate_index(git_enabled: bool = True):
         # 5. 验证和排序
         sorted_posts = validate_and_sort_posts(all_posts)
 
-        # 6. 生成新的index.md
-        new_md_content = generate_markdown_table(sorted_posts)
-        SOURCE_MD_FILE.write_text(new_md_content, encoding='utf-8')
-        print(f"✅ Updated {SOURCE_MD_FILE}")
-
-        # 7. 生成index.json
+        # 6. 生成index.json
         OUTPUT_JSON_FILE.write_text(
             json.dumps(sorted_posts, indent=4, ensure_ascii=False),
             encoding='utf-8'
