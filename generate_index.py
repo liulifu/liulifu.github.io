@@ -132,6 +132,82 @@ def create_post_entry(filename: str) -> Dict[str, str]:
     print(f"Created entry for {filename}: {entry}")
     return entry
 
+# --- Front matter support (YAML-like, no external deps) ---
+
+def parse_front_matter(file_path: Path) -> Dict:
+    """Parse simple YAML front matter between leading '---' lines.
+    Supports key: value pairs and basic tags as comma-separated or [a, b]."""
+    try:
+        text = file_path.read_text(encoding='utf-8')
+    except Exception as e:
+        print(f"Warning: Could not read file {file_path} for front matter: {e}")
+        return {}
+
+    text = text.lstrip()
+    if not text.startswith('---'):
+        return {}
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != '---':
+        return {}
+
+    fm_lines = []
+    end_idx = -1
+    for i in range(1, len(lines)):
+        if lines[i].strip() == '---':
+            end_idx = i
+            break
+        fm_lines.append(lines[i])
+    if end_idx == -1:
+        return {}
+
+    data: Dict[str, object] = {}
+    for raw in fm_lines:
+        line = raw.strip()
+        if not line or line.startswith('#'):
+            continue
+        if ':' in line:
+            key, val = line.split(':', 1)
+            key = key.strip().lower()
+            val = val.strip().strip('"').strip("'")
+            data[key] = val
+
+    # Normalize tags into list[str]
+    tags = data.get('tags')
+    if tags:
+        if isinstance(tags, str):
+            if tags.startswith('[') and tags.endswith(']'):
+                inner = tags[1:-1]
+                arr = [t.strip().strip('"').strip("'") for t in inner.split(',') if t.strip()]
+                data['tags'] = arr
+            else:
+                arr = [t.strip() for t in re.split(r'[;,]', tags) if t.strip()]
+                data['tags'] = arr
+
+    return data
+
+
+def augment_posts_with_front_matter(posts: List[Dict[str, str]]) -> None:
+    """Merge front matter metadata into posts list in-place."""
+    for post in posts:
+        file_path = POSTS_DIR / post['file']
+        if not file_path.exists():
+            continue
+        fm = parse_front_matter(file_path)
+        if not fm:
+            continue
+        # Prefer front matter values when present
+        if fm.get('title'):
+            post['title'] = fm['title']  # type: ignore
+        if fm.get('date'):
+            post['date'] = fm['date']  # type: ignore
+        if fm.get('summary') and not post.get('excerpt'):
+            post['excerpt'] = fm['summary']  # type: ignore
+        if fm.get('category'):
+            post['category'] = fm['category']  # type: ignore
+        if fm.get('tags'):
+            post['tags'] = fm['tags']  # type: ignore
+
+
 def parse_existing_index_md() -> List[Dict[str, str]]:
     """解析现有的index.md文件，返回已登记的文章列表"""
     if not SOURCE_MD_FILE.exists():
@@ -296,6 +372,8 @@ def run_git_commands(action: str, count: int, git_enabled: bool = True) -> bool:
         print("✅ Commit completed")
 
         # 3. 拉取远程更改并合并
+
+
         print("� Step 3: git pull origin main")
         try:
             subprocess.run(['git', 'pull', 'origin', 'main'],
@@ -373,6 +451,10 @@ def auto_generate_index(git_enabled: bool = True):
             all_posts.append(new_post)
 
         # 5. 验证和排序
+
+        # 4.5 合并 front matter 元数据（若存在）
+        augment_posts_with_front_matter(all_posts)
+
         sorted_posts = validate_and_sort_posts(all_posts)
 
         # 6. 生成新的index.md

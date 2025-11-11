@@ -3,6 +3,11 @@ const converter = new showdown.Converter();
 converter.setOption('tables', true);
 converter.setOption('strikethrough', true);
 converter.setOption('tasklists', true);
+converter.setOption('openLinksInNewWindow', true);
+converter.setOption('ghCompatibleHeaderId', true);
+converter.setOption('simplifiedAutoLink', true);
+converter.setOption('emoji', true);
+
 
 // Logging utility
 const log = {
@@ -180,6 +185,16 @@ class BlogManager {
     }
 
     categorize(post) {
+        // Prefer explicit category from metadata/front matter
+        const meta = ((post.category || '') + '').trim().toLowerCase();
+        if (meta) {
+            if (['biopharma','biopharm'].includes(meta)) return 'biopharma';
+            if (['dba','database','databases','db'].includes(meta)) return 'dba';
+            if (['enterprise','enterprise it','it','infra','ops'].includes(meta)) return 'enterprise';
+            if (['notes','personal','life','share','misc'].includes(meta)) return 'notes';
+        }
+
+        // Fallback: keyword-based categorization
         const t = ((post.title || '') + ' ' + (post.file || '')).toLowerCase();
         const has = (arr) => arr.some(k => t.includes(k));
         const biopharma = ['biopharma','biopharmaceutical','gmp','gxp','clinical','lab','qms','cro','cdmo','antibody','protein','cell','gene','生物制药','制药','临床','细胞','基因','抗体'];
@@ -388,7 +403,8 @@ class BlogManager {
             const author = postMeta?.author || 'Lifu';
             const license = postMeta?.license || 'MIT';
 
-            // Update the post content with the table header
+            // Update the post content with the table header (sanitize if possible)
+            const safeContent = (window.DOMPurify ? DOMPurify.sanitize(htmlContent) : htmlContent);
             this.postContentElement.innerHTML = `
                 <table class="header">
                     <tbody>
@@ -415,12 +431,17 @@ class BlogManager {
                     </tbody>
                 </table>
                 <div class="article-content">
-                    ${htmlContent}
+                    ${safeContent}
                 </div>
                 <div class="back-link-container" style="margin-top: 2rem;">
                     <a href="#" onclick="window.blog.navigateToPage(window.blog.currentPage); return false;">← Back to Posts</a>
                 </div>
             `;
+
+            // Syntax highlight if available
+            if (window.hljs) {
+                document.querySelectorAll('#post-content pre code').forEach(el => window.hljs.highlightElement(el));
+            }
 
             // Process any media in the post
             this.processMedia();
@@ -538,6 +559,7 @@ class BlogManager {
                             </td>
                             <th>Version</th>
                             <td class="width-min">${version}</td>
+
                         </tr>
                         <tr>
                             <th>Updated</th>
@@ -554,16 +576,23 @@ class BlogManager {
                     </tbody>
                 </table>
                 <div class="article-content">
-                    ${converter.makeHtml(markdown)}
+                    ${window.DOMPurify ? DOMPurify.sanitize(converter.makeHtml(markdown)) : converter.makeHtml(markdown)}
                 </div>
             `;
 
             this.postContentElement.innerHTML = headerTable;
 
+            // Syntax highlight for About page content if available
+            if (window.hljs) {
+                document.querySelectorAll('#post-content pre code').forEach(el => window.hljs.highlightElement(el));
+            }
+
+
             log.info('About page loaded successfully');
         } catch (error) {
             log.error(`Error loading about page: ${error.message}`);
             this.postContentElement.innerHTML = '<p>Error loading about page. Please try again later.</p>';
+
         }
     }
 
