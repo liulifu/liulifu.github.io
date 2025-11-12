@@ -152,3 +152,58 @@ ALTER TABLESPACE TEMP ADD TEMPFILE SIZE 32G;
 ```
 
 > 提示：生产环境建议将上述步骤沉淀为标准变更脚本，并纳入审批/回滚预案（含校验 SQL 与监控）。
+
+---
+
+## 8. ASM/OMF 全流程变更模板（含回滚与 RMAN 验证）
+
+适用：RAC/ASM/OMF 生产环境的数据文件扩容/迁移。
+
+- 预检
+  - 确认目标磁盘组空间与冗余：`asmcmd lsdg`；归档空间：`v$recovery_file_dest`
+  - 列出待变更对象与文件：`dba_segments / dba_data_files / gv$filestat`
+  - 模式：确认 CDB/PDB 当前容器；`SHOW con_name`
+- 备份（强烈建议）
+  ```
+  -- RMAN 物理备份（示例）
+  rman target /
+  BACKUP AS COMPRESSED BACKUPSET DATABASE PLUS ARCHIVELOG;
+  ```
+- 变更步骤（示例）
+  ```sql
+  -- 1) 设置 OMF 目标（若需）
+  ALTER SYSTEM SET db_create_file_dest = '+DATA2' SCOPE=BOTH;
+
+  -- 2) 增加数据文件（扩容型）
+  ALTER TABLESPACE APP_DATA ADD DATAFILE SIZE 8G AUTOEXTEND ON NEXT 1G;
+
+  -- 或者：在线迁移既有数据文件（存储迁移型）
+  ALTER DATABASE MOVE DATAFILE '+DATA/ORCL/DATAFILE/app_data01.256.111' TO '+DATA2';
+
+  -- 3) 验证
+  SELECT file_id, file_name FROM dba_data_files WHERE tablespace_name='APP_DATA';
+  SELECT name, total_mb, free_mb FROM v$asm_diskgroup WHERE name IN ('DATA','DATA2');
+  ```
+- 验证清单
+  - 路径更新：`dba_data_files` 与 `v$datafile` 一致
+  - RAC 可见性：在所有实例 `gv$datafile` 可见；业务无明显等待增加
+  - 归档/备份：生成量与空间足够，无滞后告警
+- 回滚策略（按场景）
+  - 扩容新增文件：若需回滚，`ALTER TABLESPACE ... DROP DATAFILE`（仅在无段时）
+  - 在线迁移失败：再次 MOVE 回原磁盘组；或由 RMAN RESTORE DATAFILE 恢复
+  - 总体撤退：基于变更前 RMAN 备份集进行 POINT-IN-TIME 恢复（必要时）
+
+- 参考脚本骨架
+  ```bash
+  #!/usr/bin/env bash
+  set -euo pipefail
+  sqlplus / as sysdba <<'SQL'
+  ALTER SYSTEM SET db_create_file_dest = '+DATA2' SCOPE=BOTH;
+  ALTER DATABASE MOVE DATAFILE '+DATA/ORCL/DATAFILE/app_data01.256.111' TO '+DATA2';
+  SQL
+
+  rman target / <<'RMAN'
+  BACKUP VALIDATE DATABASE;
+  RMAN
+  ```
+

@@ -103,6 +103,32 @@ JOIN   v$session s2 ON s2.sid=l2.sid;
 
 ---
 
+### 2.7 实战案例（精简模板）
+- 案例 A：log file sync 偏高（Commit/Redo）
+  1) 证据收集：AWR Top Events/Redo write time、v$log 切换频率、v$sysstat（redo size/redo writes）
+  2) 诊断定位：应用是否频繁小事务提交；日志设备/卷是否高时延；归档是否阻塞
+  3) 处理建议：
+     - 应用侧合并提交/批量提交；合理批大小
+     - 调整联机日志大小（常见 1G~4G）与成员/多路径，迁移至低时延卷
+     - 归档/远程传输与联机日志 IO 通道分离，避免热点 LUN
+- 案例 B：TX 行级锁竞争（enq: TX - row lock contention）
+  1) 证据收集：阻塞链（v$lock/v$session 关联）、受影响对象（dba_objects）
+  2) 诊断定位：缺失外键索引/长事务/同一热点行更新冲突
+  3) 处理建议：
+     - 及时提交/回滚；必要时 kill session（谨慎）
+     - 为外键补索引，减少表级锁
+     - 采用去热点策略（分区/分表/业务层打散），必要时使用 SKIP LOCKED 模式
+- 案例 C：db file sequential read 偏高（随机读）
+  1) 证据收集：TOP SQL（v$sqlarea 按 buffer_gets）、执行计划（DBMS_XPLAN）
+  2) 诊断定位：选择性差/缺失索引/过期统计信息
+  3) 处理建议：
+     - 修正索引与统计信息；根据访问模式优化连接顺序/驱动表
+     - 存储侧降低读延迟；业务侧缓存热点维表
+- 案例 D（RAC）：gc buffer busy / gc cr request
+  1) 证据收集：GV$ 维度等待分布，实例间热点段
+  2) 处理建议：服务亲和/分区本地化/序列本地缓存；验证 interconnect 带宽/延迟
+
+
 ## 3. AWR/ASH/ADDM 工具化（可选，需许可）
 ```sql
 -- 生成 AWR 报告（快照间）
