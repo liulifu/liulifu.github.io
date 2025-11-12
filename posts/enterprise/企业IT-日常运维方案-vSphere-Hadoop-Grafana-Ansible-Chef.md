@@ -8,6 +8,34 @@
 
 适用对象：虚拟化平台日常管理（主机/集群/数据存储/虚拟机）。推荐在运维主机安装 VMware PowerCLI（Windows/PowerShell）或使用 govc（跨平台 CLI）。
 
+### 部署方法
+- 前置准备
+  - 硬件通过 VMware HCL；开启 VT-x/AMD-V、VT-d/IOMMU；配置带外管理（iDRAC/iLO）
+  - 规划管理/存储/VM 网络（VLAN、MTU、网关/DNS/NTP）
+- 安装 ESXi
+  - U 盘/虚拟介质安装，配置 Management Network 静态 IP
+  - 必要时启用 SSH/ESXi Shell（仅在变更窗临时开启）
+- 部署 vCenter Server（VCSA）
+```bash
+# 通过 govc 导入 OVA（也可用浏览器安装器）
+govc import.ova -name vcenter -ds datastore1 -folder "/DC1/vm" VMware-vCenter-Server-Appliance-*.ova
+govc vm.power -on vcenter
+```
+- 将 ESXi 主机加入 vCenter 并建集群
+```bash
+govc cluster.create -dc DC1 Cluster
+govc host.add -hostname esxi01.local -username root -password '***' -cluster "/DC1/host/Cluster"
+```
+- 存储与网络
+```bash
+# NFS 数据存储
+esxcli storage nfs add -H 10.0.10.10 -s /export/ds1 -v nfs1
+# 启用软件 iSCSI 并添加目标
+esxcli iscsi software set -e true
+esxcli iscsi adapter discovery sendtarget add -a 10.0.20.20
+```
+- 后续配置：开启 DRS/HA、创建 vDS 与 PortGroup、设置许可证、配置 VCSA 备份（:5480）
+
 - 常用环境变量（govc）
 ```bash
 # Linux/macOS
@@ -108,6 +136,36 @@ Get-Snapshot -VM app-web-01 | Remove-Snapshot -Confirm:$false
 ---
 
 ## Hadoop（HDFS/YARN）
+### 部署方法
+- 前置
+  - 同步时钟、禁用 swap、配置 /etc/hosts、免密 SSH
+  - 安装 JDK 11+/17，创建 hadoop 系统用户
+- 安装与初始化（以 Hadoop 3.x 为例）
+```bash
+sudo apt-get install -y openjdk-11-jdk
+ tar -xf hadoop-3.3.6.tar.gz -C /opt && ln -s /opt/hadoop-3.3.6 /opt/hadoop
+ echo 'export HADOOP_HOME=/opt/hadoop; export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin' | sudo tee /etc/profile.d/hadoop.sh
+ source /etc/profile.d/hadoop.sh
+```
+- 基础配置示例
+```xml
+<!-- core-site.xml -->
+<property><name>fs.defaultFS</name><value>hdfs://nn1:8020</value></property>
+<!-- hdfs-site.xml -->
+<property><name>dfs.replication</name><value>3</value></property>
+<!-- yarn-site.xml -->
+<property><name>yarn.resourcemanager.hostname</name><value>rm1</value></property>
+```
+- 首次格式化与启动
+```bash
+hdfs namenode -format
+start-dfs.sh && start-yarn.sh
+```
+- HA 要点（简要）
+  - 部署 3 台 JournalNode 与 ZooKeeper
+  - 主 NN 格式化后，备用 NN 执行：`hdfs namenode -bootstrapStandby`
+  - 启动顺序：JournalNode → NN/ZN → DN → RM/NM
+
 
 - HDFS 基本命令
 ```bash
@@ -167,6 +225,29 @@ hdfs dfs -du -h / | sort -hr | head -n 20
 ---
 
 ## Grafana（监控与告警）
+### 部署方法
+- 方案 A：包管理器安装（Debian/Ubuntu）
+```bash
+sudo apt-get install -y apt-transport-https
+sudo mkdir -p /etc/apt/keyrings && curl -fsSL https://apt.grafana.com/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/grafana.gpg
+echo "deb [signed-by=/etc/apt/keyrings/grafana.gpg] https://apt.grafana.com stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+sudo apt update && sudo apt install -y grafana
+sudo systemctl enable --now grafana-server
+```
+- 方案 B：Docker Compose
+```yaml
+version: '3'
+services:
+  grafana:
+    image: grafana/grafana:10.4.0
+    ports: ["3000:3000"]
+    volumes:
+      - ./grafana:/var/lib/grafana
+      - ./provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+```
+
 
 - 常见路径与服务
 ```bash
@@ -233,6 +314,24 @@ curl -X POST -H "Authorization: Bearer $GRAFANA_TOKEN" \
 ---
 
 ## Ansible（自动化运维）
+### 部署方法
+```bash
+# 安装（推荐 pipx）
+python3 -m pip install --user pipx && pipx ensurepath && pipx install ansible
+ansible --version
+
+# SSH 准备
+ssh-keygen -t ed25519 -C "ansible"
+ssh-copy-id ubuntu@10.0.0.11
+```
+```ini
+# ansible.cfg（放项目根目录）
+[defaults]
+inventory = ./inventory.ini
+host_key_checking = False
+timeout = 30
+```
+
 
 - Inventory 与连通性
 ```ini
@@ -304,6 +403,25 @@ ansible-galaxy install geerlingguy.nginx
 ---
 
 ## Chef（配置管理）
+### 部署方法
+- Chef Infra Server（自建）
+```bash
+# 安装与初始化
+sudo rpm -Uvh chef-server-core-*.rpm  # 或 dpkg -i
+sudo chef-server-ctl reconfigure
+sudo chef-server-ctl user-create admin Admin Admin admin@example.com '***' --filename admin.pem
+sudo chef-server-ctl org-create myorg 'My Org' --association_user admin --filename myorg-validator.pem
+```
+- Chef Workstation
+```bash
+sudo dpkg -i chef-workstation_*.deb  # 或 rpm -Uvh
+knife configure
+```
+- 引导节点
+```bash
+knife bootstrap 10.0.0.21 -N web01 -x ubuntu --sudo --ssh-identity-file ~/.ssh/id_rsa
+```
+
 
 - 基础命令
 ```bash
