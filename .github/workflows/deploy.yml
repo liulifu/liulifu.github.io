@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Create package (repo root)
-        run: tar -czf site.tgz -C . .
+        run: tar -czf site.tgz --exclude=site.tgz --exclude=.git --exclude=.github .
 
       - name: Setup SSH
         env:
