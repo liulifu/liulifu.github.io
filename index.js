@@ -27,9 +27,9 @@ class BlogManager {
         this.postsPerPage = 20; // 统一设置为20条
 
         // 专题 Banner 相关
-        this.topicBannerLeft = document.getElementById('topic-banner-left');
+
         this.topicBannerRight = document.getElementById('topic-banner-right');
-        this.topicListLeft = document.getElementById('topic-list-left');
+
         this.topicListRight = document.getElementById('topic-list-right');
         this.topicBannerWidth = 160; // 与 CSS 同步
         this.topics = [];
@@ -136,6 +136,42 @@ class BlogManager {
             const page = window.location.hash.slice(1) || 'home';
             this.navigateToPage(page, false);
         });
+
+        // In-article link delegation: allow links like dba/...md or #post/...
+        if (this.postContentElement) {
+            this.postContentElement.addEventListener('click', (e) => {
+                const a = e.target.closest('a');
+                if (!a) return;
+
+                const dataPost = a.dataset ? a.dataset.post : null;
+                let href = a.getAttribute('href') || '';
+
+                if (dataPost) {
+                    e.preventDefault();
+                    this.loadPost(dataPost);
+                    return;
+                }
+
+                // Ignore external links and most anchors
+                if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || (href.startsWith('#') && !href.startsWith('#post/'))) {
+                    return;
+                }
+
+                // Handle #post/<path>
+                const m = href.match(/^#post\/(.+)$/i);
+                if (m) {
+                    e.preventDefault();
+                    this.loadPost(m[1]);
+                    return;
+                }
+
+                // Handle relative repo paths like dba/foo.md enterprise/bar.md etc.
+                if (/^(dba|enterprise|biopharma|csv|notes)\//i.test(href)) {
+                    e.preventDefault();
+                    this.loadPost(href);
+                }
+            });
+        }
     }
 
     async navigateToPage(page, pushState = true) {
@@ -527,7 +563,7 @@ class BlogManager {
     }
 
     renderTopicBanners() {
-        if (!this.topicListLeft || !this.topicListRight) return;
+        if (!this.topicListRight) return;
         const makeItem = (p) => {
             const li = document.createElement('li');
             const a = document.createElement('a');
@@ -543,27 +579,23 @@ class BlogManager {
         };
 
         // 清空并填充
-        this.topicListLeft.innerHTML = '';
         this.topicListRight.innerHTML = '';
         (this.topics || []).forEach(p => {
-            this.topicListLeft.appendChild(makeItem(p));
             this.topicListRight.appendChild(makeItem(p));
         });
     }
 
     hideBanners() {
-        if (this.topicBannerLeft) this.topicBannerLeft.style.display = 'none';
         if (this.topicBannerRight) this.topicBannerRight.style.display = 'none';
     }
 
     showBanners() {
-        if (this.topicBannerLeft) this.topicBannerLeft.style.display = 'block';
         if (this.topicBannerRight) this.topicBannerRight.style.display = 'block';
     }
 
     updateBannerVisibility() {
         // 移动端或无容器：隐藏
-        if (this.isMobile || !this.topicBannerLeft || !this.topicBannerRight) {
+        if (this.isMobile || !this.topicBannerRight) {
             this.hideBanners();
             return;
         }
@@ -571,7 +603,7 @@ class BlogManager {
         try {
             const contentWidth = document.body.getBoundingClientRect().width; // 实际正文宽度
             const margin = 16; // 与 CSS 保持一致
-            const required = contentWidth + 2 * (this.topicBannerWidth + margin);
+            const required = contentWidth + (this.topicBannerWidth + margin);
             const vw = window.innerWidth || document.documentElement.clientWidth;
 
             if (vw >= required) {
