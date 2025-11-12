@@ -1,5 +1,13 @@
 [
     {
+        "title": "企业 IT 日常运维方案：vSphere / Hadoop / Grafana / Ansible / Chef",
+        "date": "2025-11-12",
+        "file": "enterprise/企业IT-日常运维方案-vSphere-Hadoop-Grafana-Ansible-Chef.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+
+    {
         "title": "实验室信息学架构（02）LIMS 与主数据治理",
         "date": "2025-11-17",
         "file": "biopharma/实验室信息学架构-02-LIMS与主数据治理.md",
