@@ -268,7 +268,7 @@ table.header {
     margin: 1rem 0;
 }
 
-.article-content img:hover, 
+.article-content img:hover,
 .article-content video:hover {
     filter: grayscale(0%) contrast(1);
 }
@@ -290,4 +290,35 @@ table.header {
 .article-content ol {
     margin: 1rem 0;
     padding-left: 2rem;
+}
+
+/* ===== Topic Banners (desktop only) ===== */
+.topic-banner {
+    position: fixed;
+    top: 30%;
+    transform: translateY(-50%);
+    width: 160px;
+    z-index: 1000;
+    border: var(--border-thickness) solid var(--text-color);
+    background: var(--background-color);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    pointer-events: auto;
+}
+
+#topic-banner-left { left: 8px; }
+#topic-banner-right { right: 8px; }
+
+.topic-banner-inner { padding: 0.5rem 0.6rem; }
+.topic-banner-title {
+    font-weight: var(--font-weight-bold);
+    margin-bottom: 0.4rem;
+}
+.topic-banner-list { list-style: none; padding: 0; margin: 0; }
+.topic-banner-list li { margin: 0.35rem 0; }
+.topic-banner-list a { color: var(--text-color); text-decoration: none; }
+.topic-banner-list a:hover { text-decoration: underline; }
+
+/* Hide banners on small screens (mobile-first safety) */
+@media (max-width: 1024px) {
+    .topic-banner { display: none !important; }
 }

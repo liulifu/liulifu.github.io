@@ -26,6 +26,14 @@ class BlogManager {
         this.currentPageNum = 1;
         this.postsPerPage = 20; // 统一设置为20条
 
+        // 专题 Banner 相关
+        this.topicBannerLeft = document.getElementById('topic-banner-left');
+        this.topicBannerRight = document.getElementById('topic-banner-right');
+        this.topicListLeft = document.getElementById('topic-list-left');
+        this.topicListRight = document.getElementById('topic-list-right');
+        this.topicBannerWidth = 160; // 与 CSS 同步
+        this.topics = [];
+
         // 检测设备类型
         this.isMobile = this.checkIfMobile();
 
@@ -38,6 +46,9 @@ class BlogManager {
 
         // Initialize event listeners
         this.initializeEventListeners();
+
+        // 初始化专题 Banner（独立于分类加载）
+        this.initTopicBanners().catch(err => log.error(`initTopicBanners error: ${err.message}`));
 
         // Load initial content (respect URL hash)
         const initialPage = window.location.hash.slice(1) || 'home';
@@ -173,16 +184,22 @@ class BlogManager {
             // If no posts in category
             if (this.filteredPosts.length === 0) {
                 this.postsListElement.innerHTML = '<p>No posts in this section yet.</p>';
+                // 仍然更新专题 Banner 可见性
+                this.updateBannerVisibility();
                 return;
             }
 
             // Display current page
             this.displayCurrentPage();
 
+            // 更新专题 Banner 可见性
+            this.updateBannerVisibility();
+
             log.info(`${categoryKey} page loaded successfully`);
         } catch (error) {
             log.error(`Error loading posts: ${error.message}`);
             this.postsListElement.innerHTML = '<p>Error loading posts. Please try again later.</p>';
+            this.updateBannerVisibility();
         }
     }
 
@@ -476,6 +493,96 @@ class BlogManager {
                 log.error(`Failed to load video: ${video.src}`);
             });
         });
+    }
+
+    /* ===== 专题 Banner ===== */
+    async initTopicBanners() {
+        try {
+            // 仅桌面端考虑显示，移动端直接隐藏
+            if (this.isMobile) {
+                this.hideBanners();
+                return;
+            }
+
+            const resp = await fetch(`posts/index.json?v=${Date.now()}`);
+            if (!resp.ok) throw new Error(`HTTP error! status: ${resp.status}`);
+            const all = await resp.json();
+
+            // 识别“专题”入口：标题包含“专题索引”或文件名以 000- 开头
+            this.topics = (all || []).filter(p => {
+                const title = (p.title || '').toLowerCase();
+                const base = ((p.file || '').split('/').pop() || '').toLowerCase();
+                return title.includes('专题索引') || base.startsWith('000-');
+            }).slice(0, 12); // 限制数量，避免过高
+
+            this.renderTopicBanners();
+            this.updateBannerVisibility();
+
+            // 监听窗口变化
+            window.addEventListener('resize', () => this.updateBannerVisibility());
+        } catch (e) {
+            log.error(`Failed to init topic banners: ${e.message}`);
+            this.hideBanners();
+        }
+    }
+
+    renderTopicBanners() {
+        if (!this.topicListLeft || !this.topicListRight) return;
+        const makeItem = (p) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#';
+            a.textContent = p.title || (p.file || '');
+            a.dataset.post = p.file;
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (p.file) this.loadPost(p.file);
+            });
+            li.appendChild(a);
+            return li;
+        };
+
+        // 清空并填充
+        this.topicListLeft.innerHTML = '';
+        this.topicListRight.innerHTML = '';
+        (this.topics || []).forEach(p => {
+            this.topicListLeft.appendChild(makeItem(p));
+            this.topicListRight.appendChild(makeItem(p));
+        });
+    }
+
+    hideBanners() {
+        if (this.topicBannerLeft) this.topicBannerLeft.style.display = 'none';
+        if (this.topicBannerRight) this.topicBannerRight.style.display = 'none';
+    }
+
+    showBanners() {
+        if (this.topicBannerLeft) this.topicBannerLeft.style.display = 'block';
+        if (this.topicBannerRight) this.topicBannerRight.style.display = 'block';
+    }
+
+    updateBannerVisibility() {
+        // 移动端或无容器：隐藏
+        if (this.isMobile || !this.topicBannerLeft || !this.topicBannerRight) {
+            this.hideBanners();
+            return;
+        }
+
+        try {
+            const contentWidth = document.body.getBoundingClientRect().width; // 实际正文宽度
+            const margin = 16; // 与 CSS 保持一致
+            const required = contentWidth + 2 * (this.topicBannerWidth + margin);
+            const vw = window.innerWidth || document.documentElement.clientWidth;
+
+            if (vw >= required) {
+                this.showBanners();
+            } else {
+                this.hideBanners();
+            }
+        } catch (e) {
+            log.error(`updateBannerVisibility error: ${e.message}`);
+            this.hideBanners();
+        }
     }
 
     // async loadAboutPage() {
