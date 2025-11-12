@@ -490,7 +490,7 @@
     {
         "title": "本地→GitHub→阿里云ECS：静态站点CI/CD方案",
         "date": "2025-11-12",
-        "file": "notes/本地-GitHub-阿里云ECS-静态站点CI-CD方案.md",
+        "file": "notes/ci-cd-github-actions-to-aliyun-ecs.md",
         "author": "Lifu",
         "category": "notes"
     }
