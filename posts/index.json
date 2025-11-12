@@ -1,5 +1,37 @@
 [
     {
+        "title": "Oracle 21c 常见视图及用法",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-常见视图及用法.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "Oracle 21c 增加删除数据文件的方法",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-增加删除数据文件的方法.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "Oracle 21c 架构及关键组件",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-架构及关键组件.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "Oracle 21c 等待事件处理方法",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-等待事件处理方法.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
         "title": "企业 IT 日常运维方案：vSphere / Hadoop / Grafana / Ansible / Chef",
         "date": "2025-11-12",
         "file": "enterprise/企业IT-日常运维方案-vSphere-Hadoop-Grafana-Ansible-Chef.md",
