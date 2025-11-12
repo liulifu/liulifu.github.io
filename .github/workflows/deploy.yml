@@ -1,0 +1,53 @@
+name: Deploy liulifu.github.io to Aliyun ECS
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-ecs
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create package (repo root)
+        run: tar -czf site.tgz -C . .
+
+      - name: Setup SSH
+        env:
+          ECS_SSH_PRIVATE_KEY: ${{ secrets.ECS_SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "$ECS_SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ secrets.ECS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Upload package to ECS
+        run: scp -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes site.tgz "${{ secrets.ECS_USER }}@${{ secrets.ECS_HOST }}:/root/deploy/site.tgz"
+
+      - name: Remote build and deploy on ECS
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes "${{ secrets.ECS_USER }}@${{ secrets.ECS_HOST }}" bash -s <<'EOF'
+          set -euo pipefail
+          cd /root/deploy
+          rm -rf site && mkdir site
+          tar -xzf site.tgz -C site
+          docker rm -f liulifu-githubio >/dev/null 2>&1 || true
+          docker rm -f augment-nginx >/dev/null 2>&1 || true
+          docker build -t liulifu-githubio:latest site
+          docker run -d --name liulifu-githubio --restart=always -p 80:80 liulifu-githubio:latest
+          docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}' | sed -n '1,2p'
+          (curl -sS --max-time 10 http://127.0.0.1/ || wget -q -O- http://127.0.0.1/) | head -n 2 || true
+          EOF
+
