@@ -502,4 +502,33 @@
         "author": "Lifu",
         "category": "enterprise"
     }
+    ,
+    {
+        "title": "Ansible 企业实战：中型企业自动化方案（拓扑/策略/命令）",
+        "date": "2025-11-13",
+        "file": "enterprise/ansible-enterprise-practical-guide.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "服务器 RAID 配置实战：以 Dell PERC（perccli）为例",
+        "date": "2025-11-13",
+        "file": "enterprise/server-raid-configuration-dell-perc.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "企业备份与容灾：NetBackup + Data Domain + Quantum 实战",
+        "date": "2025-11-13",
+        "file": "enterprise/netbackup-data-domain-quantum-guide.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "Prometheus + Grafana 监控体系（结合 Ansible 部署）",
+        "date": "2025-11-13",
+        "file": "enterprise/prometheus-grafana-monitoring-for-enterprise.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    }
 ]
