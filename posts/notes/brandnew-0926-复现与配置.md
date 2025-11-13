@@ -69,12 +69,12 @@ betelligent_后台 = https://rdai.[REDACTED].net/admin/#/admin/organization/user
 betelligent_prod = https://rdai.[REDACTED].net/#/chat
 betelligent_uat_后台 = https://rdai-t.[REDACTED].net/admin/#/admin/organization/user
 betelligent_uat = https://rdai-t.[REDACTED].net/#/chat
-netskope = C:\Users\lifu.liu\OneDrive - [REDACTED]\Plan\03Betelligent账号\Netskope Fix Script
-keep_awake = C:\Users\lifu.liu\clock\keep_awake_gui.py  # 快速保持唤醒
+netskope = C:\Users\YourName\OneDrive - [REDACTED]\Plan\03Betelligent账号\Netskope Fix Script
+keep_awake = C:\Users\YourName\clock\keep_awake_gui.py  # 快速保持唤醒
 
 [sendmail]
 shortcut_label = Netskope问题排查
-shortcut_cmd = C:\Users\lifu.liu\OneDrive - [REDACTED]\Plan\03Betelligent账号\Netskope Fix Script
+shortcut_cmd = C:\Users\YourName\OneDrive - [REDACTED]\Plan\03Betelligent账号\Netskope Fix Script
 
 [background]
 mode = color          # color / image
@@ -88,9 +88,9 @@ message_text = Hi, Betelligent access has been granted.\nPlease try to visit htt
 
 [maintenance]
 welcome_text = hi，我是 Betelligent 管理员，您当前是否无法访问？\n请协助我查看您电脑的 Netskope 插件状态，\n右键单击托盘图标，确认是否为“3个绿灯”。
-default_image = C:/Users/lifu.liu/brandnew 0926/Netskope Fix Script/3333.png
+default_image = C:/Users/YourName/brandnew 0926/Netskope Fix Script/3333.png
 tbd_text = 请先下载此工具到桌面，双击运行，\n然后再次检查 Netskope 是否为“3个绿灯”，以及 Betelligent 是否可正常访问。
-default_directory = C:/Users/lifu.liu/brandnew 0926/Netskope Fix Script
+default_directory = C:/Users/YourName/brandnew 0926/Netskope Fix Script
 ```
 
 说明：
@@ -101,7 +101,7 @@ default_directory = C:/Users/lifu.liu/brandnew 0926/Netskope Fix Script
 
 ## 一键复现（建议）
 ```powershell
-cd C:\Users\lifu.liu\brandnew 0926
+cd C:\Users\YourName\brandnew 0926
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt

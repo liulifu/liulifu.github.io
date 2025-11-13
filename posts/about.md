@@ -13,7 +13,7 @@ Welcome to my personal blog! This space is where I share my thoughts, experience
 
 Feel free to reach out to me through:
 
-- Email:initlifu@hotmail.com
+- Email: [REDACTED]@[REDACTED].com
 
 ## About This Blog
 

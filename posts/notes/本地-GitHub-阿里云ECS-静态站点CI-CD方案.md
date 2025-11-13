@@ -1,4 +1,4 @@
-# 本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（liulifu.github.io）
+# 本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
 
 本文整理本项目采用的发布技术路线：本地开发 → 推送到 GitHub → GitHub Actions 通过 SSH 将源码传到阿里云 ECS → 在 ECS 上构建并以 Docker 容器方式运行，最后完成自动健康检查与上线。
 
@@ -27,7 +27,7 @@
 ## 二、仓库结构（关键文件）
 
 ```
-liulifu.github.io/
+my-static-site/
 ├─ .github/workflows/deploy.yml      # 部署工作流
 ├─ Dockerfile                        # Nginx 静态站镜像
 ├─ index.html / index.js / *.css     # 站点入口与前端逻辑
@@ -41,7 +41,7 @@ liulifu.github.io/
 ## 三、前置条件
 
 - 一台阿里云 ECS（Ubuntu 22.04+），已安装 Docker，允许 80 端口对外访问（安全组放行 TCP/80）。
-- GitHub 仓库：liulifu/liulifu.github.io。
+- GitHub 仓库：your-username/your-repo。
 - 只使用公钥登录（推荐）：ECS 上 /root/.ssh/authorized_keys 已配置部署公钥。
 
 ---
@@ -50,11 +50,11 @@ liulifu.github.io/
 
 - PowerShell（推荐）：
 ```
-ssh-keygen -t ed25519 -f "$HOME/.ssh/github-actions-aliyun-ecs" -N "" -C "github-actions@liulifu"
+ssh-keygen -t ed25519 -f "$HOME/.ssh/github-actions-aliyun-ecs" -N "" -C "github-actions@example"
 ```
 - CMD：
 ```
-ssh-keygen -t ed25519 -f "%USERPROFILE%\.ssh\github-actions-aliyun-ecs" -N "" -C "github-actions@liulifu"
+ssh-keygen -t ed25519 -f "%USERPROFILE%\.ssh\github-actions-aliyun-ecs" -N "" -C "github-actions@example"
 ```
 得到：
 - 私钥：github-actions-aliyun-ecs（粘贴到 GitHub Secret）
@@ -64,7 +64,7 @@ ECS 上添加公钥示例（已完成一次）：
 ```
 mkdir -p /root/.ssh && chmod 700 /root/.ssh
 cat >> /root/.ssh/authorized_keys <<'EOF'
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIALYHpQnpVokjF+zpw3jsSSk+u9UZOTBlIhGqn0nX04q github-actions@liulifu
+ssh-ed25519 AAAA...EXAMPLE_KEY_REDACTED github-actions@example
 EOF
 chmod 600 /root/.ssh/authorized_keys
 ```
@@ -73,7 +73,7 @@ chmod 600 /root/.ssh/authorized_keys
 
 ## 五、GitHub Secrets（仓库 → Settings → Secrets and variables → Actions）
 
-- ECS_HOST = 121.199.56.99
+- ECS_HOST = 203.0.113.10
 - ECS_USER = root
 - ECS_SSH_PRIVATE_KEY = 部署私钥全文（包含 BEGIN/END 行与所有换行）
 
@@ -84,7 +84,7 @@ chmod 600 /root/.ssh/authorized_keys
 要点：使用 git archive 打包仓库内容，避免 tar 在打包过程中读到自身输出文件导致的报错；通过 SSH 把压缩包传到 ECS 并在远端构建与运行容器。
 
 ```yaml
-name: Deploy liulifu.github.io to Aliyun ECS
+name: Deploy my-static-site to Aliyun ECS
 
 on:
   push:
@@ -128,10 +128,10 @@ jobs:
           cd /root/deploy
           rm -rf site && mkdir site
           tar -xzf site.tgz -C site
-          docker rm -f liulifu-githubio >/dev/null 2>&1 || true
+          docker rm -f static-site >/dev/null 2>&1 || true
           docker rm -f augment-nginx >/dev/null 2>&1 || true
-          docker build -t liulifu-githubio:latest site
-          docker run -d --name liulifu-githubio --restart=always -p 80:80 liulifu-githubio:latest
+          docker build -t static-site:latest site
+          docker run -d --name static-site --restart=always -p 80:80 static-site:latest
           docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}' | sed -n '1,2p'
           (curl -sS --max-time 10 http://127.0.0.1/ || wget -q -O- http://127.0.0.1/) | head -n 2 || true
           EOF
@@ -143,7 +143,7 @@ jobs:
 
 ```dockerfile
 FROM nginx:alpine
-LABEL maintainer="augment-agent" org.opencontainers.image.title="liulifu.github.io"
+LABEL maintainer="augment-agent" org.opencontainers.image.title="my-static-site"
 COPY . /usr/share/nginx/html
 HEALTHCHECK --interval=30s --timeout=3s --retries=3 CMD wget -qO- http://127.0.0.1/ >/dev/null || exit 1
 ```
@@ -152,15 +152,15 @@ HEALTHCHECK --interval=30s --timeout=3s --retries=3 CMD wget -qO- http://127.0.0
 
 ## 八、发布流程（本地→GitHub→ECS）
 
-1) 在本地仓库 liulifu.github.io 修改任意内容（例如新增一篇 Notes 文章或修订 index.json）。
+1) 在本地仓库 my-static-site 修改任意内容（例如新增一篇 Notes 文章或修订 index.json）。
 2) 提交并推送：
 ```
 git add -A
 git commit -m "docs: update notes"
 git push origin main
 ```
-3) 打开 GitHub → Actions → 选择 “Deploy liulifu.github.io to Aliyun ECS”，查看运行日志（约 1–3 分钟）。
-4) 成功后访问 http://121.199.56.99/ 或 `curl -I http://121.199.56.99/` 验证返回 200。
+3) 打开 GitHub → Actions → 选择 “Deploy my-static-site to Aliyun ECS”，查看运行日志（约 1–3 分钟）。
+4) 成功后访问 http://203.0.113.10/ 或 `curl -I http://203.0.113.10/` 验证返回 200。
 
 可选：也可以在 Actions 页面使用 “Run workflow”（workflow_dispatch）手动触发一次部署。
 
@@ -214,10 +214,10 @@ site.tgz
 docker ps --format 'table {{.Names}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}' | head -n 2
 
 # 查看最近日志
-docker logs --tail=100 liulifu-githubio
+docker logs --tail=100 static-site
 
 # 重启容器（如需）
-docker restart liulifu-githubio
+docker restart static-site
 ```
 
 ---

@@ -587,28 +587,28 @@ powercfg /change standby-timeout-dc 15
 
 ### 10.3 欢迎邮件模板
 ```plaintext
-主题：欢迎加入 Pharma Corp - IT 账号信息
+主题：欢迎加入 Example Corp - IT 账号信息
 
 尊敬的张三，
 
-欢迎加入 Pharma Corp！
+欢迎加入 Example Corp！
 
 您的 IT 账号已创建，详细信息如下：
 
-域账号：PHARMA\zhang.san
-邮箱：zhang.san@pharma.com
+域账号：EXAMPLE\zhang.san
+邮箱：zhang.san@example.com
 初始密码：TempP@ssw0rd!（首次登录需更改）
 
 常用资源：
-- 公司内网：https://intranet.pharma.com
-- IT 服务台：https://servicedesk.pharma.com
-- 文件共享：\\pharma.local\shares
-- VPN 地址：vpn.pharma.com
+- 公司内网：https://intranet.example.com
+- IT 服务台：https://servicedesk.example.com
+- 文件共享：\\example.local\shares
+- VPN 地址：vpn.example.com
 
 如有任何问题，请联系 IT 服务台：
-- 邮箱：it.support@pharma.com
+- 邮箱：it.support@example.com
 - 电话：+86-21-1234-5678
-- 工单系统：https://servicedesk.pharma.com
+- 工单系统：https://servicedesk.example.com
 
 祝工作顺利！
 
@@ -626,8 +626,8 @@ IT 部门
 错误：找不到网络路径
 
 解决方案：
-1. 检查 DNS：nslookup pharma.local
-2. Ping 域控：ping dc01.pharma.local
+1. 检查 DNS：nslookup example.local
+2. Ping 域控：ping dc01.example.local
 3. 检查防火墙
 4. 检查时间同步
 ```
