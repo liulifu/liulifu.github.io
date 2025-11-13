@@ -530,5 +530,33 @@
         "file": "enterprise/prometheus-grafana-monitoring-for-enterprise.md",
         "author": "Lifu",
         "category": "enterprise"
+    },
+    {
+        "title": "Jenkins 与 GitLab CI：企业级 CI/CD 方案与实战（含项目示例与命令）",
+        "date": "2025-11-13",
+        "file": "notes/ci-tools-jenkins-gitlabci-solutions.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "Apache Maven 自动化构建与测试：案例教学与命令行",
+        "date": "2025-11-13",
+        "file": "notes/maven-automation-tutorial.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "Gradle 使用方案：从入门到实践（含项目与命令）",
+        "date": "2025-11-13",
+        "file": "notes/gradle-usage-guide.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "Apache SkyWalking 使用方案与运维经验",
+        "date": "2025-11-13",
+        "file": "notes/skywalking-usage-ops.md",
+        "author": "Lifu",
+        "category": "notes"
     }
 ]
