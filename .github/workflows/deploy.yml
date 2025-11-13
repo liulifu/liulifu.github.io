@@ -29,7 +29,19 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          printf '%s' "$ECS_SSH_PRIVATE_KEY_B64" | base64 -d > ~/.ssh/id_ed25519
+          python3 - <<'PY'
+import os, sys, base64, re, pathlib
+k = os.environ.get('ECS_SSH_PRIVATE_KEY_B64', '')
+k = re.sub(r'\s+', '', k.strip())
+try:
+    data = base64.b64decode(k)
+except Exception as e:
+    print('base64 decode failed:', e, file=sys.stderr)
+    sys.exit(1)
+path = pathlib.Path.home() / '.ssh' / 'id_ed25519'
+with open(path, 'wb') as f:
+    f.write(data)
+PY
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H "${{ secrets.ECS_HOST }}" >> ~/.ssh/known_hosts
 
