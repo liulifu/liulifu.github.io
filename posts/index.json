@@ -494,4 +494,12 @@
         "author": "Lifu",
         "category": "notes"
     }
+    ,
+    {
+        "title": "服务器带外管理（OOB）概览与实践：IPMI/iDRAC/iLO/Redfish",
+        "date": "2025-11-13",
+        "file": "enterprise/server-oob-management-guide.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    }
 ]
