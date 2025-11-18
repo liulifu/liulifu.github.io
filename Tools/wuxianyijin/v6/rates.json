@@ -1,0 +1,37 @@
+{
+  "pension": {
+    "employer": 19,
+    "personal": 8
+  },
+  "medical": {
+    "employer": 10,
+    "personal": 2
+  },
+  "unemployment": {
+    "employer": 0.5,
+    "personal": 0.5
+  },
+  "injury": {
+    "employer": 0.5,
+    "personal": null
+  },
+  "maternity": {
+    "employer": 0.8,
+    "personal": null
+  },
+  "housing": {
+    "employer": 12,
+    "personal": 12
+  },
+  "tax": {
+    "levels": [
+      { "min": 0, "max": 36000, "rate": 3, "deduction": 0 },
+      { "min": 36000, "max": 144000, "rate": 10, "deduction": 2520 },
+      { "min": 144000, "max": 300000, "rate": 20, "deduction": 16920 },
+      { "min": 300000, "max": 420000, "rate": 25, "deduction": 31920 },
+      { "min": 420000, "max": 660000, "rate": 30, "deduction": 52920 },
+      { "min": 660000, "max": 960000, "rate": 35, "deduction": 85920 },
+      { "min": 960000, "max": null, "rate": 45, "deduction": 181920 }
+    ]
+  }
+}

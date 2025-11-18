@@ -1,0 +1,49 @@
+:root {
+  /* 让导航字体整体更小一些，并把左侧栏加宽到当前的约 1.7 倍 */
+  --lf-nav-font-size: 0.68rem;
+  --md-sidebar-width: 37rem; /* 22rem × 1.7 ≈ 37rem */
+}
+
+/* 主侧边导航整体：稍微收紧间距 */
+.md-nav--primary .md-nav__list {
+  padding-top: 0.25rem;
+}
+
+/* 所有链接统一的字体大小、行高和字体族（中英文通用，优先开源 Noto） */
+.md-nav--primary .md-nav__link {
+  font-size: var(--lf-nav-font-size);
+  line-height: 1.25;
+  font-family: "Noto Sans SC", "Noto Sans", system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+
+/* 顶级分类（如 DBA / Biopharma / Enterprise）的样式 */
+.md-nav--primary > .md-nav__list > .md-nav__item > .md-nav__link {
+  font-weight: 600;
+  margin: 0.1rem 0.35rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.35rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* 顶级分类展开后的子条目（具体文章） */
+.md-nav--primary > .md-nav__list > .md-nav__item .md-nav__item .md-nav__link {
+  font-weight: 400;
+  margin: 0.05rem 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 0.25rem;
+  border-left: 2px solid rgba(0, 0, 0, 0.06);
+}
+
+/* 当前页面：加一点背景和边框，让层次更清楚 */
+.md-nav--primary .md-nav__link--active {
+  background: rgba(33, 150, 243, 0.09); /* 对应 blue 主色 */
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(33, 150, 243, 0.35);
+}
+
+/* 悬停时轻微高亮，方便定位 */
+.md-nav--primary .md-nav__link:hover {
+  background: rgba(33, 150, 243, 0.05);
+}
+

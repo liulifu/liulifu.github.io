@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>增值税计算器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h1>增值税计算器</h1>
+        
+        <label for="country">选择所在国家：</label>
+        <select id="country">
+            <option value="default" data-rate="0">选择国家</option>
+            <option value="china" data-rate="13">中国（13%）</option>
+            <option value="eu" data-rate="20">欧盟（20%）</option>
+            <option value="uk" data-rate="20">英国（20%）</option>
+            <option value="usa" data-rate="10">美国（10%）</option>
+        </select>
+        
+        <label for="rate">或自行输入税率（%）：</label>
+        <input type="number" id="rate" placeholder="请输入税率" step="0.01" min="0">
+        
+        <label for="price">输入商品价格：</label>
+        <input type="number" id="price" placeholder="商品价格" step="0.01" min="0">
+        
+        <button id="calculateBtn">计算增值税</button>
+
+        <div id="output">
+            <h2>计算结果：</h2>
+            <p><strong>价外税（不含税价格）：</strong> <span id="preTaxPrice">-</span></p>
+            <p><strong>增值税金额：</strong> <span id="vatAmount">-</span></p>
+            <p><strong>价内税（含税价格）：</strong> <span id="postTaxPrice">-</span></p>
+            <h3>计算公式：</h3>
+            <p id="formula">-</p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

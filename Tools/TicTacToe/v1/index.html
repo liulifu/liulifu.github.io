@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        #tic-tac-toe {
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .row {
+            display: flex;
+        }
+        .cell {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            cursor: pointer;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe Game</h1>
+    <div id="tic-tac-toe">
+        <div class="row">
+            <div class="cell" id="cell-0"></div>
+            <div class="cell" id="cell-1"></div>
+            <div class="cell" id="cell-2"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="cell-3"></div>
+            <div class="cell" id="cell-4"></div>
+            <div class="cell" id="cell-5"></div>
+        </div>
+        <div class="row">
+            <div class="cell" id="cell-6"></div>
+            <div class="cell" id="cell-7"></div>
+            <div class="cell" id="cell-8"></div>
+        </div>
+    </div>
+    <button id="reset">Reset</button>
+
+    <script>
+        let currentPlayer = 'X';
+        const cells = Array.from(document.querySelectorAll('.cell'));
+        const resetButton = document.getElementById('reset');
+
+        // 处理每次点击
+        cells.forEach((cell, index) => {
+            cell.addEventListener('click', () => {
+                if (cell.textContent === '') {
+                    cell.textContent = currentPlayer;
+                    if (checkWin()) {
+                        alert(`${currentPlayer} wins!`);
+                        resetGame();
+                    } else if (cells.every(c => c.textContent !== '')) {
+                        alert('It\'s a tie!');
+                        resetGame();
+                    } else {
+                        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                    }
+                }
+            });
+        });
+
+        // 检查胜利条件
+        function checkWin() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+                [0, 4, 8], [2, 4, 6]  // diagonals
+            ];
+            return winPatterns.some(pattern => {
+                return pattern.every(index => {
+                    return cells[index].textContent === currentPlayer;
+                });
+            });
+        }
+
+        // 重置游戏
+        resetButton.addEventListener('click', resetGame);
+
+        function resetGame() {
+            cells.forEach(cell => cell.textContent = '');
+            currentPlayer = 'X';
+        }
+    </script>
+</body>
+</html>

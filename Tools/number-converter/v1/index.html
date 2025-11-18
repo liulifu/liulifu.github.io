@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字转换工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>阿拉伯数字转换为中文数字</h1>
+    <label for="arabicInput">输入阿拉伯数字（自动添加千分位）:</label>
+    <input type="text" id="arabicInput" placeholder="输入金额..." />
+
+    <div class="result">
+        <h3>普通数字: <span id="normalNumber">-</span></h3>
+        <h3>大写数字: <span id="capitalNumber">-</span></h3>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

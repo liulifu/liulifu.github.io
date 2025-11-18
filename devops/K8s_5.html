@@ -1,0 +1,5803 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="K8s_4.html">
+      
+      
+        <link rel="next" href="K8s_6.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>K8s 相关问题集锦（五） - Lifu Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/nav-sidebar-tweaks.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#k8s" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../index.html" title="Lifu Blog" class="md-header__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lifu Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              K8s 相关问题集锦（五）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../biopharma/Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-tabs__link">
+          
+  
+  
+  Biopharma
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Csv
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Dba
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="K8s_1.html" class="md-tabs__link">
+          
+  
+  
+  Devops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Enterprise
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notes/brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tool/index.html" class="md-tabs__link">
+          
+  
+  
+  Tool
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Lifu Blog" class="md-nav__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lifu Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biopharma
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biopharma
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/Werum-PAS-X-%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统部署安装手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-01-%E6%80%BB%E8%A7%88%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（01）总览与设计原则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-02-LIMS%E4%B8%8E%E4%B8%BB%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（02）LIMS 与主数据治理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-03-ELN%E6%96%B9%E6%B3%95%E6%95%B0%E5%AD%97%E5%8C%96%E4%B8%8ELES.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（03）ELN、方法数字化与 LES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-04-%E4%BB%AA%E5%99%A8%E6%95%B0%E6%8D%AECDS%E4%B8%8ESDMS%E6%95%B0%E6%8D%AE%E6%B9%96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（04）仪器数据、CDS 与 SDMS、数据湖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-05-%E5%90%88%E8%A7%84%E4%B8%8E%E9%AA%8C%E8%AF%81-21CFRPart11-Annex11-CSV-CSA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（05）合规与验证：21 CFR Part 11 / Annex 11 与 CSV/CSA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-06-%E9%9B%86%E6%88%90%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%B9%B3%E5%8F%B0%E5%B7%A5%E7%A8%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（06）集成架构与平台工程（API 网关 / 事件驱动 / 编排）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Csv
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Csv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSV（计算机化系统验证）资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/cccc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cccc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dba
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dba
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 专题索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Apache-Doris-OLAP-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Doris（国产 OLAP）：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E9%AB%98%E5%8F%AF%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94%E4%B8%8E%E9%80%89%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 高可用解决方案对比与选型指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL 主从复制与高可用架构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/OceanBase-%E7%A4%BE%E5%8C%BA%E7%89%88-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OceanBase 社区版：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%A2%9E%E5%8A%A0%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 增加删除数据文件的方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%B8%B8%E8%A7%81%E8%A7%86%E5%9B%BE%E5%8F%8A%E7%94%A8%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 常见视图及用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%85%B3%E9%94%AE%E7%BB%84%E4%BB%B6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 架构及关键组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E7%AD%89%E5%BE%85%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 等待事件处理方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-01-%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（01）部署与架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-02-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E4%B8%8E%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（02）日常运维与性能监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-03-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（03）数据安全与备份恢复（RMAN / 冷备 / 热备 / 灾备）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-04-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E4%B8%8E%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（04）故障处理与应急响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DataGuard-%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Data Guard 实战部署方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate-%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E5%8F%8A%E5%85%A5%E9%97%A8%E6%95%99%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 部署方案及入门教学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate%E4%B8%8EMySQL%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 与 MySQL 数据交换方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RAC-%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RAC 集群部署与调优方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RMAN-%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RMAN 增量备份方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle%E8%BF%81%E7%A7%BB%E8%87%B3MySQL-50TB%E7%BA%A7%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 迁移至 MySQL：50TB 级数据迁移方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/PostgreSQL-%E6%B5%81%E5%A4%8D%E5%88%B6%E4%B8%8EPatroni%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL 流复制与 Patroni 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E5%85%B8%E5%9E%8B%E9%97%AE%E9%A2%98%E7%A4%BA%E4%BE%8B%E5%8F%8A%E8%A7%A3%E6%9E%90.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 常见运维典型问题示例及解析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/TiDB-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TiDB 分布式数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/dm8-performance-tuning-with-ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8 性能调优方案与 AI（ChatGPT 5.x）辅助实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/openGauss-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    openGauss 数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/oracle-pdb-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle PDB 详细使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E4%BA%BA%E5%A4%A7%E9%87%91%E4%BB%93KingbaseES-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    人大金仓 KingbaseES：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E4%B8%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库性能诊断与优化实战手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88-Oracle%E5%88%B0PostgreSQL.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库迁移方案：Oracle 到 PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-Linux%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：Linux（RHEL）入门完整指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Devops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Devops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（一）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（二）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（四）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="K8s_5.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 运维与故障排查类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 运维与故障排查类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 查看集群的健康状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 查看节点的健康状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 查看节点的健康状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-kubectl-get-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 使用 kubectl get nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-kubectl-describe-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 使用 kubectl describe node
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 查看节点中的 Pod 状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 查看节点中的 Pod 状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kubectl-get-pods-o-wide-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 使用 kubectl get pods -o wide 查看 Pod 状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-kubectl-describe-pod-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 使用 kubectl describe pod 查看 Pod 详情
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 查看集群组件的健康状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 查看集群组件的健康状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-kubectl-get-componentstatuses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 使用 kubectl get componentstatuses
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 查看集群的详细健康报告
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 查看集群的详细健康报告">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-kubectl-get-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 使用 kubectl get events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 其他有用的检查命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 调试无法访问的 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 检查 Service 的状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 检查 Service 的状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-kubectl-get-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 使用 kubectl get services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-kubectl-describe-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 使用 kubectl describe service
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 检查 Endpoint 的状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 检查 Endpoint 的状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kubectl-get-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 使用 kubectl get endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 检查 Pod 的状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 检查 Pod 的状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-kubectl-get-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 使用 kubectl get pods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-kubectl-describe-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 使用 kubectl describe pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 验证网络策略
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 验证网络策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-kubectl-get-networkpolicies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 使用 kubectl get networkpolicies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-kubectl-describe-networkpolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 使用 kubectl describe networkpolicy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kubectl-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 使用 kubectl exec 进行网络测试
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 使用 kubectl exec 进行网络测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-kubectl-exec-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 使用 kubectl exec 进入 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-curl-wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 使用 curl 或 wget 测试网络连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 检查 DNS 服务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 检查 DNS 服务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-dns-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 检查 DNS Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 测试 DNS 解析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-kube-proxy-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 检查 Kube Proxy 和 IP 路由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 检查 Kube Proxy 和 IP 路由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-kube-proxy-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 查看 kube-proxy Pod 状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 检查节点 IP 路由
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 备份和恢复 etcd 数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. etcd 备份
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. etcd 备份">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 前提条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 设置环境变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-etcdctl-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 使用 etcdctl 备份 etcd 数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. etcd 恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. etcd 恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kube-apiserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 停止 kube-apiserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-etcdctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 使用 etcdctl 恢复快照
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 更新 etcd 数据目录
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-etcd-kube-apiserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 启动 etcd 和 kube-apiserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 的目录结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows 域控服务器部署与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/aliecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALIECS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/ansible-enterprise-practical-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ansible 企业实战方案：中型企业从安装到策略落地（含命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/enterprise-security-strategy-and-governance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 系统安全治理：策略、规范与生命周期管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/netbackup-data-domain-quantum-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业备份与容灾：Veritas NetBackup + Data Domain + Quantum 实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/prometheus-grafana-monitoring-for-enterprise.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus + Grafana 监控体系（结合 Ansible 的企业落地）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-oob-management-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器带外管理（OOB）概览与实践：IPMI / iDRAC / iLO / Redfish
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-raid-configuration-dell-perc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器 RAID 配置实战：以 Dell PERC (perccli/storcli) 为例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88-vSphere-Hadoop-Grafana-Ansible-Chef.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 日常运维方案：vSphere / Hadoop / Grafana / Ansible / Chef
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT%E7%AE%A1%E7%90%86%E5%91%98%E6%96%B0%E5%91%98%E5%B7%A5%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 管理员新员工笔记本配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业文件服务器与权限管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%AE%A1%E7%90%86-Exchange-Server.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业邮件系统部署与管理：Exchange Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E5%9F%BA%E4%BA%8EWindows%E7%9A%84%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E8%A1%8C%E4%B8%9A%E8%BD%AF%E4%BB%B6%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于 Windows 的生物制药行业软件运维方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E4%BC%81%E4%B8%9AIT%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物制药企业 IT 基础架构概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IT Help Desk Access Tool（PyQt5）复现与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-cd-github-actions-to-aliyun-ecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-cd-smoke-test.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD 测试文章（自动化烟囱测试）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-tools-jenkins-gitlabci-solutions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jenkins 与 GitLab CI：企业级 CI/CD 方案与实战（含项目示例与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/clock-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    clock 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/deepsite_deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to build your own DeepSite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/fengbi-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fengbi PDF 工具套件：抽取/清洗/分割/偏移 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/gradle-usage-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle 使用方案：从入门到实践（含项目与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/maven-automation-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Maven 自动化构建与测试：案例教学与命令行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/paddleocrproject-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    paddleocrproject 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/pc_monitor-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pc_monitor 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/skywalking-usage-ops.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache SkyWalking 使用方案与运维经验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E4%B8%80%E7%A7%8D%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一种文件加密设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E4%B8%89%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三项目复现与重构方案：clock、pc_monitor、paddleocrproject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 博客自动化工作流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9C%ACBlog%E6%9E%B6%E6%9E%84.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本Blog架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9C%AC%E5%9C%B0-GitHub-%E9%98%BF%E9%87%8C%E4%BA%91ECS-%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9CI-CD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9E%84%E5%BB%BAPython%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建PYTHON开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    静态博客的浏览器缓存问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具总览（Tool）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/cron-designer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron Designer（计划任务表达式设计）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/gobang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gobang（五子棋）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/insurance-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insurance Calculator（五险一金计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/password-generator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Password Generator（密码生成器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/python-interpreter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Interpreter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rgb-color-picker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RGB Color Picker（颜色选择器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rmb-converter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMB Converter（人民币大小写转换）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/sterilization-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sterilization Guide（灭菌指南）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/unit-conversion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Conversion（单位换算）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/vat-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAT Calculator（增值税计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 运维与故障排查类
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7 运维与故障排查类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 查看集群的健康状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 查看节点的健康状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 查看节点的健康状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-kubectl-get-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 使用 kubectl get nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-kubectl-describe-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 使用 kubectl describe node
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 查看节点中的 Pod 状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 查看节点中的 Pod 状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kubectl-get-pods-o-wide-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 使用 kubectl get pods -o wide 查看 Pod 状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-kubectl-describe-pod-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 使用 kubectl describe pod 查看 Pod 详情
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 查看集群组件的健康状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 查看集群组件的健康状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-kubectl-get-componentstatuses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 使用 kubectl get componentstatuses
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 查看集群的详细健康报告
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 查看集群的详细健康报告">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-kubectl-get-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 使用 kubectl get events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 其他有用的检查命令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 调试无法访问的 Service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 检查 Service 的状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 检查 Service 的状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-kubectl-get-services" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 使用 kubectl get services
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-kubectl-describe-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 使用 kubectl describe service
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 检查 Endpoint 的状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 检查 Endpoint 的状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kubectl-get-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 使用 kubectl get endpoints
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 检查 Pod 的状态
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 检查 Pod 的状态">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-kubectl-get-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 使用 kubectl get pods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-kubectl-describe-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 使用 kubectl describe pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 验证网络策略
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 验证网络策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-kubectl-get-networkpolicies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 使用 kubectl get networkpolicies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-kubectl-describe-networkpolicy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 使用 kubectl describe networkpolicy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kubectl-exec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 使用 kubectl exec 进行网络测试
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 使用 kubectl exec 进行网络测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-kubectl-exec-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 使用 kubectl exec 进入 Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-curl-wget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 使用 curl 或 wget 测试网络连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 检查 DNS 服务
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 检查 DNS 服务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-dns-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 检查 DNS Pod
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 测试 DNS 解析
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-kube-proxy-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 检查 Kube Proxy 和 IP 路由
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 检查 Kube Proxy 和 IP 路由">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-kube-proxy-pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 查看 kube-proxy Pod 状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 检查节点 IP 路由
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 备份和恢复 etcd 数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. etcd 备份
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. etcd 备份">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 前提条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 设置环境变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-etcdctl-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 使用 etcdctl 备份 etcd 数据
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. etcd 恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. etcd 恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-kube-apiserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 停止 kube-apiserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-etcdctl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 使用 etcdctl 恢复快照
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 更新 etcd 数据目录
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-etcd-kube-apiserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 启动 etcd 和 kube-apiserver
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="k8s">K8s 相关问题集锦（五）</h1>
+<h2 id="7">7 运维与故障排查类</h2>
+<h3 id="71"><strong>7.1 查看集群的健康状态</strong></h3>
+<p>使用 <code>kubectl get nodes</code> 查看节点状态，使用 <code>kubectl describe node</code> 了解节点详细信息。</p>
+<blockquote>
+<p>在 Kubernetes 集群中，查看集群的健康状态非常重要，通常我们会通过 <code>kubectl</code> 命令来了解节点、Pod 以及其他组件的状态。以下是详细操作和命令，帮助你全面了解 Kubernetes 集群的健康状况：</p>
+<h3 id="1">1. 查看节点的健康状态</h3>
+<h4 id="11-kubectl-get-nodes">1.1 使用 <code>kubectl get nodes</code></h4>
+<p>这个命令可以帮助你快速查看集群中各个节点的状态，包括它们的 <code>Ready</code> 状态以及版本信息。</p>
+<p><code>sh
+kubectl get nodes</code></p>
+<p>输出示例：</p>
+<p><code>sh
+NAME           STATUS   ROLES    AGE   VERSION
+node1          Ready    master   10d   v1.25.0
+node2          Ready    &lt;none&gt;   10d   v1.25.0
+node3          NotReady &lt;none&gt;   10d   v1.25.0</code></p>
+<ul>
+<li><strong>STATUS</strong>：显示节点的状态。常见的状态有 <code>Ready</code>、<code>NotReady</code>、<code>Unknown</code> 等。</li>
+<li><strong>Ready</strong>：节点正常。</li>
+<li><strong>NotReady</strong>：节点未准备好，可能有网络问题或其他故障。</li>
+</ul>
+<h4 id="12-kubectl-describe-node">1.2 使用 <code>kubectl describe node</code></h4>
+<p>要查看节点的详细信息，使用 <code>kubectl describe node</code> 命令。这会显示该节点的详细配置和状态信息，例如容量、使用情况、运行的 Pod、状态事件等。</p>
+<p><code>sh
+kubectl describe node &lt;node-name&gt;</code></p>
+<p>例如：</p>
+<p><code>sh
+kubectl describe node node1</code></p>
+<p>输出示例（部分）：</p>
+<p><code>yaml
+Name:               node1
+Roles:              master
+Labels:             kubernetes.io/hostname=node1
+                    node-role.kubernetes.io/master=
+CreationTimestamp:  Mon, 10 Oct 2024 12:00:00 +0800
+Taints:             &lt;none&gt;
+Capacity:
+  cpu:              4
+  memory:           8Gi
+Allocatable:
+  cpu:              4
+  memory:           7.5Gi
+Conditions:
+  Type             Status    LastHeartbeatTime                 Reason          Message
+  ----             ------    -----------------                 ------          -------
+  Ready            True      Mon, 10 Oct 2024 12:01:00 +0800   KubeletReady    kubelet is posting ready status
+...</code></p>
+<p><strong>Conditions</strong> 中 <code>Ready</code> 的状态表明节点是否可用；其他字段如 <code>MemoryPressure</code>、<code>DiskPressure</code> 也显示节点的资源使用情况。</p>
+<h3 id="2-pod">2. 查看节点中的 Pod 状态</h3>
+<h4 id="21-kubectl-get-pods-o-wide-pod">2.1 使用 <code>kubectl get pods -o wide</code> 查看 Pod 状态</h4>
+<p>可以查看整个集群的 Pod 状态，并包括更多详细信息，例如它们在哪个节点上运行。</p>
+<p><code>sh
+kubectl get pods -o wide --all-namespaces</code></p>
+<p>输出示例：</p>
+<p><code>sh
+NAMESPACE     NAME                                  READY   STATUS    RESTARTS   AGE     IP            NODE
+kube-system   kube-dns-598d7fb7d4-5kfz2              3/3     Running   2          7d      10.244.1.2    node1
+default       nginx-deployment-6d8ff7cc8b-qsdjf      1/1     Running   0          2d      10.244.2.4    node2</code></p>
+<ul>
+<li><strong>READY</strong>：显示容器的就绪情况，如 <code>1/1</code> 表示 1 个容器已经就绪。</li>
+<li><strong>STATUS</strong>：Pod 的状态，包括 <code>Running</code>、<code>Pending</code>、<code>Failed</code>、<code>CrashLoopBackOff</code> 等。</li>
+<li><strong>NODE</strong>：显示 Pod 正在哪个节点上运行。</li>
+</ul>
+<h4 id="22-kubectl-describe-pod-pod">2.2 使用 <code>kubectl describe pod</code> 查看 Pod 详情</h4>
+<p>如果某个 Pod 出现了问题，可以使用 <code>kubectl describe pod</code> 查看该 Pod 的详细状态、事件和日志。</p>
+<p><code>sh
+kubectl describe pod &lt;pod-name&gt; -n &lt;namespace&gt;</code></p>
+<p>例如：</p>
+<p><code>sh
+kubectl describe pod nginx-deployment-6d8ff7cc8b-qsdjf -n default</code></p>
+<p>输出示例（部分）：</p>
+<p><code>yaml
+Name:         nginx-deployment-6d8ff7cc8b-qsdjf
+Namespace:    default
+Node:         node2/192.168.1.11
+Containers:
+  nginx:
+    Container ID:   docker://abc123
+    Image:          nginx:1.19.3
+    State:          Running
+    Ready:          True
+    Restart Count:  0
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  2d    default-scheduler  Successfully assigned default/nginx-deployment-6d8ff7cc8b-qsdjf to node2
+  Normal  Started    2d    kubelet            Started container nginx</code></p>
+<p>这里的 <strong>Events</strong> 部分可以帮助诊断 Pod 问题，如调度失败、容器启动失败等。</p>
+<h3 id="3">3. 查看集群组件的健康状态</h3>
+<h4 id="31-kubectl-get-componentstatuses">3.1 使用 <code>kubectl get componentstatuses</code></h4>
+<p>可以查看 Kubernetes 集群关键组件（如 scheduler、controller-manager）的健康状态。</p>
+<p><code>sh
+kubectl get componentstatuses</code></p>
+<p>输出示例：</p>
+<p><code>sh
+NAME                 STATUS    MESSAGE             ERROR
+scheduler            Healthy   ok
+controller-manager   Healthy   ok
+etcd-0               Healthy   {"health":"true"}</code></p>
+<ul>
+<li><strong>STATUS</strong>：显示组件的健康状态，如果为 <code>Healthy</code>，表示组件正常工作。</li>
+<li><strong>MESSAGE</strong>：包含附加信息。</li>
+</ul>
+<h3 id="4">4. 查看集群的详细健康报告</h3>
+<h4 id="41-kubectl-get-events">4.1 使用 <code>kubectl get events</code></h4>
+<p>可以查看整个集群中的事件，包括节点、Pod、服务等的事件信息，这些事件可以用来了解集群中是否发生了一些异常情况。</p>
+<p><code>sh
+kubectl get events --all-namespaces</code></p>
+<p>输出示例：</p>
+<p><code>sh
+LAST SEEN   TYPE      REASON                    OBJECT                         MESSAGE
+10s         Warning   BackOff                   pod/nginx-5bb69b79f9-ht4vh     Back-off restarting failed container
+20s         Normal    ScalingReplicaSet         deployment/nginx-deployment    Scaled up replica set nginx-5bb69b79f9 to 3</code></p>
+<p>这里可以看到集群中各个组件的事件，例如 Pod 的重启、节点的变化等。</p>
+<h3 id="5">5. 其他有用的检查命令</h3>
+<ul>
+<li><strong>查看 kube-system 命名空间中的 Pod 状态</strong>，检查关键组件是否正常运行：</li>
+</ul>
+<p><code>sh
+  kubectl get pods -n kube-system</code>
+- <strong>检查 kubelet 服务日志</strong>：
+  如果节点出现问题，可以在节点上检查 <code>kubelet</code> 服务的日志：</p>
+<p><code>sh
+  journalctl -u kubelet</code></p>
+<h3 id="_1">总结</h3>
+<ol>
+<li><strong>查看节点的状态</strong>：使用 <code>kubectl get nodes</code>，并通过 <code>kubectl describe node</code> 查看详细信息。</li>
+<li><strong>查看 Pod 状态</strong>：使用 <code>kubectl get pods -o wide --all-namespaces</code> 和 <code>kubectl describe pod</code>。</li>
+<li><strong>查看关键组件健康状态</strong>：使用 <code>kubectl get componentstatuses</code>。</li>
+<li><strong>查看集群事件</strong>：使用 <code>kubectl get events --all-namespaces</code>。</li>
+<li><strong>检查 kubelet 服务日志</strong>：在节点上查看 kubelet 日志，排查节点问题。</li>
+</ol>
+<p>通过这些命令，可以全面了解 Kubernetes 集群的健康状态，及时发现并处理潜在问题。</p>
+</blockquote>
+<h3 id="72-service"><strong>7.2 调试无法访问的 Service</strong></h3>
+<p>可能需要检查 Service、Endpoint、Pod 状态，验证网络策略，使用 <code>kubectl exec</code> 进入容器进行网络测试。</p>
+<blockquote>
+<p>在 Kubernetes 中，Service 负责将请求分发到后端 Pod，从而实现应用的负载均衡。然而，有时你可能会遇到 Service 无法访问的情况。在这种情况下，调试步骤主要包括检查 Service、Endpoint、Pod 的状态，验证网络策略，并进入容器进行网络测试。以下是详细的调试步骤和操作命令：</p>
+<h3 id="1-service">1. 检查 Service 的状态</h3>
+<p>首先检查 Service 是否存在，类型是否正确，是否暴露了期望的端口。</p>
+<h4 id="11-kubectl-get-services">1.1 使用 <code>kubectl get services</code></h4>
+<p><code>sh
+kubectl get svc -n &lt;namespace&gt;</code></p>
+<p>例如：</p>
+<p><code>sh
+kubectl get svc -n default</code></p>
+<p>输出示例：</p>
+<p><code>sh
+NAME           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+my-service     ClusterIP   10.0.0.1        &lt;none&gt;        80/TCP         3d</code></p>
+<ul>
+<li><strong>CLUSTER-IP</strong>：检查是否有有效的 Cluster IP 地址。</li>
+<li><strong>PORT(S)</strong>：确保服务的端口设置正确。</li>
+</ul>
+<h4 id="12-kubectl-describe-service">1.2 使用 <code>kubectl describe service</code></h4>
+<p><code>sh
+kubectl describe svc &lt;service-name&gt; -n &lt;namespace&gt;</code></p>
+<p>例如：</p>
+<p><code>sh
+kubectl describe svc my-service -n default</code></p>
+<p>检查以下内容：</p>
+<ul>
+<li><strong>Selectors</strong>：确保 Service 的 selector 与 Pod 的标签匹配。</li>
+<li><strong>Endpoints</strong>：确保 Service 已正确关联到 Pod。如果 <code>Endpoints</code> 为空，说明没有 Pod 被绑定到该 Service。</li>
+</ul>
+<h3 id="2-endpoint">2. 检查 Endpoint 的状态</h3>
+<p>Service 是通过 <strong>Endpoint</strong> 关联 Pod 的，确保 Service 具备有效的 Endpoint。</p>
+<h4 id="21-kubectl-get-endpoints">2.1 使用 <code>kubectl get endpoints</code></h4>
+<p><code>sh
+kubectl get endpoints &lt;service-name&gt; -n &lt;namespace&gt;</code></p>
+<p>例如：</p>
+<p><code>sh
+kubectl get endpoints my-service -n default</code></p>
+<p>输出示例：</p>
+<p><code>sh
+NAME         ENDPOINTS           AGE
+my-service   10.244.1.2:80       3d</code></p>
+<ul>
+<li>如果 <code>ENDPOINTS</code> 为空，说明没有 Pod 被关联到 Service。你需要检查 Pod 的标签是否与 Service 的 selector 匹配。</li>
+</ul>
+<h3 id="3-pod">3. 检查 Pod 的状态</h3>
+<p>确认 Pod 是否在运行，且无异常。</p>
+<h4 id="31-kubectl-get-pods">3.1 使用 <code>kubectl get pods</code></h4>
+<p><code>sh
+kubectl get pods -n &lt;namespace&gt; -o wide</code></p>
+<p>例如：</p>
+<p><code>sh
+kubectl get pods -n default -o wide</code></p>
+<ul>
+<li>确保 Pod 的状态为 <code>Running</code>，并注意 Pod 所在节点。</li>
+<li><strong>RESTARTS</strong> 计数：如果 Pod 多次重启，可能存在配置问题或崩溃。</li>
+</ul>
+<h4 id="32-kubectl-describe-pod">3.2 使用 <code>kubectl describe pod</code></h4>
+<p>如果 Pod 无法运行或状态异常，使用 <code>kubectl describe</code> 查看详细信息和事件。</p>
+<p><code>sh
+kubectl describe pod &lt;pod-name&gt; -n &lt;namespace&gt;</code></p>
+<ul>
+<li>检查 <strong>Events</strong> 部分，寻找启动失败、探针失败等错误信息。</li>
+</ul>
+<h3 id="4_1">4. 验证网络策略</h3>
+<p>Kubernetes 中可以通过 <strong>NetworkPolicy</strong> 控制网络流量，如果存在错误的策略配置，可能会导致无法访问 Service。</p>
+<h4 id="41-kubectl-get-networkpolicies">4.1 使用 <code>kubectl get networkpolicies</code></h4>
+<p><code>sh
+kubectl get networkpolicies -n &lt;namespace&gt;</code></p>
+<p>查看是否存在网络策略来阻止对 Service 或 Pod 的访问。</p>
+<h4 id="42-kubectl-describe-networkpolicy">4.2 使用 <code>kubectl describe networkpolicy</code></h4>
+<p><code>sh
+kubectl describe networkpolicy &lt;networkpolicy-name&gt; -n &lt;namespace&gt;</code></p>
+<p>检查策略配置，确保允许所需的入站和出站流量。</p>
+<h3 id="5-kubectl-exec">5. 使用 <code>kubectl exec</code> 进行网络测试</h3>
+<p>进入 Pod，检查是否能够访问目标 Pod 的 IP 和端口，或者测试访问 Service 的 Cluster IP。</p>
+<h4 id="51-kubectl-exec-pod">5.1 使用 <code>kubectl exec</code> 进入 Pod</h4>
+<p><code>sh
+kubectl exec -it &lt;pod-name&gt; -n &lt;namespace&gt; -- /bin/sh</code></p>
+<p>例如：</p>
+<p><code>sh
+kubectl exec -it nginx-deployment-5bb69b79f9-ht4vh -n default -- /bin/sh</code></p>
+<h4 id="52-curl-wget">5.2 使用 <code>curl</code> 或 <code>wget</code> 测试网络连接</h4>
+<p>在 Pod 内部，使用 <code>curl</code> 或 <code>wget</code> 命令测试与 Service 或 Pod 的连接：</p>
+<ul>
+<li>测试通过 <strong>Service Cluster IP</strong> 访问：
+  <code>sh
+  curl http://&lt;service-cluster-ip&gt;:&lt;port&gt;</code></li>
+<li>测试通过 Pod 的 <strong>IP</strong> 访问：
+  <code>sh
+  curl http://&lt;pod-ip&gt;:&lt;port&gt;</code></li>
+</ul>
+<p>如果能够通过 Pod 的 IP 访问，但无法通过 Service 的 Cluster IP 访问，则可能是 Service 或 Endpoint 配置有问题。</p>
+<h3 id="6-dns">6. 检查 DNS 服务</h3>
+<p>如果 Service 是通过域名访问的，需要确保 Kubernetes DNS 服务正常工作。</p>
+<h4 id="61-dns-pod">6.1 检查 DNS Pod</h4>
+<p>使用以下命令查看 <code>kube-dns</code> 或 <code>coredns</code> 的状态：</p>
+<p><code>sh
+kubectl get pods -n kube-system -l k8s-app=kube-dns</code></p>
+<p>确保 DNS Pod 处于 <code>Running</code> 状态。</p>
+<h4 id="62-dns">6.2 测试 DNS 解析</h4>
+<p>进入 Pod 中测试域名解析：</p>
+<p><code>sh
+kubectl exec -it &lt;pod-name&gt; -n &lt;namespace&gt; -- nslookup &lt;service-name&gt;</code></p>
+<p>如果 DNS 无法解析，则可能是 <code>kube-dns</code> 或 <code>coredns</code> 的问题，需要进一步检查 DNS Pod 的日志。</p>
+<h3 id="7-kube-proxy-ip">7. 检查 Kube Proxy 和 IP 路由</h3>
+<p>Service 的流量通过 kube-proxy 实现负载均衡，如果 kube-proxy 出现问题，也会导致服务不可用。</p>
+<h4 id="71-kube-proxy-pod">7.1 查看 kube-proxy Pod 状态</h4>
+<p><code>sh
+kubectl get pods -n kube-system -l k8s-app=kube-proxy</code></p>
+<p>确保 kube-proxy Pod 正常运行。</p>
+<h4 id="72-ip">7.2 检查节点 IP 路由</h4>
+<p>在节点上使用以下命令查看 iptables 规则，以确保 kube-proxy 正常配置：</p>
+<p><code>sh
+iptables -t nat -L -n | grep &lt;service-name&gt;</code></p>
+<p>确保流量转发规则正确。</p>
+<h3 id="_2">总结</h3>
+<ol>
+<li><strong>检查 Service 的状态</strong>：使用 <code>kubectl get svc</code> 和 <code>kubectl describe svc</code> 确认 Service 的配置是否正确。</li>
+<li><strong>检查 Endpoint</strong>：使用 <code>kubectl get endpoints</code> 确认 Pod 是否正确关联到 Service。</li>
+<li><strong>检查 Pod 的状态</strong>：使用 <code>kubectl get pods</code> 和 <code>kubectl describe pod</code> 确保 Pod 正常运行。</li>
+<li><strong>验证网络策略</strong>：使用 <code>kubectl get networkpolicies</code> 和 <code>kubectl describe networkpolicy</code> 确认网络策略不会阻止流量。</li>
+<li><strong>使用 <code>kubectl exec</code> 进行网络测试</strong>：进入 Pod 内部，使用 <code>curl</code> 或 <code>wget</code> 测试连接。</li>
+<li><strong>检查 DNS 服务</strong>：确认 DNS 服务正常工作并可以解析 Service 域名。</li>
+<li><strong>检查 kube-proxy</strong>：确保 kube-proxy 正常运行，查看 iptables 规则是否正确。</li>
+</ol>
+<p>通过这些步骤，可以有效地调试无法访问的 Kubernetes Service 问题，并逐步排查服务无法访问的原因。</p>
+</blockquote>
+<h3 id="73-etcd"><strong>7.3 备份和恢复 etcd 数据</strong></h3>
+<p>使用 <code>etcdctl</code> 工具进行备份和恢复，确保数据安全。</p>
+<blockquote>
+<p>Kubernetes 集群使用 <strong>etcd</strong> 作为其分布式键值存储，存储着整个集群的配置和状态数据。因此，备份和恢复 etcd 数据是确保集群安全和灾难恢复的重要步骤。通常使用 <code>etcdctl</code> 工具来备份和恢复 etcd 数据。</p>
+<p>以下是详细操作步骤，包括备份和恢复 etcd 数据的方法：</p>
+<h3 id="1-etcd">1. etcd 备份</h3>
+<p>为了确保 Kubernetes 集群的高可用性，建议定期对 etcd 数据进行备份。</p>
+<h4 id="11">1.1 前提条件</h4>
+<ul>
+<li>etcdctl 工具已经安装。</li>
+<li>确保与 etcd 服务通信的正确访问权限和证书。</li>
+</ul>
+<p>可以通过以下命令查看 etcdctl 版本：</p>
+<p><code>sh
+etcdctl version</code></p>
+<p><strong>注意</strong>：备份和恢复操作需要以 root 用户或具有相应权限的用户执行。</p>
+<h4 id="12">1.2 设置环境变量</h4>
+<p>设置以下环境变量以便 etcdctl 访问 etcd 集群：</p>
+<p><code>sh
+export ETCDCTL_API=3
+export ETCDCTL_CACERT=/etc/kubernetes/pki/etcd/ca.crt
+export ETCDCTL_CERT=/etc/kubernetes/pki/etcd/server.crt
+export ETCDCTL_KEY=/etc/kubernetes/pki/etcd/server.key</code></p>
+<p>以上路径是 etcd 的默认证书路径，具体路径可能因集群配置不同而有所差异。</p>
+<h4 id="13-etcdctl-etcd">1.3 使用 etcdctl 备份 etcd 数据</h4>
+<p>使用 <code>etcdctl snapshot save</code> 命令进行备份，将 etcd 数据保存为快照文件。</p>
+<p><code>sh
+etcdctl --endpoints=https://127.0.0.1:2379 snapshot save /path/to/backup/etcd-backup.db</code></p>
+<ul>
+<li><strong>--endpoints</strong>：etcd 的访问地址，一般为本地地址 <code>https://127.0.0.1:2379</code>。</li>
+<li><strong>/path/to/backup/etcd-backup.db</strong>：保存备份的路径，建议存储在安全的地方。</li>
+</ul>
+<p>成功备份后，会显示类似以下输出：</p>
+<p><code>sh
+Snapshot saved at /path/to/backup/etcd-backup.db</code></p>
+<h3 id="2-etcd">2. etcd 恢复</h3>
+<p>恢复 etcd 数据需要从之前保存的快照文件中重建 etcd 集群，通常用于集群中 etcd 数据损坏或丢失的情况。</p>
+<h4 id="21-kube-apiserver">2.1 停止 kube-apiserver</h4>
+<p>在恢复 etcd 之前，建议先停止 Kubernetes API Server 以防止集群与损坏的 etcd 数据进行交互。</p>
+<p><code>sh
+systemctl stop kube-apiserver</code></p>
+<p>在大多数集群中，kube-apiserver 是通过 systemd 进行管理的，因此可以使用 <code>systemctl</code> 命令。</p>
+<h4 id="22-etcdctl">2.2 使用 etcdctl 恢复快照</h4>
+<p>使用 <code>etcdctl snapshot restore</code> 命令从备份文件中恢复 etcd 数据。</p>
+<p><code>sh
+etcdctl snapshot restore /path/to/backup/etcd-backup.db --name &lt;etcd-node-name&gt; --data-dir /var/lib/etcd-restored</code></p>
+<ul>
+<li><strong>/path/to/backup/etcd-backup.db</strong>：之前创建的备份文件的路径。</li>
+<li><strong>--name</strong>：etcd 节点的名称，通常可以通过查看原 etcd 配置文件获得。</li>
+<li><strong>--data-dir</strong>：恢复数据的路径，可以是 <code>/var/lib/etcd</code>，但推荐使用不同的目录，如 <code>/var/lib/etcd-restored</code>，以避免覆盖现有数据。</li>
+</ul>
+<p>成功恢复后，会显示类似以下输出：</p>
+<p><code>sh
+Snapshot restored and written to /var/lib/etcd-restored</code></p>
+<h4 id="23-etcd">2.3 更新 etcd 数据目录</h4>
+<p>恢复完成后，需要将 etcd 服务的 <code>--data-dir</code> 参数指向恢复后的数据目录。例如：
+编辑 etcd 的 systemd 服务文件 <code>/etc/systemd/system/etcd.service</code>，找到 <code>--data-dir</code> 相关配置并更新为恢复后的目录 <code>/var/lib/etcd-restored</code>。</p>
+<p><code>sh
+--data-dir=/var/lib/etcd-restored</code></p>
+<h4 id="24-etcd-kube-apiserver">2.4 启动 etcd 和 kube-apiserver</h4>
+<p>完成 etcd 恢复后，重新启动 etcd 服务和 kube-apiserver 服务。</p>
+<p>```sh</p>
+<h1 id="etcd">启动 etcd 服务</h1>
+<p>systemctl daemon-reload
+systemctl start etcd</p>
+<h1 id="kube-apiserver">启动 kube-apiserver 服务</h1>
+<p>systemctl start kube-apiserver
+```</p>
+<h3 id="3-etcd">3. 验证 etcd 恢复结果</h3>
+<h4 id="31-etcd">3.1 验证 etcd 集群健康状态</h4>
+<p>使用 <code>etcdctl</code> 查看 etcd 集群的健康状态，确保恢复后的 etcd 节点处于正常状态。</p>
+<p><code>sh
+etcdctl --endpoints=https://127.0.0.1:2379 endpoint health</code></p>
+<p>输出示例：</p>
+<p><code>sh
+https://127.0.0.1:2379 is healthy: successfully committed proposal</code></p>
+<h4 id="32-kubernetes">3.2 验证 Kubernetes 集群状态</h4>
+<p>在恢复和启动所有服务后，可以使用 <code>kubectl</code> 验证 Kubernetes 集群的健康状态，例如查看节点和 Pod 的状态：</p>
+<p><code>sh
+kubectl get nodes
+kubectl get pods --all-namespaces</code></p>
+<p>确保所有组件正常运行。</p>
+<h3 id="_3">总结</h3>
+<ol>
+<li>
+<p><strong>备份 etcd 数据</strong>：</p>
+</li>
+<li>
+<p>使用 <code>etcdctl snapshot save</code> 命令创建快照备份。</p>
+</li>
+<li>定期备份并将备份文件存储在安全位置。</li>
+<li>
+<p><strong>恢复 etcd 数据</strong>：</p>
+</li>
+<li>
+<p>停止 <code>kube-apiserver</code>，防止不必要的操作影响恢复。</p>
+</li>
+<li>使用 <code>etcdctl snapshot restore</code> 命令从快照恢复数据。</li>
+<li>更新 etcd 的 <code>--data-dir</code>，并重启 etcd 和 <code>kube-apiserver</code> 服务。</li>
+<li>
+<p><strong>验证</strong>：</p>
+</li>
+<li>
+<p>使用 <code>etcdctl</code> 验证 etcd 集群健康状态。</p>
+</li>
+<li>使用 <code>kubectl</code> 查看 Kubernetes 集群中节点和 Pod 的状态，确保所有组件正常运行。</li>
+</ol>
+<p>通过以上步骤，能够有效地备份和恢复 etcd 数据，保障 Kubernetes 集群的高可用性和数据安全性。</p>
+</blockquote>
+<h3 id="74"><strong>7.4 集群中的节点资源紧张时应该怎么做？</strong></h3>
+<p>考虑节点扩展、Pod 资源配额管理（如 requests 和 limits 的设置），或者使用 Node Affinity 和 Taints/Tolerations 调整调度策略。</p>
+<blockquote>
+<p>在 Kubernetes 集群中，当节点资源紧张时，需要合理管理和调优资源，以确保集群的稳定性和服务的正常运行。以下是应对集群节点资源紧张的一些解决方案：</p>
+<h3 id="1_1">1. 节点扩展（水平扩展集群）</h3>
+<p>最直接的解决方法是通过添加更多的节点来扩展集群的容量，以缓解资源紧张的情况。这可以手动增加节点，也可以通过自动扩展来实现。</p>
+<h4 id="11_1">1.1 手动增加节点</h4>
+<ul>
+<li>手动增加虚拟机或物理机，并将其加入 Kubernetes 集群。</li>
+<li>使用以下命令将新节点加入集群：
+  <code>sh
+  kubeadm join &lt;master-ip&gt;:&lt;master-port&gt; --token &lt;token&gt; --discovery-token-ca-cert-hash sha256:&lt;hash&gt;</code></li>
+</ul>
+<p>以上命令需要在新节点上执行，并通过适当的认证加入到现有集群中。</p>
+<h4 id="12-cluster-autoscaler">1.2 自动扩展（Cluster Autoscaler）</h4>
+<ul>
+<li><strong>Cluster Autoscaler</strong> 是 Kubernetes 提供的自动扩展组件，用于根据 Pod 资源需求自动增加或减少集群中的节点数量。</li>
+<li>配置 Cluster Autoscaler 后，它会自动检测节点资源不足的情况，并向集群中添加节点，确保新创建的 Pod 能够成功调度。</li>
+</ul>
+<p>安装 Cluster Autoscaler 的步骤：</p>
+<ul>
+<li>可以使用 Helm 或 <code>kubectl apply</code> 安装 Cluster Autoscaler，并根据云服务提供商的设置进行配置。</li>
+</ul>
+<h3 id="2-pod_1">2. Pod 资源配额管理</h3>
+<p>管理 Pod 的资源使用是缓解资源紧张的重要手段。可以通过设置 <strong>requests</strong> 和 <strong>limits</strong> 来控制容器的 CPU 和内存资源使用。</p>
+<h4 id="21-requests-limits">2.1 配置 requests 和 limits</h4>
+<ul>
+<li><strong>requests</strong>：表示容器运行时需要的最低资源，调度器会根据 requests 确定 Pod 是否能被分配到某个节点上。</li>
+<li><strong>limits</strong>：表示容器最多可以使用的资源上限，用于防止单个容器过度消耗资源，影响其他容器的运行。</li>
+</ul>
+<p>示例 YAML 文件：</p>
+<p><code>yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-demo
+  namespace: default
+spec:
+  containers:
+  - name: resource-container
+    image: nginx
+    resources:
+      requests:
+        cpu: "500m"        # 500 毫核
+        memory: "256Mi"    # 256 MiB 内存
+      limits:
+        cpu: "1"           # 1 核 CPU
+        memory: "512Mi"    # 512 MiB 内存</code></p>
+<p>通过合理设置 requests 和 limits，可以避免 Pod 过度占用节点资源，确保集群资源能够合理分配。</p>
+<h3 id="3-node-affinity-taintstolerations">3. 使用 Node Affinity 和 Taints/Tolerations 调整调度策略</h3>
+<p>调整调度策略是优化资源利用率、减少节点压力的有效手段。</p>
+<h4 id="31-node-affinity">3.1 Node Affinity</h4>
+<p><strong>Node Affinity</strong> 是 Kubernetes 调度策略的一种，它允许用户将 Pod 调度到特定属性的节点上。例如，将计算密集型任务调度到高性能的节点。</p>
+<p>Node Affinity 示例：</p>
+<p><code>yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: affinity-demo
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node-type
+            operator: In
+            values:
+            - high-performance
+  containers:
+  - name: nginx
+    image: nginx</code></p>
+<p>通过使用 Node Affinity，可以确保特定的 Pod 被调度到适合其需求的节点上，避免对资源紧张节点的进一步压力。</p>
+<h4 id="32-taints-tolerations">3.2 Taints 和 Tolerations</h4>
+<p><strong>Taints 和 Tolerations</strong> 用于控制哪些 Pod 可以调度到哪些节点上。当节点上打了 taint，只有带有相应 toleration 的 Pod 才能调度到该节点。</p>
+<p><strong>Taints</strong> 示例：</p>
+<p><code>sh
+kubectl taint nodes node1 key=value:NoSchedule</code></p>
+<p>该命令会在 <code>node1</code> 节点上打上 taint，只有包含对应 toleration 的 Pod 才能调度到该节点上。</p>
+<p><strong>Tolerations</strong> 配置：</p>
+<p><code>yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-demo
+spec:
+  tolerations:
+  - key: "key"
+    operator: "Equal"
+    value: "value"
+    effect: "NoSchedule"
+  containers:
+  - name: nginx
+    image: nginx</code></p>
+<p>通过使用 Taints 和 Tolerations，可以把某些节点的资源保护起来，用于特定工作负载，避免所有 Pod 被调度到同一节点造成资源紧张。</p>
+<h3 id="4-vertical-pod-autoscaler-horizontal-pod-autoscaler">4. 使用 Vertical Pod Autoscaler 或 Horizontal Pod Autoscaler</h3>
+<h4 id="41-horizontal-pod-autoscalerhpa">4.1 Horizontal Pod Autoscaler（HPA）</h4>
+<p><strong>HPA</strong> 可以根据 CPU 使用率或自定义指标自动调整 Deployment、ReplicaSet 等资源的副本数量，平衡节点间的负载，减少单个节点的资源紧张。</p>
+<p>示例 HPA 配置：</p>
+<p><code>sh
+kubectl autoscale deployment my-deployment --cpu-percent=50 --min=1 --max=10</code></p>
+<ul>
+<li><strong>--cpu-percent</strong>：当 CPU 使用率超过 50% 时，HPA 将自动增加副本数量。</li>
+</ul>
+<h4 id="42-vertical-pod-autoscalervpa">4.2 Vertical Pod Autoscaler（VPA）</h4>
+<p><strong>VPA</strong> 可以根据实际的资源使用情况动态调整 Pod 的 CPU 和内存 requests/limits，确保资源利用率最大化，并减少资源浪费。</p>
+<p>安装 VPA 可以通过 Helm 或直接应用 VPA 的 YAML 文件，具体配置参考 Kubernetes 官方文档。</p>
+<h3 id="5-resource-quotalimitrange">5. 资源配额（Resource Quota）和限制范围（LimitRange）</h3>
+<p>为确保不同命名空间之间的资源公平分配，可以使用 <strong>Resource Quota</strong> 和 <strong>LimitRange</strong>。</p>
+<h4 id="51-resource-quota">5.1 Resource Quota</h4>
+<p><strong>Resource Quota</strong> 用于限制命名空间级别的资源使用，防止某一命名空间独占集群资源。</p>
+<p>示例 Resource Quota：</p>
+<p><code>yaml
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: ns-quota
+  namespace: default
+spec:
+  hard:
+    pods: "10"  # 限制最多可以创建 10 个 Pod
+    requests.cpu: "4"  # CPU 请求总量不能超过 4 核
+    requests.memory: "8Gi"  # 内存请求总量不能超过 8 GiB
+    limits.cpu: "8"
+    limits.memory: "16Gi"</code></p>
+<h4 id="52-limitrange">5.2 LimitRange</h4>
+<p><strong>LimitRange</strong> 用于在命名空间中设置 Pod 或容器的默认 requests 和 limits，确保所有 Pod 遵循合理的资源使用范围。</p>
+<p>示例 LimitRange：</p>
+<p><code>yaml
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: limits
+  namespace: default
+spec:
+  limits:
+  - default:
+      cpu: "1"
+      memory: "512Mi"
+    defaultRequest:
+      cpu: "500m"
+      memory: "256Mi"
+    type: Container</code></p>
+<h3 id="_4">总结</h3>
+<ol>
+<li><strong>节点扩展</strong>：可以通过手动增加节点或使用 Cluster Autoscaler 自动扩展节点数量。</li>
+<li><strong>Pod 资源配额管理</strong>：通过合理设置 requests 和 limits，确保资源的合理分配和使用。</li>
+<li><strong>调整调度策略</strong>：使用 Node Affinity、Taints/Tolerations 控制 Pod 的调度，避免节点资源不均衡。</li>
+<li><strong>使用 HPA/VPA 自动扩展</strong>：根据资源使用情况，自动增加 Pod 副本或调整资源请求。</li>
+<li><strong>Resource Quota 和 LimitRange</strong>：控制不同命名空间的资源使用，防止资源独占或浪费。</li>
+</ol>
+<p>通过以上方法，可以有效应对 Kubernetes 集群中节点资源紧张的情况，确保集群稳定、高效地运行。</p>
+</blockquote>
+<h4 id="741">7.4.1 手动增加节点</h4>
+<p>假设已经建立了一个 3个master的节点的k8s 集群，那么我现在所面临的有可能是增加一个master节点，或是增加多个 slave 节点，在新的物理机器上要部署什么什么，做什么操作，什么配置，什么命令</p>
+<blockquote>
+<p>在 Kubernetes 集群中扩展节点时，可以根据集群的需求添加新的 <strong>Master</strong> 节点（控制平面节点）或 <strong>Worker</strong> 节点（也称为 Slave 节点）。以下是详细的操作步骤，包括在新物理机器上需要部署的组件、配置操作，以及加入集群的命令。</p>
+<h3 id="master">一、增加一个 Master 节点</h3>
+<p>增加一个 Master 节点的目的是提高控制平面的高可用性。增加新的 Master 节点需要确保它可以与其他 Master 节点进行通信并参与 etcd 集群。</p>
+<h4 id="111-kubernetes">1.1.1 在新机器上安装 Kubernetes 组件</h4>
+<p>在新的物理机器上，首先需要安装 Kubernetes 相关组件，包括 <strong>kubeadm</strong>、<strong>kubelet</strong> 和 <strong>kubectl</strong>，这些组件可以通过以下步骤安装：</p>
+<ol>
+<li><strong>更新系统并安装依赖包</strong>：</li>
+</ol>
+<p><code>sh
+   sudo apt-get update
+   sudo apt-get install -y apt-transport-https ca-certificates curl</code>
+2. <strong>添加 Kubernetes 仓库的 GPG 密钥和仓库地址</strong>：</p>
+<p><code>sh
+   curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+   cat &lt;&lt;EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   deb https://apt.kubernetes.io/ kubernetes-xenial main
+   EOF</code>
+3. <strong>安装 kubeadm、kubelet 和 kubectl</strong>：</p>
+<p><code>sh
+   sudo apt-get update
+   sudo apt-get install -y kubelet kubeadm kubectl
+   sudo apt-mark hold kubelet kubeadm kubectl</code></p>
+<h4 id="112">1.1.2 配置主机</h4>
+<ol>
+<li><strong>禁用交换分区</strong>（Kubernetes 不支持交换分区）：</li>
+</ol>
+<p><code>sh
+   sudo swapoff -a</code></p>
+<p>还需要注释 <code>/etc/fstab</code> 中的交换分区条目，确保重启后交换分区依旧关闭。
+2. <strong>修改网络配置</strong>：
+   确保节点之间可以互相通信，并设置合适的主机名和 <code>/etc/hosts</code> 文件，确保其他 Master 节点的 IP 和主机名可被解析。</p>
+<h4 id="113">1.1.3 加入集群</h4>
+<ol>
+<li><strong>获取集群加入的 token</strong> 和 <code>discovery-token-ca-cert-hash</code>：
+   在现有的任意一个 Master 节点上执行以下命令获取 token 和 hash：</li>
+</ol>
+<p><code>sh
+   kubeadm token create --print-join-command</code></p>
+<p>该命令会输出类似以下的 <code>kubeadm join</code> 命令，其中包含 <code>--token</code> 和 <code>--discovery-token-ca-cert-hash</code>，例如：</p>
+<p><code>sh
+   kubeadm join 10.0.0.1:6443 --token abc123.0123456789abcdef --discovery-token-ca-cert-hash sha256:1234567890abcdef...</code>
+2. <strong>在新 Master 节点上执行加入命令</strong>：
+   使用上一步生成的 <code>kubeadm join</code> 命令，将新 Master 节点加入集群，并指定该节点为控制平面节点：</p>
+<p><code>sh
+   kubeadm join &lt;master-ip&gt;:&lt;master-port&gt; --token &lt;token&gt; --discovery-token-ca-cert-hash sha256:&lt;hash&gt; --control-plane</code></p>
+<p>示例：</p>
+<p><code>sh
+   kubeadm join 10.0.0.1:6443 --token abc123.0123456789abcdef --discovery-token-ca-cert-hash sha256:1234567890abcdef... --control-plane</code></p>
+<h4 id="114-etcd-kubeadm">1.1.4 确保 etcd 和 kubeadm 证书共享</h4>
+<p>在多 Master 节点配置中，所有 Master 节点需要共享 etcd 证书和 kubeadm 的 CA 证书。可以将现有 Master 节点的 <code>/etc/kubernetes/pki</code> 目录（包含证书和密钥）复制到新 Master 节点，确保所有证书一致。</p>
+<h3 id="workerslave">二、增加 Worker（Slave）节点</h3>
+<p>增加 Worker 节点可以扩展集群的计算和存储容量，使得更多的工作负载能够在集群中运行。</p>
+<h4 id="121-kubernetes">1.2.1 在新机器上安装 Kubernetes 组件</h4>
+<p>与增加 Master 节点类似，增加 Worker 节点同样需要安装 Kubernetes 相关组件。</p>
+<ol>
+<li><strong>更新系统并安装依赖包</strong>：</li>
+</ol>
+<p><code>sh
+   sudo apt-get update
+   sudo apt-get install -y apt-transport-https ca-certificates curl</code>
+2. <strong>添加 Kubernetes 仓库的 GPG 密钥和仓库地址</strong>：</p>
+<p><code>sh
+   curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+   cat &lt;&lt;EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
+   deb https://apt.kubernetes.io/ kubernetes-xenial main
+   EOF</code>
+3. <strong>安装 kubeadm、kubelet 和 kubectl</strong>：</p>
+<p><code>sh
+   sudo apt-get update
+   sudo apt-get install -y kubelet kubeadm kubectl
+   sudo apt-mark hold kubelet kubeadm kubectl</code></p>
+<h4 id="122">1.2.2 配置主机</h4>
+<ol>
+<li><strong>禁用交换分区</strong>：</li>
+</ol>
+<p><code>sh
+   sudo swapoff -a</code></p>
+<p>注释 <code>/etc/fstab</code> 中的交换分区条目，确保重启后交换分区依旧关闭。
+2. <strong>修改网络配置</strong>：
+   确保节点之间可以互相通信，并设置合适的主机名和 <code>/etc/hosts</code> 文件，确保其他 Master 和 Worker 节点的 IP 和主机名可被解析。</p>
+<h4 id="123">1.2.3 加入集群</h4>
+<ol>
+<li><strong>获取集群加入的 token</strong> 和 <code>discovery-token-ca-cert-hash</code>：
+   在现有 Master 节点上执行以下命令获取加入命令：</li>
+</ol>
+<p><code>sh
+   kubeadm token create --print-join-command</code></p>
+<p>输出类似以下命令：</p>
+<p><code>sh
+   kubeadm join 10.0.0.1:6443 --token abc123.0123456789abcdef --discovery-token-ca-cert-hash sha256:1234567890abcdef...</code>
+2. <strong>在新 Worker 节点上执行加入命令</strong>：
+   在新 Worker 节点上运行上一步的 <code>kubeadm join</code> 命令：</p>
+<p><code>sh
+   kubeadm join 10.0.0.1:6443 --token abc123.0123456789abcdef --discovery-token-ca-cert-hash sha256:1234567890abcdef...</code></p>
+<p>这样，新 Worker 节点就会加入集群，并能够被 Master 节点调度 Pod 工作负载。</p>
+<h3 id="_5">三、检查节点是否成功加入</h3>
+<ol>
+<li>在任意一个 Master 节点上，可以使用以下命令查看节点的状态：</li>
+</ol>
+<p><code>sh
+   kubectl get nodes</code></p>
+<p>输出示例：
+   <code>sh
+   NAME           STATUS   ROLES           AGE   VERSION
+   master1        Ready    control-plane   10d   v1.25.0
+   master2        Ready    control-plane   10d   v1.25.0
+   master3        Ready    control-plane   10d   v1.25.0
+   new-master     Ready    control-plane   1h    v1.25.0
+   worker1        Ready    &lt;none&gt;          10d   v1.25.0
+   new-worker     Ready    &lt;none&gt;          20m   v1.25.0</code></p>
+<ul>
+<li><strong>STATUS</strong>：应为 <code>Ready</code>，表示节点已经成功加入并正常运行。</li>
+<li><strong>ROLES</strong>：<code>control-plane</code> 表示 Master 节点，<code>&lt;none&gt;</code> 表示 Worker 节点。</li>
+</ul>
+<h3 id="_6">总结</h3>
+<ul>
+<li><strong>安装 Kubernetes 组件</strong>：在新 Master 或 Worker 节点上，需要安装 <code>kubeadm</code>、<code>kubelet</code> 和 <code>kubectl</code>。</li>
+<li><strong>禁用交换分区</strong>：确保关闭交换分区并在 <code>/etc/fstab</code> 中注释相关条目。</li>
+<li><strong>加入集群</strong>：</li>
+<li><strong>Master 节点</strong>：使用 <code>kubeadm join</code> 命令并加上 <code>--control-plane</code> 参数。</li>
+<li><strong>Worker 节点</strong>：使用 <code>kubeadm join</code> 命令加入到集群中。</li>
+<li><strong>共享证书</strong>：在增加 Master 节点时，需要确保所有控制平面节点之间的证书一致。</li>
+</ul>
+<p>通过以上步骤，可以成功扩展 Kubernetes 集群，无论是增加 Master 节点还是 Worker 节点，均可以帮助缓解集群中的资源紧张问题，提高集群的高可用性和扩展能力。</p>
+</blockquote>
+<h4 id="742">7.4.2 自动增加节点</h4>
+<blockquote>
+<p><strong>Cluster Autoscaler</strong> 是 Kubernetes 集群的一个组件，它可以自动检测集群中的资源利用情况，并根据工作负载的需求动态调整节点的数量。这对于在高峰时自动扩展集群，或在资源使用率较低时减少节点数量以节省成本特别有用。</p>
+<p>Cluster Autoscaler 的自动扩展配置主要依赖于云服务提供商提供的 API，因为它需要管理节点（虚拟机实例），因此在云环境中（如 AWS、GCP、Azure）效果最佳。以下是详细的设置步骤和配置选项。</p>
+<h3 id="1-cluster-autoscaler">1. 安装 Cluster Autoscaler</h3>
+<p>可以通过 <code>kubectl apply</code> 或 <strong>Helm</strong> 来安装 <strong>Cluster Autoscaler</strong>。安装之前需要确保 Kubernetes 集群能够管理节点，并且你有合适的云提供商集成。例如，如果你的集群部署在 AWS 上，则需要将 IAM 角色和权限正确配置，以允许自动扩展。</p>
+<h4 id="11-kubectl-cluster-autoscaler">1.1 使用 kubectl 安装 Cluster Autoscaler</h4>
+<p><strong>Step 1</strong>: 下载 Cluster Autoscaler 的配置文件。</p>
+<ul>
+<li>Kubernetes 官方提供了适用于不同云服务提供商的 YAML 配置文件。例如，假设你在 <strong>AWS</strong> 上运行集群，可以下载以下文件并进行修改：
+  <code>sh
+  curl -O https://raw.githubusercontent.com/kubernetes/autoscaler/cluster-autoscaler-release-1.25/cluster-autoscaler/cloudprovider/aws/examples/cluster-autoscaler-autodiscover.yaml</code></li>
+</ul>
+<p><strong>Step 2</strong>: 编辑文件并根据集群配置进行调整。</p>
+<ul>
+<li>需要设置适合你的云提供商的参数，通常包括 <code>cluster-name</code>、<code>node-group</code> 名称等。</li>
+</ul>
+<p>例如，文件中可能包含类似于以下的配置部分，你需要根据集群环境进行修改：</p>
+<p><code>yaml
+command:
+  - ./cluster-autoscaler
+  - --v=4
+  - --stderrthreshold=info
+  - --cloud-provider=aws
+  - --skip-nodes-with-local-storage=false
+  - --expander=least-waste
+  - --nodes=1:10:&lt;node-group-name&gt;   # 需要根据你的集群配置修改 node group 名称</code></p>
+<ul>
+<li><strong><code>--cloud-provider=aws</code></strong>：根据你的云提供商配置，可能是 <code>aws</code>、<code>gce</code>、<code>azure</code>、<code>alibaba</code> 等。</li>
+<li><strong><code>--nodes=1:10:&lt;node-group-name&gt;</code></strong>：表示在特定的节点组（Node Group）中，最少有 1 个节点，最多有 10 个节点。<code>&lt;node-group-name&gt;</code> 应替换为你的节点组名称。</li>
+</ul>
+<p><strong>Step 3</strong>: 应用 Cluster Autoscaler 的 YAML 文件。</p>
+<p><code>sh
+kubectl apply -f cluster-autoscaler-autodiscover.yaml</code></p>
+<h4 id="12-helm-cluster-autoscaler">1.2 使用 Helm 安装 Cluster Autoscaler</h4>
+<p>也可以使用 Helm Charts 进行安装，这种方法比较方便，特别是需要安装特定版本时。</p>
+<p><strong>Step 1</strong>: 添加 Helm 仓库。</p>
+<p><code>sh
+helm repo add autoscaler https://kubernetes.github.io/autoscaler
+helm repo update</code></p>
+<p><strong>Step 2</strong>: 使用 Helm 安装 Cluster Autoscaler。</p>
+<p><code>sh
+helm install cluster-autoscaler autoscaler/cluster-autoscaler \
+  --namespace kube-system \
+  --set cloudProvider=aws \
+  --set awsRegion=&lt;your-region&gt; \
+  --set rbac.create=true</code></p>
+<ul>
+<li><strong><code>cloudProvider</code></strong>：根据你的集群所在的云服务提供商设置为 <code>aws</code>、<code>gce</code>、<code>azure</code> 等。</li>
+<li><strong><code>awsRegion</code></strong>：设置为你的集群所在的 AWS 区域（例如 <code>us-west-2</code>）。</li>
+</ul>
+<h3 id="2-cloud-provider">2. 配置 Cloud Provider 权限</h3>
+<p>Cluster Autoscaler 需要管理集群中的节点，因此需要足够的权限在云服务提供商的环境中创建、删除节点。</p>
+<p>以 <strong>AWS</strong> 为例：</p>
+<h4 id="21-iam">2.1 配置 IAM 角色</h4>
+<ul>
+<li>在 AWS 上运行的节点必须有合适的 IAM 角色，使得 Cluster Autoscaler 可以管理这些节点。</li>
+<li>IAM 角色中需要添加以下权限：</li>
+</ul>
+<p><code>json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:DescribeAutoScalingGroups",
+                "autoscaling:DescribeAutoScalingInstances",
+                "autoscaling:DescribeTags",
+                "autoscaling:SetDesiredCapacity",
+                "autoscaling:TerminateInstanceInAutoScalingGroup",
+                "ec2:DescribeLaunchTemplateVersions"
+            ],
+            "Resource": "*"
+        }
+    ]
+}</code></p>
+<ul>
+<li>这将允许 Cluster Autoscaler 在节点组（Node Group）中增加或删除节点。</li>
+</ul>
+<h4 id="22-node-group">2.2 配置节点组（Node Group）</h4>
+<ul>
+<li>在 AWS 中，你的 Kubernetes 集群的节点通常由 <strong>Auto Scaling Group (ASG)</strong> 管理。Cluster Autoscaler 使用这些 ASG 来添加或删除节点。</li>
+<li>在节点组的配置中，设置最小和最大节点数量，例如最少 1 个节点，最多 10 个节点。</li>
+<li>Cluster Autoscaler 会自动调整节点数量，以确保满足 Pod 的资源请求。</li>
+</ul>
+<h3 id="3-cluster-autoscaler">3. 配置 Cluster Autoscaler 参数</h3>
+<p>为了更好地管理节点扩展行为，你可以配置 Cluster Autoscaler 的一些常用参数：</p>
+<ul>
+<li><strong><code>--balance-similar-node-groups</code></strong>：确保扩展时，在不同的节点组间保持平衡。</li>
+<li><strong><code>--skip-nodes-with-system-pods=false</code></strong>：允许包含系统 Pod 的节点被删除。</li>
+<li><strong><code>--expander</code></strong>：指定扩展策略。</li>
+<li><strong><code>random</code></strong>：随机选择一个节点组进行扩展。</li>
+<li><strong><code>least-waste</code></strong>：最小化资源浪费，选择最合适的节点组进行扩展。</li>
+<li><strong><code>most-pods</code></strong>：选择拥有最多 Pod 数量的节点组进行扩展。</li>
+<li><strong><code>--scale-down-enabled</code></strong>：是否允许自动缩减节点数量。</li>
+<li><strong><code>--scale-down-delay-after-add=10m</code></strong>：在新增节点后的 10 分钟后，才允许进行缩减操作。</li>
+</ul>
+<h3 id="4-cluster-autoscaler">4. 验证 Cluster Autoscaler 是否工作</h3>
+<p><strong>Step 1</strong>: 确认 Cluster Autoscaler Pod 正在运行。</p>
+<p><code>sh
+kubectl get pods -n kube-system | grep cluster-autoscaler</code></p>
+<p>输出示例：</p>
+<p><code>sh
+cluster-autoscaler-xxxxxxxxxx-yyyyy   1/1     Running   0          1m</code></p>
+<p><strong>Step 2</strong>: 查看 Cluster Autoscaler 的日志，确保它正常工作并根据需要调整节点数量。</p>
+<p><code>sh
+kubectl logs -f deployment/cluster-autoscaler -n kube-system</code></p>
+<p>在日志中可以看到 Cluster Autoscaler 在检查集群状态，决定是否增加或删除节点。</p>
+<h3 id="5_1">5. 测试自动扩展</h3>
+<p>为了测试 Cluster Autoscaler 是否正常工作，你可以创建一个需要大量资源的 Deployment。例如：</p>
+<p><strong>Step 1</strong>: 创建一个 Deployment 需要大量 CPU 和内存。</p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stress-deployment
+  namespace: default
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: stress
+  template:
+    metadata:
+      labels:
+        app: stress
+    spec:
+      containers:
+      - name: stress
+        image: busybox
+        command: ["sh", "-c", "while true; do echo 'Stress test'; sleep 10; done"]
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "512Mi"</code></p>
+<p>应用该文件后，集群可能会因资源不足而导致部分 Pod 处于 <code>Pending</code> 状态，Cluster Autoscaler 应该会检测到这一点并自动扩展节点以容纳新 Pod。</p>
+<p><strong>Step 2</strong>: 观察扩展情况。
+使用以下命令查看节点状态，观察是否有新的节点加入集群：</p>
+<p><code>sh
+kubectl get nodes</code></p>
+<h3 id="_7">总结</h3>
+<ol>
+<li>
+<p><strong>安装 Cluster Autoscaler</strong>：</p>
+</li>
+<li>
+<p>可以通过 <code>kubectl apply</code> 或 Helm 安装。</p>
+</li>
+<li>需要根据云提供商（如 AWS、GCP、Azure 等）进行特定配置。</li>
+<li>
+<p><strong>配置 Cloud Provider 权限</strong>：</p>
+</li>
+<li>
+<p>在 AWS 上需要配置 IAM 角色，并确保节点组支持扩展。</p>
+</li>
+<li>设置节点组（Node Group）的最小和最大节点数量。</li>
+<li>
+<p><strong>配置 Cluster Autoscaler 参数</strong>：</p>
+</li>
+<li>
+<p>可以通过 <code>--expander</code>、<code>--scale-down-enabled</code> 等参数调整 Cluster Autoscaler 的行为。</p>
+</li>
+<li>
+<p><strong>验证和测试 Cluster Autoscaler</strong>：</p>
+</li>
+<li>
+<p>查看 Cluster Autoscaler Pod 状态和日志，确保其正常工作。</p>
+</li>
+<li>通过创建需要大量资源的 Deployment 测试自动扩展功能。</li>
+</ol>
+<p>通过正确配置 Cluster Autoscaler，可以有效应对 Kubernetes 集群中的资源不足问题，实现节点的自动扩展和缩减，提高集群的灵活性和稳定性。</p>
+</blockquote>
+<h4 id="743-pod">7.4.3 Pod 资源配额管理</h4>
+<blockquote>
+<p>在 Kubernetes 中，通过为 Pod 配置 <strong>requests</strong> 和 <strong>limits</strong>，可以有效地管理集群中的资源，确保容器之间的公平资源分配，避免个别容器占用过多资源而导致其他容器受影响。这种管理方式对于集群资源紧张情况下的资源优化分配尤其重要。以下是对 <code>requests</code> 和 <code>limits</code> 的详细说明，以及为什么合理设置它们可以有效缓解节点资源紧张。</p>
+<h3 id="1-requests-limits">1. requests 和 limits 详细解释</h3>
+<ul>
+<li>
+<p><strong>requests</strong>：</p>
+</li>
+<li>
+<p><strong>资源请求</strong>（Resource Requests）是容器运行时所需的最小资源量。</p>
+</li>
+<li>Kubernetes 调度器会根据 Pod 的 <code>requests</code> 值来确定该 Pod 能够被分配到哪个节点上。</li>
+<li>例如，如果某个容器请求了 500m CPU（500 毫核），调度器会查找具有至少 500m 可用 CPU 的节点，以将 Pod 调度到该节点上。</li>
+<li>
+<p><strong>limits</strong>：</p>
+</li>
+<li>
+<p><strong>资源上限</strong>（Resource Limits）是容器在运行时可以使用的最大资源量。</p>
+</li>
+<li>容器可以在 <code>requests</code> 和 <code>limits</code> 之间自由消耗资源，但是无法超出 <code>limits</code> 设定的值。</li>
+<li>例如，CPU 限制设置为 1 核，表示该容器最多只能使用 1 核 CPU，即便集群中有更多空闲资源。</li>
+</ul>
+<p>通过合理设置 <code>requests</code> 和 <code>limits</code>，可以实现以下效果：</p>
+<ul>
+<li><strong>提高集群资源的利用效率</strong>。</li>
+<li><strong>防止资源争用</strong>，即某些容器占用过多的资源而影响其他容器的正常运行。</li>
+<li><strong>支持资源调度的公平性</strong>，使调度器根据请求的资源量合理分配 Pod 到合适的节点上。</li>
+</ul>
+<h3 id="2-yaml">2. 示例 YAML 文件解释</h3>
+<p>以下是一个示例 YAML 文件，通过定义 <code>requests</code> 和 <code>limits</code> 来管理资源。</p>
+<p><code>yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resource-demo
+  namespace: default
+spec:
+  containers:
+  - name: resource-container
+    image: nginx
+    resources:
+      requests:
+        cpu: "500m"        # 500 毫核 CPU
+        memory: "256Mi"    # 256 MiB 内存
+      limits:
+        cpu: "1"           # 1 核 CPU
+        memory: "512Mi"    # 512 MiB 内存</code></p>
+<h4 id="21">2.1 配置项说明</h4>
+<ul>
+<li>
+<p><strong>requests</strong>:</p>
+</li>
+<li>
+<p><code>cpu: "500m"</code> 表示容器需要 500 毫核 CPU（即 0.5 核）。</p>
+</li>
+<li><code>memory: "256Mi"</code> 表示容器需要 256 MiB 内存。</li>
+<li>当 Pod 创建时，Kubernetes 调度器会确保容器调度到一个拥有足够资源的节点上。如果某个节点可用资源不足以满足 <code>requests</code>，那么该 Pod 将不会被调度到该节点上。</li>
+<li>
+<p><strong>limits</strong>:</p>
+</li>
+<li>
+<p><code>cpu: "1"</code> 表示容器最多可以使用 1 核 CPU。</p>
+</li>
+<li><code>memory: "512Mi"</code> 表示容器最多可以使用 512 MiB 内存。</li>
+<li>当容器尝试使用超过 <code>limits</code> 的资源时，Kubernetes 会采取措施限制使用。<ul>
+<li><strong>CPU 超过 <code>limits</code></strong>：容器会被限制使用更多 CPU，但是不会被强行杀死。Kubernetes 使用 <strong>CFS 带宽</strong>（CFS quota）来对 CPU 进行节流。</li>
+<li><strong>内存超过 <code>limits</code></strong>：容器会被系统终止（OOM，即内存溢出）以保护节点的其他容器。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-requests-limits">3. requests 和 limits 的作用及其影响</h3>
+<ol>
+<li>
+<p><strong>资源调度</strong>：</p>
+</li>
+<li>
+<p><strong>requests</strong> 对应的是 Kubernetes 调度器的决策。调度器根据请求值决定哪个节点适合容纳新的 Pod。</p>
+</li>
+<li>如果设置 <code>requests</code> 过高，可能会导致 Pod 难以被调度，因为需要有足够资源的节点才能接受该 Pod。如果设置过低，Pod 会被调度到资源不足的节点，从而导致潜在的资源争用问题。</li>
+<li>
+<p><strong>资源限制</strong>：</p>
+</li>
+<li>
+<p><strong>limits</strong> 定义了容器使用资源的上限，用于确保某个 Pod 不会占用超过其配额的资源。</p>
+</li>
+<li>设置合理的 <code>limits</code> 可以防止“资源抢占”——某个容器占用大量资源而影响到其他容器的情况。如果不设定 <code>limits</code>，某些工作负载可能会无限制地消耗资源，导致其他关键任务无法运行。</li>
+<li>
+<p><strong>防止资源争用</strong>：</p>
+</li>
+<li>
+<p>通过对每个 Pod 的 CPU 和内存进行限制，Kubernetes 可以确保所有工作负载按照设定的资源约束运行，防止某些工作负载因编程错误或其他原因消耗过多资源而导致整个节点性能下降。</p>
+</li>
+<li>
+<p><strong>提高资源利用率</strong>：</p>
+</li>
+<li>
+<p>通过精确的 <code>requests</code> 和 <code>limits</code> 配置，可以更高效地利用节点上的资源。</p>
+</li>
+<li>例如，假设节点上有 4 核 CPU，如果多个 Pod 的 <code>requests</code> 加起来不超过 4 核，调度器会合理地分配它们到这个节点中，充分利用资源。</li>
+</ol>
+<h3 id="4_2">4. 示例分析：为何合理配置非常重要？</h3>
+<p>以下是一些常见的配置方案以及它们的效果：</p>
+<h4 id="41-requests-limits">4.1 没有设置 <code>requests</code> 和 <code>limits</code></h4>
+<ul>
+<li>如果没有设置 <code>requests</code>，调度器将认为该 Pod 的资源需求为 0，这意味着 Pod 可以被调度到任何节点，即使该节点几乎没有可用资源。</li>
+<li>没有 <code>limits</code> 意味着容器可以无限制地消耗节点资源，可能导致系统 OOM（Out of Memory）并强制终止其他容器。</li>
+</ul>
+<h4 id="42-requests-limits">4.2 设置了 <code>requests</code> 但没有设置 <code>limits</code></h4>
+<ul>
+<li>Pod 会被调度到有足够可用资源的节点上，但由于没有 <code>limits</code>，容器仍然可以占用更多资源，可能导致影响其他容器。</li>
+</ul>
+<h4 id="43-requests-limits">4.3 设置了合理的 <code>requests</code> 和 <code>limits</code></h4>
+<ul>
+<li>调度器会根据 <code>requests</code> 确定是否有足够资源可供分配，而 <code>limits</code> 会限制容器最大资源使用，确保资源不会被单个容器抢占，从而保护其他容器的运行。</li>
+</ul>
+<h3 id="5_2">5. 小结和最佳实践</h3>
+<ul>
+<li>
+<p><strong>为所有 Pod 设置 requests 和 limits</strong>：</p>
+</li>
+<li>
+<p>为 Pod 设置合理的 <code>requests</code> 和 <code>limits</code>，可以避免资源争用并提高调度的准确性。</p>
+</li>
+<li>
+<p><strong>合理设置值</strong>：</p>
+</li>
+<li>
+<p><code>requests</code> 应该设置为容器的正常运行所需的资源，以确保 Pod 能被调度到合适的节点。</p>
+</li>
+<li><code>limits</code> 则可以设置为稍高于 <code>requests</code>，以确保在高负载时容器有能力使用更多资源，但仍受限于上限值。</li>
+<li>
+<p><strong>监控和调整</strong>：</p>
+</li>
+<li>
+<p>使用监控工具（如 Prometheus 和 Grafana）来观察 Pod 的资源使用情况，定期调整 <code>requests</code> 和 <code>limits</code> 的配置，以适应应用程序的资源需求变化。</p>
+</li>
+<li>
+<p><strong>平衡资源利用率与调度灵活性</strong>：</p>
+</li>
+<li>
+<p>如果 <code>requests</code> 设置过大，可能导致 Pod 难以被调度；如果设置过小，则可能导致节点资源紧张，因此需要根据实际资源使用情况进行调整。</p>
+</li>
+</ul>
+<p>通过合理的资源配置，Kubernetes 可以确保集群中的每个工作负载都能获得所需的资源，避免过度分配和资源争用问题，从而提高整个集群的稳定性和资源利用率。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

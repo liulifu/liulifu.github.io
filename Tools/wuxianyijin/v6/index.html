@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五险一金计算器</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>五险一金&个人所得税计算器</h1>
+    </header>
+
+    <main id="content">
+        <h2>计算器</h2>
+        <label for="salary">输入工资：</label>
+        <input type="number" id="salary" placeholder="输入工资">
+        <button id="calculate">计算</button>
+        
+        <div id="rate-inputs">
+            <h3>自定义费率（默认按系统费率，可修改）</h3>
+            <label for="pension-rate-employer">养老保险单位费率：</label>
+            <input type="number" id="pension-rate-employer" step="0.01" value="19">
+            <label for="pension-rate-personal">养老保险个人费率：</label>
+            <input type="number" id="pension-rate-personal" step="0.01" value="8"><br>
+
+            <label for="medical-rate-employer">医疗保险单位费率：</label>
+            <input type="number" id="medical-rate-employer" step="0.01" value="10">
+            <label for="medical-rate-personal">医疗保险个人费率：</label>
+            <input type="number" id="medical-rate-personal" step="0.01" value="2"><br>
+
+            <label for="unemployment-rate-employer">失业保险单位费率：</label>
+            <input type="number" id="unemployment-rate-employer" step="0.01" value="0.8">
+            <label for="unemployment-rate-personal">失业保险个人费率：</label>
+            <input type="number" id="unemployment-rate-personal" step="0.01" value="0.2"><br>
+
+            <label for="injury-rate-employer">工伤保险单位费率：</label>
+            <input type="number" id="injury-rate-employer" step="0.01" value="0.5">
+            <label for="injury-rate-personal">工伤保险个人费率：</label>
+            <input type="number" id="injury-rate-personal" step="0.01" placeholder="可空"><br>
+
+            <label for="maternity-rate-employer">生育保险单位费率：</label>
+            <input type="number" id="maternity-rate-employer" step="0.01" value="0.8">
+            <label for="maternity-rate-personal">生育保险个人费率：</label>
+            <input type="number" id="maternity-rate-personal" step="0.01" placeholder="可空"><br>
+
+            <label for="housing-rate-employer">住房公积金单位费率：</label>
+            <input type="number" id="housing-rate-employer" step="0.01" value="12">
+            <label for="housing-rate-personal">住房公积金个人费率：</label>
+            <input type="number" id="housing-rate-personal" step="0.01" value="12"><br>
+        </div>
+
+        <div id="result"></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 五险一金计算器</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

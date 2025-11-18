@@ -1,0 +1,4296 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC.html">
+      
+      
+        <link rel="next" href="%E6%9C%AC%E5%9C%B0-GitHub-%E9%98%BF%E9%87%8C%E4%BA%91ECS-%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9CI-CD%E6%96%B9%E6%A1%88.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>本Blog架构 - Lifu Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/nav-sidebar-tweaks.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#obsidian-python" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../index.html" title="Lifu Blog" class="md-header__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lifu Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              本Blog架构
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../biopharma/Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-tabs__link">
+          
+  
+  
+  Biopharma
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Csv
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Dba
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../devops/K8s_1.html" class="md-tabs__link">
+          
+  
+  
+  Devops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Enterprise
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tool/index.html" class="md-tabs__link">
+          
+  
+  
+  Tool
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Lifu Blog" class="md-nav__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lifu Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biopharma
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biopharma
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/Werum-PAS-X-%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统部署安装手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-01-%E6%80%BB%E8%A7%88%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（01）总览与设计原则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-02-LIMS%E4%B8%8E%E4%B8%BB%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（02）LIMS 与主数据治理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-03-ELN%E6%96%B9%E6%B3%95%E6%95%B0%E5%AD%97%E5%8C%96%E4%B8%8ELES.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（03）ELN、方法数字化与 LES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-04-%E4%BB%AA%E5%99%A8%E6%95%B0%E6%8D%AECDS%E4%B8%8ESDMS%E6%95%B0%E6%8D%AE%E6%B9%96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（04）仪器数据、CDS 与 SDMS、数据湖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-05-%E5%90%88%E8%A7%84%E4%B8%8E%E9%AA%8C%E8%AF%81-21CFRPart11-Annex11-CSV-CSA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（05）合规与验证：21 CFR Part 11 / Annex 11 与 CSV/CSA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-06-%E9%9B%86%E6%88%90%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%B9%B3%E5%8F%B0%E5%B7%A5%E7%A8%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（06）集成架构与平台工程（API 网关 / 事件驱动 / 编排）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Csv
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Csv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSV（计算机化系统验证）资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/cccc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cccc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dba
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dba
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 专题索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Apache-Doris-OLAP-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Doris（国产 OLAP）：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E9%AB%98%E5%8F%AF%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94%E4%B8%8E%E9%80%89%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 高可用解决方案对比与选型指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL 主从复制与高可用架构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/OceanBase-%E7%A4%BE%E5%8C%BA%E7%89%88-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OceanBase 社区版：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%A2%9E%E5%8A%A0%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 增加删除数据文件的方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%B8%B8%E8%A7%81%E8%A7%86%E5%9B%BE%E5%8F%8A%E7%94%A8%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 常见视图及用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%85%B3%E9%94%AE%E7%BB%84%E4%BB%B6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 架构及关键组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E7%AD%89%E5%BE%85%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 等待事件处理方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-01-%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（01）部署与架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-02-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E4%B8%8E%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（02）日常运维与性能监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-03-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（03）数据安全与备份恢复（RMAN / 冷备 / 热备 / 灾备）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-04-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E4%B8%8E%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（04）故障处理与应急响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DataGuard-%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Data Guard 实战部署方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate-%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E5%8F%8A%E5%85%A5%E9%97%A8%E6%95%99%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 部署方案及入门教学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate%E4%B8%8EMySQL%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 与 MySQL 数据交换方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RAC-%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RAC 集群部署与调优方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RMAN-%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RMAN 增量备份方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle%E8%BF%81%E7%A7%BB%E8%87%B3MySQL-50TB%E7%BA%A7%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 迁移至 MySQL：50TB 级数据迁移方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/PostgreSQL-%E6%B5%81%E5%A4%8D%E5%88%B6%E4%B8%8EPatroni%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL 流复制与 Patroni 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E5%85%B8%E5%9E%8B%E9%97%AE%E9%A2%98%E7%A4%BA%E4%BE%8B%E5%8F%8A%E8%A7%A3%E6%9E%90.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 常见运维典型问题示例及解析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/TiDB-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TiDB 分布式数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/dm8-performance-tuning-with-ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8 性能调优方案与 AI（ChatGPT 5.x）辅助实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/openGauss-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    openGauss 数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/oracle-pdb-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle PDB 详细使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E4%BA%BA%E5%A4%A7%E9%87%91%E4%BB%93KingbaseES-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    人大金仓 KingbaseES：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E4%B8%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库性能诊断与优化实战手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88-Oracle%E5%88%B0PostgreSQL.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库迁移方案：Oracle 到 PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-Linux%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：Linux（RHEL）入门完整指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Devops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Devops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（一）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（二）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（四）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 的目录结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows 域控服务器部署与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/aliecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALIECS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/ansible-enterprise-practical-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ansible 企业实战方案：中型企业从安装到策略落地（含命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/enterprise-security-strategy-and-governance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 系统安全治理：策略、规范与生命周期管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/netbackup-data-domain-quantum-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业备份与容灾：Veritas NetBackup + Data Domain + Quantum 实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/prometheus-grafana-monitoring-for-enterprise.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus + Grafana 监控体系（结合 Ansible 的企业落地）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-oob-management-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器带外管理（OOB）概览与实践：IPMI / iDRAC / iLO / Redfish
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-raid-configuration-dell-perc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器 RAID 配置实战：以 Dell PERC (perccli/storcli) 为例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88-vSphere-Hadoop-Grafana-Ansible-Chef.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 日常运维方案：vSphere / Hadoop / Grafana / Ansible / Chef
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT%E7%AE%A1%E7%90%86%E5%91%98%E6%96%B0%E5%91%98%E5%B7%A5%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 管理员新员工笔记本配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业文件服务器与权限管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%AE%A1%E7%90%86-Exchange-Server.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业邮件系统部署与管理：Exchange Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E5%9F%BA%E4%BA%8EWindows%E7%9A%84%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E8%A1%8C%E4%B8%9A%E8%BD%AF%E4%BB%B6%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于 Windows 的生物制药行业软件运维方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E4%BC%81%E4%B8%9AIT%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物制药企业 IT 基础架构概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IT Help Desk Access Tool（PyQt5）复现与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ci-cd-github-actions-to-aliyun-ecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ci-cd-smoke-test.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD 测试文章（自动化烟囱测试）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ci-tools-jenkins-gitlabci-solutions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jenkins 与 GitLab CI：企业级 CI/CD 方案与实战（含项目示例与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="clock-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    clock 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="deepsite_deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to build your own DeepSite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="fengbi-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fengbi PDF 工具套件：抽取/清洗/分割/偏移 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="gradle-usage-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle 使用方案：从入门到实践（含项目与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="maven-automation-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Maven 自动化构建与测试：案例教学与命令行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="paddleocrproject-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    paddleocrproject 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="pc_monitor-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pc_monitor 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="skywalking-usage-ops.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache SkyWalking 使用方案与运维经验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E4%B8%80%E7%A7%8D%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一种文件加密设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E4%B8%89%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三项目复现与重构方案：clock、pc_monitor、paddleocrproject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 博客自动化工作流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本Blog架构
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="%E6%9C%ACBlog%E6%9E%B6%E6%9E%84.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本Blog架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#obsidian-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Obsidian 和 Python 管理静态博客索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用 Obsidian 和 Python 管理静态博客索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 先决条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 项目设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --- 配置 ---
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取脚本所在的目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入和输出文件相对于脚本目录的路径
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown-json-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown 表格头(小写)到最终 JSON key 的映射
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-indexjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        确保这里的 key (值) 与你的 index.js 读取的字段名一致
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --- ---
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blog-post-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blog Post Index
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blog Post Index">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 日常工作流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. (可选) 自定义和故障排除
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%9C%AC%E5%9C%B0-GitHub-%E9%98%BF%E9%87%8C%E4%BA%91ECS-%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9CI-CD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E6%9E%84%E5%BB%BAPython%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建PYTHON开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    静态博客的浏览器缓存问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具总览（Tool）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/cron-designer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron Designer（计划任务表达式设计）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/gobang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gobang（五子棋）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/insurance-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insurance Calculator（五险一金计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/password-generator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Password Generator（密码生成器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/python-interpreter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Interpreter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rgb-color-picker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RGB Color Picker（颜色选择器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rmb-converter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMB Converter（人民币大小写转换）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/sterilization-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sterilization Guide（灭菌指南）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/unit-conversion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Conversion（单位换算）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/vat-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAT Calculator（增值税计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#obsidian-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 Obsidian 和 Python 管理静态博客索引
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用 Obsidian 和 Python 管理静态博客索引">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 先决条件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 项目设置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --- 配置 ---
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        获取脚本所在的目录
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入和输出文件相对于脚本目录的路径
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#markdown-json-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Markdown 表格头(小写)到最终 JSON key 的映射
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-indexjs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        确保这里的 key (值) 与你的 index.js 读取的字段名一致
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        --- ---
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blog-post-index" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Blog Post Index
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blog Post Index">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 日常工作流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. (可选) 自定义和故障排除
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h2 id="obsidian-python">使用 Obsidian 和 Python 管理静态博客索引</h2>
+<p><strong>目标：</strong> 通过在 Obsidian 中维护一个 Markdown 文件 (<code>posts/index.md</code>) 来管理博客文章列表，并使用一个本地 Python 脚本自动将其转换为前端 JavaScript (<code>index.js</code>) 所需的 <code>posts/index.json</code> 文件。这样可以利用 Obsidian 的编辑和 Git 功能简化博客维护流程。</p>
+<p><strong>核心流程：</strong></p>
+<ol>
+<li>在 Obsidian 中编辑文章 (<code>.md</code>) 和索引 (<code>posts/index.md</code>)。</li>
+<li>在本地运行 Python 脚本 (<code>generate_index.py</code>) 将 <code>posts/index.md</code> 转换为 <code>posts/index.json</code>。</li>
+<li>使用 Git (通过 Obsidian 插件或命令行) 提交并推送所有更改到 GitHub。</li>
+</ol>
+<hr />
+<h3 id="1">1. 先决条件</h3>
+<ul>
+<li><strong>Python 3:</strong> 确保你的本地计算机安装了 Python 3。可以在终端运行 <code>python --version</code> 或 <code>python3 --version</code> 来检查。</li>
+<li><strong>Obsidian:</strong> 你正在使用的笔记软件。</li>
+<li><strong>Git:</strong> 版本控制系统，用于将更改推送到 GitHub。</li>
+<li><strong>(可选) Obsidian Git 插件:</strong> 方便在 Obsidian 内部进行 Git 操作。</li>
+</ul>
+<hr />
+<h3 id="2">2. 项目设置</h3>
+<ol>
+<li>
+<p><strong>目录结构:</strong> 确保你的博客项目根目录大致如下：</p>
+<p><code>your-blog-root/
+├── .git/              # Git 仓库目录 (可能隐藏)
+├── posts/             # 存放博客文章和索引文件的目录
+│   ├── index.md       # 【新增】用 Markdown 表格维护的文章索引源文件
+│   ├── index.json     # 【自动生成】给前端使用的 JSON 索引文件
+│   ├── 2023-10-28-your-post.md
+│   └── ... (其他 .md 文章)
+├── generate_index.py  # 【新增】Python 转换脚本
+├── index.html         # 博客主页
+├── index.js           # 前端 JavaScript
+├── index.css          # 主要样式表
+├── showdown.min.js    # Markdown 渲染库
+└── ... (其他资源文件如 reset.css, 图片等)</code></p>
+</li>
+<li>
+<p><strong>创建 Python 脚本 (<code>generate_index.py</code>)</strong></p>
+<p>在你的项目根目录 (<code>your-blog-root/</code>) 下创建一个名为 <code>generate_index.py</code> 的文件，并将以下 Python 代码复制进去：</p>
+<p>```python
+import json
+import re
+from pathlib import Path
+import datetime
+import sys</p>
+<h1 id="-">--- 配置 ---</h1>
+<h1 id="_1">获取脚本所在的目录</h1>
+<p>SCRIPT_DIR = Path(<strong>file</strong>).parent.resolve()</p>
+<h1 id="_2">输入和输出文件相对于脚本目录的路径</h1>
+<p>SOURCE_MD_FILE = SCRIPT_DIR / 'posts' / 'index.md'
+OUTPUT_JSON_FILE = SCRIPT_DIR / 'posts' / 'index.json'</p>
+<h1 id="markdown-json-key">Markdown 表格头(小写)到最终 JSON key 的映射</h1>
+<h1 id="key-indexjs">确保这里的 key (值) 与你的 index.js 读取的字段名一致</h1>
+<p>HEADER_MAP = {
+    'title': 'title',         # 必需
+    'date': 'date',           # 必需 (YYYY-MM-DD格式)
+    'file': 'file',           # 必需 (markdown文件名)
+    'excerpt': 'excerpt',     # 可选
+    'author': 'author',       # 可选
+    'version': 'version',     # 可选
+    'license': 'license',     # 可选
+    # 你可以根据需要添加更多映射
+}
+REQUIRED_HEADERS = ['title', 'date', 'file'] # 必须存在的列</p>
+<h1 id="-_1">--- ---</h1>
+<p>def parse_markdown_table(md_content):
+    """
+    从 Markdown 文本中解析第一个符合格式的表格。
+    要求：
+    - 标准 Markdown 表格语法 (| 分隔列, 第二行为分隔行 |:---|)
+    - 表头必须包含 REQUIRED_HEADERS 中定义的列名 (大小写不敏感)。
+    """
+    posts = []
+    lines = md_content.strip().splitlines() # 使用 splitlines 保留换行符差异
+    headers = []
+    header_indices = {} # 存储表头名(小写)到列索引的映射
+    in_table_data = False # 标记是否在读取表格数据行</p>
+<pre><code>print("Starting table parsing...")
+
+for line_num, line in enumerate(lines):
+    line = line.strip()
+    if not line.startswith('|') or not line.endswith('|'):
+        # 如果已经开始解析数据行，遇到非表格行则停止
+        if in_table_data:
+            print(f"Stopped parsing table data at line {line_num + 1}.")
+            break
+        continue # 跳过非表格格式的行
+
+    parts = [p.strip() for p in line.strip('|').split('|')]
+
+    # 尝试识别分隔行 (必须在表头行之后)
+    if headers and re.match(r'^[:\- ]+$', parts[0].replace(':', '')) and len(parts) == len(headers):
+        # 检查是否所有必需的表头都已找到
+        missing_headers = [h for h in REQUIRED_HEADERS if h not in header_indices]
+        if missing_headers:
+            print(f"Error: Table is missing required header(s): {', '.join(missing_headers)}. Headers found: {list(header_indices.keys())}")
+            return None # 表头不完整，返回 None
+        in_table_data = True
+        print(f"Table separator found at line {line_num + 1}. Headers mapped: {header_indices}")
+        continue
+
+    # 尝试识别表头行 (必须是找到的第一行表格格式)
+    if not headers and not in_table_data:
+        raw_headers = parts
+        headers = [h.lower() for h in raw_headers]
+        # 建立表头名到索引的映射
+        for i, h in enumerate(headers):
+            if h: # 忽略空的表头单元格
+               header_indices[h] = i
+        print(f"Potential header row found at line {line_num + 1}: {raw_headers}")
+        continue # 继续寻找分隔行
+
+    # 解析数据行 (必须在分隔行之后)
+    if in_table_data and len(parts) == len(headers):
+        row_data = {}
+        is_valid_row = True
+
+        # 提取必需字段的值
+        required_values = {}
+        for req_h in REQUIRED_HEADERS:
+            header_index = header_indices.get(req_h)
+            if header_index is None or header_index &gt;= len(parts):
+                print(f"Warning: Skipping row at line {line_num + 1}. Cannot find index for required header '{req_h}'. Row data: {parts}")
+                is_valid_row = False
+                break
+            value = parts[header_index]
+            if not value:
+                print(f"Warning: Skipping row at line {line_num + 1}. Required field '{req_h}' is empty. Row data: {parts}")
+                is_valid_row = False
+                break
+            required_values[req_h] = value
+
+        if not is_valid_row:
+            continue
+
+        # 填充 JSON 对象，使用 HEADER_MAP
+        for md_header_lower, json_key in HEADER_MAP.items():
+            header_index = header_indices.get(md_header_lower)
+            # 检查表头是否存在且索引有效
+            if header_index is not None and header_index &lt; len(parts):
+                value = parts[header_index]
+                if value: # 只有当单元格非空时才添加该字段
+                    row_data[json_key] = value
+
+        # 再次确认核心字段被正确填充 (理论上应该已经通过前面的检查)
+        if all(key in row_data for key in REQUIRED_HEADERS):
+            posts.append(row_data)
+        else:
+             print(f"Warning: Skipping row at line {line_num + 1} due to processing issue. Data extracted: {row_data}. Original parts: {parts}")
+
+if not in_table_data:
+     print("Error: Could not find a valid Markdown table structure (header + separator + data).")
+     return None
+if not posts:
+     print("Warning: Table found, but no valid data rows could be parsed.")
+
+print(f"Parsing finished. Found {len(posts)} valid post entries.")
+return posts
+</code></pre>
+<p>def validate_and_sort_posts(posts):
+    """验证日期格式并按日期排序"""
+    valid_posts = []
+    print("Validating dates and preparing for sorting...")
+    for post in posts:
+        try:
+            # 尝试解析日期，确保是 YYYY-MM-DD 格式
+            datetime.datetime.strptime(post['date'], '%Y-%m-%d')
+            valid_posts.append(post)
+        except ValueError:
+            print(f"Warning: Skipping post with invalid date format (expected YYYY-MM-DD): {post.get('file', 'N/A')} - Date: {post.get('date', 'N/A')}")
+        except KeyError:
+             print(f"Warning: Skipping post missing 'date' field: {post.get('file', 'N/A')}")</p>
+<pre><code># 按日期排序 (降序)
+valid_posts.sort(key=lambda p: datetime.datetime.strptime(p['date'], '%Y-%m-%d'), reverse=True)
+print(f"Sorting complete. {len(valid_posts)} posts remain after validation.")
+return valid_posts
+</code></pre>
+<p>def generate_index():
+    """主函数：读取 MD，解析，排序，写入 JSON"""
+    try:
+        print(f"Attempting to read Markdown index from: {SOURCE_MD_FILE}")
+        md_content = SOURCE_MD_FILE.read_text(encoding='utf-8')
+        print("Markdown file read successfully.")</p>
+<pre><code>    parsed_posts = parse_markdown_table(md_content)
+
+    if parsed_posts is None:
+        print("Error during table parsing. Aborting JSON generation.")
+        sys.exit(1) # 退出脚本，表示失败
+
+    sorted_posts = validate_and_sort_posts(parsed_posts)
+
+    print(f"Attempting to write {len(sorted_posts)} posts to JSON: {OUTPUT_JSON_FILE}")
+    with open(OUTPUT_JSON_FILE, 'w', encoding='utf-8') as f:
+        json.dump(sorted_posts, f, indent=4, ensure_ascii=False)
+
+    print("-" * 30)
+    print(f"Successfully generated {OUTPUT_JSON_FILE} with {len(sorted_posts)} entries.")
+    print("-" * 30)
+
+except FileNotFoundError:
+    print(f"Error: Source Markdown file not found at: {SOURCE_MD_FILE}")
+    print("Please ensure 'posts/index.md' exists in the correct location.")
+    sys.exit(1)
+except Exception as e:
+    print(f"\nAn unexpected error occurred: {e}")
+    import traceback
+    traceback.print_exc() # 打印详细的错误堆栈
+    sys.exit(1)
+</code></pre>
+<p>if <strong>name</strong> == "<strong>main</strong>":
+    generate_index()</p>
+<p>```</p>
+</li>
+<li>
+<p><strong>创建 Markdown 索引文件 (<code>posts/index.md</code>)</strong></p>
+<p>在 <code>posts/</code> 目录下创建一个名为 <code>index.md</code> 的文件。你需要按照以下<strong>严格的 Markdown 表格格式</strong>来维护你的文章列表：</p>
+<p>```markdown</p>
+<h1 id="blog-post-index">Blog Post Index</h1>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Title</th>
+<th style="text-align: left;">Date</th>
+<th style="text-align: left;">File</th>
+<th style="text-align: left;">Excerpt</th>
+<th style="text-align: left;">Author</th>
+<th style="text-align: left;">Version</th>
+<th style="text-align: left;">License</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">我的第一篇博客</td>
+<td style="text-align: left;">2023-10-27</td>
+<td style="text-align: left;">2023-10-27-my-first-post.md</td>
+<td style="text-align: left;">这是我博客的第一篇文章，介绍博客的搭建过程。</td>
+<td style="text-align: left;">示例用户</td>
+<td style="text-align: left;">v1.0</td>
+<td style="text-align: left;">CC BY-SA 4.0</td>
+</tr>
+<tr>
+<td style="text-align: left;">关于 Showdown.js 的使用</td>
+<td style="text-align: left;">2023-10-26</td>
+<td style="text-align: left;">2023-10-26-using-showdown.md</td>
+<td style="text-align: left;">如何在静态页面中用 Showdown 渲染 Markdown。</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">MIT</td>
+</tr>
+<tr>
+<td style="text-align: left;">新特性发布</td>
+<td style="text-align: left;">2023-10-28</td>
+<td style="text-align: left;">2023-10-28-new-feature.md</td>
+<td style="text-align: left;">博客添加了分页功能。</td>
+<td style="text-align: left;">Lifu</td>
+<td style="text-align: left;">v0.1.1</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">另一篇很棒的文章</td>
+<td style="text-align: left;">2023-10-29</td>
+<td style="text-align: left;">2023-10-29-another-great-post.md</td>
+<td style="text-align: left;">这只是一个占位符示例。</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<p><!-- 可选的注释：确保表格格式正确！ -->
+<!-- 1. 第一行必须是表头，包含 Title, Date, File (大小写不敏感)。 -->
+<!-- 2. 第二行必须是分隔行 |:---|:---|... -->
+<!-- 3. 日期格式必须是 YYYY-MM-DD。 -->
+<!-- 4. File 必须是 posts/ 目录下对应的 Markdown 文件名。 -->
+<!-- 5. 可选字段 (Author, Version, License, Excerpt) 如果单元格留空，则不会出现在 JSON 中，前端将使用默认值。 -->
+```</p>
+<p><strong>关键要求：</strong>
+*   <strong>表头行:</strong> 必须存在，且包含至少 "Title", "Date", "File" 这几列（脚本不区分大小写）。列的顺序不重要，但名字需要匹配。
+*   <strong>分隔行:</strong> 表头行下面必须紧跟格式为 <code>| :--- | :--- | ... |</code> 的分隔行。冒号和短横线的数量不重要，但必须有 <code>|</code> 和 <code>-</code>。
+*   <strong>数据行:</strong> 每一行代表一篇文章。单元格内容用 <code>|</code> 分隔。
+*   <strong>必需字段:</strong> <code>Title</code>, <code>Date</code>, <code>File</code> 对应的单元格<strong>不能为空</strong>。
+*   <strong>日期格式:</strong> <code>Date</code> 列必须是 <code>YYYY-MM-DD</code> 格式，否则该行会被脚本忽略。
+*   <strong>文件名:</strong> <code>File</code> 列必须是 <code>posts/</code> 目录下实际的 Markdown 文件名。
+*   <strong>可选字段:</strong> <code>Excerpt</code>, <code>Author</code>, <code>Version</code>, <code>License</code> 等是可选的。如果对应的单元格为空，该字段将不会被包含在生成的 JSON 对象中，你的 <code>index.js</code> 应该能处理这种情况（使用默认值）。</p>
+</li>
+</ol>
+<hr />
+<h3 id="3">3. 日常工作流</h3>
+<p>现在，当你想要添加或更新博客文章时，遵循以下步骤：</p>
+<ol>
+<li>
+<p><strong>编写/编辑文章:</strong></p>
+<ul>
+<li>在 Obsidian 中，打开或创建你的 <code>.md</code> 文章文件，将其保存在 <code>posts/</code> 目录下。</li>
+</ul>
+</li>
+<li>
+<p><strong>更新 Markdown 索引 (<code>posts/index.md</code>):</strong></p>
+<ul>
+<li>在 Obsidian 中打开 <code>posts/index.md</code> 文件。</li>
+<li><strong>在表格中添加一个新行</strong>，填入新文章的 <code>Title</code>, <code>Date</code> (YYYY-MM-DD), <code>File</code> (文件名)，以及其他可选信息 (<code>Excerpt</code>, <code>Author</code> 等)。</li>
+<li>或者，如果你是修改现有文章的元数据（比如标题），直接编辑对应的行。</li>
+<li><strong>仔细检查格式！</strong> 确保日期格式正确，文件名无误，表格结构没有破坏。</li>
+<li>保存 <code>posts/index.md</code> 文件。</li>
+</ul>
+</li>
+<li>
+<p><strong>运行 Python 脚本生成 JSON:</strong></p>
+<ul>
+<li><strong>打开你的本地终端（命令行工具）。</strong></li>
+<li><strong>切换到你的博客项目根目录</strong> (<code>your-blog-root/</code>)。</li>
+<li><strong>运行命令:</strong> <code>python generate_index.py</code> (或者 <code>python3 generate_index.py</code>，取决于你的系统配置)。</li>
+<li>脚本会读取 <code>posts/index.md</code>，解析表格，然后覆盖写入 <code>posts/index.json</code>。</li>
+<li><strong>观察终端输出:</strong> 脚本会打印读取、解析和写入的过程信息。注意是否有任何 "Warning" 或 "Error" 信息。如果看到错误，根据提示检查 <code>posts/index.md</code> 的格式或脚本配置。</li>
+</ul>
+</li>
+<li>
+<p><strong>提交和推送更改:</strong></p>
+<ul>
+<li>使用 Git 提交所有被修改的文件。这通常包括：<ul>
+<li>你新创建或编辑的文章 <code>.md</code> 文件。</li>
+<li>你手动修改过的 <code>posts/index.md</code> 文件。</li>
+<li><strong>由脚本自动更新的 <code>posts/index.json</code> 文件。</strong></li>
+</ul>
+</li>
+<li><strong>可以通过 Obsidian Git 插件操作：</strong> Staged（暂存）所有更改 -&gt; Commit（提交）-&gt; Push（推送）。</li>
+<li><strong>或者在终端操作：</strong>
+    <code>bash
+    git add .  # 暂存所有更改 (或者指定具体文件 git add posts/index.md posts/index.json your-new-post.md ...)
+    git commit -m "Add new blog post: [你的文章标题]" # 提交更改，写清楚提交信息
+    git push origin main # 推送到 GitHub (你的分支名可能是 main 或 master)</code></li>
+</ul>
+</li>
+<li>
+<p><strong>检查线上博客:</strong> 等待 GitHub Pages 更新（通常几秒到一分钟），然后访问你的 <code>your-username.github.io</code> 博客，确认新文章列表和内容是否按预期显示。</p>
+</li>
+</ol>
+<hr />
+<h3 id="4">4. (可选) 自定义和故障排除</h3>
+<ul>
+<li><strong>修改表头:</strong> 如果你想在 <code>index.md</code> 中使用不同的表头名称（比如用 "文章标题" 代替 "Title"），你需要同时修改 <code>index.md</code> 中的表头<strong>和</strong> <code>generate_index.py</code> 脚本顶部的 <code>HEADER_MAP</code> 字典，保持两者对应。</li>
+<li><strong>脚本未运行/报错:</strong><ul>
+<li>确认 Python 3 已安装并能在终端中运行。</li>
+<li>确认你在项目<strong>根目录</strong>下运行脚本 (<code>python generate_index.py</code>)。</li>
+<li>确认 <code>posts/index.md</code> 文件存在且路径正确 (脚本会自动查找 <code>posts/</code> 子目录下的 <code>index.md</code>)。</li>
+<li>仔细阅读终端的错误信息，它通常会指出问题所在（比如文件找不到、表格格式错误、日期格式错误等）。</li>
+<li>检查 <code>posts/index.md</code> 的表格格式是否严格遵守了要求。</li>
+</ul>
+</li>
+<li><strong>JSON 文件未更新或内容为空:</strong><ul>
+<li>检查脚本运行的输出，看是否有警告信息（比如找不到有效表格、所有行都因格式错误被跳过）。</li>
+<li>确认 <code>posts/index.md</code> 文件被正确保存了。</li>
+<li>检查脚本是否有写入 <code>posts/index.json</code> 的权限（通常在本地开发这不是问题）。</li>
+</ul>
+</li>
+<li><strong>文章列表在线上未更新:</strong><ul>
+<li>确认你已经运行了 <code>python generate_index.py</code>。</li>
+<li>确认你已经 <code>git add</code>, <code>git commit</code>, <strong>并且 <code>git push</code> 了 <code>posts/index.json</code> 文件</strong>的最新版本。</li>
+<li>给 GitHub Pages 一点时间来部署更新。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>这个方案结合了 Obsidian 的易用性和 Python 的自动化能力，应该能很好地满足你的需求。祝你博客写作愉快！</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

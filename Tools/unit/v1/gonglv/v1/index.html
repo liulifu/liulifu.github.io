@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>功率单位转换器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label, select, input {
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+        }
+        .result {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>功率单位转换器</h1>
+        <label for="inputValue">输入功率</label>
+        <input type="number" id="inputValue" placeholder="输入数值">
+
+        <label for="unitSelect">选择单位</label>
+        <select id="unitSelect">
+            <option value="watt">瓦 (W)</option>
+            <option value="kw">千瓦 (kW)</option>
+            <option value="hp">英制马力 (HP)</option>
+            <option value="ps">米制马力 (PS)</option>
+            <option value="kgms">公斤·米/秒 (kg·m/s)</option>
+            <option value="kcals">千卡/秒 (kcal/s)</option>
+            <option value="btus">英热单位/秒 (Btu/s)</option>
+            <option value="ftlbs">英尺·磅/秒 (ft·lb/s)</option>
+            <option value="joules">焦耳/秒 (J/s)</option>
+            <option value="nm">牛顿·米/秒 (N·m/s)</option>
+        </select>
+
+        <button onclick="convert()">转换</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const conversionRates = {
+            watt: 1, // 1 瓦 = 1 瓦
+            kw: 1000, // 1 千瓦 = 1000 瓦
+            hp: 745.7, // 1 英制马力 = 745.7 瓦
+            ps: 735.5, // 1 米制马力 = 735.5 瓦
+            kgms: 9.80665, // 1 公斤·米/秒 = 9.80665 瓦
+            kcals: 4184, // 1 千卡/秒 = 4184 瓦
+            btus: 1055.06, // 1 英热单位/秒 = 1055.06 瓦
+            ftlbs: 1.35582, // 1 英尺·磅/秒 = 1.35582 瓦
+            joules: 1, // 1 焦耳/秒 = 1 瓦
+            nm: 1 // 1 牛顿·米/秒 = 1 瓦
+        };
+
+        function convert() {
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const selectedUnit = document.getElementById('unitSelect').value;
+
+            if (isNaN(inputValue)) {
+                document.getElementById('result').innerText = '请输入有效的数值。';
+                return;
+            }
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = ''; // 清空之前的结果
+
+            const baseValue = inputValue * conversionRates[selectedUnit]; // 将输入值转换为瓦特
+
+            const unitNames = {
+                watt: '瓦 (W)',
+                kw: '千瓦 (kW)',
+                hp: '英制马力 (HP)',
+                ps: '米制马力 (PS)',
+                kgms: '公斤·米/秒 (kg·m/s)',
+                kcals: '千卡/秒 (kcal/s)',
+                btus: '英热单位/秒 (Btu/s)',
+                ftlbs: '英尺·磅/秒 (ft·lb/s)',
+                joules: '焦耳/秒 (J/s)',
+                nm: '牛顿·米/秒 (N·m/s)'
+            };
+
+            for (const unit in conversionRates) {
+                if (unit !== selectedUnit) { // 只显示与输入单位不同的转换结果
+                    const convertedValue = baseValue / conversionRates[unit];
+                    resultElement.innerHTML += `<p>${convertedValue.toFixed(6)} ${unitNames[unit]}</p>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

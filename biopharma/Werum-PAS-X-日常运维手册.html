@@ -1,0 +1,5339 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../index.html">
+      
+      
+        <link rel="next" href="Werum-PAS-X-%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Werum PAS-X MES 系统日常运维手册 - Lifu Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/nav-sidebar-tweaks.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#werum-pas-x-mes" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../index.html" title="Lifu Blog" class="md-header__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lifu Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Werum PAS-X MES 系统日常运维手册
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-tabs__link">
+          
+  
+  
+  Biopharma
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Csv
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Dba
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../devops/K8s_1.html" class="md-tabs__link">
+          
+  
+  
+  Devops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Enterprise
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notes/brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tool/index.html" class="md-tabs__link">
+          
+  
+  
+  Tool
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Lifu Blog" class="md-nav__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lifu Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biopharma
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biopharma
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 日常运维概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 日常运维概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 运维职责
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 运维时间表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 系统监控
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 系统监控">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 监控 Tomcat 服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 监控数据库连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 监控应用日志
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 监控系统资源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 监控脚本（自动化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 备份管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 备份管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 数据库备份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 应用备份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 定时备份任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 用户管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 用户管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 创建用户
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 重置密码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 禁用/启用用户
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 审查用户权限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 故障处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 故障处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Tomcat 无法启动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 数据库连接失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 应用响应缓慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 批次执行失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 性能优化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 性能优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-jvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 JVM 调优
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 数据库优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Tomcat 连接池优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 审计与合规
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 审计与合规">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 审计日志审查
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 电子签名审查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 补丁与更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 补丁与更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 检查可用补丁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 安装补丁
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 灾难恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 灾难恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 恢复数据库
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 恢复应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="Werum-PAS-X-%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统部署安装手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-01-%E6%80%BB%E8%A7%88%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（01）总览与设计原则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-02-LIMS%E4%B8%8E%E4%B8%BB%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（02）LIMS 与主数据治理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-03-ELN%E6%96%B9%E6%B3%95%E6%95%B0%E5%AD%97%E5%8C%96%E4%B8%8ELES.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（03）ELN、方法数字化与 LES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-04-%E4%BB%AA%E5%99%A8%E6%95%B0%E6%8D%AECDS%E4%B8%8ESDMS%E6%95%B0%E6%8D%AE%E6%B9%96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（04）仪器数据、CDS 与 SDMS、数据湖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-05-%E5%90%88%E8%A7%84%E4%B8%8E%E9%AA%8C%E8%AF%81-21CFRPart11-Annex11-CSV-CSA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（05）合规与验证：21 CFR Part 11 / Annex 11 与 CSV/CSA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-06-%E9%9B%86%E6%88%90%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%B9%B3%E5%8F%B0%E5%B7%A5%E7%A8%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（06）集成架构与平台工程（API 网关 / 事件驱动 / 编排）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Csv
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Csv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSV（计算机化系统验证）资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/cccc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cccc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dba
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dba
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 专题索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Apache-Doris-OLAP-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Doris（国产 OLAP）：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E9%AB%98%E5%8F%AF%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94%E4%B8%8E%E9%80%89%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 高可用解决方案对比与选型指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL 主从复制与高可用架构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/OceanBase-%E7%A4%BE%E5%8C%BA%E7%89%88-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OceanBase 社区版：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%A2%9E%E5%8A%A0%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 增加删除数据文件的方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%B8%B8%E8%A7%81%E8%A7%86%E5%9B%BE%E5%8F%8A%E7%94%A8%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 常见视图及用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%85%B3%E9%94%AE%E7%BB%84%E4%BB%B6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 架构及关键组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E7%AD%89%E5%BE%85%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 等待事件处理方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-01-%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（01）部署与架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-02-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E4%B8%8E%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（02）日常运维与性能监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-03-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（03）数据安全与备份恢复（RMAN / 冷备 / 热备 / 灾备）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-04-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E4%B8%8E%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（04）故障处理与应急响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DataGuard-%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Data Guard 实战部署方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate-%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E5%8F%8A%E5%85%A5%E9%97%A8%E6%95%99%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 部署方案及入门教学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate%E4%B8%8EMySQL%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 与 MySQL 数据交换方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RAC-%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RAC 集群部署与调优方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RMAN-%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RMAN 增量备份方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle%E8%BF%81%E7%A7%BB%E8%87%B3MySQL-50TB%E7%BA%A7%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 迁移至 MySQL：50TB 级数据迁移方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/PostgreSQL-%E6%B5%81%E5%A4%8D%E5%88%B6%E4%B8%8EPatroni%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL 流复制与 Patroni 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E5%85%B8%E5%9E%8B%E9%97%AE%E9%A2%98%E7%A4%BA%E4%BE%8B%E5%8F%8A%E8%A7%A3%E6%9E%90.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 常见运维典型问题示例及解析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/TiDB-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TiDB 分布式数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/dm8-performance-tuning-with-ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8 性能调优方案与 AI（ChatGPT 5.x）辅助实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/openGauss-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    openGauss 数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/oracle-pdb-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle PDB 详细使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E4%BA%BA%E5%A4%A7%E9%87%91%E4%BB%93KingbaseES-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    人大金仓 KingbaseES：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E4%B8%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库性能诊断与优化实战手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88-Oracle%E5%88%B0PostgreSQL.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库迁移方案：Oracle 到 PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-Linux%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：Linux（RHEL）入门完整指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Devops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Devops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（一）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（二）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（四）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 的目录结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devops/K8s_8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows 域控服务器部署与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/aliecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALIECS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/ansible-enterprise-practical-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ansible 企业实战方案：中型企业从安装到策略落地（含命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/enterprise-security-strategy-and-governance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 系统安全治理：策略、规范与生命周期管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/netbackup-data-domain-quantum-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业备份与容灾：Veritas NetBackup + Data Domain + Quantum 实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/prometheus-grafana-monitoring-for-enterprise.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus + Grafana 监控体系（结合 Ansible 的企业落地）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-oob-management-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器带外管理（OOB）概览与实践：IPMI / iDRAC / iLO / Redfish
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-raid-configuration-dell-perc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器 RAID 配置实战：以 Dell PERC (perccli/storcli) 为例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88-vSphere-Hadoop-Grafana-Ansible-Chef.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 日常运维方案：vSphere / Hadoop / Grafana / Ansible / Chef
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT%E7%AE%A1%E7%90%86%E5%91%98%E6%96%B0%E5%91%98%E5%B7%A5%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 管理员新员工笔记本配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业文件服务器与权限管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%AE%A1%E7%90%86-Exchange-Server.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业邮件系统部署与管理：Exchange Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E5%9F%BA%E4%BA%8EWindows%E7%9A%84%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E8%A1%8C%E4%B8%9A%E8%BD%AF%E4%BB%B6%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于 Windows 的生物制药行业软件运维方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E4%BC%81%E4%B8%9AIT%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物制药企业 IT 基础架构概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IT Help Desk Access Tool（PyQt5）复现与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-cd-github-actions-to-aliyun-ecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-cd-smoke-test.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD 测试文章（自动化烟囱测试）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-tools-jenkins-gitlabci-solutions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jenkins 与 GitLab CI：企业级 CI/CD 方案与实战（含项目示例与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/clock-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    clock 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/deepsite_deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to build your own DeepSite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/fengbi-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fengbi PDF 工具套件：抽取/清洗/分割/偏移 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/gradle-usage-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle 使用方案：从入门到实践（含项目与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/maven-automation-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Maven 自动化构建与测试：案例教学与命令行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/paddleocrproject-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    paddleocrproject 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/pc_monitor-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pc_monitor 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/skywalking-usage-ops.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache SkyWalking 使用方案与运维经验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E4%B8%80%E7%A7%8D%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一种文件加密设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E4%B8%89%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三项目复现与重构方案：clock、pc_monitor、paddleocrproject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 博客自动化工作流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9C%ACBlog%E6%9E%B6%E6%9E%84.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本Blog架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9C%AC%E5%9C%B0-GitHub-%E9%98%BF%E9%87%8C%E4%BA%91ECS-%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9CI-CD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9E%84%E5%BB%BAPython%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建PYTHON开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    静态博客的浏览器缓存问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具总览（Tool）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/cron-designer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron Designer（计划任务表达式设计）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/gobang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gobang（五子棋）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/insurance-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insurance Calculator（五险一金计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/password-generator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Password Generator（密码生成器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/python-interpreter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Interpreter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rgb-color-picker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RGB Color Picker（颜色选择器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rmb-converter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMB Converter（人民币大小写转换）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/sterilization-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sterilization Guide（灭菌指南）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/unit-conversion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Conversion（单位换算）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/vat-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAT Calculator（增值税计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 日常运维概述
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 日常运维概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 运维职责
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 运维时间表
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 系统监控
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 系统监控">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 监控 Tomcat 服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 监控数据库连接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 监控应用日志
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 监控系统资源
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 监控脚本（自动化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 备份管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 备份管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 数据库备份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 应用备份
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 定时备份任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 用户管理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 用户管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 创建用户
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 重置密码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 禁用/启用用户
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 审查用户权限
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 故障处理
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 故障处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Tomcat 无法启动
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 数据库连接失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 应用响应缓慢
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 批次执行失败
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 性能优化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 性能优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-jvm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 JVM 调优
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 数据库优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-tomcat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Tomcat 连接池优化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 审计与合规
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 审计与合规">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 审计日志审查
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 电子签名审查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 补丁与更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 补丁与更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 检查可用补丁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 安装补丁
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 灾难恢复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 灾难恢复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 恢复数据库
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 恢复应用
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 最佳实践
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="werum-pas-x-mes">Werum PAS-X MES 系统日常运维手册</h1>
+<p>适用读者：MES 系统管理员、IT 运维工程师、应用支持工程师
+目标：掌握 PAS-X MES 系统的日常运维操作，包括监控、备份、故障处理、性能优化，确保系统稳定运行。</p>
+<hr />
+<h2 id="1">1. 日常运维概述</h2>
+<h3 id="11">1.1 运维职责</h3>
+<pre><code class="language-plaintext">系统管理员职责：
+□ 监控系统运行状态
+□ 执行日常备份
+□ 处理用户请求（账号、权限）
+□ 故障排查与处理
+□ 性能监控与优化
+□ 补丁和更新管理
+□ 审计日志审查
+□ 文档维护
+□ 变更管理
+□ 灾难恢复演练
+</code></pre>
+<h3 id="12">1.2 运维时间表</h3>
+<table>
+<thead>
+<tr>
+<th>频率</th>
+<th>任务</th>
+<th>时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>每日</strong></td>
+<td>检查系统状态、备份验证、日志审查</td>
+<td>09:00</td>
+</tr>
+<tr>
+<td><strong>每周</strong></td>
+<td>性能报告、磁盘空间检查、补丁检查</td>
+<td>周一 09:00</td>
+</tr>
+<tr>
+<td><strong>每月</strong></td>
+<td>审计日志审查、用户权限审查、DR 测试</td>
+<td>每月第一个周一</td>
+</tr>
+<tr>
+<td><strong>每季度</strong></td>
+<td>系统健康检查、容量规划、培训</td>
+<td>每季度第一周</td>
+</tr>
+<tr>
+<td><strong>每年</strong></td>
+<td>年度审计、系统升级、合规审查</td>
+<td>每年 Q1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2">2. 系统监控</h2>
+<h3 id="21-tomcat">2.1 监控 Tomcat 服务</h3>
+<pre><code class="language-powershell"># 检查 Tomcat 服务状态
+Get-Service -Name &quot;Tomcat9&quot;
+
+# 输出示例：
+# Status   Name               DisplayName
+# ------   ----               -----------
+# Running  Tomcat9            Apache Tomcat 9.0 Tomcat9
+
+# 如果服务停止，启动服务
+if ((Get-Service -Name &quot;Tomcat9&quot;).Status -ne &quot;Running&quot;) {
+    Start-Service -Name &quot;Tomcat9&quot;
+    Write-Host &quot;Tomcat service started&quot; -ForegroundColor Green
+}
+
+# 检查 Tomcat 进程
+Get-Process -Name &quot;tomcat*&quot; | Select-Object Name, Id, CPU, WorkingSet
+
+# 检查 Tomcat 端口
+Test-NetConnection -ComputerName localhost -Port 8080
+Test-NetConnection -ComputerName localhost -Port 8443
+</code></pre>
+<h3 id="22">2.2 监控数据库连接</h3>
+<pre><code class="language-sql">-- 连接到 Oracle 数据库
+sqlplus pasx_owner/PasxOwner@2025@PASXDB
+
+-- 检查数据库状态
+SELECT status FROM v$instance;
+-- 输出：OPEN
+
+-- 检查当前会话数
+SELECT COUNT(*) AS session_count FROM v$session WHERE username = 'PASX_OWNER';
+
+-- 检查活动会话
+SELECT sid, serial#, username, status, program, machine
+FROM v$session
+WHERE username = 'PASX_OWNER'
+ORDER BY status;
+
+-- 检查锁等待
+SELECT s.sid, s.serial#, s.username, s.program, w.event, w.wait_time
+FROM v$session s, v$session_wait w
+WHERE s.sid = w.sid
+AND s.username = 'PASX_OWNER'
+AND w.wait_time &gt; 0;
+
+-- 检查表空间使用率
+SELECT
+    tablespace_name,
+    ROUND(used_space * 8192 / 1024 / 1024 / 1024, 2) AS used_gb,
+    ROUND(tablespace_size * 8192 / 1024 / 1024 / 1024, 2) AS total_gb,
+    ROUND(used_percent, 2) AS used_percent
+FROM dba_tablespace_usage_metrics
+WHERE tablespace_name IN ('PASX_DATA', 'PASX_INDEX');
+</code></pre>
+<h3 id="23">2.3 监控应用日志</h3>
+<pre><code class="language-powershell"># 查看 Tomcat 日志
+Get-Content -Path &quot;C:\PAS-X\Tomcat\logs\catalina.$(Get-Date -Format 'yyyy-MM-dd').log&quot; -Tail 50
+
+# 查找错误日志
+Select-String -Path &quot;C:\PAS-X\Tomcat\logs\catalina.*.log&quot; -Pattern &quot;ERROR|SEVERE|Exception&quot; | Select-Object -Last 20
+
+# 查看 PAS-X 应用日志
+Get-Content -Path &quot;C:\PAS-X\Logs\pasx.log&quot; -Tail 50 -Wait
+
+# 查找特定错误
+Select-String -Path &quot;C:\PAS-X\Logs\pasx.log&quot; -Pattern &quot;OutOfMemoryError|SQLException|NullPointerException&quot;
+</code></pre>
+<h3 id="24">2.4 监控系统资源</h3>
+<pre><code class="language-powershell"># CPU 使用率
+Get-Counter '\Processor(_Total)\% Processor Time' -SampleInterval 1 -MaxSamples 5
+
+# 内存使用率
+$os = Get-CimInstance Win32_OperatingSystem
+$totalMemory = $os.TotalVisibleMemorySize / 1MB
+$freeMemory = $os.FreePhysicalMemory / 1MB
+$usedMemory = $totalMemory - $freeMemory
+$memoryUsagePercent = [math]::Round(($usedMemory / $totalMemory) * 100, 2)
+Write-Host &quot;Memory Usage: $memoryUsagePercent% ($usedMemory GB / $totalMemory GB)&quot;
+
+# 磁盘空间
+Get-PSDrive -PSProvider FileSystem | Where-Object {$_.Used -gt 0} | Select-Object Name, @{Name=&quot;UsedGB&quot;;Expression={[math]::Round($_.Used/1GB,2)}}, @{Name=&quot;FreeGB&quot;;Expression={[math]::Round($_.Free/1GB,2)}}, @{Name=&quot;UsedPercent&quot;;Expression={[math]::Round(($_.Used/($_.Used+$_.Free))*100,2)}}
+
+# 网络连接
+Get-NetTCPConnection -State Established | Where-Object {$_.LocalPort -eq 8080 -or $_.LocalPort -eq 8443} | Measure-Object | Select-Object -ExpandProperty Count
+</code></pre>
+<h3 id="25">2.5 监控脚本（自动化）</h3>
+<pre><code class="language-powershell"># 保存为：C:\PAS-X\Scripts\Monitor-PASX.ps1
+
+param(
+    [string]$EmailTo = &quot;it.admin@pharma.com&quot;,
+    [string]$SmtpServer = &quot;smtp.pharma.local&quot;
+)
+
+$report = @()
+
+# 检查 Tomcat 服务
+$tomcatStatus = (Get-Service -Name &quot;Tomcat9&quot;).Status
+if ($tomcatStatus -ne &quot;Running&quot;) {
+    $report += &quot;❌ Tomcat service is $tomcatStatus&quot;
+    Start-Service -Name &quot;Tomcat9&quot;
+} else {
+    $report += &quot;✅ Tomcat service is running&quot;
+}
+
+# 检查数据库连接
+try {
+    $conn = New-Object System.Data.OracleClient.OracleConnection(&quot;Data Source=PASXDB;User Id=pasx_owner;Password=PasxOwner@2025;&quot;)
+    $conn.Open()
+    $conn.Close()
+    $report += &quot;✅ Database connection successful&quot;
+} catch {
+    $report += &quot;❌ Database connection failed: $($_.Exception.Message)&quot;
+}
+
+# 检查磁盘空间
+$drives = Get-PSDrive -PSProvider FileSystem | Where-Object {$_.Used -gt 0}
+foreach ($drive in $drives) {
+    $usedPercent = [math]::Round(($drive.Used/($drive.Used+$drive.Free))*100, 2)
+    if ($usedPercent -gt 90) {
+        $report += &quot;⚠️  Drive $($drive.Name): $usedPercent% used (critical)&quot;
+    } elseif ($usedPercent -gt 80) {
+        $report += &quot;⚠️  Drive $($drive.Name): $usedPercent% used (warning)&quot;
+    } else {
+        $report += &quot;✅ Drive $($drive.Name): $usedPercent% used&quot;
+    }
+}
+
+# 检查内存使用
+$os = Get-CimInstance Win32_OperatingSystem
+$memoryUsagePercent = [math]::Round((($os.TotalVisibleMemorySize - $os.FreePhysicalMemory) / $os.TotalVisibleMemorySize) * 100, 2)
+if ($memoryUsagePercent -gt 90) {
+    $report += &quot;⚠️  Memory usage: $memoryUsagePercent% (critical)&quot;
+} else {
+    $report += &quot;✅ Memory usage: $memoryUsagePercent%&quot;
+}
+
+# 发送报告
+$body = $report -join &quot;`n&quot;
+Send-MailMessage -From &quot;pasx-monitor@pharma.com&quot; -To $EmailTo -Subject &quot;PAS-X Daily Health Check - $(Get-Date -Format 'yyyy-MM-dd')&quot; -Body $body -SmtpServer $SmtpServer
+
+# 输出到控制台
+Write-Host $body
+</code></pre>
+<hr />
+<h2 id="3">3. 备份管理</h2>
+<h3 id="31">3.1 数据库备份</h3>
+<pre><code class="language-powershell"># 保存为：C:\PAS-X\Scripts\Backup-Database.ps1
+
+param(
+    [string]$BackupPath = &quot;E:\Backup\PAS-X\Database&quot;
+)
+
+$date = Get-Date -Format &quot;yyyyMMdd_HHmmss&quot;
+$backupFile = &quot;$BackupPath\PASXDB_$date.dmp&quot;
+$logFile = &quot;$BackupPath\PASXDB_$date.log&quot;
+
+# 创建备份目录
+if (!(Test-Path $BackupPath)) {
+    New-Item -Path $BackupPath -ItemType Directory
+}
+
+# 使用 Data Pump 导出
+$env:ORACLE_HOME = &quot;C:\Oracle\product\19.0.0\dbhome_1&quot;
+$env:PATH = &quot;$env:ORACLE_HOME\bin;$env:PATH&quot;
+
+$exportCmd = @&quot;
+expdp pasx_owner/PasxOwner@2025@PASXDB \
+  directory=BACKUP_DIR \
+  dumpfile=$backupFile \
+  logfile=$logFile \
+  schemas=pasx_owner \
+  compression=all \
+  parallel=4
+&quot;@
+
+Invoke-Expression $exportCmd
+
+# 验证备份
+if (Test-Path $backupFile) {
+    $fileSize = (Get-Item $backupFile).Length / 1GB
+    Write-Host &quot;✅ Backup completed: $backupFile ($([math]::Round($fileSize, 2)) GB)&quot; -ForegroundColor Green
+
+    # 删除 7 天前的备份
+    Get-ChildItem -Path $BackupPath -Filter &quot;*.dmp&quot; | Where-Object {$_.LastWriteTime -lt (Get-Date).AddDays(-7)} | Remove-Item -Force
+} else {
+    Write-Host &quot;❌ Backup failed&quot; -ForegroundColor Red
+}
+</code></pre>
+<h3 id="32">3.2 应用备份</h3>
+<pre><code class="language-powershell"># 保存为：C:\PAS-X\Scripts\Backup-Application.ps1
+
+param(
+    [string]$BackupPath = &quot;E:\Backup\PAS-X\Application&quot;
+)
+
+$date = Get-Date -Format &quot;yyyyMMdd_HHmmss&quot;
+$backupDir = &quot;$BackupPath\$date&quot;
+
+# 创建备份目录
+New-Item -Path $backupDir -ItemType Directory
+
+# 停止 Tomcat（可选，热备份可跳过）
+# Stop-Service -Name &quot;Tomcat9&quot;
+
+# 备份 Tomcat 配置
+Copy-Item -Path &quot;C:\PAS-X\Tomcat\conf&quot; -Destination &quot;$backupDir\Tomcat_conf&quot; -Recurse
+
+# 备份 PAS-X 应用
+Copy-Item -Path &quot;C:\PAS-X\Tomcat\webapps\pasx&quot; -Destination &quot;$backupDir\pasx_app&quot; -Recurse
+
+# 备份配置文件
+Copy-Item -Path &quot;C:\PAS-X\Config&quot; -Destination &quot;$backupDir\Config&quot; -Recurse
+
+# 备份日志（最近 7 天）
+$logs = Get-ChildItem -Path &quot;C:\PAS-X\Logs&quot; | Where-Object {$_.LastWriteTime -gt (Get-Date).AddDays(-7)}
+Copy-Item -Path $logs -Destination &quot;$backupDir\Logs&quot; -Recurse
+
+# 启动 Tomcat
+# Start-Service -Name &quot;Tomcat9&quot;
+
+# 压缩备份
+Compress-Archive -Path $backupDir -DestinationPath &quot;$backupDir.zip&quot;
+Remove-Item -Path $backupDir -Recurse -Force
+
+Write-Host &quot;✅ Application backup completed: $backupDir.zip&quot; -ForegroundColor Green
+
+# 删除 30 天前的备份
+Get-ChildItem -Path $BackupPath -Filter &quot;*.zip&quot; | Where-Object {$_.LastWriteTime -lt (Get-Date).AddDays(-30)} | Remove-Item -Force
+</code></pre>
+<h3 id="33">3.3 定时备份任务</h3>
+<pre><code class="language-powershell"># 创建计划任务：每天凌晨 2 点备份数据库
+$action = New-ScheduledTaskAction -Execute &quot;PowerShell.exe&quot; -Argument &quot;-File C:\PAS-X\Scripts\Backup-Database.ps1&quot;
+$trigger = New-ScheduledTaskTrigger -Daily -At 2:00AM
+$principal = New-ScheduledTaskPrincipal -UserId &quot;PHARMA\svc_pasx_app&quot; -LogonType Password
+Register-ScheduledTask -TaskName &quot;PAS-X Database Backup&quot; -Action $action -Trigger $trigger -Principal $principal -Description &quot;Daily backup of PAS-X database&quot;
+
+# 创建计划任务：每周日凌晨 3 点备份应用
+$action = New-ScheduledTaskAction -Execute &quot;PowerShell.exe&quot; -Argument &quot;-File C:\PAS-X\Scripts\Backup-Application.ps1&quot;
+$trigger = New-ScheduledTaskTrigger -Weekly -DaysOfWeek Sunday -At 3:00AM
+Register-ScheduledTask -TaskName &quot;PAS-X Application Backup&quot; -Action $action -Trigger $trigger -Principal $principal -Description &quot;Weekly backup of PAS-X application&quot;
+</code></pre>
+<hr />
+<h2 id="4">4. 用户管理</h2>
+<h3 id="41">4.1 创建用户</h3>
+<pre><code class="language-plaintext">步骤：
+1. 登录 PAS-X：https://pasx-app01:8443/pasx
+2. 导航：Administration &gt; User Management &gt; Users
+3. 点击 &quot;New User&quot;
+4. 填写用户信息：
+   - Username: li.si
+   - First Name: 四
+   - Last Name: 李
+   - Email: li.si@pharma.com
+   - Department: 生产部
+   - Initial Password: TempP@ssw0rd!
+   - Force Password Change: Yes
+5. 分配角色：Operator
+6. 启用电子签名：Yes
+7. 保存
+
+验证：
+- 使用新账号登录
+- 系统提示修改密码
+- 验证权限是否正确
+</code></pre>
+<h3 id="42">4.2 重置密码</h3>
+<pre><code class="language-plaintext">步骤：
+1. 导航：Administration &gt; User Management &gt; Users
+2. 搜索用户：li.si
+3. 点击用户名
+4. 点击 &quot;Reset Password&quot;
+5. 设置临时密码：TempP@ssw0rd!
+6. 勾选 &quot;Force Password Change on Next Login&quot;
+7. 保存
+
+通知用户：
+- 发送邮件通知用户密码已重置
+- 提供临时密码
+- 提醒首次登录需修改密码
+</code></pre>
+<h3 id="43">4.3 禁用/启用用户</h3>
+<pre><code class="language-plaintext">禁用用户（离职）：
+1. 导航：Administration &gt; User Management &gt; Users
+2. 搜索用户
+3. 点击用户名
+4. 设置 Status: Inactive
+5. 保存
+6. 记录到变更日志
+
+启用用户（返岗）：
+1. 搜索用户
+2. 设置 Status: Active
+3. 保存
+</code></pre>
+<h3 id="44">4.4 审查用户权限</h3>
+<pre><code class="language-sql">-- 查询所有用户及其角色
+SELECT
+    u.username,
+    u.first_name || ' ' || u.last_name AS full_name,
+    u.email,
+    u.department,
+    r.role_name,
+    u.status,
+    u.last_login_date
+FROM pasx_users u
+LEFT JOIN pasx_user_roles ur ON u.user_id = ur.user_id
+LEFT JOIN pasx_roles r ON ur.role_id = r.role_id
+ORDER BY u.username;
+
+-- 查询长期未登录的用户（90 天）
+SELECT
+    username,
+    first_name || ' ' || last_name AS full_name,
+    last_login_date,
+    TRUNC(SYSDATE - last_login_date) AS days_since_login
+FROM pasx_users
+WHERE last_login_date &lt; SYSDATE - 90
+AND status = 'ACTIVE'
+ORDER BY last_login_date;
+</code></pre>
+<hr />
+<h2 id="5">5. 故障处理</h2>
+<h3 id="51-tomcat">5.1 Tomcat 无法启动</h3>
+<pre><code class="language-plaintext">症状：
+- Tomcat 服务启动失败
+- 日志显示端口占用或内存不足
+
+排查步骤：
+1. 检查端口占用
+   netstat -ano | findstr &quot;8080&quot;
+   netstat -ano | findstr &quot;8443&quot;
+
+2. 检查 Java 进程
+   Get-Process -Name &quot;java&quot;
+
+3. 检查内存
+   Get-Counter '\Memory\Available MBytes'
+
+4. 查看 Tomcat 日志
+   Get-Content C:\PAS-X\Tomcat\logs\catalina.*.log -Tail 100
+
+解决方案：
+- 端口占用：杀死占用进程或修改 Tomcat 端口
+- 内存不足：增加 JVM 内存（编辑 setenv.bat）
+- 配置错误：检查 server.xml、context.xml
+</code></pre>
+<h3 id="52">5.2 数据库连接失败</h3>
+<pre><code class="language-plaintext">症状：
+- 用户无法登录
+- 日志显示 &quot;SQLException: Connection refused&quot;
+
+排查步骤：
+1. 检查数据库服务
+   Get-Service -Name &quot;OracleServicePASXDB&quot;
+
+2. 检查监听器
+   lsnrctl status
+
+3. 测试连接
+   sqlplus pasx_owner/PasxOwner@2025@PASXDB
+
+4. 检查网络
+   Test-NetConnection -ComputerName PASX-DB01 -Port 1521
+
+解决方案：
+- 数据库服务停止：启动服务
+- 监听器停止：lsnrctl start
+- 网络问题：检查防火墙、DNS
+- 密码错误：重置密码
+</code></pre>
+<h3 id="53">5.3 应用响应缓慢</h3>
+<pre><code class="language-plaintext">症状：
+- 页面加载时间 &gt; 10 秒
+- 用户报告系统卡顿
+
+排查步骤：
+1. 检查 CPU 使用率
+   Get-Counter '\Processor(_Total)\% Processor Time'
+
+2. 检查内存使用
+   Get-Counter '\Memory\Available MBytes'
+
+3. 检查数据库会话
+   SELECT COUNT(*) FROM v$session WHERE username = 'PASX_OWNER';
+
+4. 检查慢查询
+   SELECT sql_text, elapsed_time, executions
+   FROM v$sql
+   WHERE elapsed_time &gt; 1000000
+   ORDER BY elapsed_time DESC;
+
+解决方案：
+- CPU 高：重启 Tomcat、优化代码
+- 内存不足：增加 JVM 内存、重启服务器
+- 数据库慢：优化 SQL、添加索引、更新统计信息
+- 会话过多：检查连接池配置
+</code></pre>
+<h3 id="54">5.4 批次执行失败</h3>
+<pre><code class="language-plaintext">症状：
+- 批次状态显示 &quot;Error&quot;
+- 操作员无法继续执行
+
+排查步骤：
+1. 查看批次日志
+   导航：Production &gt; Batch Execution &gt; [Batch Number] &gt; Logs
+
+2. 查看错误信息
+   检查错误代码和描述
+
+3. 检查设备连接
+   导航：Administration &gt; Equipment &gt; [Equipment Name] &gt; Status
+
+4. 检查审计日志
+   导航：Administration &gt; Audit Trail
+
+解决方案：
+- 设备离线：检查设备连接、重启设备
+- 数据验证失败：检查输入数据、修改配方
+- 权限不足：检查用户角色
+- 系统错误：联系 Werum 技术支持
+</code></pre>
+<hr />
+<h2 id="6">6. 性能优化</h2>
+<h3 id="61-jvm">6.1 JVM 调优</h3>
+<pre><code class="language-batch">REM 编辑 C:\PAS-X\Tomcat\bin\setenv.bat
+
+@echo off
+
+REM 堆内存设置（根据服务器内存调整）
+set &quot;JAVA_OPTS=-Xms8192m -Xmx16384m&quot;
+
+REM Metaspace 设置
+set &quot;JAVA_OPTS=%JAVA_OPTS% -XX:MetaspaceSize=512m -XX:MaxMetaspaceSize=1024m&quot;
+
+REM 垃圾回收器（G1GC，推荐用于大内存）
+set &quot;JAVA_OPTS=%JAVA_OPTS% -XX:+UseG1GC&quot;
+set &quot;JAVA_OPTS=%JAVA_OPTS% -XX:MaxGCPauseMillis=200&quot;
+set &quot;JAVA_OPTS=%JAVA_OPTS% -XX:ParallelGCThreads=8&quot;
+
+REM GC 日志
+set &quot;JAVA_OPTS=%JAVA_OPTS% -Xlog:gc*:file=C:/PAS-X/Logs/gc.log:time,uptime:filecount=5,filesize=10M&quot;
+
+REM 其他优化
+set &quot;JAVA_OPTS=%JAVA_OPTS% -Djava.awt.headless=true&quot;
+set &quot;JAVA_OPTS=%JAVA_OPTS% -Dfile.encoding=UTF-8&quot;
+set &quot;JAVA_OPTS=%JAVA_OPTS% -Duser.timezone=Asia/Shanghai&quot;
+set &quot;JAVA_OPTS=%JAVA_OPTS% -server&quot;
+</code></pre>
+<h3 id="62">6.2 数据库优化</h3>
+<pre><code class="language-sql">-- 更新统计信息
+BEGIN
+    DBMS_STATS.GATHER_SCHEMA_STATS(
+        ownname =&gt; 'PASX_OWNER',
+        estimate_percent =&gt; DBMS_STATS.AUTO_SAMPLE_SIZE,
+        method_opt =&gt; 'FOR ALL COLUMNS SIZE AUTO',
+        degree =&gt; 4
+    );
+END;
+/
+
+-- 重建索引（碎片整理）
+SELECT 'ALTER INDEX ' || index_name || ' REBUILD ONLINE;'
+FROM user_indexes
+WHERE tablespace_name IN ('PASX_DATA', 'PASX_INDEX');
+
+-- 清理审计日志（保留 7 年）
+DELETE FROM pasx_audit_log
+WHERE audit_date &lt; ADD_MONTHS(SYSDATE, -84);
+COMMIT;
+
+-- 分析表空间碎片
+SELECT
+    tablespace_name,
+    ROUND(SUM(bytes)/1024/1024/1024, 2) AS total_gb,
+    COUNT(*) AS fragment_count
+FROM dba_free_space
+GROUP BY tablespace_name
+ORDER BY fragment_count DESC;
+</code></pre>
+<h3 id="63-tomcat">6.3 Tomcat 连接池优化</h3>
+<pre><code class="language-xml">&lt;!-- 编辑 C:\PAS-X\Tomcat\conf\context.xml --&gt;
+
+&lt;Context&gt;
+    &lt;Resource name=&quot;jdbc/PASXDB&quot;
+              auth=&quot;Container&quot;
+              type=&quot;javax.sql.DataSource&quot;
+              driverClassName=&quot;oracle.jdbc.OracleDriver&quot;
+              url=&quot;jdbc:oracle:thin:@PASX-DB01:1521:PASXDB&quot;
+              username=&quot;pasx_owner&quot;
+              password=&quot;PasxOwner@2025&quot;
+
+              &lt;!-- 连接池大小 --&gt;
+              initialSize=&quot;20&quot;
+              maxTotal=&quot;100&quot;
+              maxIdle=&quot;50&quot;
+              minIdle=&quot;20&quot;
+
+              &lt;!-- 超时设置 --&gt;
+              maxWaitMillis=&quot;10000&quot;
+
+              &lt;!-- 连接验证 --&gt;
+              testOnBorrow=&quot;true&quot;
+              testWhileIdle=&quot;true&quot;
+              validationQuery=&quot;SELECT 1 FROM DUAL&quot;
+              validationQueryTimeout=&quot;5&quot;
+
+              &lt;!-- 空闲连接回收 --&gt;
+              timeBetweenEvictionRunsMillis=&quot;30000&quot;
+              minEvictableIdleTimeMillis=&quot;60000&quot;
+
+              &lt;!-- 连接泄漏检测 --&gt;
+              removeAbandonedOnBorrow=&quot;true&quot;
+              removeAbandonedTimeout=&quot;300&quot;
+              logAbandoned=&quot;true&quot; /&gt;
+&lt;/Context&gt;
+</code></pre>
+<hr />
+<h2 id="7">7. 审计与合规</h2>
+<h3 id="71">7.1 审计日志审查</h3>
+<pre><code class="language-sql">-- 查询最近 7 天的审计日志
+SELECT
+    audit_date,
+    username,
+    action_type,
+    object_type,
+    object_name,
+    result,
+    ip_address
+FROM pasx_audit_log
+WHERE audit_date &gt;= SYSDATE - 7
+ORDER BY audit_date DESC;
+
+-- 查询失败的登录尝试
+SELECT
+    audit_date,
+    username,
+    ip_address,
+    COUNT(*) AS failed_attempts
+FROM pasx_audit_log
+WHERE action_type = 'LOGIN'
+AND result = 'FAILURE'
+AND audit_date &gt;= SYSDATE - 7
+GROUP BY audit_date, username, ip_address
+HAVING COUNT(*) &gt; 3
+ORDER BY failed_attempts DESC;
+
+-- 查询配方修改记录
+SELECT
+    audit_date,
+    username,
+    action_type,
+    object_name AS recipe_name,
+    old_value,
+    new_value
+FROM pasx_audit_log
+WHERE object_type = 'RECIPE'
+AND action_type IN ('CREATE', 'MODIFY', 'DELETE')
+ORDER BY audit_date DESC;
+
+-- 导出审计日志（CSV）
+SPOOL C:\PAS-X\Reports\audit_log.csv
+SELECT
+    TO_CHAR(audit_date, 'YYYY-MM-DD HH24:MI:SS') || ',' ||
+    username || ',' ||
+    action_type || ',' ||
+    object_type || ',' ||
+    object_name || ',' ||
+    result
+FROM pasx_audit_log
+WHERE audit_date &gt;= ADD_MONTHS(SYSDATE, -1);
+SPOOL OFF
+</code></pre>
+<h3 id="72">7.2 电子签名审查</h3>
+<pre><code class="language-sql">-- 查询所有电子签名记录
+SELECT
+    s.signature_date,
+    s.username,
+    s.signature_meaning,
+    s.signature_reason,
+    b.batch_number,
+    b.product_code
+FROM pasx_signatures s
+JOIN pasx_batches b ON s.batch_id = b.batch_id
+WHERE s.signature_date &gt;= SYSDATE - 30
+ORDER BY s.signature_date DESC;
+
+-- 查询缺失的电子签名
+SELECT
+    b.batch_number,
+    b.product_code,
+    b.status,
+    b.start_date
+FROM pasx_batches b
+WHERE b.status = 'COMPLETED'
+AND NOT EXISTS (
+    SELECT 1 FROM pasx_signatures s
+    WHERE s.batch_id = b.batch_id
+    AND s.signature_meaning = 'APPROVED'
+)
+AND b.start_date &gt;= SYSDATE - 30;
+</code></pre>
+<hr />
+<h2 id="8">8. 补丁与更新</h2>
+<h3 id="81">8.1 检查可用补丁</h3>
+<pre><code class="language-plaintext">步骤：
+1. 登录 Werum 客户门户
+2. 导航：Downloads &gt; PAS-X &gt; Patches
+3. 查看可用补丁列表
+4. 下载补丁文件和发布说明
+5. 阅读发布说明，确认适用性
+</code></pre>
+<h3 id="82">8.2 安装补丁</h3>
+<pre><code class="language-powershell"># 补丁安装流程
+
+# 1. 备份系统
+.\Backup-Database.ps1
+.\Backup-Application.ps1
+
+# 2. 停止 Tomcat
+Stop-Service -Name &quot;Tomcat9&quot;
+
+# 3. 解压补丁文件
+Expand-Archive -Path &quot;C:\Install\PAS-X_Patch_7.x.x.zip&quot; -DestinationPath &quot;C:\Install\PAS-X_Patch&quot;
+
+# 4. 运行数据库脚本（如有）
+sqlplus pasx_owner/PasxOwner@2025@PASXDB @C:\Install\PAS-X_Patch\database\patch.sql
+
+# 5. 替换应用文件
+Copy-Item -Path &quot;C:\Install\PAS-X_Patch\application\*&quot; -Destination &quot;C:\PAS-X\Tomcat\webapps\pasx\&quot; -Recurse -Force
+
+# 6. 启动 Tomcat
+Start-Service -Name &quot;Tomcat9&quot;
+
+# 7. 验证补丁
+# 登录 PAS-X，检查版本号
+# 导航：Administration &gt; System Information &gt; Version
+
+# 8. 记录变更
+# 更新变更日志，记录补丁版本、安装时间、安装人员
+</code></pre>
+<hr />
+<h2 id="9">9. 灾难恢复</h2>
+<h3 id="91">9.1 恢复数据库</h3>
+<pre><code class="language-powershell"># 1. 停止 Tomcat
+Stop-Service -Name &quot;Tomcat9&quot;
+
+# 2. 使用 Data Pump 导入
+$env:ORACLE_HOME = &quot;C:\Oracle\product\19.0.0\dbhome_1&quot;
+$env:PATH = &quot;$env:ORACLE_HOME\bin;$env:PATH&quot;
+
+impdp pasx_owner/PasxOwner@2025@PASXDB `
+  directory=BACKUP_DIR `
+  dumpfile=PASXDB_20251111.dmp `
+  logfile=restore.log `
+  schemas=pasx_owner `
+  table_exists_action=replace
+
+# 3. 验证数据
+sqlplus pasx_owner/PasxOwner@2025@PASXDB
+SELECT COUNT(*) FROM pasx_batches;
+
+# 4. 启动 Tomcat
+Start-Service -Name &quot;Tomcat9&quot;
+</code></pre>
+<h3 id="92">9.2 恢复应用</h3>
+<pre><code class="language-powershell"># 1. 停止 Tomcat
+Stop-Service -Name &quot;Tomcat9&quot;
+
+# 2. 解压备份
+Expand-Archive -Path &quot;E:\Backup\PAS-X\Application\20251111.zip&quot; -DestinationPath &quot;C:\Temp\Restore&quot;
+
+# 3. 恢复配置
+Copy-Item -Path &quot;C:\Temp\Restore\Tomcat_conf\*&quot; -Destination &quot;C:\PAS-X\Tomcat\conf\&quot; -Recurse -Force
+
+# 4. 恢复应用
+Remove-Item -Path &quot;C:\PAS-X\Tomcat\webapps\pasx&quot; -Recurse -Force
+Copy-Item -Path &quot;C:\Temp\Restore\pasx_app&quot; -Destination &quot;C:\PAS-X\Tomcat\webapps\pasx&quot; -Recurse
+
+# 5. 恢复配置文件
+Copy-Item -Path &quot;C:\Temp\Restore\Config\*&quot; -Destination &quot;C:\PAS-X\Config\&quot; -Recurse -Force
+
+# 6. 启动 Tomcat
+Start-Service -Name &quot;Tomcat9&quot;
+
+# 7. 验证
+# 访问 https://pasx-app01:8443/pasx
+# 测试登录和核心功能
+</code></pre>
+<hr />
+<h2 id="10">10. 最佳实践</h2>
+<ol>
+<li><strong>定期备份</strong>：每天备份数据库，每周备份应用</li>
+<li><strong>监控告警</strong>：配置自动监控脚本，异常时发送邮件</li>
+<li><strong>日志审查</strong>：每周审查系统日志和审计日志</li>
+<li><strong>性能监控</strong>：每月生成性能报告，识别瓶颈</li>
+<li><strong>补丁管理</strong>：每季度检查并安装补丁</li>
+<li><strong>用户培训</strong>：定期培训用户和管理员</li>
+<li><strong>文档维护</strong>：及时更新运维文档和变更日志</li>
+<li><strong>灾难演练</strong>：每年至少一次 DR 演练</li>
+<li><strong>容量规划</strong>：监控系统增长，提前扩容</li>
+<li><strong>合规审计</strong>：定期审查系统合规性（21 CFR Part 11）</li>
+</ol>
+<hr />
+<p><strong>参考资源</strong>：
+- Werum PAS-X 运维手册
+- Oracle 数据库管理指南
+- Apache Tomcat 调优指南
+- GAMP 5 运维指南</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>

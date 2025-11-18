@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>重量单位转换器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        label, select, input {
+            margin: 10px 0;
+            display: block;
+            width: 100%;
+        }
+        .result {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>重量单位转换器</h1>
+        <label for="inputValue">输入重量</label>
+        <input type="number" id="inputValue" placeholder="输入数值">
+
+        <label for="unitSelect">选择单位</label>
+        <select id="unitSelect">
+            <option value="tonne">吨 (Tonne)</option>
+            <option value="kg">公斤 (Kilogram)</option>
+            <option value="g">克 (Gram)</option>
+            <option value="mg">毫克 (Milligram)</option>
+            <option value="jin">市斤</option>
+            <option value="dan">担</option>
+            <option value="liang">两</option>
+            <option value="qian">钱</option>
+            <option value="lb">磅 (Pound)</option>
+            <option value="oz">盎司 (Ounce)</option>
+            <option value="dwt">英钱 (Pennyweight)</option>
+            <option value="gr">格令 (Grain)</option>
+            <option value="lt">长吨 (British long ton)</option>
+            <option value="st">短吨 (US short ton)</option>
+            <option value="lcwt">英担 (British long hundredweight)</option>
+            <option value="scwt">美担 (US short hundredweight)</option>
+            <option value="stone">英石 (Stone)</option>
+            <option value="dr">打兰 (Dram)</option>
+        </select>
+
+        <button onclick="convert()">转换</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        const conversionRates = {
+            tonne: 1000, // 1 吨 = 1000 公斤
+            kg: 1, // 1 公斤 = 1 公斤
+            g: 0.001, // 1 克 = 0.001 公斤
+            mg: 0.000001, // 1 毫克 = 0.000001 公斤
+            jin: 0.5, // 1 市斤 = 0.5 公斤
+            dan: 50, // 1 担 = 50 公斤
+            liang: 0.05, // 1 两 = 0.05 公斤
+            qian: 0.005, // 1 钱 = 0.005 公斤
+            lb: 0.453592, // 1 磅 = 0.453592 公斤
+            oz: 0.0283495, // 1 盎司 = 0.0283495 公斤
+            dwt: 0.00155517, // 1 英钱 = 0.00155517 公斤
+            gr: 0.0000647989, // 1 格令 = 0.0000647989 公斤
+            lt: 1016.05, // 1 长吨 = 1016.05 公斤
+            st: 907.185, // 1 短吨 = 907.185 公斤
+            lcwt: 50.8023, // 1 英担 = 50.8023 公斤
+            scwt: 45.3592, // 1 美担 = 45.3592 公斤
+            stone: 6.35029, // 1 英石 = 6.35029 公斤
+            dr: 0.00177185 // 1 打兰 = 0.00177185 公斤
+        };
+
+        function convert() {
+            const inputValue = parseFloat(document.getElementById('inputValue').value);
+            const selectedUnit = document.getElementById('unitSelect').value;
+
+            if (isNaN(inputValue)) {
+                document.getElementById('result').innerText = '请输入有效的数值。';
+                return;
+            }
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = ''; // 清空之前的结果
+
+            const baseValue = inputValue * conversionRates[selectedUnit]; // 将输入值转换为公斤
+
+            for (const unit in conversionRates) {
+                if (unit !== selectedUnit) { // 只显示与输入单位不同的转换结果
+                    const convertedValue = baseValue / conversionRates[unit];
+                    const unitName = document.querySelector(`option[value=${unit}]`).textContent;
+                    resultElement.innerHTML += `<p>${convertedValue.toFixed(6)} ${unitName}</p>`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

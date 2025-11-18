@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工具汇总</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>小工具汇总</h1>
+    <div id="tools-list"></div>
+
+    <script>
+        // 加载工具列表
+        fetch('tools.json')
+            .then(response => response.json())
+            .then(data => {
+                const toolsList = document.getElementById('tools-list');
+                data.forEach(tool => {
+                    const toolItem = document.createElement('div');
+                    toolItem.classList.add('tool-item');
+
+                    const toolLink = document.createElement('a');
+                    toolLink.href = tool.url;
+                    toolLink.textContent = tool.name;
+
+                    const toolDesc = document.createElement('p');
+                    toolDesc.textContent = tool.description;
+
+                    toolItem.appendChild(toolLink);
+                    toolItem.appendChild(toolDesc);
+                    toolsList.appendChild(toolItem);
+                });
+            })
+            .catch(error => {
+                console.error('加载工具列表失败:', error);
+            });
+    </script>
+</body>
+</html>

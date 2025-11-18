@@ -1,0 +1,593 @@
+[
+    {
+        "title": "CI/CD 测试文章（自动化烟囱测试）",
+        "date": "2025-11-13",
+        "file": "notes/ci-cd-smoke-test.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+
+    {
+        "title": "Oracle 21c 专题索引",
+        "date": "2025-11-12",
+        "file": "dba/000-Oracle-21c-专题索引.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "Oracle 21c 常见视图及用法",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-常见视图及用法.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "Oracle 21c 增加删除数据文件的方法",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-增加删除数据文件的方法.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "Oracle 21c 架构及关键组件",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-架构及关键组件.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "Oracle 21c 等待事件处理方法",
+        "date": "2025-11-12",
+        "file": "dba/Oracle-21c-等待事件处理方法.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+
+    {
+        "title": "企业 IT 日常运维方案：vSphere / Hadoop / Grafana / Ansible / Chef",
+        "date": "2025-11-12",
+        "file": "enterprise/企业IT-日常运维方案-vSphere-Hadoop-Grafana-Ansible-Chef.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+
+    {
+        "title": "实验室信息学架构（02）LIMS 与主数据治理",
+        "date": "2025-11-17",
+        "file": "biopharma/实验室信息学架构-02-LIMS与主数据治理.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "ALIECS",
+        "date": "2025-11-11",
+        "file": "enterprise/aliecs.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "一种文件加密设计",
+        "date": "2025-11-11",
+        "file": "notes/一种文件加密设计.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "构建PYTHON开发环境",
+        "date": "2025-11-11",
+        "file": "notes/构建Python开发环境.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "📝 博客自动化工作流程",
+        "date": "2025-11-11",
+        "file": "notes/更新博客自动脚本.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "SQL Server 常见运维典型问题示例及解析",
+        "date": "2025-11-11",
+        "file": "dba/SQL-Server-常见运维典型问题示例及解析.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "SQL Server 故障排查",
+        "date": "2025-11-11",
+        "file": "dba/SQL-Server-故障排查.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "SQL Server 高可用方案",
+        "date": "2025-11-11",
+        "file": "dba/SQL-Server-高可用方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "基于 Windows 的生物制药行业软件运维方案",
+        "date": "2025-11-11",
+        "file": "enterprise/基于Windows的生物制药行业软件运维方案.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "静态博客的浏览器缓存问题",
+        "date": "2025-09-19",
+        "file": "notes/静态博客的浏览器缓存问题.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "CSV（计算机化系统验证）资料索引",
+        "date": "2025-09-09",
+        "file": "csv/CSV-资料索引.md",
+        "author": "Lifu",
+        "category": "csv"
+    },
+    {
+        "title": "paddleocrproject 复现与重构方案",
+        "date": "2025-09-05",
+        "file": "notes/paddleocrproject-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "达梦数据库 DM8：入门与安装实践",
+        "date": "2025-08-31",
+        "file": "dba/达梦DM8-入门与安装实践.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "企业文件服务器与权限管理",
+        "date": "2025-08-23",
+        "file": "enterprise/企业文件服务器与权限管理.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "Oracle GoldenGate 与 MySQL 数据交换方案",
+        "date": "2025-08-19",
+        "file": "dba/Oracle-GoldenGate与MySQL数据交换方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle DBA 教学（03）数据安全与备份恢复（RMAN / 冷备 / 热备 / 灾备）",
+        "date": "2025-08-03",
+        "file": "dba/Oracle-DBA-03-数据安全与备份恢复.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Apache Doris（国产 OLAP）：入门与安装实践",
+        "date": "2025-07-26",
+        "file": "dba/Apache-Doris-OLAP-入门与安装实践.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "K8s 相关问题集锦（四）",
+        "date": "2025-07-17",
+        "file": "devops/K8s_4.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "Kubernetes 的目录结构",
+        "date": "2025-06-25",
+        "file": "devops/K8s_7.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "IT Help Desk Access Tool（PyQt5）复现与配置",
+        "date": "2025-06-24",
+        "file": "notes/brandnew-0926-复现与配置.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "MySQL、Redis、MongoDB 高可用解决方案对比与选型指南",
+        "date": "2025-05-30",
+        "file": "dba/MySQL-Redis-MongoDB-高可用解决方案对比与选型.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "MySQL 主从复制与高可用架构方案",
+        "date": "2025-05-28",
+        "file": "dba/MySQL-主从复制与高可用架构方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle Data Guard 实战部署方案",
+        "date": "2025-05-28",
+        "file": "dba/Oracle-DataGuard-实战部署方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "fengbi PDF 工具套件：抽取/清洗/分割/偏移 复现与重构方案",
+        "date": "2025-04-15",
+        "file": "notes/fengbi-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "三项目复现与重构方案：clock、pc_monitor、paddleocrproject",
+        "date": "2025-03-31",
+        "file": "notes/三项目复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "Oracle PDB 详细使用指南",
+        "date": "2025-03-29",
+        "file": "dba/oracle-pdb-guide.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "openGauss 数据库：入门与安装实践",
+        "date": "2025-03-11",
+        "file": "dba/openGauss-入门与安装实践.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Windows 域控服务器部署与配置",
+        "date": "2025-03-07",
+        "file": "enterprise/Windows域控服务器部署与配置.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "K8s 相关问题集锦（二）",
+        "date": "2025-02-23",
+        "file": "devops/K8s_2.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "生物制药企业 IT 基础架构概览",
+        "date": "2025-01-10",
+        "file": "enterprise/生物制药企业IT基础架构概览.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "Oracle DBA 教学（01）部署与架构设计",
+        "date": "2024-12-19",
+        "file": "dba/Oracle-DBA-01-部署与架构设计.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "本Blog架构",
+        "date": "2024-12-19",
+        "file": "notes/本Blog架构.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "OceanBase 社区版：入门与安装实践",
+        "date": "2024-11-29",
+        "file": "dba/OceanBase-社区版-入门与安装实践.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle RAC 集群部署与调优方案",
+        "date": "2024-11-22",
+        "file": "dba/Oracle-RAC-集群部署与调优方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "tools list",
+        "date": "2024-10-20",
+        "file": "tools_list.md",
+        "author": "Lifu"
+    },
+    {
+        "title": "clock 复现与重构方案",
+        "date": "2024-10-07",
+        "file": "notes/clock-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "pc_monitor 复现与重构方案",
+        "date": "2024-07-07",
+        "file": "notes/pc_monitor-复现与重构方案.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "How to build your own DeepSite",
+        "date": "2024-07-05",
+        "file": "notes/deepsite_deployment.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "K8s 相关问题集锦（五）",
+        "date": "2024-06-26",
+        "file": "devops/K8s_5.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "数据库迁移方案：Oracle 到 PostgreSQL",
+        "date": "2024-04-13",
+        "file": "dba/数据库迁移方案-Oracle到PostgreSQL.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "MySQL、Redis、MongoDB 日常运维手册",
+        "date": "2024-03-08",
+        "file": "dba/MySQL-Redis-MongoDB-日常运维手册.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "PostgreSQL 流复制与 Patroni 高可用方案",
+        "date": "2024-03-01",
+        "file": "dba/PostgreSQL-流复制与Patroni高可用方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "TiDB 分布式数据库：入门与安装实践",
+        "date": "2024-01-18",
+        "file": "dba/TiDB-入门与安装实践.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "K8s 相关问题集锦（五）",
+        "date": "2024-01-09",
+        "file": "devops/K8s_6.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "实验室信息学架构（03）ELN、方法数字化与 LES",
+        "date": "2024-01-06",
+        "file": "biopharma/实验室信息学架构-03-ELN方法数字化与LES.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "企业邮件系统部署与管理：Exchange Server",
+        "date": "2023-12-15",
+        "file": "enterprise/企业邮件系统部署与管理-Exchange-Server.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "K8s 相关问题集锦（一）",
+        "date": "2023-11-24",
+        "file": "devops/K8s_1.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "Oracle DBA 教学（02）日常运维与性能监控",
+        "date": "2023-11-14",
+        "file": "dba/Oracle-DBA-02-日常运维与监控.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Werum PAS-X MES 系统部署安装手册",
+        "date": "2023-10-22",
+        "file": "biopharma/Werum-PAS-X-部署安装手册.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "K8s 相关问题集锦（三）",
+        "date": "2023-09-19",
+        "file": "devops/K8s_8.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "Oracle DBA 教学（04）故障处理与应急响应",
+        "date": "2023-09-01",
+        "file": "dba/Oracle-DBA-04-故障处理与应急响应.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "企业 IT 管理员新员工笔记本配置指南",
+        "date": "2023-08-23",
+        "file": "enterprise/企业IT管理员新员工笔记本配置指南.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "Oracle RMAN 增量备份方案",
+        "date": "2023-08-16",
+        "file": "dba/Oracle-RMAN-增量备份方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "人大金仓 KingbaseES：入门与安装实践",
+        "date": "2023-07-18",
+        "file": "dba/人大金仓KingbaseES-入门与安装实践.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "数据库性能诊断与优化实战手册",
+        "date": "2023-07-08",
+        "file": "dba/数据库性能诊断与优化实战手册.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "实验室信息学架构（05）合规与验证：21 CFR Part 11 / Annex 11 与 CSV/CSA",
+        "date": "2023-04-27",
+        "file": "biopharma/实验室信息学架构-05-合规与验证-21CFRPart11-Annex11-CSV-CSA.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "实验室信息学架构（01）总览与设计原则",
+        "date": "2023-04-04",
+        "file": "biopharma/实验室信息学架构-01-总览与设计原则.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "Werum PAS-X MES 系统日常运维手册",
+        "date": "2023-03-31",
+        "file": "biopharma/Werum-PAS-X-日常运维手册.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "实验室信息学架构（04）仪器数据、CDS 与 SDMS、数据湖",
+        "date": "2023-03-10",
+        "file": "biopharma/实验室信息学架构-04-仪器数据CDS与SDMS数据湖.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "Oracle GoldenGate 部署方案及入门教学",
+        "date": "2023-03-01",
+        "file": "dba/Oracle-GoldenGate-部署方案及入门教学.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "Oracle 迁移至 MySQL：50TB 级数据迁移方案",
+        "date": "2023-02-21",
+        "file": "dba/Oracle迁移至MySQL-50TB级数据迁移方案.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "K8s 相关问题集锦（三）",
+        "date": "2023-02-16",
+        "file": "devops/K8s_3.md",
+        "author": "Lifu",
+        "category": "devops"
+    },
+    {
+        "title": "实验室信息学架构（06）集成架构与平台工程（API 网关 / 事件驱动 / 编排）",
+        "date": "2023-01-15",
+        "file": "biopharma/实验室信息学架构-06-集成架构与平台工程.md",
+        "author": "Lifu",
+        "category": "biopharma"
+    },
+    {
+        "title": "本地→GitHub→阿里云ECS：静态站点CI/CD方案",
+        "date": "2025-11-12",
+        "file": "notes/ci-cd-github-actions-to-aliyun-ecs.md",
+        "author": "Lifu",
+        "category": "notes"
+    }
+    ,
+    {
+        "title": "服务器带外管理（OOB）概览与实践：IPMI/iDRAC/iLO/Redfish",
+        "date": "2025-11-13",
+        "file": "enterprise/server-oob-management-guide.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    }
+    ,
+    {
+        "title": "Ansible 企业实战：中型企业自动化方案（拓扑/策略/命令）",
+        "date": "2025-11-13",
+        "file": "enterprise/ansible-enterprise-practical-guide.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "服务器 RAID 配置实战：以 Dell PERC（perccli）为例",
+        "date": "2025-11-13",
+        "file": "enterprise/server-raid-configuration-dell-perc.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "企业备份与容灾：NetBackup + Data Domain + Quantum 实战",
+        "date": "2025-11-13",
+        "file": "enterprise/netbackup-data-domain-quantum-guide.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "Prometheus + Grafana 监控体系（结合 Ansible 部署）",
+        "date": "2025-11-13",
+        "file": "enterprise/prometheus-grafana-monitoring-for-enterprise.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    },
+    {
+        "title": "企业 IT 系统安全治理：策略、规范与生命周期管理",
+        "date": "2025-11-18",
+        "file": "enterprise/enterprise-security-strategy-and-governance.md",
+        "author": "Lifu",
+        "category": "enterprise"
+    }
+    ,
+    {
+        "title": "Jenkins 与 GitLab CI：企业级 CI/CD 方案与实战（含项目示例与命令）",
+        "date": "2025-11-13",
+        "file": "notes/ci-tools-jenkins-gitlabci-solutions.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "Apache Maven 自动化构建与测试：案例教学与命令行",
+        "date": "2025-11-13",
+        "file": "notes/maven-automation-tutorial.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "Gradle 使用方案：从入门到实践（含项目与命令）",
+        "date": "2025-11-13",
+        "file": "notes/gradle-usage-guide.md",
+        "author": "Lifu",
+        "category": "notes"
+    },
+    {
+        "title": "Apache SkyWalking 使用方案与运维经验",
+        "date": "2025-11-13",
+        "file": "notes/skywalking-usage-ops.md",
+        "author": "Lifu",
+        "category": "notes"
+    }
+,
+    {
+        "title": "达梦数据库 DM8：Linux 入门完整指南（RHEL）",
+        "date": "2025-11-17",
+        "file": "dba/达梦DM8-Linux入门完整指南.md",
+        "author": "Lifu",
+        "category": "dba"
+    },
+    {
+        "title": "达梦数据库 DM8：性能调优方案与 AI（ChatGPT 5.x）辅助实践",
+        "date": "2025-11-17",
+        "file": "dba/dm8-performance-tuning-with-ai.md",
+        "author": "Lifu",
+        "category": "dba"
+    }
+]

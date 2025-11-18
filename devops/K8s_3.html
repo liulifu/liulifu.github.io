@@ -1,0 +1,5963 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="K8s_2.html">
+      
+      
+        <link rel="next" href="K8s_4.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>K8s 相关问题集锦（三） - Lifu Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/nav-sidebar-tweaks.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#k8s" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../index.html" title="Lifu Blog" class="md-header__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lifu Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              K8s 相关问题集锦（三）
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../biopharma/Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-tabs__link">
+          
+  
+  
+  Biopharma
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Csv
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-tabs__link">
+          
+  
+  
+  Dba
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="K8s_1.html" class="md-tabs__link">
+          
+  
+  
+  Devops
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Enterprise
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notes/brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-tabs__link">
+          
+  
+  
+  Notes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tool/index.html" class="md-tabs__link">
+          
+  
+  
+  Tool
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Lifu Blog" class="md-nav__button md-logo" aria-label="Lifu Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Lifu Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Biopharma
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Biopharma
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/Werum-PAS-X-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/Werum-PAS-X-%E9%83%A8%E7%BD%B2%E5%AE%89%E8%A3%85%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Werum PAS-X MES 系统部署安装手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-01-%E6%80%BB%E8%A7%88%E4%B8%8E%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（01）总览与设计原则
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-02-LIMS%E4%B8%8E%E4%B8%BB%E6%95%B0%E6%8D%AE%E6%B2%BB%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（02）LIMS 与主数据治理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-03-ELN%E6%96%B9%E6%B3%95%E6%95%B0%E5%AD%97%E5%8C%96%E4%B8%8ELES.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（03）ELN、方法数字化与 LES
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-04-%E4%BB%AA%E5%99%A8%E6%95%B0%E6%8D%AECDS%E4%B8%8ESDMS%E6%95%B0%E6%8D%AE%E6%B9%96.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（04）仪器数据、CDS 与 SDMS、数据湖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-05-%E5%90%88%E8%A7%84%E4%B8%8E%E9%AA%8C%E8%AF%81-21CFRPart11-Annex11-CSV-CSA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（05）合规与验证：21 CFR Part 11 / Annex 11 与 CSV/CSA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../biopharma/%E5%AE%9E%E9%AA%8C%E5%AE%A4%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%9E%B6%E6%9E%84-06-%E9%9B%86%E6%88%90%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%B9%B3%E5%8F%B0%E5%B7%A5%E7%A8%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    实验室信息学架构（06）集成架构与平台工程（API 网关 / 事件驱动 / 编排）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Csv
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Csv
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/CSV-%E8%B5%84%E6%96%99%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSV（计算机化系统验证）资料索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../csv/cccc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cccc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dba
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Dba
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/000-Oracle-21c-%E4%B8%93%E9%A2%98%E7%B4%A2%E5%BC%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 专题索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Apache-Doris-OLAP-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Doris（国产 OLAP）：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 日常运维手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-Redis-MongoDB-%E9%AB%98%E5%8F%AF%E7%94%A8%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%AF%B9%E6%AF%94%E4%B8%8E%E9%80%89%E5%9E%8B.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL、Redis、MongoDB 高可用解决方案对比与选型指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/MySQL-%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6%E4%B8%8E%E9%AB%98%E5%8F%AF%E7%94%A8%E6%9E%B6%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL 主从复制与高可用架构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/OceanBase-%E7%A4%BE%E5%8C%BA%E7%89%88-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OceanBase 社区版：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%A2%9E%E5%8A%A0%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 增加删除数据文件的方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E5%B8%B8%E8%A7%81%E8%A7%86%E5%9B%BE%E5%8F%8A%E7%94%A8%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 常见视图及用法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E6%9E%B6%E6%9E%84%E5%8F%8A%E5%85%B3%E9%94%AE%E7%BB%84%E4%BB%B6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 架构及关键组件
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-21c-%E7%AD%89%E5%BE%85%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E6%96%B9%E6%B3%95.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 21c 等待事件处理方法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-01-%E9%83%A8%E7%BD%B2%E4%B8%8E%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（01）部署与架构设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-02-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E4%B8%8E%E7%9B%91%E6%8E%A7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（02）日常运维与性能监控
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-03-%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（03）数据安全与备份恢复（RMAN / 冷备 / 热备 / 灾备）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DBA-04-%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E4%B8%8E%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle DBA 教学（04）故障处理与应急响应
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-DataGuard-%E5%AE%9E%E6%88%98%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle Data Guard 实战部署方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate-%E9%83%A8%E7%BD%B2%E6%96%B9%E6%A1%88%E5%8F%8A%E5%85%A5%E9%97%A8%E6%95%99%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 部署方案及入门教学
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-GoldenGate%E4%B8%8EMySQL%E6%95%B0%E6%8D%AE%E4%BA%A4%E6%8D%A2%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle GoldenGate 与 MySQL 数据交换方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RAC-%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2%E4%B8%8E%E8%B0%83%E4%BC%98%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RAC 集群部署与调优方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle-RMAN-%E5%A2%9E%E9%87%8F%E5%A4%87%E4%BB%BD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle RMAN 增量备份方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/Oracle%E8%BF%81%E7%A7%BB%E8%87%B3MySQL-50TB%E7%BA%A7%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle 迁移至 MySQL：50TB 级数据迁移方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/PostgreSQL-%E6%B5%81%E5%A4%8D%E5%88%B6%E4%B8%8EPatroni%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PostgreSQL 流复制与 Patroni 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E5%B8%B8%E8%A7%81%E8%BF%90%E7%BB%B4%E5%85%B8%E5%9E%8B%E9%97%AE%E9%A2%98%E7%A4%BA%E4%BE%8B%E5%8F%8A%E8%A7%A3%E6%9E%90.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 常见运维典型问题示例及解析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 故障排查
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/SQL-Server-%E9%AB%98%E5%8F%AF%E7%94%A8%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Server 高可用方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/TiDB-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TiDB 分布式数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/dm8-performance-tuning-with-ai.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8 性能调优方案与 AI（ChatGPT 5.x）辅助实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/openGauss-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    openGauss 数据库：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/oracle-pdb-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Oracle PDB 详细使用指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E4%BA%BA%E5%A4%A7%E9%87%91%E4%BB%93KingbaseES-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    人大金仓 KingbaseES：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%80%A7%E8%83%BD%E8%AF%8A%E6%96%AD%E4%B8%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库性能诊断与优化实战手册
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88-Oracle%E5%88%B0PostgreSQL.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据库迁移方案：Oracle 到 PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-Linux%E5%85%A5%E9%97%A8%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：Linux（RHEL）入门完整指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dba/%E8%BE%BE%E6%A2%A6DM8-%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%89%E8%A3%85%E5%AE%9E%E8%B7%B5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    达梦数据库 DM8：入门与安装实践
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Devops
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Devops
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（一）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（二）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="K8s_3.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#53-kubernetes-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 在 Kubernetes 中滚动更新一个 Deployment？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 在 Kubernetes 中滚动更新一个 Deployment？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1 滚动更新（Rolling Update）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 滚动更新（Rolling Update）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 滚动更新（Rolling Update）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制滚动更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-kubectl-set-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法 1：使用 kubectl set image 进行滚动更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法 1：使用 kubectl set image 进行滚动更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 查看现有的 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 更新镜像
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 查看滚动更新的状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 查看更新历史
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 回滚更新（如果有问题）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法 2：修改 Deployment 配置文件并重新应用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法 2：修改 Deployment 配置文件并重新应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 获取并编辑 Deployment 配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 编辑配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 应用修改后的配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 查看滚动更新的状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滚动更新的流程解释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="小结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#532-recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.2 重建（Recreate）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 重建（Recreate）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重建（Recreate）策略的详细步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="重建（Recreate）策略的详细步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：创建初始 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deployment-recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：修改 Deployment 使用 Recreate 策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：查看重建过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：验证应用服务的可用性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-blue-green-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.3 蓝绿部署（Blue-Green Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        蓝绿部署详细步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="蓝绿部署详细步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1blue-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：创建蓝色环境（Blue Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2green-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：创建绿色环境（Green Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3green-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：验证绿色环境（Green Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：切换 Service 选择器到绿色环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 5：验证切换后的服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 6：删除蓝色环境（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#534-canary-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.4 金丝雀部署（Canary Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        金丝雀部署的详细步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="金丝雀部署的详细步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：创建旧版本 Deployment（当前版本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deployment_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：创建金丝雀版本 Deployment（新版本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：创建 Service 进行流量分配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：验证金丝雀版本（测试新版本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 5：逐步增加金丝雀版本流量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 6：完成更新并替换旧版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#535-ab-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.5 分批发布（A/B Testing）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#536-pauseresume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.6 滚动更新 + Pause/Resume（手动控制更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（四）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（五）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes 的目录结构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="K8s_8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K8s 相关问题集锦（三）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Enterprise
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Enterprise
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/Windows%E5%9F%9F%E6%8E%A7%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Windows 域控服务器部署与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/aliecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALIECS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/ansible-enterprise-practical-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ansible 企业实战方案：中型企业从安装到策略落地（含命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/enterprise-security-strategy-and-governance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 系统安全治理：策略、规范与生命周期管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/netbackup-data-domain-quantum-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业备份与容灾：Veritas NetBackup + Data Domain + Quantum 实战
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/prometheus-grafana-monitoring-for-enterprise.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prometheus + Grafana 监控体系（结合 Ansible 的企业落地）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-oob-management-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器带外管理（OOB）概览与实践：IPMI / iDRAC / iLO / Redfish
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/server-raid-configuration-dell-perc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服务器 RAID 配置实战：以 Dell PERC (perccli/storcli) 为例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT-%E6%97%A5%E5%B8%B8%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88-vSphere-Hadoop-Grafana-Ansible-Chef.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 日常运维方案：vSphere / Hadoop / Grafana / Ansible / Chef
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9AIT%E7%AE%A1%E7%90%86%E5%91%98%E6%96%B0%E5%91%98%E5%B7%A5%E7%AC%94%E8%AE%B0%E6%9C%AC%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业 IT 管理员新员工笔记本配置指南
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E6%96%87%E4%BB%B6%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8E%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业文件服务器与权限管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E4%BC%81%E4%B8%9A%E9%82%AE%E4%BB%B6%E7%B3%BB%E7%BB%9F%E9%83%A8%E7%BD%B2%E4%B8%8E%E7%AE%A1%E7%90%86-Exchange-Server.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    企业邮件系统部署与管理：Exchange Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E5%9F%BA%E4%BA%8EWindows%E7%9A%84%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E8%A1%8C%E4%B8%9A%E8%BD%AF%E4%BB%B6%E8%BF%90%E7%BB%B4%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基于 Windows 的生物制药行业软件运维方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enterprise/%E7%94%9F%E7%89%A9%E5%88%B6%E8%8D%AF%E4%BC%81%E4%B8%9AIT%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84%E6%A6%82%E8%A7%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生物制药企业 IT 基础架构概览
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/brandnew-0926-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%85%8D%E7%BD%AE.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IT Help Desk Access Tool（PyQt5）复现与配置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-cd-github-actions-to-aliyun-ecs.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-cd-smoke-test.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD 测试文章（自动化烟囱测试）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/ci-tools-jenkins-gitlabci-solutions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jenkins 与 GitLab CI：企业级 CI/CD 方案与实战（含项目示例与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/clock-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    clock 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/deepsite_deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to build your own DeepSite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/fengbi-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    fengbi PDF 工具套件：抽取/清洗/分割/偏移 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/gradle-usage-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradle 使用方案：从入门到实践（含项目与命令）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/maven-automation-tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache Maven 自动化构建与测试：案例教学与命令行
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/paddleocrproject-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    paddleocrproject 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/pc_monitor-%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pc_monitor 复现与重构方案
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/skywalking-usage-ops.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Apache SkyWalking 使用方案与运维经验
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E4%B8%80%E7%A7%8D%E6%96%87%E4%BB%B6%E5%8A%A0%E5%AF%86%E8%AE%BE%E8%AE%A1.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    一种文件加密设计
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E4%B8%89%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%8E%B0%E4%B8%8E%E9%87%8D%E6%9E%84%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    三项目复现与重构方案：clock、pc_monitor、paddleocrproject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E8%87%AA%E5%8A%A8%E8%84%9A%E6%9C%AC.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    📝 博客自动化工作流程
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9C%ACBlog%E6%9E%B6%E6%9E%84.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本Blog架构
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9C%AC%E5%9C%B0-GitHub-%E9%98%BF%E9%87%8C%E4%BA%91ECS-%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9CI-CD%E6%96%B9%E6%A1%88.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    本地→GitHub→阿里云 ECS：静态站点 CI/CD 方案（my-static-site）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E6%9E%84%E5%BB%BAPython%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    构建PYTHON开发环境
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notes/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    静态博客的浏览器缓存问题
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tool
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tool
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具总览（Tool）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/cron-designer.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cron Designer（计划任务表达式设计）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/gobang.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gobang（五子棋）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/insurance-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Insurance Calculator（五险一金计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/password-generator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Password Generator（密码生成器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/python-interpreter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Python Interpreter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rgb-color-picker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RGB Color Picker（颜色选择器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/rmb-converter.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RMB Converter（人民币大小写转换）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/sterilization-guide.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sterilization Guide（灭菌指南）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/unit-conversion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Unit Conversion（单位换算）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tool/vat-calculator.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAT Calculator（增值税计算器）
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#53-kubernetes-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 在 Kubernetes 中滚动更新一个 Deployment？
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 在 Kubernetes 中滚动更新一个 Deployment？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#531-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.1 滚动更新（Rolling Update）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-rolling-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 滚动更新（Rolling Update）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 滚动更新（Rolling Update）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        控制滚动更新
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-kubectl-set-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法 1：使用 kubectl set image 进行滚动更新
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法 1：使用 kubectl set image 进行滚动更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 查看现有的 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 更新镜像
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 查看滚动更新的状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 查看更新历史
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 回滚更新（如果有问题）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法 2：修改 Deployment 配置文件并重新应用
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="方法 2：修改 Deployment 配置文件并重新应用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 获取并编辑 Deployment 配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 编辑配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 应用修改后的配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 查看滚动更新的状态
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滚动更新的流程解释
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="小结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#532-recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.2 重建（Recreate）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 重建（Recreate）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重建（Recreate）策略的详细步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="重建（Recreate）策略的详细步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：创建初始 Deployment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deployment-recreate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：修改 Deployment 使用 Recreate 策略
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：查看重建过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：验证应用服务的可用性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#533-blue-green-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.3 蓝绿部署（Blue-Green Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        蓝绿部署详细步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="蓝绿部署详细步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1blue-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：创建蓝色环境（Blue Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2green-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：创建绿色环境（Green Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3green-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：验证绿色环境（Green Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：切换 Service 选择器到绿色环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 5：验证切换后的服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 6：删除蓝色环境（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#534-canary-deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.4 金丝雀部署（Canary Deployment）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        金丝雀部署的详细步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="金丝雀部署的详细步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        假设场景
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-deployment_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 1：创建旧版本 Deployment（当前版本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-deployment_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 2：创建金丝雀版本 Deployment（新版本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 3：创建 Service 进行流量分配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 4：验证金丝雀版本（测试新版本）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 5：逐步增加金丝雀版本流量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        步骤 6：完成更新并替换旧版本
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#535-ab-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.5 分批发布（A/B Testing）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#536-pauseresume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3.6 滚动更新 + Pause/Resume（手动控制更新）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="k8s">K8s 相关问题集锦（三）</h1>
+<h2 id="53-kubernetes-deployment">5.3 在 Kubernetes 中滚动更新一个 Deployment？</h2>
+<p>更新一个Deployment 有以下几种方法，滚动是其中的一种，现在分别说一下这些方法的实现</p>
+<ul>
+<li><strong>滚动更新（Rolling Update）</strong>：Kubernetes 的默认更新策略，逐步替换旧版本 Pod，用新版本保持服务不中断。</li>
+<li><strong>重建（Recreate）</strong>：删除所有旧的 Pod，然后一次性启动新版本，速度快但有中断风险。</li>
+<li><strong>蓝绿部署（Blue-Green Deployment）</strong>：通过运行两个并行的版本来进行切换，易于回滚，但需要额外资源。</li>
+<li><strong>金丝雀部署（Canary Deployment）</strong>：逐步引入新版本，观察新版本的稳定性，适用于降低风险。</li>
+<li><strong>A/B 测试（A/B Testing）</strong>：类似于金丝雀，但重点是对比测试两个版本的表现。</li>
+<li><strong>滚动更新 + Pause/Resume</strong>：手动控制更新的节奏，适合需要细粒度控制更新的情况。</li>
+</ul>
+<h4 id="531-rolling-update">5.3.1 滚动更新（Rolling Update）</h4>
+<blockquote>
+<p>滚动更新（<strong>Rolling Update</strong>）是 Kubernetes 中 <code>Deployment</code> 进行更新的一种常用方式，它的目的是逐步地用新版本替换旧版本，确保应用在更新过程中始终可用。除了滚动更新，Kubernetes 还支持其他几种更新策略和方式：</p>
+<h3 id="1-rolling-update">1. 滚动更新（Rolling Update）</h3>
+<p>这是 <code>Deployment</code> 的默认更新策略，通过逐个替换旧版本的 Pod，用新的 Pod 逐步取代。这样，集群中的服务可以在更新期间保持可用。</p>
+<ul>
+<li><strong>优点</strong>：逐步替换旧的 Pod，服务不中断。</li>
+<li><strong>缺点</strong>：更新速度较慢，依赖多个 Pod 来确保不中断。</li>
+</ul>
+<h4 id="_1">控制滚动更新</h4>
+<p>你可以通过修改 <code>spec.strategy</code> 来自定义滚动更新的行为：</p>
+<ul>
+<li><strong>maxUnavailable</strong>：指定在更新过程中，最多可以有多少个不可用的 Pod。</li>
+<li><strong>maxSurge</strong>：指定在更新过程中，最多可以增加多少个额外的 Pod。</li>
+</ul>
+<p>例如：</p>
+<p><code>yaml
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 1
+    maxSurge: 2</code></p>
+<ul>
+<li><strong>maxUnavailable: 1</strong>：表示在更新过程中，最多只能有 1 个 Pod 不可用。</li>
+<li><strong>maxSurge: 2</strong>：表示在更新过程中，可以最多额外创建 2 个 Pod。</li>
+</ul>
+<p>在 Kubernetes 中，滚动更新 <code>Deployment</code> 是一种常见的方法来更新应用程序，同时确保更新期间保持可用性。滚动更新可以通过两种方式实现：使用 <code>kubectl set image</code> 命令来更新镜像，或者直接修改 <code>Deployment</code> 的 YAML 配置文件并重新应用。</p>
+<p>以下是详细的操作步骤：</p>
+<h3 id="1-kubectl-set-image">方法 1：使用 <code>kubectl set image</code> 进行滚动更新</h3>
+<h4 id="1-deployment">1. 查看现有的 Deployment</h4>
+<p>首先，查看现有的 <code>Deployment</code>，以便获取它的名称和了解其当前状态：</p>
+<p><code>bash
+kubectl get deployments</code></p>
+<p>你可以查看到类似的输出：</p>
+<p><code>plaintext
+NAME          READY   UP-TO-DATE   AVAILABLE   AGE
+myapp         3/3     3            3           10m</code></p>
+<p>这里，<code>myapp</code> 就是 <code>Deployment</code> 的名称。</p>
+<h4 id="2">2. 更新镜像</h4>
+<p>使用 <code>kubectl set image</code> 命令来更新 <code>Deployment</code> 中的容器镜像：</p>
+<p><code>bash
+kubectl set image deployment/myapp mycontainer=myimage:v2</code></p>
+<ul>
+<li><strong>deployment/myapp</strong>：这是 <code>Deployment</code> 的名称，表示需要更新哪个 <code>Deployment</code>。</li>
+<li><strong>mycontainer</strong>：这是容器的名称，必须与原来的名称一致。</li>
+<li><strong>myimage:v2</strong>：这是新镜像的名称和版本。</li>
+</ul>
+<p>例如，如果你的 <code>Deployment</code> 有一个名为 <code>nginx</code> 的容器，你想将镜像从 <code>nginx:1.19</code> 更新到 <code>nginx:1.20</code>，可以使用以下命令：</p>
+<p><code>bash
+kubectl set image deployment/nginx-deployment nginx=nginx:1.20</code></p>
+<h4 id="3">3. 查看滚动更新的状态</h4>
+<p>使用以下命令来查看更新的状态：</p>
+<p><code>bash
+kubectl rollout status deployment/myapp</code></p>
+<p>此命令会监视 <code>Deployment</code> 的状态，直到更新完成。你将会看到类似的输出：</p>
+<p><code>plaintext
+deployment "myapp" successfully rolled out</code></p>
+<h4 id="4">4. 查看更新历史</h4>
+<p>使用以下命令来查看 <code>Deployment</code> 的滚动更新历史：</p>
+<p><code>bash
+kubectl rollout history deployment/myapp</code></p>
+<p>这会显示每次更新的修订版本。</p>
+<h4 id="5">5. 回滚更新（如果有问题）</h4>
+<p>如果发现新版本有问题，可以回滚到之前的版本：</p>
+<p><code>bash
+kubectl rollout undo deployment/myapp</code></p>
+<p>如果你有多个修订版本，可以指定一个特定的修订版本进行回滚：</p>
+<p><code>bash
+kubectl rollout undo deployment/myapp --to-revision=1</code></p>
+<h3 id="2-deployment">方法 2：修改 Deployment 配置文件并重新应用</h3>
+<h4 id="1-deployment_1">1. 获取并编辑 Deployment 配置文件</h4>
+<p>使用 <code>kubectl get deployment</code> 命令获取当前的 <code>Deployment</code> 的 YAML 配置文件并导出为文件：</p>
+<p><code>bash
+kubectl get deployment myapp -o yaml &gt; myapp-deployment.yaml</code></p>
+<h4 id="2_1">2. 编辑配置文件</h4>
+<p>打开 <code>myapp-deployment.yaml</code> 文件，找到 <code>spec.template.spec.containers</code> 部分，并修改镜像版本。例如：</p>
+<p><code>yaml
+spec:
+  template:
+    spec:
+      containers:
+      - name: mycontainer
+        image: myimage:v2</code></p>
+<p>将 <code>image</code> 的值更新到你想要的版本。</p>
+<h4 id="3_1">3. 应用修改后的配置文件</h4>
+<p>保存修改并使用 <code>kubectl apply</code> 命令重新应用这个配置文件：</p>
+<p><code>bash
+kubectl apply -f myapp-deployment.yaml</code></p>
+<h4 id="4_1">4. 查看滚动更新的状态</h4>
+<p>和前面的操作一样，使用以下命令查看滚动更新状态：</p>
+<p><code>bash
+kubectl rollout status deployment/myapp</code></p>
+<h3 id="_2">滚动更新的流程解释</h3>
+<ul>
+<li><strong>滚动更新</strong> 是 Kubernetes 默认的更新方式。它逐渐更新 Pod，以保持服务可用性。在新的 Pod 创建之前，旧的 Pod 不会立刻被删除。</li>
+<li><strong>滚动更新的好处</strong>：</li>
+<li>保证应用程序持续可用。</li>
+<li>遇到问题时可以方便地进行回滚。</li>
+<li>可控制滚动更新的速度和暂停条件。</li>
+</ul>
+<h3 id="_3">小结</h3>
+<ol>
+<li>使用 <code>kubectl set image</code> 可以快速更新镜像。</li>
+<li>也可以直接修改 <code>Deployment</code> 的配置文件并重新应用。</li>
+<li>使用 <code>kubectl rollout status</code> 来监控更新状态，并在需要时使用 <code>kubectl rollout undo</code> 进行回滚。</li>
+</ol>
+<p>如果你需要更进一步的帮助，欢迎继续提问！</p>
+</blockquote>
+<h4 id="532-recreate">5.3.2 重建（Recreate）</h4>
+<blockquote>
+<h3 id="2-recreate">2. 重建（Recreate）</h3>
+<p>重建（<strong>Recreate</strong>）策略是一种简单但具有风险的更新方式。它会首先删除所有旧版本的 Pod，然后启动新版本的 Pod。</p>
+<ul>
+<li><strong>优点</strong>：适用于不需要保持旧版本运行的场景，更新速度快。</li>
+<li><strong>缺点</strong>：存在应用服务不可用的时间，因为所有旧版本的 Pod 会被同时删除。</li>
+</ul>
+<p>可以在 <code>Deployment</code> 中配置重建策略：</p>
+<p><code>yaml
+strategy:
+  type: Recreate</code></p>
+<p>如何使用 <strong>重建（Recreate）</strong> 策略来更新 Kubernetes 中的 <code>Deployment</code>。这种方式先删除所有现有的 Pod，然后启动新的 Pod，因此在更新期间应用服务会短时间不可用。</p>
+<h3 id="recreate">重建（Recreate）策略的详细步骤</h3>
+<p>我们将创建一个简单的 Nginx <code>Deployment</code>，并通过设置更新策略为 <code>Recreate</code> 来进行部署和更新操作。</p>
+<h4 id="1-deployment_2">步骤 1：创建初始 <code>Deployment</code></h4>
+<p>首先，我们创建一个包含 <code>nginx</code> 容器的 <code>Deployment</code>，并使用默认的更新策略（滚动更新）来启动服务。</p>
+<p><strong>1.1. 创建 <code>nginx-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.19
+        ports:
+        - containerPort: 80</code></p>
+<p><strong>1.2. 应用 <code>Deployment</code> 配置文件</strong></p>
+<p>使用 <code>kubectl</code> 命令来应用配置文件：</p>
+<p><code>bash
+kubectl apply -f nginx-deployment.yaml</code></p>
+<p><strong>1.3. 验证 <code>Deployment</code> 是否成功部署</strong></p>
+<p>查看 Pod 的状态，确保它们已成功启动：</p>
+<p><code>bash
+kubectl get pods -l app=nginx</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-6b7f6b4c7d-1abc    1/1     Running   0          2m
+nginx-deployment-6b7f6b4c7d-2def    1/1     Running   0          2m
+nginx-deployment-6b7f6b4c7d-3ghi    1/1     Running   0          2m</code></p>
+<h4 id="2-deployment-recreate">步骤 2：修改 <code>Deployment</code> 使用 Recreate 策略</h4>
+<p>接下来，我们将修改 <code>Deployment</code> 的更新策略为 <code>Recreate</code>，以便在更新镜像版本时先删除所有旧版本的 Pod，然后启动新版本。</p>
+<p><strong>2.1. 修改 <code>nginx-deployment.yaml</code> 配置</strong></p>
+<p>打开之前的配置文件，将 <code>spec.strategy</code> 设置为 <code>Recreate</code>，同时将 <code>nginx</code> 镜像版本更新为 <code>nginx:1.20</code>。</p>
+<p>修改后的 <code>nginx-deployment.yaml</code> 文件如下：</p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.20
+        ports:
+        - containerPort: 80</code></p>
+<p><strong>2.2. 重新应用更新后的 <code>Deployment</code> 配置</strong></p>
+<p>使用以下命令来应用修改后的配置文件：</p>
+<p><code>bash
+kubectl apply -f nginx-deployment.yaml</code></p>
+<h4 id="3_2">步骤 3：查看重建过程</h4>
+<p>由于我们使用了 <code>Recreate</code> 策略，Kubernetes 会先删除所有旧的 Pod，然后再启动新的 Pod。这可能会导致服务短时间不可用。</p>
+<p><strong>3.1. 查看更新状态</strong></p>
+<p>使用以下命令查看 <code>Deployment</code> 的更新状态：</p>
+<p><code>bash
+kubectl rollout status deployment/nginx-deployment</code></p>
+<p>你会看到类似如下的信息：</p>
+<p><code>plaintext
+Waiting for deployment "nginx-deployment" rollout to finish: 0 out of 3 new replicas have been updated...</code></p>
+<p>该信息表明，旧的 Pod 已经被删除，Kubernetes 正在启动新的 Pod。</p>
+<p><strong>3.2. 验证更新结果</strong></p>
+<p>查看 <code>Deployment</code> 中新的 Pod 是否已全部启动：</p>
+<p><code>bash
+kubectl get pods -l app=nginx</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-54c8d5dfb8-1jkl    1/1     Running   0          1m
+nginx-deployment-54c8d5dfb8-2mno    1/1     Running   0          1m
+nginx-deployment-54c8d5dfb8-3pqr    1/1     Running   0          1m</code></p>
+<p>可以看到，旧版本的 Pod 已被删除，并且新的 Pod 已启动。</p>
+<h4 id="4_2">步骤 4：验证应用服务的可用性</h4>
+<p>由于 <code>Recreate</code> 策略会先删除旧的 Pod，因此在新 Pod 启动之前，可能会有短时间的服务不可用期。在更新完成后，可以通过访问 Nginx 服务验证其可用性：</p>
+<p><strong>4.1. 暴露服务</strong></p>
+<p>为了验证应用，我们可以暴露 <code>Deployment</code>，以便外部访问 Pod：</p>
+<p><code>bash
+kubectl expose deployment/nginx-deployment --type=NodePort --name=nginx-service</code></p>
+<p><strong>4.2. 获取服务的访问端口</strong></p>
+<p>使用以下命令获取服务的端口：</p>
+<p><code>bash
+kubectl get service nginx-service</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+NAME            TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+nginx-service   NodePort   10.96.128.25   &lt;none&gt;        80:31001/TCP     2m</code></p>
+<ul>
+<li><strong>31001</strong> 是 <code>NodePort</code> 暴露的端口，访问集群节点的 IP 地址和该端口，可以验证应用程序是否可用。</li>
+</ul>
+<h4 id="_4">总结</h4>
+<ul>
+<li><strong>重建（Recreate）策略</strong> 会先删除所有旧版本的 Pod，然后再启动新版本，这意味着应用会有一段时间处于不可用状态。因此，<strong>重建策略</strong>适用于那些对短时间服务中断不敏感的场景。</li>
+<li><strong>详细步骤</strong>包括创建初始 <code>Deployment</code>，修改 <code>Deployment</code> 使用 <code>Recreate</code> 策略并更新镜像版本，然后重新应用配置，验证更新过程和应用服务可用性。</li>
+</ul>
+<p>如果你有其他问题或需要更详细的指导，欢迎继续提问！</p>
+</blockquote>
+<h4 id="533-blue-green-deployment">5.3.3 蓝绿部署（Blue-Green Deployment）</h4>
+<blockquote>
+<p><strong>蓝绿部署</strong> 是一种并行部署的新版本和旧版本策略。蓝绿部署通常不会直接通过 <code>Deployment</code> 控制器实现，而是结合 Kubernetes 的 <strong>Service</strong> 和一些额外的管理工具实现。</p>
+<ul>
+<li><strong>原理</strong>：蓝绿部署中，你维护两个环境：<code>蓝</code>代表旧环境，<code>绿</code>代表新环境。在新版本就绪并通过测试后，只需将服务的流量切换到新版本即可。</li>
+<li><strong>步骤</strong>：</li>
+<li>创建与旧版本相同的新版本 <code>Deployment</code>（例如 <code>blue</code> 为当前版本，<code>green</code> 为新版本）。</li>
+<li>使用 Kubernetes <code>Service</code> 来关联这两个版本的 <code>Deployment</code>。</li>
+<li>验证新版本后，通过更改 <code>Service</code> 的选择器，将流量从旧版本切换到新版本。</li>
+</ul>
+<p>蓝绿部署的优势在于可以更快地回滚，因为你只需要把流量切回旧版本。</p>
+<p>当然，以下是如何在 Kubernetes 中实现蓝绿部署的详细步骤。蓝绿部署的基本思想是在集群中维护两个环境（例如 "蓝" 和 "绿"），同时运行旧版本和新版本。当新版本验证通过后，通过 Kubernetes 的 <code>Service</code> 将流量从旧版本切换到新版本，这样可以确保更新过程中的服务平滑且风险较低。</p>
+<h3 id="_5">蓝绿部署详细步骤</h3>
+<h4 id="_6">假设场景</h4>
+<ul>
+<li><strong>蓝环境（Blue Environment）</strong>：当前稳定的版本，命名为 <code>blue-deployment</code>，例如，运行 <code>nginx:1.19</code>。</li>
+<li><strong>绿环境（Green Environment）</strong>：新版本环境，命名为 <code>green-deployment</code>，例如，运行 <code>nginx:1.20</code>。</li>
+<li>使用一个 <strong>Kubernetes Service</strong> 来路由流量到当前活动的环境。</li>
+</ul>
+<h4 id="1blue-deployment">步骤 1：创建蓝色环境（Blue Deployment）</h4>
+<p>首先，我们创建一个包含 <code>nginx</code> 镜像的 <code>Deployment</code>，代表当前生产环境，即 "蓝色环境"。</p>
+<p><strong>1.1. 创建 <code>blue-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-deployment
+  labels:
+    app: myapp
+    environment: blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      environment: blue
+  template:
+    metadata:
+      labels:
+        app: myapp
+        environment: blue
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.19
+        ports:
+        - containerPort: 80</code></p>
+<p><strong>1.2. 应用蓝色环境 <code>Deployment</code> 配置</strong></p>
+<p>使用 <code>kubectl</code> 命令来应用配置文件：</p>
+<p><code>bash
+kubectl apply -f blue-deployment.yaml</code></p>
+<p><strong>1.3. 创建蓝色环境的 Service</strong></p>
+<p>接下来创建一个 <code>Service</code>，将流量路由到当前的蓝色环境：</p>
+<p><strong>创建 <code>service.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+    environment: blue
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer</code></p>
+<ul>
+<li><strong>selector</strong>：将流量路由到具有标签 <code>app: myapp</code> 和 <code>environment: blue</code> 的 Pod 上。</li>
+</ul>
+<p><strong>应用 Service 配置</strong></p>
+<p><code>bash
+kubectl apply -f service.yaml</code></p>
+<h4 id="2green-deployment">步骤 2：创建绿色环境（Green Deployment）</h4>
+<p>绿色环境代表要部署的新版本，这里我们创建一个新的 <code>Deployment</code>，使用更高版本的 <code>nginx</code> 镜像。</p>
+<p><strong>2.1. 创建 <code>green-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+  labels:
+    app: myapp
+    environment: green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      environment: green
+  template:
+    metadata:
+      labels:
+        app: myapp
+        environment: green
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.20
+        ports:
+        - containerPort: 80</code></p>
+<p><strong>2.2. 应用绿色环境 <code>Deployment</code> 配置</strong></p>
+<p><code>bash
+kubectl apply -f green-deployment.yaml</code></p>
+<h4 id="3green-deployment">步骤 3：验证绿色环境（Green Deployment）</h4>
+<p>在将流量切换到绿色环境之前，需要验证新版本的运行状况，确保它正常工作。</p>
+<p><strong>3.1. 验证 Pod 状态</strong></p>
+<p>查看绿色环境的 Pod 是否正常运行：</p>
+<p><code>bash
+kubectl get pods -l app=myapp,environment=green</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+NAME                                READY   STATUS    RESTARTS   AGE
+green-deployment-6c8f8d5b6c-1abc    1/1     Running   0          1m
+green-deployment-6c8f8d5b6c-2def    1/1     Running   0          1m
+green-deployment-6c8f8d5b6c-3ghi    1/1     Running   0          1m</code></p>
+<p><strong>3.2. 进行测试</strong></p>
+<p>可以通过使用临时端口暴露服务，或者通过 <code>kubectl port-forward</code> 命令访问新版本的服务进行测试：</p>
+<p><code>bash
+kubectl port-forward deployment/green-deployment 8080:80</code></p>
+<p>访问 <code>http://localhost:8080</code> 确认新版本是否正常工作。</p>
+<h4 id="4-service">步骤 4：切换 Service 选择器到绿色环境</h4>
+<p>一旦绿色环境被验证正常，可以通过更改 <code>Service</code> 的选择器将流量切换到绿色环境。</p>
+<p><strong>4.1. 修改 <code>service.yaml</code></strong></p>
+<p>将 <code>service.yaml</code> 文件中的选择器修改为绿色环境的标签：</p>
+<p><code>yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+    environment: green  # 切换到绿色环境
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer</code></p>
+<p><strong>4.2. 重新应用 Service</strong></p>
+<p><code>bash
+kubectl apply -f service.yaml</code></p>
+<p>此时，<code>Service</code> 会将所有流量路由到绿色环境的 Pod。</p>
+<h4 id="5_1">步骤 5：验证切换后的服务</h4>
+<p>检查服务是否成功切换到绿色环境：</p>
+<p><code>bash
+kubectl get service myapp-service</code></p>
+<p>你可以通过访问 <code>Service</code> 的外部地址验证服务是否正常工作，以及是否切换到了绿色环境。</p>
+<h4 id="6">步骤 6：删除蓝色环境（可选）</h4>
+<p>一旦绿色环境稳定运行并且验证通过，蓝色环境的 <code>Deployment</code> 就可以删除以释放资源：</p>
+<p><code>bash
+kubectl delete deployment blue-deployment</code></p>
+<p>如果需要快速回滚，只需将 <code>Service</code> 的选择器改回 <code>blue</code> 即可，无需立即删除蓝色环境，这也是蓝绿部署的一个优势。</p>
+<h3 id="_7">总结</h3>
+<ul>
+<li><strong>蓝绿部署</strong>是通过创建两个独立的环境（例如蓝色环境和绿色环境）来实现应用程序的新版本发布。</li>
+<li><strong>关键步骤</strong>：</li>
+<li>创建旧版本的 <code>Deployment</code>（蓝色环境）和对应的 <code>Service</code>。</li>
+<li>部署新版本的 <code>Deployment</code>（绿色环境）。</li>
+<li>验证新版本环境是否运行正常。</li>
+<li>修改 <code>Service</code> 的选择器，将流量切换到绿色环境。</li>
+<li>确认切换成功后，可以选择删除旧版本的 <code>Deployment</code>。</li>
+<li><strong>优势</strong>：蓝绿部署的最大优势在于更快的回滚和服务的平滑切换。如果新版本出现问题，只需将 <code>Service</code> 的选择器切回旧版本即可快速恢复。</li>
+</ul>
+<p>如果你还有任何其他问题或需要更详细的解释，欢迎继续讨论！</p>
+</blockquote>
+<h4 id="534-canary-deployment">5.3.4 金丝雀部署（Canary Deployment）</h4>
+<blockquote>
+<p><strong>金丝雀部署</strong> 是一种渐进式的更新策略，目的是将新版本的代码逐渐引入到生产环境中。</p>
+<ul>
+<li><strong>原理</strong>：在初始阶段，首先将少量流量引导到新版本中。如果没有发现问题，则逐步增加新版本的流量分配，直到新版本完全替代旧版本。</li>
+<li><strong>步骤</strong>：</li>
+<li>在现有 <code>Deployment</code> 的基础上部署一部分新版本的 Pod，保持大部分流量仍然指向旧版本。</li>
+<li>逐步增加新版本的副本数，直到完成更新。</li>
+</ul>
+<p>这种方式有助于在生产环境中提前发现潜在的问题，并将其对用户的影响最小化。</p>
+<p>金丝雀部署可以通过手动调整 <code>Deployment</code> 的副本数来实现，或者使用专门的 CI/CD 工具（如 Argo Rollouts、Spinnaker 等）来实现自动化的金丝雀部署。</p>
+<p>金丝雀部署（<strong>Canary Deployment</strong>）是一种稳妥的发布策略，通过将新版本的更新逐渐引入生产环境，可以在小范围内验证新版本的稳定性，减少更新风险。以下是如何在 Kubernetes 中实现金丝雀部署的详细步骤。</p>
+<h3 id="_8">金丝雀部署的详细步骤</h3>
+<h4 id="_9">假设场景</h4>
+<p>我们有一个现有的 <code>Deployment</code>，使用镜像版本为 <code>nginx:1.19</code>，它代表当前的生产环境。我们需要将该 <code>Deployment</code> 更新到 <code>nginx:1.20</code>，并采用金丝雀部署的方式逐步引入新版本。</p>
+<ul>
+<li><strong>金丝雀 Pod</strong>：少量新版本 Pod，用于测试新版本。</li>
+<li><strong>渐进式</strong>：根据情况逐步增加新版本的流量，最终全部替换旧版本。</li>
+</ul>
+<h4 id="1-deployment_3">步骤 1：创建旧版本 Deployment（当前版本）</h4>
+<p>首先，创建并部署当前生产环境的 <code>Deployment</code>。</p>
+<p><strong>1.1. 创建 <code>current-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: myapp
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: v1
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.19
+        ports:
+        - containerPort: 80</code></p>
+<p><strong>1.2. 应用 <code>Deployment</code> 配置</strong></p>
+<p><code>bash
+kubectl apply -f current-deployment.yaml</code></p>
+<h4 id="2-deployment_1">步骤 2：创建金丝雀版本 Deployment（新版本）</h4>
+<p>金丝雀版本的 <code>Deployment</code> 通常会有少量的 Pod，这样可以将部分流量路由到新版本，进行小范围测试。</p>
+<p><strong>2.1. 创建 <code>canary-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-canary
+  labels:
+    app: myapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myapp
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: canary
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.20
+        ports:
+        - containerPort: 80</code></p>
+<ul>
+<li><strong>replicas</strong>：金丝雀版本的副本数量设置为 <code>1</code>，用来测试新版本。</li>
+<li><strong>version: canary</strong>：使用标签标识这个是金丝雀版本的 Pod。</li>
+</ul>
+<p><strong>2.2. 应用金丝雀版本的 <code>Deployment</code></strong></p>
+<p><code>bash
+kubectl apply -f canary-deployment.yaml</code></p>
+<h4 id="3-service">步骤 3：创建 Service 进行流量分配</h4>
+<p>金丝雀部署需要一个 <code>Service</code> 来将流量分配到旧版本和新版本上。</p>
+<p><strong>3.1. 创建 <code>service.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  selector:
+    app: myapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer</code></p>
+<p><strong>3.2. 应用 Service 配置</strong></p>
+<p><code>bash
+kubectl apply -f service.yaml</code></p>
+<h4 id="4_3">步骤 4：验证金丝雀版本（测试新版本）</h4>
+<p><strong>4.1. 查看 Pod 的状态</strong></p>
+<p>验证金丝雀版本和旧版本的 Pod 是否正常运行：</p>
+<p><code>bash
+kubectl get pods -l app=myapp</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+NAME                               READY   STATUS    RESTARTS   AGE
+myapp-deployment-5f99d67b7f-abc    1/1     Running   0          10m
+myapp-deployment-5f99d67b7f-def    1/1     Running   0          10m
+myapp-deployment-5f99d67b7f-ghi    1/1     Running   0          10m
+myapp-canary-7fbbd9cccd-jkl        1/1     Running   0          2m</code></p>
+<ul>
+<li>这里有 5 个旧版本的 Pod（<code>myapp-deployment</code>）和 1 个金丝雀版本的 Pod（<code>myapp-canary</code>）。</li>
+</ul>
+<p><strong>4.2. 验证服务是否正常</strong></p>
+<p>通过访问 <code>Service</code> 的外部地址，可以查看金丝雀版本是否正常工作，并通过观察请求返回结果确认旧版本与新版本的行为是否一致。</p>
+<h4 id="5_2">步骤 5：逐步增加金丝雀版本流量</h4>
+<p>如果金丝雀版本运行正常并且通过了测试，可以逐步增加新版本的副本数量，直到新版本替代所有旧版本。</p>
+<p><strong>5.1. 增加金丝雀版本的副本数</strong></p>
+<p>更新 <code>canary-deployment.yaml</code> 文件中的副本数，将 <code>replicas</code> 增加为 <code>3</code>，然后重新应用配置：</p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-canary
+  labels:
+    app: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: canary
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.20
+        ports:
+        - containerPort: 80</code></p>
+<p>应用更新后的配置：</p>
+<p><code>bash
+kubectl apply -f canary-deployment.yaml</code></p>
+<p><strong>5.2. 查看 Pod 的状态</strong></p>
+<p>再次查看金丝雀版本和旧版本的 Pod：</p>
+<p><code>bash
+kubectl get pods -l app=myapp</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+NAME                               READY   STATUS    RESTARTS   AGE
+myapp-deployment-5f99d67b7f-abc    1/1     Running   0          15m
+myapp-deployment-5f99d67b7f-def    1/1     Running   0          15m
+myapp-canary-7fbbd9cccd-jkl        1/1     Running   0          7m
+myapp-canary-7fbbd9cccd-mno        1/1     Running   0          1m
+myapp-canary-7fbbd9cccd-pqr        1/1     Running   0          1m</code></p>
+<p>可以看到，金丝雀版本的 Pod 已增加到 <code>3</code> 个。</p>
+<h4 id="6_1">步骤 6：完成更新并替换旧版本</h4>
+<p>一旦确认金丝雀版本稳定，完全可以替代旧版本时，可以将金丝雀版本的副本数量增加到 5（或更多），同时删除旧版本的 <code>Deployment</code>，以完成新版本的替换。</p>
+<p><strong>6.1. 增加金丝雀版本的副本数到 <code>5</code></strong></p>
+<p>修改 <code>canary-deployment.yaml</code> 文件，将副本数改为 <code>5</code>，并重新应用：</p>
+<p><code>yaml
+spec:
+  replicas: 5</code></p>
+<p><code>bash
+kubectl apply -f canary-deployment.yaml</code></p>
+<p><strong>6.2. 删除旧版本 Deployment</strong></p>
+<p><code>bash
+kubectl delete deployment myapp-deployment</code></p>
+<p>此时，新版本的 <code>Deployment</code>（即金丝雀版本）完全替代了旧版本的 Pod。</p>
+<h3 id="_10">总结</h3>
+<ul>
+<li><strong>金丝雀部署</strong> 是一种逐步引入新版本并监控其性能和稳定性的策略。</li>
+<li><strong>关键步骤</strong>：</li>
+<li>保持当前生产环境的 <code>Deployment</code> 运行，创建金丝雀版本的 <code>Deployment</code>，初始副本数量较少。</li>
+<li>使用 <code>Service</code> 使流量同时进入旧版本和金丝雀版本。</li>
+<li>测试新版本，如果新版本通过验证，逐步增加其副本数量。</li>
+<li>最终用新版本完全替换旧版本，完成更新。</li>
+<li><strong>优点</strong>：可以在小范围内验证新版本的稳定性，减少对生产环境的风险。</li>
+<li><strong>挑战</strong>：流量的控制和监控可能需要更多的管理工具和细粒度控制，例如结合流量管理工具（如 Istio）来实现更精准的流量分配和监控。</li>
+</ul>
+<p>如果你有任何其他问题或需要进一步的帮助，欢迎继续提问！</p>
+</blockquote>
+<h4 id="535-ab-testing">5.3.5 分批发布（A/B Testing）</h4>
+<blockquote>
+<p><strong>A/B 测试</strong> 更新类似于金丝雀部署，但更关注于新旧版本的对比测试和流量切分，主要目的是测试两个版本在不同用户群体中的表现。</p>
+<ul>
+<li><strong>原理</strong>：通过 <code>Deployment</code> 和一些路由控制工具来控制特定流量指向新版本，获取用户的反馈来评估新版本的效果。</li>
+<li>
+<p><strong>步骤</strong>：</p>
+</li>
+<li>
+<p>创建两个不同版本的 <code>Deployment</code>。</p>
+</li>
+<li>使用 Kubernetes 之外的路由工具（如 Istio 或 NGINX）将用户请求按照比例路由到不同的版本。</li>
+</ul>
+<p>A/B 测试（<strong>A/B Testing</strong>）是一种用来验证新旧版本在不同用户群体中的表现的方法，旨在评估新功能或新版本的效果，进而做出决策。这种方式非常适合需要对比不同版本的用户体验或功能改进对用户群体产生影响的场景。在 Kubernetes 中，A/B 测试通常结合 <strong>Service</strong> 和外部流量控制工具（如 Istio、NGINX、Traefik）来实现对流量的控制。</p>
+<p>以下是如何在 Kubernetes 中实现金丝雀部署的详细步骤。</p>
+<p>### A/B 测试部署的详细步骤</p>
+<p>#### 假设场景</p>
+<p>我们有一个当前的稳定版本，称为 <strong>A 版本</strong>，使用镜像 <code>nginx:1.19</code>。需要将这个 <code>Deployment</code> 的一部分流量引导到 <strong>B 版本</strong>，即新版本的 <code>Deployment</code>，使用镜像 <code>nginx:1.20</code>，来对比新旧版本的表现。</p>
+<p>#### 步骤 1：创建 A 版本 Deployment（当前版本）</p>
+<p>首先，创建当前正在生产环境中运行的稳定版本 A。</p>
+<p><strong>1.1. 创建 <code>a-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: a-deployment
+    labels:
+      app: myapp
+      version: a
+  spec:
+    replicas: 5
+    selector:
+      matchLabels:
+        app: myapp
+        version: a
+    template:
+      metadata:
+        labels:
+          app: myapp
+          version: a
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:1.19
+          ports:
+          - containerPort: 80</code></p>
+<p><strong>1.2. 应用 A 版本的 <code>Deployment</code> 配置</strong></p>
+<p><code>bash
+  kubectl apply -f a-deployment.yaml</code></p>
+<p>#### 步骤 2：创建 B 版本 Deployment（新版本）</p>
+<p>接下来，我们创建一个新版本 <strong>B</strong> 的 <code>Deployment</code>，作为 A/B 测试的新版本。</p>
+<p><strong>2.1. 创建 <code>b-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: b-deployment
+    labels:
+      app: myapp
+      version: b
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: myapp
+        version: b
+    template:
+      metadata:
+        labels:
+          app: myapp
+          version: b
+      spec:
+        containers:
+        - name: nginx
+          image: nginx:1.20
+          ports:
+          - containerPort: 80</code></p>
+<p><strong>2.2. 应用 B 版本的 <code>Deployment</code> 配置</strong></p>
+<p><code>bash
+  kubectl apply -f b-deployment.yaml</code></p>
+<p>#### 步骤 3：创建 Service</p>
+<p>接下来，我们创建一个 <strong>Service</strong>，该 Service 将与 A 和 B 两个版本关联，用于将外部流量路由到它们。</p>
+<p><strong>3.1. 创建 <code>service.yaml</code> 文件</strong></p>
+<p><code>yaml
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: myapp-service
+  spec:
+    selector:
+      app: myapp
+    ports:
+      - protocol: TCP
+        port: 80
+        targetPort: 80
+    type: LoadBalancer</code></p>
+<p><strong>3.2. 应用 Service 配置</strong></p>
+<p><code>bash
+  kubectl apply -f service.yaml</code></p>
+<p>#### 步骤 4：使用路由工具控制流量</p>
+<p>为了实现 A/B 测试，我们需要将一部分流量（例如 90%）引导到 A 版本，其余流量（例如 10%）引导到 B 版本。这需要使用流量路由控制工具，如 <strong>Istio</strong> 或 <strong>NGINX</strong>，来实现这种流量控制。</p>
+<p>##### 使用 Istio 实现 A/B 测试</p>
+<p><strong>4.1. 安装 Istio</strong></p>
+<p>首先需要在 Kubernetes 集群中安装 Istio，可以通过官方文档中的指南进行安装：https://istio.io/latest/docs/setup/getting-started/</p>
+<p><strong>4.2. 定义虚拟服务（VirtualService）</strong></p>
+<p>Istio 的 <code>VirtualService</code> 可以用于控制流量的分配。创建一个 <code>virtualservice.yaml</code> 文件：</p>
+<p><code>yaml
+  apiVersion: networking.istio.io/v1alpha3
+  kind: VirtualService
+  metadata:
+    name: myapp-virtualservice
+  spec:
+    hosts:
+    - "*"
+    gateways:
+    - myapp-gateway
+    http:
+    - route:
+      - destination:
+          host: a-deployment
+        weight: 90
+      - destination:
+          host: b-deployment
+        weight: 10</code></p>
+<ul>
+<li><strong>hosts</strong>：指定将服务请求发送到哪个主机，这里可以是 <code>Service</code> 的名称或域名。</li>
+<li><strong>route</strong>：定义流量的分配比例，90% 的流量发送到 A 版本，10% 的流量发送到 B 版本。</li>
+</ul>
+<p><strong>4.3. 创建网关（Gateway）</strong></p>
+<p>为了允许外部访问集群内的服务，还需要创建一个 Istio <code>Gateway</code>：</p>
+<p><code>yaml
+  apiVersion: networking.istio.io/v1alpha3
+  kind: Gateway
+  metadata:
+    name: myapp-gateway
+  spec:
+    selector:
+      istio: ingressgateway # 使用 Istio 的 Ingress 网关
+    servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+      - "*"</code></p>
+<p><strong>4.4. 应用 Gateway 和 VirtualService 配置</strong></p>
+<p><code>bash
+  kubectl apply -f gateway.yaml
+  kubectl apply -f virtualservice.yaml</code></p>
+<p><strong>4.5. 验证 A/B 测试流量分配</strong></p>
+<p>通过访问 <code>VirtualService</code> 指定的外部地址，可以验证请求的分配情况。通常可以通过工具（如 <code>curl</code>）多次请求，观察日志，确保流量按照期望的比例分配。</p>
+<p><code>bash
+  curl http://&lt;external-ip&gt;</code></p>
+<p>可以通过 <code>kubectl logs</code> 命令查看 Pod 的日志，确认流量是否被正确地分配到不同的版本。</p>
+<p>##### 使用 NGINX 实现 A/B 测试</p>
+<p>也可以使用 NGINX 反向代理配置来控制流量的分配。以下是基本的步骤：</p>
+<p><strong>4.1. 部署 NGINX</strong></p>
+<p>首先在 Kubernetes 中部署一个 NGINX 作为反向代理。</p>
+<p><strong>4.2. 配置 NGINX 反向代理</strong></p>
+<p>在 NGINX 配置中，设置反向代理规则来分配流量。以下是一个示例配置，将 90% 的流量路由到 A 版本，10% 的流量路由到 B 版本。</p>
+<p>```nginx
+  http {
+      upstream myapp {
+          server a-deployment:80 weight=90;
+          server b-deployment:80 weight=10;
+      }</p>
+<pre><code>  server {
+      listen 80;
+
+      location / {
+          proxy_pass http://myapp;
+      }
+  }
+</code></pre>
+<p>}
+  ```</p>
+<p><strong>4.3. 应用 NGINX 配置</strong></p>
+<p>将 NGINX 的配置应用到集群中，确保 NGINX 成为负载均衡器，将请求分配到 A 和 B 两个版本。</p>
+<p>#### 总结</p>
+<ul>
+<li><strong>A/B 测试</strong>是一种将不同版本应用部署到集群中，并将用户流量按照一定比例引导到不同版本的方法，主要用于测试新旧版本的表现差异。</li>
+<li><strong>关键步骤</strong>：<ol>
+<li>创建旧版本和新版本的 <code>Deployment</code>，分别代表 A 版本和 B 版本。</li>
+<li>使用 Kubernetes 的 <code>Service</code> 统一访问入口。</li>
+<li>使用外部路由工具（如 Istio 或 NGINX）来控制流量分配到不同版本。</li>
+</ol>
+</li>
+<li><strong>优势</strong>：A/B 测试可以让你在生产环境中测试新版本对用户的影响，提供真实的用户反馈，以评估新功能或改进的效果。</li>
+<li><strong>挑战</strong>：需要额外配置复杂的流量管理工具，如 Istio 或 NGINX，以实现精细的流量控制。</li>
+</ul>
+<p>如果你有任何问题或者需要进一步的帮助，请随时提问！</p>
+</blockquote>
+<h4 id="536-pauseresume">5.3.6 滚动更新 + Pause/Resume（手动控制更新）</h4>
+<blockquote>
+<p>Kubernetes 也允许你通过 <code>pause</code> 和 <code>resume</code> 来手动控制滚动更新的节奏。</p>
+<ul>
+<li><strong>步骤</strong>：</li>
+<li>在开始滚动更新后暂停更新，查看部分 Pod 运行状况。</li>
+<li>如果确认没有问题，再继续更新。</li>
+</ul>
+<p>可以通过以下命令实现：</p>
+<p>```bash</p>
+<h1 id="_11">暂停更新</h1>
+<p>kubectl rollout pause deployment/myapp</p>
+<h1 id="_12">恢复更新</h1>
+<p>kubectl rollout resume deployment/myapp
+```</p>
+<p>这种方式适用于希望对更新过程有更细粒度控制的场景。</p>
+<p>滚动更新的 <code>Pause/Resume</code> 功能使得你可以手动控制 Kubernetes <code>Deployment</code> 的更新过程。在某些场景下，你可能希望在更新过程中暂停，以便检查当前的更新状态，确保 Pod 正常运行，或者进行一些手动验证，避免新版本引入的问题影响整个集群。这种方式可以对更新过程进行更细粒度的控制。</p>
+<p>以下是如何在 Kubernetes 中使用 <code>Pause/Resume</code> 来控制滚动更新的详细步骤。</p>
+<h3 id="pauseresume">滚动更新 + Pause/Resume 详细步骤</h3>
+<h4 id="_13">场景假设</h4>
+<p>我们有一个现有的 <code>Deployment</code>，使用镜像 <code>nginx:1.19</code>，需要将这个 <code>Deployment</code> 滚动更新到 <code>nginx:1.20</code>。但是，为了确保新版本在生产环境中安全运行，我们希望分阶段手动检查和验证更新的 Pod 状态。</p>
+<h4 id="1-deployment_4">步骤 1：创建初始 <code>Deployment</code></h4>
+<p>首先，创建并部署当前版本的 <code>Deployment</code>。</p>
+<p><strong>1.1. 创建 <code>myapp-deployment.yaml</code> 文件</strong></p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.19
+        ports:
+        - containerPort: 80</code></p>
+<p><strong>1.2. 应用 <code>Deployment</code> 配置</strong></p>
+<p><code>bash
+kubectl apply -f myapp-deployment.yaml</code></p>
+<h4 id="2_2">步骤 2：开始滚动更新</h4>
+<p>接下来，将镜像版本更新为 <code>nginx:1.20</code>，并应用滚动更新策略。</p>
+<p><strong>2.1. 修改 <code>myapp-deployment.yaml</code> 文件</strong></p>
+<p>将容器镜像的版本从 <code>nginx:1.19</code> 更新到 <code>nginx:1.20</code>：</p>
+<p><code>yaml
+containers:
+- name: nginx
+  image: nginx:1.20</code></p>
+<p><strong>2.2. 应用更新后的配置</strong></p>
+<p><code>bash
+kubectl apply -f myapp-deployment.yaml</code></p>
+<p>此时，Kubernetes 会开始滚动更新旧的 Pod，将它们替换为新的版本。</p>
+<h4 id="3_3">步骤 3：暂停滚动更新</h4>
+<p>滚动更新过程中，我们可以使用 <code>pause</code> 命令手动暂停更新，这样可以逐步检查新版本 Pod 的状态，确保它们正常工作。</p>
+<p><strong>3.1. 暂停滚动更新</strong></p>
+<p><code>bash
+kubectl rollout pause deployment/myapp-deployment</code></p>
+<p>此命令会立即暂停当前正在进行的滚动更新，更新操作会保持当前状态。</p>
+<p><strong>3.2. 查看暂停后的状态</strong></p>
+<p>你可以通过以下命令查看 <code>Deployment</code> 的状态，确认它已经被暂停：</p>
+<p><code>bash
+kubectl rollout status deployment/myapp-deployment</code></p>
+<p>输出示例（显示更新进展被暂停）：</p>
+<p><code>plaintext
+deployment "myapp-deployment" paused</code></p>
+<p>此时，部分 Pod 已经被更新为新版本，部分 Pod 仍然是旧版本，你可以检查它们的运行状态。</p>
+<p><strong>3.3. 检查 Pod 状态</strong></p>
+<p>查看 Pod 的状态，确认新版本是否正常运行：</p>
+<p><code>bash
+kubectl get pods -l app=myapp</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+NAME                             READY   STATUS    RESTARTS   AGE
+myapp-deployment-7d8d7bd8c-abc   1/1     Running   0          5m
+myapp-deployment-7d8d7bd8c-def   1/1     Running   0          5m
+myapp-deployment-7d8d7bd8c-ghi   1/1     Running   0          3m
+myapp-deployment-7d8d7bd8c-jkl   1/1     Running   0          1m
+myapp-deployment-7d8d7bd8c-mno   1/1     Running   0          1m</code></p>
+<p>可以看到，部分 Pod 运行时间较短，说明它们已经被更新为新版本。</p>
+<h4 id="4_4">步骤 4：恢复滚动更新</h4>
+<p>如果确认新版本的 Pod 正常运行，可以继续滚动更新以完成所有 Pod 的更新。</p>
+<p><strong>4.1. 恢复滚动更新</strong></p>
+<p><code>bash
+kubectl rollout resume deployment/myapp-deployment</code></p>
+<p><strong>4.2. 查看更新状态</strong></p>
+<p>使用以下命令监控滚动更新的进度，确保所有 Pod 更新为新版本：</p>
+<p><code>bash
+kubectl rollout status deployment/myapp-deployment</code></p>
+<p>输出示例：</p>
+<p><code>plaintext
+deployment "myapp-deployment" successfully rolled out</code></p>
+<h4 id="5_3">步骤 5：回滚更新（如果有问题）</h4>
+<p>如果在恢复滚动更新后发现新版本有问题，可以使用回滚命令将 <code>Deployment</code> 恢复到之前的稳定版本。</p>
+<p><strong>5.1. 回滚到之前的版本</strong></p>
+<p><code>bash
+kubectl rollout undo deployment/myapp-deployment</code></p>
+<p>此命令会将 <code>Deployment</code> 恢复到更新前的版本，以确保应用的稳定性。</p>
+<h4 id="_14">总结</h4>
+<ul>
+<li><strong>滚动更新 + Pause/Resume</strong> 提供了手动控制滚动更新的功能，适用于希望在更新过程中进行逐步验证的场景。</li>
+<li><strong>关键步骤</strong>：</li>
+<li><strong>滚动更新开始</strong>：更新镜像版本并启动滚动更新。</li>
+<li><strong>暂停更新</strong>：使用 <code>kubectl rollout pause</code> 暂停更新，验证部分新版本 Pod 的运行状态。</li>
+<li><strong>恢复更新</strong>：使用 <code>kubectl rollout resume</code> 继续更新剩余的 Pod。</li>
+<li><strong>回滚更新（如果有问题）</strong>：使用 <code>kubectl rollout undo</code> 将 <code>Deployment</code> 恢复到之前的稳定版本。</li>
+<li><strong>优势</strong>：这种方式可以对更新过程有更细粒度的控制，能够在新版本中发现问题时立即暂停更新，防止问题影响到整个集群的可用性。</li>
+</ul>
+<p>如果你还有其他问题，欢迎继续提问！</p>
+</blockquote>
+<h3 id="54-statefulset-deployment">5.4 什么是 StatefulSet？与 Deployment 有什么区别？</h3>
+<blockquote>
+<p>在 Kubernetes 中，<code>StatefulSet</code> 和 <code>Deployment</code> 都是管理 Pod 的一种控制器，但它们适用于不同类型的应用场景。以下是关于 <code>StatefulSet</code> 及其与 <code>Deployment</code> 的区别、以及如何使用它们的详细说明和操作步骤。</p>
+<h3 id="statefulset">什么是 StatefulSet？</h3>
+<p><code>StatefulSet</code> 是 Kubernetes 中的一种控制器，用于管理有状态的应用程序，尤其适合那些对数据持久化和部署顺序有严格要求的场景。<code>StatefulSet</code> 的主要特点包括：</p>
+<ol>
+<li><strong>有序部署和更新</strong>：<code>StatefulSet</code> 按照顺序（从 0 开始的编号）创建、更新和删除 Pod。</li>
+<li><strong>稳定的网络标识</strong>：每个 Pod 都有一个稳定的网络标识，这些标识在重启或重新调度时保持不变。</li>
+<li><strong>持久存储</strong>：每个 Pod 都有一个与之绑定的独立的存储卷，存储卷在 Pod 重建后也不会被删除。</li>
+</ol>
+<p><code>StatefulSet</code> 适用于有状态的应用程序，比如数据库（如 MySQL、PostgreSQL）、分布式系统（如 ZooKeeper、Kafka）等。</p>
+<h3 id="statefulset-deployment">StatefulSet 和 Deployment 的区别</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>StatefulSet</th>
+<th>Deployment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>有状态应用，如数据库、需要持久化的数据</td>
+<td>无状态应用，如 Web 服务、API 服务器</td>
+</tr>
+<tr>
+<td><strong>Pod 的唯一标识</strong></td>
+<td>每个 Pod 有唯一的名字（稳定的网络标识）</td>
+<td>Pod 名字不稳定，Pod 重启后名字会改变</td>
+</tr>
+<tr>
+<td><strong>存储卷</strong></td>
+<td>每个 Pod 都有独立的持久卷，且不会在 Pod 删除时丢失</td>
+<td>通常使用共享存储，Pod 删除后存储也会被回收</td>
+</tr>
+<tr>
+<td><strong>部署顺序</strong></td>
+<td>按序部署，按编号顺序启动和删除 Pod</td>
+<td>无序部署，Pod 启动和删除是并行的</td>
+</tr>
+</tbody>
+</table>
+<h3 id="statefulset_1">使用 StatefulSet 的详细操作步骤</h3>
+<p>以下是如何在 Kubernetes 中创建一个 <code>StatefulSet</code> 的详细步骤：</p>
+<h4 id="1-configmap-service">1. 创建 ConfigMap 和 Service</h4>
+<p><code>StatefulSet</code> 通常会配合 <code>Headless Service</code> 一起使用，以确保每个 Pod 有稳定的网络访问地址。</p>
+<ol>
+<li><strong>创建一个 Headless Service</strong>：</li>
+</ol>
+<p>Headless Service 允许你为 <code>StatefulSet</code> 中的每个 Pod 分配一个稳定的 DNS 名称。</p>
+<p>创建一个 <code>headless-service.yaml</code> 文件：</p>
+<p><code>yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-headless
+  labels:
+    app: myapp
+spec:
+  ports:
+    - port: 80
+      name: web
+  clusterIP: None
+  selector:
+    app: myapp</code></p>
+<p>应用 Service：</p>
+<p><code>bash
+kubectl apply -f headless-service.yaml</code></p>
+<ol>
+<li><strong>创建 StatefulSet 配置文件</strong></li>
+</ol>
+<p>创建一个 <code>statefulset.yaml</code> 文件，定义 <code>StatefulSet</code> 的配置。例如，创建一个简单的 Nginx 应用：</p>
+<p><code>yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: myapp
+spec:
+  serviceName: "myapp-headless"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
+          name: web
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 1Gi</code></p>
+<p><strong>主要字段说明</strong>：</p>
+<ul>
+<li><strong>serviceName</strong>：指定与 <code>StatefulSet</code> 关联的 <code>Headless Service</code>。</li>
+<li><strong>replicas</strong>：副本数量。</li>
+<li><strong>volumeClaimTemplates</strong>：为每个 Pod 创建独立的持久存储卷。</li>
+</ul>
+<h4 id="2-statefulset">2. 部署 StatefulSet</h4>
+<p>应用 <code>statefulset.yaml</code> 文件：</p>
+<p><code>bash
+kubectl apply -f statefulset.yaml</code></p>
+<h4 id="3-statefulset">3. 验证 StatefulSet 的部署</h4>
+<ul>
+<li>查看 <code>StatefulSet</code> 的状态：</li>
+</ul>
+<p><code>bash
+  kubectl get statefulset</code></p>
+<p>你将看到类似的输出：</p>
+<p><code>plaintext
+  NAME    READY   AGE
+  myapp   3/3     5m</code>
+- 查看 Pod 的状态：</p>
+<p><code>bash
+  kubectl get pods -l app=myapp</code></p>
+<p>输出类似如下：</p>
+<p><code>plaintext
+  NAME        READY   STATUS    RESTARTS   AGE
+  myapp-0     1/1     Running   0          5m
+  myapp-1     1/1     Running   0          4m
+  myapp-2     1/1     Running   0          3m</code></p>
+<p>每个 Pod 都有一个稳定的名称，比如 <code>myapp-0</code>、<code>myapp-1</code>、<code>myapp-2</code>。</p>
+<h4 id="4-statefulset">4. 更新 StatefulSet</h4>
+<p>更新 <code>StatefulSet</code> 与更新 <code>Deployment</code> 类似，你可以修改配置文件中的镜像版本，然后应用更改：</p>
+<ul>
+<li>修改 <code>statefulset.yaml</code> 中的镜像版本，例如，将 Nginx 的镜像更新为 <code>nginx:1.22</code>：
+  ```yaml
+  containers:</li>
+<li>name: nginx
+    image: nginx:1.22
+  ```</li>
+</ul>
+<p>重新应用文件：</p>
+<p><code>bash
+kubectl apply -f statefulset.yaml</code></p>
+<p>查看滚动更新状态：</p>
+<p><code>bash
+kubectl rollout status statefulset/myapp</code></p>
+<h4 id="5-pod">5. 验证 Pod 的持久性和顺序性</h4>
+<ul>
+<li><strong>删除 Pod 并查看重建</strong>：删除某个 Pod，观察其重建情况：</li>
+</ul>
+<p><code>bash
+  kubectl delete pod myapp-0</code></p>
+<p>你会发现 Kubernetes 会自动按顺序重建这个 Pod，且名称保持不变。
+- <strong>验证持久存储卷</strong>：每个 Pod 的数据存储卷是独立的且持久化，即使 Pod 删除后，数据卷不会丢失。你可以查看 Persistent Volume Claim (PVC)：</p>
+<p><code>bash
+  kubectl get pvc</code></p>
+<p>你会看到每个 Pod 对应的 PVC，例如：</p>
+<p><code>plaintext
+  NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+  www-myapp-0  Bound    pvc-12345678-1234-5678-1234-567812345678   1Gi        RWO            standard       10m
+  www-myapp-1  Bound    pvc-22345678-2234-5678-2234-567822345678   1Gi        RWO            standard       9m</code></p>
+<h3 id="_15">总结</h3>
+<ul>
+<li><code>StatefulSet</code> 适用于有状态的应用，能够保证 Pod 的顺序性、网络标识和持久存储。</li>
+<li>与 <code>Deployment</code> 不同，<code>StatefulSet</code> 确保每个 Pod 的身份唯一并且持久化数据卷不会丢失。</li>
+<li>使用 <code>StatefulSet</code> 时，通常需要与 <code>Headless Service</code> 配合使用，以确保每个 Pod 有稳定的 DNS 名称。</li>
+</ul>
+</blockquote>
+<p><strong>企业 ERP 系统部署选用StatefulSet 模式</strong></p>
+<blockquote>
+<p>企业 ERP 系统如果部署在 Kubernetes 上，通常会使用 <strong>StatefulSet</strong>。这是因为 ERP 系统一般需要处理大量的有状态数据，比如数据库和用户会话状态等，<strong>StatefulSet</strong> 可以更好地管理和保持这些状态的一致性和持久性。</p>
+<p>以下是选择 <strong>StatefulSet</strong> 作为企业 ERP 系统在 Kubernetes 上部署的原因，以及一些常见的场景：</p>
+<h3 id="1-statefulset">1. StatefulSet 的特点适合有状态应用</h3>
+<p><strong>StatefulSet</strong> 是 Kubernetes 中的一种控制器，专门用于管理有状态的应用程序。以下是它的几个重要特点，这些特点使得它非常适合用于企业 ERP 系统的部署：</p>
+<ul>
+<li><strong>有序部署和更新</strong>：StatefulSet 保证 Pod 按序创建、更新和删除。这对于 ERP 系统中需要有顺序依赖的组件来说非常重要。</li>
+<li><strong>稳定的网络标识</strong>：StatefulSet 中每个 Pod 都有一个稳定的 DNS 名称，即使 Pod 重启或迁移，名称也不会发生变化。对于需要持久连接的 ERP 组件，比如与数据库的连接，这种特性非常重要。</li>
+<li><strong>持久存储卷</strong>：每个 StatefulSet 的 Pod 都有独立的持久存储卷，这些存储卷与 Pod 绑定在一起，即使 Pod 重建，存储卷也不会丢失。ERP 系统的数据库、用户会话和缓存等数据需要持久化，StatefulSet 可以很好地支持这些需求。</li>
+</ul>
+<h3 id="2-erp">2. ERP 系统通常需要有状态的持久性</h3>
+<p>企业 ERP 系统的特性决定了它对数据的持久性和一致性有非常高的要求，包括：</p>
+<ul>
+<li><strong>数据库存储</strong>：ERP 系统中往往涉及大型关系型数据库（如 MySQL、PostgreSQL、Oracle 等），用于存储客户信息、财务数据、采购数据等。这些数据库必须持久化，因此适合使用 StatefulSet，保证每个数据库实例都有一个持久存储卷。</li>
+<li><strong>会话管理</strong>：ERP 系统中的用户会话通常需要持久化，以保证在 Pod 重启或迁移时用户不需要重新登录。这也是 StatefulSet 的一个重要用例。</li>
+<li><strong>组件间的有序依赖</strong>：ERP 系统由多个组件（如应用服务器、消息队列、数据库等）组成，并且这些组件之间存在相互依赖的关系。StatefulSet 的有序性部署和终止能够帮助这些组件按依赖关系启动和关闭，保证系统的稳定性。</li>
+</ul>
+<h3 id="statefulset-erp">使用 StatefulSet 部署 ERP 系统的常见场景</h3>
+<p>以下是一些常见的 ERP 系统在 Kubernetes 上部署时使用 <strong>StatefulSet</strong> 的场景：</p>
+<ol>
+<li>
+<p><strong>数据库部署</strong>：</p>
+</li>
+<li>
+<p>ERP 系统依赖于关系型数据库，而数据库是典型的有状态应用。使用 StatefulSet 可以保证每个数据库实例的数据卷的持久性和网络标识的稳定性。</p>
+</li>
+<li>比如，可以用 StatefulSet 部署 MySQL、PostgreSQL 等主从架构的数据库集群。</li>
+<li>
+<p><strong>应用服务器的有状态管理</strong>：</p>
+</li>
+<li>
+<p>ERP 系统的应用服务器部分可能需要维护用户会话、缓存和本地状态，这些都需要持久存储。StatefulSet 可以确保应用服务器的 Pod 在重启时保留其状态和数据卷。</p>
+</li>
+<li>
+<p><strong>消息队列和缓存</strong>：</p>
+</li>
+<li>
+<p>ERP 系统中可能会使用消息队列（如 Kafka）或分布式缓存（如 Redis）。这些组件同样需要数据持久化和稳定的网络标识，因此也可以通过 StatefulSet 来进行部署。</p>
+</li>
+<li>Kafka 集群或 Redis 集群的节点需要稳定的主机名以保证集群的一致性，StatefulSet 可以很好地满足这种需求。</li>
+</ol>
+<h3 id="deployment">和 Deployment 的对比</h3>
+<p><strong>StatefulSet</strong> 和 <strong>Deployment</strong> 的区别在于有无状态的管理能力，这也是为什么 ERP 系统更适合使用 StatefulSet 的原因：</p>
+<ul>
+<li><strong>StatefulSet</strong> 适合有状态应用，保证 Pod 的网络标识和存储卷的一致性。而 <strong>Deployment</strong> 适合无状态应用，比如前端 Web 服务，Pod 的状态、顺序和持久存储对它们来说并不重要。</li>
+<li><strong>Deployment</strong> 无法保证 Pod 启动的顺序和存储的稳定性，因此对于数据库或者需要保证状态一致性的 ERP 组件来说并不是最好的选择。</li>
+</ul>
+<h3 id="_16">部署建议</h3>
+<ol>
+<li>
+<p><strong>数据库独立部署</strong>：</p>
+</li>
+<li>
+<p>ERP 系统的数据库建议通过 StatefulSet 独立部署，以保持其高可用性和持久性。可以结合 PersistentVolume（PV）和 PersistentVolumeClaim（PVC）来提供底层存储支持。</p>
+</li>
+<li>
+<p><strong>应用服务器可分为多种方式</strong>：</p>
+</li>
+<li>
+<p>对于无状态的部分，例如用户界面或业务逻辑服务，可以使用 Deployment 进行水平扩展。</p>
+</li>
+<li>对于有状态的部分，例如需要会话持久化的应用服务器实例，可以使用 StatefulSet 进行管理。</li>
+<li>
+<p><strong>结合其他 Kubernetes 工具</strong>：</p>
+</li>
+<li>
+<p><strong>Headless Service</strong>：StatefulSet 一般需要结合 Headless Service 使用，以确保每个 Pod 有一个稳定的 DNS 名称。</p>
+</li>
+<li><strong>PersistentVolume</strong>：为 StatefulSet 中的每个 Pod 提供独立的持久存储。</li>
+</ol>
+<p>在 Kubernetes 中部署企业 ERP 系统，<strong>StatefulSet</strong> 是非常常见的选择，尤其是对于需要持久化和稳定状态的组件，例如数据库、消息队列和应用服务器等。StatefulSet 能够提供有序部署、稳定网络标识和持久存储卷，这些都是企业 ERP 系统正常运行的关键条件。</p>
+<p>对于无状态的服务部分，仍然可以使用 <strong>Deployment</strong> 来实现快速扩展和更新，但对于数据持久性要求高的部分，StatefulSet 是最佳选择。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+    
+  </body>
+</html>
